@@ -6,6 +6,6 @@ public interface BaseService<T> {
 	List<T> findAll();
 	T findById(Integer id);
 	T save(T vo);
-	void delete(Integer id);
+	void deleteById(Integer id);
 	
 }

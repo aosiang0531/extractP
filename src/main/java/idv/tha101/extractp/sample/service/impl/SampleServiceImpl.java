@@ -31,7 +31,7 @@ public class SampleServiceImpl implements SampleService{
 	}
 
 	@Override
-	public void delete(Integer id) {
+	public void deleteById(Integer id) {
 		sampleRepositry.deleteById(id);
 	}
 	

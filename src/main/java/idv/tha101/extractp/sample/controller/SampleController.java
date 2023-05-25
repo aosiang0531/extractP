@@ -39,7 +39,7 @@ public class SampleController extends BaseController<SampleVO> {
 	
 	@DeleteMapping("/{id}")
 	public void deleteById(@PathVariable(value = "id") int id) {
-		sampleService.delete(id);
+		sampleService.deleteById(id);
 	}
 
 }
