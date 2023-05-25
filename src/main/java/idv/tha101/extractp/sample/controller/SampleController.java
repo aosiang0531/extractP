@@ -9,6 +9,7 @@ import idv.tha101.extractp.sample.service.SampleService;
 @RestController
 @RequestMapping("sample")
 public class SampleController {
+	
 	@Autowired
 	private SampleService sampleService;
 

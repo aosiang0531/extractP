@@ -6,20 +6,22 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.experimental.Accessors;
 
-@Entity
-@Table(name = "sample")
-@Setter
-@Getter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SamplePojo {
+@Builder
+@Accessors(chain = true, prefix = "sample_")
+@Entity
+@Table(name = "sample")
+public class SampleVO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int sample_id;
-	
+
 	private String sample_text;
 }
