@@ -21,7 +21,7 @@ import lombok.experimental.Accessors;
 public class SampleVO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int sample_id;
+	private Integer sample_id;
 
 	private String sample_text;
 }
