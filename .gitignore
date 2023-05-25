@@ -52,5 +52,5 @@ buildNumber.properties
 .classpath
 
 # custom
-.log
-.gz
+*.log
+*.gz
