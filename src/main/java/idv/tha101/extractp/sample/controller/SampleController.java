@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,21 +23,31 @@ public class SampleController extends BaseController<SampleVO> {
 	@Autowired
 	private SampleService sampleService;
 
+	@Override
 	@GetMapping
 	public List<SampleVO> findAll() {
 		return sampleService.findAll();
 	}
 
+	@Override
 	@GetMapping("/{id}")
 	public SampleVO findById(@PathVariable(value = "id") int id) {
 		return sampleService.findById(id);
 	}
 
+	@Override
 	@PostMapping
 	public SampleVO save(@RequestBody SampleVO vo) {
-		return sampleService.save(vo);
+		return sampleService.saveOrUpdate(vo);
 	};
-	
+
+	@Override
+	@PutMapping("/{id}")
+	public SampleVO update(@RequestBody SampleVO vo, @PathVariable(value = "id") int id) {
+		return sampleService.saveOrUpdate(vo.setId(id));
+	}
+
+	@Override
 	@DeleteMapping("/{id}")
 	public void deleteById(@PathVariable(value = "id") int id) {
 		sampleService.deleteById(id);

@@ -8,7 +8,9 @@ public abstract class BaseController<T> {
 
 	public abstract T findById(int id);
 
-	public abstract T save(T t);
+	public abstract T save(T vo);
+
+	public abstract T update(T vo, int id);
 
 	public abstract void deleteById(int id);
 }
