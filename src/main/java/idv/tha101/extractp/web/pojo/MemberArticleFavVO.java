@@ -39,13 +39,13 @@ public class MemberArticleFavVO {
 		private static final long serialVersionUID = 1L;
 
 		@Column
-		private String member_email;
+		private Integer member_id;
 		@Column
 		private Integer article_id;
 
 		@Override
 		public int hashCode() {
-			return Objects.hash(article_id, member_email);
+			return Objects.hash(article_id, member_id);
 		}
 
 		@Override
@@ -57,7 +57,7 @@ public class MemberArticleFavVO {
 			if (getClass() != obj.getClass())
 				return false;
 			PK other = (PK) obj;
-			return Objects.equals(article_id, other.article_id) && Objects.equals(member_email, other.member_email);
+			return Objects.equals(article_id, other.article_id) && Objects.equals(member_id, other.member_id);
 		}
 
 	}

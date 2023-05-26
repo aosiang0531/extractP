@@ -30,7 +30,7 @@ public class ArticleCommentVO implements Serializable{
 	@Column
 	private Integer article_comment_id;
 	@Column
-	private String member_email;
+	private Integer member_id;
 	@Column
 	private Integer article_id;
 	@Column

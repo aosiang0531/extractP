@@ -6,8 +6,6 @@ import org.springframework.stereotype.Repository;
 import idv.tha101.extractp.base.dao.BaseRepository;
 import idv.tha101.extractp.web.pojo.ArticleTemplateVO;
 
-
-
 @RepositoryRestResource
 @Repository
 public interface ArticleTemplateRepository extends BaseRepository<ArticleTemplateVO, Integer>{
