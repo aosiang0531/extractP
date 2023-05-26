@@ -31,7 +31,7 @@ public class ProductController extends BaseController<ProductVO> {
 	}
 
 	@Override
-	@GetMapping("/SingleProduct")
+	@GetMapping("/SingleProduct")	//http://localhost:8080/product/SingleProduct?id=
 	public ProductVO findById(@RequestParam("id") int id) {
 		return service.findById(id);
 	}
