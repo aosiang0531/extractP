@@ -1,6 +1,8 @@
 package idv.tha101.extractp.web.service.impl;
 
+import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,11 +12,11 @@ import idv.tha101.extractp.web.pojo.MemberArticleFavVO;
 import idv.tha101.extractp.web.service.MemberArticleFavService;
 
 @Service
-public class MemberArticleFavServiceImpl implements MemberArticleFavService{
+public class MemberArticleFavServiceImpl implements MemberArticleFavService {
 
 	@Autowired
 	private MemberArticleFavRepository memberArticleFavRepository;
-	
+
 	@Override
 	public List<MemberArticleFavVO> findAll() {
 		return memberArticleFavRepository.findAll();
@@ -26,14 +28,15 @@ public class MemberArticleFavServiceImpl implements MemberArticleFavService{
 	}
 
 	@Override
-	public MemberArticleFavVO save(MemberArticleFavVO vo) {
-		return memberArticleFavRepository.save(vo);
+	public MemberArticleFavVO saveOrUpdate(MemberArticleFavVO vo) {
+// TODO
+		return null;
 	}
 
 	@Override
-	public void delete(Integer id) {
+	public void deleteById(Integer id) {
 		memberArticleFavRepository.deleteById(id);
-		
+
 	}
 
 }

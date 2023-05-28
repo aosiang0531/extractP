@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +22,6 @@ public class ArticleController extends BaseController<ArticleVO>{
 
 	@GetMapping
 	public List<ArticleVO> findAll() {
-		// TODO Auto-generated method stub
 		return articleService.findAll();
 	}
 
@@ -31,15 +31,22 @@ public class ArticleController extends BaseController<ArticleVO>{
 	}
 
 	@GetMapping
-	public ArticleVO save(ArticleVO t) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArticleVO save(@RequestBody ArticleVO vo) {
+		return articleService.saveOrUpdate(vo);
 	}
 
+	@Override
+	@GetMapping({"/id"})
+	public ArticleVO update(@RequestBody ArticleVO vo, @PathVariable(value = "id") int id) {
+		return articleService.saveOrUpdate(vo.setId(id));
+	}
+	
 	@GetMapping({"/id"})
 	public void deleteById(@PathVariable(value = "id") int id) {
-		articleService.delete(id);
+		articleService.deleteById(id);
 		
 	}
+
+
 
 }

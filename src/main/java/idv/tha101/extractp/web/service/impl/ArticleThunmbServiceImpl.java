@@ -1,6 +1,8 @@
 package idv.tha101.extractp.web.service.impl;
 
+import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,8 +12,8 @@ import idv.tha101.extractp.web.pojo.ArticleThunmbVO;
 import idv.tha101.extractp.web.service.ArticleThunmbService;
 
 @Service
-public class ArticleThunmbServiceImpl implements ArticleThunmbService{
-	
+public class ArticleThunmbServiceImpl implements ArticleThunmbService {
+
 	@Autowired
 	private ArticleThunmbRepository articleThunmbRepository;
 
@@ -26,14 +28,15 @@ public class ArticleThunmbServiceImpl implements ArticleThunmbService{
 	}
 
 	@Override
-	public ArticleThunmbVO save(ArticleThunmbVO vo) {
-		return articleThunmbRepository.save(vo);
+	public ArticleThunmbVO saveOrUpdate(ArticleThunmbVO vo) {
+// TODO
+		return null;
 	}
 
 	@Override
-	public void delete(Integer id) {
+	public void deleteById(Integer id) {
 		articleThunmbRepository.deleteById(id);
-		
+
 	}
 
 }

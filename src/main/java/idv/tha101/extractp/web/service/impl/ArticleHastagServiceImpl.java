@@ -1,9 +1,12 @@
 package idv.tha101.extractp.web.service.impl;
 
+import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import idv.tha101.extractp.sample.pojo.SampleVO;
 import idv.tha101.extractp.web.dao.ArticleHastagRepository;
 import idv.tha101.extractp.web.pojo.ArticleHastagVO;
 import idv.tha101.extractp.web.service.ArticleHastagService;
@@ -23,13 +26,15 @@ public class ArticleHastagServiceImpl implements ArticleHastagService{
 		return articleHastagRepository.findById(id).orElseThrow();
 	}
 
+
 	@Override
-	public ArticleHastagVO save(ArticleHastagVO vo) {
-		return articleHastagRepository.save(vo);
+	public ArticleHastagVO saveOrUpdate(ArticleHastagVO vo) {
+//	TODO
+		return null;
 	}
 
 	@Override
-	public void delete(Integer id) {
+	public void deleteById(Integer id) {
 		articleHastagRepository.deleteById(id);
 		
 	}

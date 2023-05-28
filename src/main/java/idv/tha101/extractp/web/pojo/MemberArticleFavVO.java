@@ -4,10 +4,17 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,14 +28,18 @@ import lombok.experimental.Accessors;
 @Builder
 @Accessors(chain = true, prefix = "member_article_fav_")
 @Entity
-@Table(name = "member_article_fav", catalog = "THA101_G7")
+@EntityListeners(AuditingEntityListener.class)
+@DynamicInsert
+@DynamicUpdate
+@Table(name = "member_article_fav")
 public class MemberArticleFavVO {
 
 	@EmbeddedId
 	private PK pk;
 
-	@Column
-	private Timestamp member_article_fav_created_time;
+	@CreatedDate
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Timestamp member_article_fav_created_date;
 
 //	@ManyToOne
 //	@JoinColumn(name = "article_id", insertable = false, updatable = false)

@@ -32,12 +32,20 @@ public class ArticleTemplateController extends BaseController<ArticleTemplateVO>
 
 	@GetMapping
 	public ArticleTemplateVO save(@RequestBody ArticleTemplateVO vo) {
-		return articleTemplateService.save(vo);
+		return articleTemplateService.saveOrUpdate(vo);
+	}
+	
+	@Override
+	@GetMapping({"/id"})
+	public ArticleTemplateVO update(@RequestBody ArticleTemplateVO vo, @PathVariable(value = "id") int id) {
+		return articleTemplateService.saveOrUpdate(vo.setId(id));
 	}
 
 	@GetMapping({"/id"})
 	public void deleteById(@PathVariable(value = "id") int id) {
-		articleTemplateService.delete(id);		
+		articleTemplateService.deleteById(id);		
 	}
+
+
 
 }

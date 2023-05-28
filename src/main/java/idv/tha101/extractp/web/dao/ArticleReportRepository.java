@@ -8,6 +8,6 @@ import idv.tha101.extractp.web.pojo.ArticleReportVO;
 
 @RepositoryRestResource
 @Repository
-public interface ArticleReportRepository extends BaseRepository<ArticleReportVO, Integer>{
-	
+public interface ArticleReportRepository extends BaseRepository<ArticleReportVO, Integer> {
+
 }

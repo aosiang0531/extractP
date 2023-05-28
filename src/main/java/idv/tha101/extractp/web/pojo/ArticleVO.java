@@ -2,8 +2,17 @@ package idv.tha101.extractp.web.pojo;
 
 import java.sql.Timestamp;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,25 +29,37 @@ import lombok.experimental.Accessors;
 @Builder
 @Accessors(chain = true, prefix = "article_")
 @Entity
-@Table(name = "article", catalog = "THA101_G7")
-public class ArticleVO{
+@EntityListeners(AuditingEntityListener.class)
+@DynamicInsert
+@DynamicUpdate
+@Table(name = "article")
+public class ArticleVO {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
 	private Integer article_id;
-	@Column
+
 	private Integer member_id;
-	@Column
+
 	private Integer article_group_id;
-	@Column
+
 	private String article_title;
-	@Column
+
 	private String article_content;
-	@Column
+
 	private byte[] article_image;
-	@Column(updatable = false)
-	private Timestamp article_create_time;
+
+	@CreatedDate
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Timestamp article_created_date;
+
+	@LastModifiedDate
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Timestamp article_last_modified_date;
+
+	@LastModifiedBy
+	private String article_last_modified_by;
+
 	@Column(insertable = false, updatable = false)
 	private Integer article_thunmb_number;
 	@Column(insertable = false, updatable = false)
@@ -46,14 +67,10 @@ public class ArticleVO{
 	@Column(insertable = false, updatable = false)
 	private Integer member_article_fav_number;
 	@Column(insertable = false)
-	private String article_last_modified_member;
-	@Column(insertable = false)
-	private Timestamp article_last_modified_time;
-	@Column(insertable = false)
 	private Boolean article_is_hidden;
 	@Column(insertable = false)
 	private Boolean article_is_top;;
-	
+
 //	@ManyToOne
 //	@JoinColumn(name = "article_group_id",insertable = false, updatable = false)
 //	private ArticleGroup articleGroup;
@@ -73,6 +90,5 @@ public class ArticleVO{
 //	
 //	@OneToMany(mappedBy = "article_id")
 //	private List<ArticleThunmb> articleThunmbs;
-	
-	
+
 }

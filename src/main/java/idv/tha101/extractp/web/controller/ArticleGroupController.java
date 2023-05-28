@@ -15,30 +15,36 @@ import idv.tha101.extractp.web.service.ArticleGroupService;
 
 @RestController
 @RequestMapping("article_group")
-public class ArticleGroupController extends BaseController<ArticleGroupVO>{
+public class ArticleGroupController extends BaseController<ArticleGroupVO> {
 
 	@Autowired
 	private ArticleGroupService articleGroupService;
-	
+
 	@GetMapping
 	public List<ArticleGroupVO> findAll() {
 		return articleGroupService.findAll();
 	}
 
-	@GetMapping({"/id"})
+	@GetMapping({ "/id" })
 	public ArticleGroupVO findById(@PathVariable(value = "id") int id) {
 		return articleGroupService.findById(id);
 	}
 
 	@GetMapping
 	public ArticleGroupVO save(@RequestBody ArticleGroupVO vo) {
-		return articleGroupService.save(vo);
+		return articleGroupService.saveOrUpdate(vo);
 	}
 
-	@GetMapping({"/id"})
+	@Override
+	@GetMapping({ "/id" })
+	public ArticleGroupVO update(@RequestBody ArticleGroupVO vo, @PathVariable(value = "id") int id) {
+		return articleGroupService.saveOrUpdate(vo.setId(id));
+	}
+
+	@GetMapping({ "/id" })
 	public void deleteById(@PathVariable(value = "id") int id) {
-		articleGroupService.delete(id);
-		
+		articleGroupService.deleteById(id);
+
 	}
 
 }

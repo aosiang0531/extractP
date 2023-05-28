@@ -3,10 +3,20 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,21 +28,30 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Accessors(chain = true, prefix = "article_template_")
+@Accessors(chain = true, prefix = "article_hastag_")
 @Entity
-@Table(name = "article_hastag", catalog = "THA101_G7")
+@EntityListeners(AuditingEntityListener.class)
+@DynamicInsert
+@DynamicUpdate
+@Table(name = "article_hastag")
 public class ArticleHastagVO{
 
 	@EmbeddedId
 	private PK pk;
-	@Column
-	private Timestamp article_hastag_created_time;
-	@Column
-	private Timestamp article_hastag_last_modified_time;
-	@Column
-	private String article_hastag_created_member;
-	@Column
-	private String article_hastag_last_modified_member;
+	
+    @CreatedDate
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Timestamp article_hastag_created_date;
+
+    @LastModifiedDate
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Timestamp article_hastag_last_modified_date;
+    
+    @CreatedBy
+    private String article_hastag_created_by;
+
+    @LastModifiedBy
+    private String article_hastag_last_modified_by;
 
 //	@ManyToOne
 //	@JoinColumn(name = "article_tag_id", insertable = false, updatable = false)
