@@ -1,6 +1,7 @@
 package idv.tha101.extractp.shop.pojo;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -17,6 +18,9 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,67 +32,78 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Accessors(chain = true, prefix = "product_")
+@Accessors(chain = true, prefix = "product")
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @DynamicInsert
 @DynamicUpdate
 @Table(name = "PRODUCT")
 public class ProductVO {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column
-	private Integer product_id;
-	@Column
-	private Integer category_id;
-	public Integer getCategory_id() {
-		return category_id;
-	}
-	public void setCategory_id(Integer category_id) {
-		this.category_id = category_id;
-	}
-	@Column
-	private String product_name;
-	@Column
-	private byte[] product_image;
-	@Column
-	private String product_spec;
-	@Column
-	private String product_description;
-	@Column
-	private Integer product_price;
-	@Column
-	private Integer product_stock;
-	@Column(insertable = false)
-	private Integer product_sold_count;
-	@Column(insertable = false)
-	private String product_status;
+	@Column(name = "product_id")
+	private Integer productId;
 	
-	@Column
+	@Column(name = "category_id")
+	private Integer categoryId;
+	
+	@Column(name = "product_name")
+	private String productName;
+	
+	@Column(name = "product_image")
+	private byte[] productImage;
+	
+	@Column(name = "product_spec")
+	private String productSpec;
+	
+	@Column(name = "product_description")
+	private String productDescription;
+	
+	@Column(name = "product_price")
+	private Integer productPrice;
+	
+	@Column(name = "product_stock")
+	private Integer productStock;
+	
+	@Column(name = "product_sold_count", insertable = false)
+	private Integer productSoldCount;
+	
+	@Column(name = "product_status", insertable = false)
+	private String productStatus;
+	
+	@Column(name = "product_created_date")
 	@CreatedDate
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private Timestamp product_created_date;
+	private Timestamp productCreatedDate;
 	
-	@Column
+	@Column(name = "product_last_modified_date")
 	@LastModifiedDate
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private Timestamp product_last_modified_date;
+	private Timestamp productLastModifiedDate;
 	
-	@Column
+	@Column(name = "product_created_by")
 	@CreatedBy
-	private Integer product_created_by;
+	private Integer productCreatedBy;
 	
-	@Column
+	@Column(name = "product_last_modified_by")
 	@LastModifiedBy
-	private Integer product_last_modified_by;
+	private Integer productLastModifiedBy;
 	
-//	@ManyToOne
-//	@JoinColumn(name = "category_id",
-//	insertable = false, updatable = false)
-//	private ProductCategory productCategory;
-//	
-//	@OneToMany
-//	@JoinColumn(name = "product_id",
-//	referencedColumnName = "product_id")
-//	private List<OrderDetail> orderDetails;
+	public Integer getCategoryId() {
+		return categoryId;
+	}
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
+	}
+	
+	@ManyToOne
+	@JoinColumn(name = "category_id",
+	insertable = false, updatable = false)
+	private ProductCategoryVO productCategory;
+	
+	@OneToMany
+	@JoinColumn(name = "product_id",
+	referencedColumnName = "product_id")
+	private List<OrderDetailVO> orderDetails;
 }

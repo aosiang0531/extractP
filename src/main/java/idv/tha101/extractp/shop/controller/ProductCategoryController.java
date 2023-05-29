@@ -17,7 +17,7 @@ import idv.tha101.extractp.shop.pojo.ProductCategoryVO;
 import idv.tha101.extractp.shop.service.ProductCategoryService;
 
 @RestController
-@RequestMapping("productCategory")
+@RequestMapping("shop/productCategory")
 public class ProductCategoryController extends BaseController<ProductCategoryVO> {
 	
 	@Autowired

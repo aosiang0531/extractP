@@ -3,6 +3,7 @@ package idv.tha101.extractp.shop.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +19,7 @@ import idv.tha101.extractp.shop.pojo.ProductVO;
 import idv.tha101.extractp.shop.service.ProductService;
 
 @RestController
-@RequestMapping("product")
+@RequestMapping("shop/product")
 public class ProductController extends BaseController<ProductVO> {
 
 	@Autowired
@@ -27,20 +28,15 @@ public class ProductController extends BaseController<ProductVO> {
 	@Override
 	@GetMapping
 	public List<ProductVO> findAll() {
+		System.out.println("載入所有商品");
 		return service.findAll();
 	}
 
 	@Override
-	@GetMapping("/SingleProduct")	//http://localhost:8080/product/SingleProduct?id=
-	public ProductVO findById(@RequestParam("id") int id) {
+	@GetMapping("/{id}")
+	public ProductVO findById(@PathVariable(value = "id") int id) {
 		return service.findById(id);
 	}
-
-//	@Override
-//	@GetMapping("/{id}")
-//	public ProductVO findById(@PathVariable(value = "id") int id) {
-//		return service.findById(id);
-//	}
 
 	@Override
 	@PostMapping
@@ -59,5 +55,22 @@ public class ProductController extends BaseController<ProductVO> {
 	public void deleteById(@PathVariable(value = "id") int id) {
 		service.deleteById(id);
 	}
+	
+//  @GetMapping("/product-single.html")
+//	public ProductVO singleProduct( @RequestParam("id") int id, Model model) {
+//		 ProductVO product = service.findById(id);
+//		 model.addAttribute("product", product);
+//		 
+//		 return product;
+//	}
+	
+//	@Override
+//	@GetMapping("/SingleProduct")	//http://localhost:8080/product/SingleProduct?id=
+//	public ProductVO findById(@RequestParam("id") int id) {
+//		return service.findById(id);
+//	}
+	
+
 
 }
+;

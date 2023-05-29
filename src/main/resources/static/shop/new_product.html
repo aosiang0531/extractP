@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <title>萃．練</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="../images/favicon.ico"
+    />
+
+    <link rel="stylesheet" href="../css/open-iconic-bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/animate.css" />
+
+    <link rel="stylesheet" href="../css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="../css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="../css/magnific-popup.css" />
+
+    <!-- <link rel="stylesheet" href="../css/aos.css" /> -->
+
+    <link rel="stylesheet" href="../css/ionicons.min.css" />
+
+    <link rel="stylesheet" href="../css/bootstrap-datepicker.css" />
+    <link rel="stylesheet" href="../css/jquery.timepicker.css" />
+
+    <link rel="stylesheet" href="../css/flaticon.css" />
+    <link rel="stylesheet" href="../css/icomoon.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <style>
+      textarea#description,
+      input#productName {
+        width: 100%;
+      }
+
+      textarea {
+        resize: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav
+      class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
+      id="ftco-navbar"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="../index.html">
+          <img
+            src="../images/logo.png"
+            alt="Logo"
+            width="130"
+            height="60"
+            class="d-inline-block align-text-top"
+          />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#ftco-nav"
+          aria-controls="ftco-nav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="oi oi-menu"></span> 選單
+        </button>
+        <div class="collapse navbar-collapse" id="ftco-nav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a href="../index.html" class="nav-link">咖啡論壇</a>
+            </li>
+            <li class="nav-item">
+              <a href="../menu.html" class="nav-link">課程活動</a>
+            </li>
+            <li class="nav-item">
+              <a href="../shop/new_product.html" class="nav-link">(新增商品)</a>
+            </li>
+            <li class="nav-item">
+              <a href="../shop/shop.html" class="nav-link">咖啡商城</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="../room.html"
+                id="dropdown04"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >個人頁面</a
+              >
+              <div class="dropdown-menu" aria-labelledby="dropdown04">
+                <a class="dropdown-item" href="../shop/shop.html">Shop</a>
+                <a class="dropdown-item" href="../shop/product-single.html"
+                  >Single Product</a
+                >
+                <a class="dropdown-item" href="../room.html">Cart</a>
+                <a class="dropdown-item" href="../checkout.html">Checkout</a>
+              </div>
+            </li>
+            <li class="nav-item cart">
+              <a href="../shop/cart.html" class="nav-link"
+                ><span class="icon icon-shopping_cart"></span
+                ><span
+                  class="bag d-flex justify-content-center align-items-center"
+                  ><small>0</small></span
+                ></a
+              >
+            </li>
+            <li class="nav-item cart">
+              <a href="../shop/cart.html" class="nav-link"
+                ><span class="icon icon-user"></span
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- 次級選單 -->
+    <div style="background-color: #c49b63">
+      <div class="">
+        <div class="">
+          <div class="">
+            <ul class="nav d-flex justify-content-around pl-2 pr-2">
+              <li class="nav-item">
+                <a class="nav-link" id="allProductsBtn"><img />所有商品</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="category1Btn">咖啡器具</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="category2Btn">咖啡豆</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="category3Btn">濾掛咖啡</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END nav -->
+
+    <!-- Start Content -->
+
+    <section class="ftco-section ftco-white">
+      <div class="container">
+        <h1>新增商品</h1>
+
+        <form id="the_form">
+          <!-- 選擇分類 -->
+          <h5 for="category" class="form-label">選擇分類</h5>
+          <div class="row">
+            <div class="col-md-6 mb-4">
+              <div class="main-group">
+                <br />
+                <select class="form-select" id="category_id">
+                  <option selected disabled>請選擇分類</option>
+                  <option value="1">咖啡器具</option>
+                  <option value="2">咖啡豆</option>
+                  <option value="3">濾掛咖啡</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- 次分類 -->
+            <!-- <div class="col-md-6 mb-4">
+						<div class="form-group">
+							<label for="subcategory">次級分類</label>
+							<select  id="subcategory">
+								<option selected disabled>--請選擇--</option>
+								<option value="subcategory1">次級分類1</option>
+								<option value="subcategory2">次級分類2</option>
+							</select>
+						</div>
+					</div> -->
+          </div>
+
+          <hr />
+
+          <!-- 上傳圖片 -->
+          <h5 class="form-label me-3">上傳圖片</h5>
+          <!-- <div class="mb-4 d-flex align-items-center">
+					<div class="d-flex align-items-center">
+						<input type="file" class=" me-3" id="p_file">
+					</div>
+					<div id="drop_zone" class="me-3">
+						<span class="text">圖片拖曳至此處</span>
+					</div>
+					<div id="preview" class="d-flex align-items-center justify-content-center">
+						<span class="text">預覽圖</span>
+					</div>
+				</div> -->
+          <div>
+            <label for="image">上傳圖片: </label>
+            <input type="file" name="image" id="image" />
+            <img id="img" />
+          </div>
+
+          <hr />
+
+          <!-- 商品詳情 -->
+          <h5 class="form-label me-3">商品詳情</h5>
+          <div class="row">
+            <div class="col-md-6 mb-4">
+              <label for="product_name" class="form-label">商品名稱</label>
+              <input type=" text" id="product_name" style="width: 100%" />
+            </div>
+            <div class="col-md-6 mb-4">
+              <label for="product_spec" class="form-label">商品規格</label>
+              <input type=" text" id="product_spec" style="width: 100%" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-4">
+              <label for="product_price" class="form-label">商品價格</label>
+              <input type="number" id="product_price" />
+            </div>
+            <div class="col-md-6 mb-4">
+              <label for="product_stock" class="">數量</label>
+              <input type="number" id="product_stock" />
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <label for="product_description" class="form-label">商品說明</label>
+            <textarea
+              id="product_description"
+              rows="5"
+              style="width: 100%"
+            ></textarea>
+          </div>
+
+          <hr />
+
+          <!-- 按鈕 -->
+          <button type="button" class="btn btn-primary me-3" id="submit">
+            確定新增
+          </button>
+          <button type="reset" class="btn btn-secondary">重新填寫</button>
+          <div id="msg" class="error"></div>
+        </form>
+      </div>
+    </section>
+
+    <!-- End Content -->
+
+    <!-- Start Footer -->
+    <footer class="bg-dark" id="tempaltemo_footer">
+      <div class="w-100 bg-black py-3">
+        <div class="container">
+          <div class="row pt-2">
+            <div class="col-12">
+              <p class="text-left text-light">
+                Copyright &copy; 2023 TibaMe THA101-Team7 萃．練
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- End Footer -->
+    <script src="../js/main.js"></script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.easing.1.3.js"></script>
+    <script src="../js/jquery.waypoints.min.js"></script>
+    <script src="../js/jquery.stellar.min.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="../js/jquery.magnific-popup.min.js"></script>
+    <!-- <script src="js/aos.js"></script> -->
+    <script src="../js/jquery.animateNumber.min.js"></script>
+    <script src="../js/bootstrap-datepicker.js"></script>
+    <script src="../js/jquery.timepicker.min.js"></script>
+    <script src="../js/scrollax.min.js"></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> -->
+    <!-- <script src="../js/google-map.js"></script> -->
+
+    <!-- <script>
+
+		var preview = document.querySelector('#preview');
+		var fileInput = document.querySelector('#p_file');
+		var preview_area = document.getElementById("preview");//取得預覽區元素
+		//drag：使id:drop_zone區塊可接受drag拖曳檔案
+		var drop_zone = document.getElementById("drop_zone");
+		var base64;
+		var textarea = document.querySelector('textarea');
+		var the_form = document.querySelector('the_form');
+
+		// reset按鈕
+		the_form.addEventListener("reset", function () {
+
+			//清除預覽圖片
+			removePreview();
+		});
+
+
+		// =============預覽區=============
+
+		drop_zone.addEventListener("dragover", function (e) {
+			e.preventDefault();
+		})
+
+		// 拖曳進去
+		drop_zone.addEventListener("dragenter", function () {
+			drop_zone.classList.add("-on"); // 加上 class
+
+		});
+		// 拖曳離開
+		drop_zone.addEventListener("dragleave", function () {
+			drop_zone.classList.remove("-on"); // 移除 class
+		});
+
+		//當預覽區已有圖片時，先將它移除
+		function removePreview() {
+			//找出預覽區中的img標籤
+			var hasImg = preview_area.getElementsByTagName("img")[0];
+			if (hasImg) {
+				//若存在就將它移除
+				preview_area.removeChild(hasImg);
+			}
+		}
+
+		// =============圖檔處理區=============
+		function imagePreview(file) {
+			let reader = new FileReader();
+			reader.readAsDataURL(file);
+			reader.addEventListener("load", function () {
+				base64 = this.result;
+
+				let newImg = document.createElement("img");
+				newImg.classList.add("preview_img");
+				newImg.src = base64;
+
+
+				removePreview();
+				preview_area.appendChild(newImg);
+			})
+		}
+
+		console.log(base64)
+
+		//從拖放區增加圖檔
+		drop_zone.addEventListener("drop", function (e) {
+			e.preventDefault();
+			var dropImage = e.dataTransfer.files[0]; //取得拖進來的檔案
+			// console.log(dropImage);
+			imagePreview(dropImage); //在預覽區秀出圖檔
+		})
+
+		//從選擇檔案按鈕選取圖檔
+		let img_btn = document.getElementById("p_file");
+		img_btn.addEventListener("change", function () {
+			var fileImage = this.files[0];
+			// console.log(fileImage)
+			imagePreview(fileImage);
+		})
+
+		fileInput.addEventListener('change', function () {
+			var file = this.files[0];
+			var reader = new FileReader();
+
+			reader.addEventListener('load', function () {
+				var image = new Image();
+				image.src = reader.result;
+
+				image.addEventListener('load', function () {
+					var previewWidth = preview.offsetWidth;
+					var previewHeight = preview.offsetHeight;
+					var imageWidth = this.width;
+					var imageHeight = this.height;
+					var previewAspectRatio = previewWidth / previewHeight;
+					var imageAspectRatio = imageWidth / imageHeight;
+					if (previewAspectRatio < imageAspectRatio) {
+						preview.style.height = previewWidth / imageAspectRatio + 'px';
+					} else {
+						preview.style.width = previewHeight * imageAspectRatio + 'px';
+					}
+				});
+
+				preview.querySelector('img').src = reader.result;
+				preview.querySelector('.text').style.display = 'none';
+			});
+
+			reader.readAsDataURL(file);
+		});
+
+
+		// ============其他=============
+		//自動調整textArea高度
+		textarea.addEventListener('input', function () {
+			this.style.height = 'auto';
+			this.style.height = this.scrollHeight + 'px';
+		});
+
+
+
+	</script> -->
+    <script src="../shop/js/newProduct.js"></script>
+  </body>
+</html>

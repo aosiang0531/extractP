@@ -10,7 +10,6 @@ import idv.tha101.extractp.shop.pojo.ProductVO;
 @Repository
 public interface ProductRepository extends BaseRepository<ProductVO, Integer>{
 
-
 	// 以商品分類取得商品資料
 //	List<ProductVO> selectByCategoryId(Integer category_id);
 }

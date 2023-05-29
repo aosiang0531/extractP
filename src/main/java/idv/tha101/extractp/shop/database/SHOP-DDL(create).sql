@@ -26,7 +26,7 @@ CREATE TABLE PRODUCT(
     product_sold_count INT COMMENT "已售數量",
     product_status VARCHAR(10) NOT NULL DEFAULT '上架中' COMMENT "上架狀態",
     product_created_date DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT "上傳時間",
-    product_last_modified_date  DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT "最後修改時間",
+    product_last_modified_date DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT "最後修改時間",
     product_created_by INT NOT NULL DEFAULT 91 COMMENT "上傳人員",  -- 應該要FK到管理員
     product_last_modified_by INT NOT NULL DEFAULT 91 COMMENT "最後修改人員", -- 應該要FK到管理員
     CONSTRAINT PK_PRODUCT_ID PRIMARY KEY (product_id),
@@ -47,6 +47,7 @@ CREATE TABLE ORDER_INFO (
 	order_shipping_address VARCHAR(50) COMMENT "寄件地址",
 	order_contact_number VARCHAR(10) COMMENT "聯絡電話",	
 	order_shipping_name VARCHAR(10) COMMENT "收件人",
+	order_last_modified_date DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL COMMENT "最後修改時間",
 	CONSTRAINT PK_ORDER_INFO_ORDER_ID PRIMARY KEY (order_id)
 ) COMMENT "訂單";
 
