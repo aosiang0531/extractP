@@ -84,6 +84,4 @@ public class ArticleServiceImpl implements ArticleService {
 //		return articleRepository.findByMemberId(memberId);
 //	};
 
-
-
 }
