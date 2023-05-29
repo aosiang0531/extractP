@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+	<title>萃．練</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+	<!-- <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet"> -->
+
+	<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+	<link rel="stylesheet" href="css/animate.css">
+
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="css/magnific-popup.css">
+
+	<link rel="stylesheet" href="css/aos.css">
+
+	<link rel="stylesheet" href="css/ionicons.min.css">
+
+	<link rel="stylesheet" href="css/bootstrap-datepicker.css">
+	<link rel="stylesheet" href="css/jquery.timepicker.css">
+
+
+	<link rel="stylesheet" href="css/flaticon.css">
+	<link rel="stylesheet" href="css/icomoon.css">
+
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="./css/class_and_event_css.css">
+	<link rel="stylesheet" href="./DataTables/datatables.css">
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+		<div class="container">
+			<img src="images/logo.png" alt="Logo" width="130" height="60" class="d-inline-block align-text-top">
+			<a class="navbar-brand" href="index.html"></small></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+				aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="oi oi-menu"></span> 選單
+			</button>
+			<div class="collapse navbar-collapse" id="ftco-nav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active"><a href="index.html" class="nav-link">咖啡論壇</a></li>
+					<li class="nav-item"><a href="menu.html" class="nav-link">課程活動</a></li>
+					<li class="nav-item"><a href="services.html" class="nav-link">咖啡地圖</a></li>
+					<li class="nav-item"><a href="blog.html" class="nav-link">咖啡商城</a></li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="room.html" id="dropdown04" data-toggle="dropdown"
+							aria-haspopup="true" aria-expanded="false">個人頁面</a>
+						<div class="dropdown-menu" aria-labelledby="dropdown04">
+							<a class="dropdown-item" href="shop.html">Shop</a>
+							<a class="dropdown-item" href="product-single.html">Single Product</a>
+							<a class="dropdown-item" href="room.html">Cart</a>
+							<a class="dropdown-item" href="checkout.html">Checkout</a>
+						</div>
+					</li>
+					<li class="nav-item cart"><a href="cart.html" class="nav-link"><span
+								class="icon icon-shopping_cart"></span><span
+								class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a>
+					</li>
+					<li class="nav-item cart"><a href="cart.html" class="nav-link"><span
+								class="icon icon-user"></span></a>
+					</li>
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- END nav -->
+
+	<!-- Start Content -->
+
+	<section class="ftco-section ftco-white"> <!-- ftco-white套用自訂白色背景 -->
+		<div class="container">
+				<div>
+					<h1 style="color:black">課程總覽</h1>
+				</div>
+
+				<span class="span-brown">課程名稱 </span>
+				<input class="classoverview_selecter" type="text">
+				<span class="span-brown">上課時間</span>
+				<select class="classoverview_selecter">
+					<option></option>
+					<option>早上</option>
+					<option>下午</option>
+					<option>晚上</option>
+				</select>
+				<br>
+				<br>
+				<span class="span-brown">上課地點</span>
+				<select name="City" class="classoverview_selecter">
+					<option value=""></option>
+					<option value="0">
+					台北市          </option>
+					<option value="1">
+					基隆市          </option>
+					<option value="2">
+					新北市         </option>
+					<option value="3">
+					宜蘭縣          </option>
+					<option value="4">
+					新竹市          </option>
+					<option value="5">
+					新竹縣          </option>
+					<option value="6">
+					桃園市          </option>
+					<option value="7">
+					苗栗縣          </option>
+					<option value="8">
+					台中市          </option>
+					<option value="9">
+					台中縣          </option>
+					<option value="10">
+					彰化縣          </option>
+					<option value="11">
+					南投縣          </option>
+					<option value="12">
+					嘉義市          </option>
+					<option value="13">
+					嘉義縣          </option>
+					<option value="14">
+					雲林縣          </option>
+					<option value="15">
+					台南市          </option>
+					<option value="16">
+					台南縣          </option>
+					<option value="17">
+					高雄市          </option>
+					<option value="18">
+					高雄縣          </option>
+					<option value="19">
+					澎湖縣          </option>
+					<option value="20">
+					屏東縣          </option>
+					<option value="21">
+					台東縣          </option>
+					<option value="22">
+					花蓮縣          </option>
+					<option value="23">
+					金門縣          </option>
+					<option value="24">
+					連江縣          </option>
+					<option value="25">
+					南海諸島          </option>
+					<option value="26">
+					釣魚台列嶼          </option>
+					</select>
+					<span class="span-brown">開課狀態</span>
+					<select name="classstatus" class="classoverview_selecter">
+						<option></option>
+						<option>報名中</option>
+						<option>已額滿</option>
+						<option>停開</option>
+					</select>
+					<input class="btn btn-primary btn-outline-primary co-button-search" id="coSearchButton" type="submit" value="搜尋">
+					<br>
+				<table id="calssoverview" class="cell-border" style="width:100%">
+					<thead>
+						
+						<tr>
+							<th>課程名稱</th>
+							<th>上課時間</th>
+							<th>上課地點</th>
+							<th>開課狀態</th>
+
+						</tr>
+					</thead>
+					<!-- <tbody>
+						<tr>
+							<td>Tiger Nixon</td>
+							<td>System Architect</td>
+							<td>Edinburgh</td>
+							<td>61</td>
+
+						</tr>
+						<tr>
+							<td>Garrett Winters</td>
+							<td>Accountant</td>
+							<td>Tokyo</td>
+							<td>63</td>
+
+						</tr>
+						<tr>
+							<td>Ashton Cox</td>
+							<td>Junior Technical Author</td>
+							<td>San Francisco</td>
+							<td>66</td>
+
+						</tr>
+						<tr>
+							<td>Ashton Cox</td>
+							<td>Junior Technical Author</td>
+							<td>San Francisco</td>
+							<td>66</td>
+
+						</tr>
+						<tr>
+							<td>Ashton Cox</td>
+							<td>Junior Technical Author</td>
+							<td>San Francisco</td>
+							<td>66</td>
+
+						</tr>
+						<tr>
+							<td>Ashton Cox</td>
+							<td>Junior Technical Author</td>
+							<td>San Francisco</td>
+							<td>66</td>
+
+						</tr>
+						<tr>
+							<td>Ashton Cox</td>
+							<td>Junior Technical Author</td>
+							<td>San Francisco</td>
+							<td>66</td>
+
+						</tr>
+						<tr>
+							<td>Ashton Cox</td>
+							<td>Junior Technical Author</td>
+							<td>San Francisco</td>
+							<td>66</td>
+
+						</tr>
+						<tr>
+							<td>Ashton Cox</td>
+							<td>Junior Technical Author</td>
+							<td>San Francisco</td>
+							<td>66</td>
+
+						</tr>
+						<tr>
+							<td>Ashton Cox</td>
+							<td>Junior Technical Author</td>
+							<td>San Francisco</td>
+							<td>66</td>
+
+						</tr>
+						<tr>
+							<td>Ashton Cox</td>
+							<td>Junior Technical Author</td>
+							<td>San Francisco</td>
+							<td>66</td>
+
+						</tr>
+						<tr>
+							<td>Ashton Cox</td>
+							<td>Junior Technical Author</td>
+							<td>San Francisco</td>
+							<td>66</td>
+
+						</tr>
+						<tr>
+							<td>Ashton Cox</td>
+							<td>Junior Technical Author</td>
+							<td>San Francisco</td>
+							<td>66</td>
+
+						</tr>
+						<tr>
+							<td>Ashton Cox</td>
+							<td>Junior Technical Author</td>
+							<td>San Francisco</td>
+							<td>66</td>
+
+						</tr>
+						<tr>
+							<td>Ashton Cox</td>
+							<td>Junior Technical Author</td>
+							<td>San Francisco</td>
+							<td>66</td>
+
+						</tr>
+						<tr>
+							<td>Ashton Cox</td>
+							<td>Junior Technical Author</td>
+							<td>San Francisco</td>
+							<td>66</td>
+
+						</tr>
+					</tbody> -->
+				</table>
+
+
+
+
+
+			<!-- </div> -->
+		</div>
+	</section>
+	<!-- End Content -->
+
+
+	<!-- Start Footer -->
+	<footer class="bg-dark" id="tempaltemo_footer">
+		<div class="w-100 bg-black py-3">
+			<div class="container">
+				<div class="row pt-2">
+					<div class="col-12">
+						<p class="text-left text-light">
+							Copyright &copy; 2023 TibaMe THA101-Team7 萃．練
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>		
+	</section>
+	<!-- End Content -->
+
+	<!-- loader -->
+	<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+		<circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+		<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+			stroke="#F96D00" />
+	</svg></div>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-migrate-3.0.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/jquery.waypoints.min.js"></script>
+<script src="js/jquery.stellar.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/aos.js"></script>
+<script src="js/jquery.animateNumber.min.js"></script>
+<script src="js/bootstrap-datepicker.js"></script>
+<script src="js/jquery.timepicker.min.js"></script>
+<script src="js/scrollax.min.js"></script>
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+<script src="js/google-map.js"></script>
+<script src="js/main.js"></script>
+<!-- 引入DataTable -->
+<script src="./DataTables/datatables.js"></script>
+<!-- 初始化DataTable -->
+<script>$(document).ready( function () {
+	$('#calssoverview').DataTable({
+		"searching": false, // 預設為true 搜尋功能，若要開啟不用特別設定; 
+		"pageLength":'10', //每頁顯示的筆數
+	})
+	$('#calssoverview_length').remove();
+	});
+	
+	</script>
+
+<script>
+
+// 取得按鈕元素
+var coSearchButton = document.getElementById('coSearchButton');
+
+// 監聽按鈕的點擊事件
+coSearchButton.addEventListener('click', fetchData);
+
+function fetchData() {
+  const url = 'http://localhost:8080/clazz';
+
+  fetch(url)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('網路錯誤，無法獲取資料');
+      }
+      return response.json();
+    })
+    .then(data => {
+      // 在這裡處理獲取到的資料
+      console.log(data);
+    })
+    .catch(error => {
+      console.error('錯誤:', error);
+    });
+}
+
+</script>
+</body>
+
+</html>
