@@ -1,6 +1,7 @@
 package idv.tha101.extractp.web.pojo;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -16,6 +17,7 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -65,7 +67,7 @@ public class ArticleGroupVO{
 //	private ArticleTemplate articleTemplate;
 //	
 //	@OneToMany(mappedBy = "article_group_id")
-//	private List<Article> articles;
+//	private List<ArticleVO> articles;
 	
 	
 }

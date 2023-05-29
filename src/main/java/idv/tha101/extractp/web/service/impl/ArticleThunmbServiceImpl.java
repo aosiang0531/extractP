@@ -36,7 +36,6 @@ public class ArticleThunmbServiceImpl implements ArticleThunmbService {
 	@Override
 	public void deleteById(Integer id) {
 		articleThunmbRepository.deleteById(id);
-
 	}
 
 }

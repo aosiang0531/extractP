@@ -3,8 +3,11 @@ package idv.tha101.extractp.web.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,23 +28,23 @@ public class ArticleTemplateController extends BaseController<ArticleTemplateVO>
 		return articleTemplateService.findAll();
 	}
 
-	@GetMapping({"/id"})
+	@GetMapping("/{id}")
 	public ArticleTemplateVO findById(@PathVariable(value = "id") int id) {
-		return articleTemplateService.findById(null);
+		return articleTemplateService.findById(id);
 	}
 
-	@GetMapping
+	@PostMapping
 	public ArticleTemplateVO save(@RequestBody ArticleTemplateVO vo) {
 		return articleTemplateService.saveOrUpdate(vo);
 	}
 	
 	@Override
-	@GetMapping({"/id"})
+	@PutMapping("/{id}")
 	public ArticleTemplateVO update(@RequestBody ArticleTemplateVO vo, @PathVariable(value = "id") int id) {
 		return articleTemplateService.saveOrUpdate(vo.setId(id));
 	}
 
-	@GetMapping({"/id"})
+	@DeleteMapping("/{id}")
 	public void deleteById(@PathVariable(value = "id") int id) {
 		articleTemplateService.deleteById(id);		
 	}

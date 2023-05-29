@@ -16,6 +16,8 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,7 +41,8 @@ public class ArticleVO {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer article_id;
 
-	private Integer member_id;
+	@Column(name = "member_id")
+	private Integer memberId;
 
 	private Integer article_group_id;
 
@@ -47,7 +50,7 @@ public class ArticleVO {
 
 	private String article_content;
 
-	private byte[] article_image;
+	private String article_image;
 
 	@CreatedDate
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -60,20 +63,31 @@ public class ArticleVO {
 	@LastModifiedBy
 	private String article_last_modified_by;
 
-	@Column(insertable = false, updatable = false)
+	
 	private Integer article_thunmb_number;
-	@Column(insertable = false, updatable = false)
+	
 	private Integer article_comment_number;
-	@Column(insertable = false, updatable = false)
-	private Integer member_article_fav_number;
-	@Column(insertable = false)
+	
+	@Column(name = "member_article_fav_number")
+	private Integer article_member_article_fav_number;
+	
 	private Boolean article_is_hidden;
-	@Column(insertable = false)
+	
 	private Boolean article_is_top;;
+	
+	
+	public Integer getMember_id() {
+	    return memberId;
+	}
+
+	public void setMember_id(Integer member_id) {
+	    this.memberId = member_id;
+	}
+	
 
 //	@ManyToOne
 //	@JoinColumn(name = "article_group_id",insertable = false, updatable = false)
-//	private ArticleGroup articleGroup;
+//	private ArticleGroupVO articleGroup;
 //	
 //	
 //	@OneToMany(mappedBy = "article_id")

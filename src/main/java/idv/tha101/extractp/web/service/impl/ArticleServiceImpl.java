@@ -1,6 +1,7 @@
 package idv.tha101.extractp.web.service.impl;
 
 import java.lang.reflect.Field;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import idv.tha101.extractp.web.dao.ArticleRepository;
+import idv.tha101.extractp.web.pojo.ArticleDTO;
 import idv.tha101.extractp.web.pojo.ArticleVO;
 import idv.tha101.extractp.web.service.ArticleService;
 
@@ -63,5 +65,25 @@ public class ArticleServiceImpl implements ArticleService {
 		articleRepository.deleteById(id);
 
 	}
+	
+	public Collection<ArticleDTO> findPopArticle(){
+		return articleRepository.findPopArticle();
+	};
+	
+	public Collection<ArticleDTO> findLatestArticle(){
+		return articleRepository.findLatestArticle();
+	}
+
+//	@Override
+//	public Collection<ArticleDTO> findTemLatestArticle() {
+//		return articleRepository.findTemPopArticle();
+//	}
+
+//	@Override
+//	public List<ArticleVO> findByMemberId(Integer memberId) {
+//		return articleRepository.findByMemberId(memberId);
+//	};
+
+
 
 }

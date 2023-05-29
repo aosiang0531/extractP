@@ -13,40 +13,44 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import idv.tha101.extractp.base.controller.BaseController;
-import idv.tha101.extractp.web.pojo.ArticleGroupVO;
-import idv.tha101.extractp.web.service.ArticleGroupService;
+import idv.tha101.extractp.web.pojo.ArticleCommentVO;
+import idv.tha101.extractp.web.service.ArticleCommentService;
 
 @RestController
-@RequestMapping("article_group")
-public class ArticleGroupController extends BaseController<ArticleGroupVO> {
+@RequestMapping("article_comment")
+public class ArticleCommentController extends BaseController<ArticleCommentVO> {
 
 	@Autowired
-	private ArticleGroupService articleGroupService;
+	private ArticleCommentService articleCommentService;
 
+	@Override
 	@GetMapping
-	public List<ArticleGroupVO> findAll() {
-		return articleGroupService.findAll();
+	public List<ArticleCommentVO> findAll() {
+		return articleCommentService.findAll();
 	}
 
+	@Override
 	@GetMapping("/{id}")
-	public ArticleGroupVO findById(@PathVariable(value = "id") int id) {
-		return articleGroupService.findById(id);
+	public ArticleCommentVO findById(@PathVariable(value = "id") int id) {
+		return articleCommentService.findById(id);
 	}
 
+	@Override
 	@PostMapping
-	public ArticleGroupVO save(@RequestBody ArticleGroupVO vo) {
-		return articleGroupService.saveOrUpdate(vo);
+	public ArticleCommentVO save(@RequestBody ArticleCommentVO vo) {
+		return articleCommentService.saveOrUpdate(vo);
 	}
 
 	@Override
 	@PutMapping("/{id}")
-	public ArticleGroupVO update(@RequestBody ArticleGroupVO vo, @PathVariable(value = "id") int id) {
-		return articleGroupService.saveOrUpdate(vo.setId(id));
+	public ArticleCommentVO update(@RequestBody ArticleCommentVO vo, @PathVariable(value = "id") int id) {
+		return articleCommentService.saveOrUpdate(vo.setId(id));
 	}
 
+	@Override
 	@DeleteMapping("/{id}")
 	public void deleteById(@PathVariable(value = "id") int id) {
-		articleGroupService.deleteById(id);
+		articleCommentService.deleteById(id);
 
 	}
 

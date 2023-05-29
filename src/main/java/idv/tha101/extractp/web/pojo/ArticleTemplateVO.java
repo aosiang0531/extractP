@@ -45,17 +45,17 @@ public class ArticleTemplateVO {
 
 	@CreatedDate
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private Timestamp article_template_created_time;
+	private Timestamp article_template_created_date;
 
 	@LastModifiedDate
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private Timestamp article_template_last_modified_time;
+	private Timestamp article_template_last_modified_date;
 
 	@CreatedBy
-	private String article_template_created_member;
+	private String article_template_created_by;
 
 	@LastModifiedBy
-	private String article_template_last_modified_member;
+	private String article_template_last_modified_by;
 
 //	@OneToMany(mappedBy = "article_template_id")
 //	private List<ArticleGroup> articleGroup;

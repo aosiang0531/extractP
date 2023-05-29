@@ -13,41 +13,45 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import idv.tha101.extractp.base.controller.BaseController;
-import idv.tha101.extractp.web.pojo.ArticleGroupVO;
-import idv.tha101.extractp.web.service.ArticleGroupService;
+import idv.tha101.extractp.web.pojo.ArticleTagVO;
+import idv.tha101.extractp.web.service.ArticleTagService;
 
 @RestController
-@RequestMapping("article_group")
-public class ArticleGroupController extends BaseController<ArticleGroupVO> {
+@RequestMapping("article_tag")
+public class ArticleTagController extends BaseController<ArticleTagVO>{
 
 	@Autowired
-	private ArticleGroupService articleGroupService;
-
+	private ArticleTagService articleTagService;
+	
+	@Override
 	@GetMapping
-	public List<ArticleGroupVO> findAll() {
-		return articleGroupService.findAll();
+	public List<ArticleTagVO> findAll() {
+		return articleTagService.findAll();
 	}
 
+	@Override
 	@GetMapping("/{id}")
-	public ArticleGroupVO findById(@PathVariable(value = "id") int id) {
-		return articleGroupService.findById(id);
+	public ArticleTagVO findById(@PathVariable(value = "id") int id) {
+		return articleTagService.findById(id);
 	}
 
+	@Override
 	@PostMapping
-	public ArticleGroupVO save(@RequestBody ArticleGroupVO vo) {
-		return articleGroupService.saveOrUpdate(vo);
+	public ArticleTagVO save(@RequestBody ArticleTagVO vo) {
+		return articleTagService.saveOrUpdate(vo);
 	}
 
 	@Override
 	@PutMapping("/{id}")
-	public ArticleGroupVO update(@RequestBody ArticleGroupVO vo, @PathVariable(value = "id") int id) {
-		return articleGroupService.saveOrUpdate(vo.setId(id));
+	public ArticleTagVO update(@RequestBody ArticleTagVO vo, @PathVariable(value = "id") int id) {
+		return articleTagService.saveOrUpdate(vo.setId(id));
 	}
 
+	@Override
 	@DeleteMapping("/{id}")
-	public void deleteById(@PathVariable(value = "id") int id) {
-		articleGroupService.deleteById(id);
-
+	public void deleteById(int id) {
+		articleTagService.deleteById(id);
+		
 	}
 
 }

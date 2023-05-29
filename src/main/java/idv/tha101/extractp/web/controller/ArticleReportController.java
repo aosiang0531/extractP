@@ -13,41 +13,45 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import idv.tha101.extractp.base.controller.BaseController;
-import idv.tha101.extractp.web.pojo.ArticleGroupVO;
-import idv.tha101.extractp.web.service.ArticleGroupService;
+import idv.tha101.extractp.web.pojo.ArticleReportVO;
+import idv.tha101.extractp.web.service.ArticleReportService;
 
 @RestController
-@RequestMapping("article_group")
-public class ArticleGroupController extends BaseController<ArticleGroupVO> {
+@RequestMapping("article_report")
+public class ArticleReportController extends BaseController<ArticleReportVO>{
 
 	@Autowired
-	private ArticleGroupService articleGroupService;
-
+	private ArticleReportService articleReportService;
+	
+	@Override
 	@GetMapping
-	public List<ArticleGroupVO> findAll() {
-		return articleGroupService.findAll();
+	public List<ArticleReportVO> findAll() {
+		return articleReportService.findAll();
 	}
 
+	@Override
 	@GetMapping("/{id}")
-	public ArticleGroupVO findById(@PathVariable(value = "id") int id) {
-		return articleGroupService.findById(id);
+	public ArticleReportVO findById(@PathVariable(value = "id") int id) {
+		return articleReportService.findById(id);
 	}
 
+	@Override
 	@PostMapping
-	public ArticleGroupVO save(@RequestBody ArticleGroupVO vo) {
-		return articleGroupService.saveOrUpdate(vo);
+	public ArticleReportVO save(@RequestBody ArticleReportVO vo) {
+		return articleReportService.saveOrUpdate(vo);
 	}
 
 	@Override
 	@PutMapping("/{id}")
-	public ArticleGroupVO update(@RequestBody ArticleGroupVO vo, @PathVariable(value = "id") int id) {
-		return articleGroupService.saveOrUpdate(vo.setId(id));
+	public ArticleReportVO update(@RequestBody ArticleReportVO vo, @PathVariable(value = "id") int id) {
+		return articleReportService.saveOrUpdate(vo.setId(id));
 	}
 
+	@Override
 	@DeleteMapping("/{id}")
 	public void deleteById(@PathVariable(value = "id") int id) {
-		articleGroupService.deleteById(id);
-
+		articleReportService.deleteById(id);
+		
 	}
 
 }
