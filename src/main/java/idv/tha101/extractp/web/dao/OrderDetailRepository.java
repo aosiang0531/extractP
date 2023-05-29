@@ -24,4 +24,10 @@ public interface OrderDetailRepository extends BaseRepository<OrderDetailVO, Int
 //			+ "from ORDER_DETAIL od, PRODUCT p\r\n"
 //			+ "where od.product_id = p.product_id and order_id = :order_id;",nativeQuery = true)
 //	List<OrderDetailVO> findOrderDetail(Integer id);
+	
+	//以訂單編號找出所有明細
+	List<OrderDetailVO> findOrderDetailVOsByOrderId(Integer orderId);
+	
+	//以訂單編號，返回明細數量
+	int countByOrderId(Integer orderId);
 }
