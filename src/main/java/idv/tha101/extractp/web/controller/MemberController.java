@@ -1,4 +1,4 @@
-package idv.tha101.extractp.member.controller;
+package idv.tha101.extractp.web.controller;
 
 import java.util.List;
 
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import idv.tha101.extractp.base.controller.BaseController;
-import idv.tha101.extractp.member.pojo.MemberVO;
-import idv.tha101.extractp.member.service.MemberService;
+import idv.tha101.extractp.web.pojo.MemberVO;
+import idv.tha101.extractp.web.service.MemberService;
 
 @RestController
 @RequestMapping("member")

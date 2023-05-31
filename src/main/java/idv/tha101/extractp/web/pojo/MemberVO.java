@@ -1,4 +1,4 @@
-package idv.tha101.extractp.member.pojo;
+package idv.tha101.extractp.web.pojo;
 
 import java.sql.Timestamp;
 
