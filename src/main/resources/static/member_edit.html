@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>萃・練｜後台管理系統｜會員管理</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+      crossorigin="anonymous"
+    />
+
+    <link href="css/styles2.css" rel="stylesheet" />
+  </head>
+  <body>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js"
+      integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"
+      integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="js/edit.js"></script>
+    <header>
+      <nav class="custom-navbar navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <img
+            src="images/logo.png"
+            alt="Logo"
+            width="130"
+            height="60"
+            class="d-inline-block align-text-top"
+          />
+          <a class="navbar-brand">後台管理系統</a>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="#">首頁</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">會員管理</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">文章管理</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">課程審核</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">活動審核</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">商家檢舉</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">商品管理</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">訂單管理</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">廣告管理</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">登出</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container mt-4">
+      <h1 class="text-center">會員詳細資料</h1>
+
+      <div class="row">
+        <div class="col">
+          <form id="memberForm" class="needs-validation" novalidate>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>欄位</th>
+                  <th>資料</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>會員編號</td>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <td>會員名稱</td>
+                  <td>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="memberName"
+                      value="會員名稱1"
+                      disabled
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>會員信箱</td>
+                  <td>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="memberEmail"
+                      value="example1@example.com"
+                      disabled
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>會員密碼</td>
+                  <td>
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="memberPassword"
+                      value="********"
+                      disabled
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>會員電話</td>
+                  <td>
+                    <input
+                      type="tel"
+                      class="form-control"
+                      id="memberPhone"
+                      value="0987654321"
+                      disabled
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>會員身份</td>
+                  <td>
+                    <select class="form-control" id="memberRole" disabled>
+                      <option>一般會員</option>
+                      <option>管理員</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>是否停權</td>
+                  <td>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="memberSuspended"
+                        disabled
+                      />
+                      <label class="form-check-label" for="memberSuspended"
+                        >是</label
+                      >
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>會員圖片</td>
+                  <td>
+                    <input
+                      type="file"
+                      class="form-control-file"
+                      id="memberImage"
+                      disabled
+                    />
+                    <img
+                      src="member_image.jpg"
+                      alt="會員圖片"
+                      width="100"
+                      height="100"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>註冊時間</td>
+                  <td>2023-05-25 10:30:00</td>
+                </tr>
+                <tr>
+                  <td>最後修改人</td>
+                  <td>管理員</td>
+                </tr>
+                <tr>
+                  <td>最後更新時間</td>
+                  <td>2023-05-26 15:45:00</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="text-center">
+              <button id="editBtn" class="btn btn-primary">編輯</button>
+              <button
+                type="submit"
+                class="btn btn-success"
+                style="display: none"
+              >
+                儲存
+              </button>
+              <button
+                id="cancelBtn"
+                class="btn btn-secondary"
+                style="display: none"
+              >
+                取消
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer customer-color mt-auto py-3 bg-light">
+      <div class="container text-center">
+        <span class="text-mutedcos"
+          >Copyright &copy; 2023 TibaMe THA101-Team7 萃．練</span
+        >
+      </div>
+    </footer>
+    <script>
+      document.getElementById("editBtn").addEventListener("click", function () {
+        // Enable form fields for editing
+        document.getElementById("memberName").disabled = false;
+        document.getElementById("memberEmail").disabled = false;
+        document.getElementById("memberPassword").disabled = false;
+        document.getElementById("memberPhone").disabled = false;
+        document.getElementById("memberRole").disabled = false;
+        document.getElementById("memberSuspended").disabled = false;
+        document.getElementById("memberImage").disabled = false;
+
+        // Show save and cancel buttons
+        document.getElementById("editBtn").style.display = "none";
+        document.getElementById("cancelBtn").style.display = "inline-block";
+        document.querySelector(
+          "#memberForm button[type='submit']"
+        ).style.display = "inline-block";
+      });
+
+      document
+        .getElementById("cancelBtn")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+
+          // Disable form fields and hide buttons
+          document.getElementById("memberForm").reset();
+          document.getElementById("memberName").disabled = true;
+          document.getElementById("memberEmail").disabled = true;
+          document.getElementById("memberPassword").disabled = true;
+          document.getElementById("memberPhone").disabled = true;
+          document.getElementById("memberRole").disabled = true;
+          document.getElementById("memberSuspended").disabled = true;
+          document.getElementById("memberImage").disabled = true;
+
+          // Show edit button
+          document.getElementById("editBtn").style.display = "inline-block";
+          document.getElementById("cancelBtn").style.display = "none";
+          document.querySelector(
+            "#memberForm button[type='submit']"
+          ).style.display = "none";
+        });
+
+      document
+        .getElementById("memberForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Perform form submission or AJAX request to save the modified data
+          // You can access the updated values using the form element and its fields
+          // For example, you can retrieve the updated name value as follows:
+          const memberName = document.getElementById("memberName").value;
+
+          // After saving the data, disable form fields and hide buttons
+          document.getElementById("memberName").disabled = true;
+          document.getElementById("memberEmail").disabled = true;
+          document.getElementById("memberPassword").disabled = true;
+          document.getElementById("memberPhone").disabled = true;
+          document.getElementById("memberRole").disabled = true;
+          document.getElementById("memberSuspended").disabled = true;
+          document.getElementById("memberImage").disabled = true;
+
+          // Show edit button
+          document.getElementById("editBtn").style.display = "inline-block";
+          document.getElementById("cancelBtn").style.display = "none";
+          document.querySelector(
+            "#memberForm button[type='submit']"
+          ).style.display = "none";
+        });
+    </script>
+  </body>
+</html>
