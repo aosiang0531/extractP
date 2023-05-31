@@ -37,7 +37,7 @@ public class AdminController extends BaseController<AdminVO> {
 
 	@Override
 	@PostMapping
-	public AdminVO save(AdminVO vo) {
+	public AdminVO save(@RequestBody AdminVO vo) {
 		return adminService.saveOrUpdate(vo);
 	}
 
@@ -49,7 +49,7 @@ public class AdminController extends BaseController<AdminVO> {
 
 	@Override
 	@DeleteMapping("/{id}")
-	public void deleteById(int id) {
+	public void deleteById(@PathVariable(value = "id") int id) {
 		adminService.deleteById(id);
 	}
 
