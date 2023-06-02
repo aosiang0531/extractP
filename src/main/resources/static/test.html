@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="BIG5">
+<title>Insert title here</title>
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+
+</head>
+<body>
+
+
+    <table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>class_id</th>
+                <th>class_name</th>
+                <th>class_member_min</th>
+                <th>class_member_max</th>
+            </tr>
+        </thead>
+        <tbody>
+           
+        </tbody>
+    </table>
+
+	<!-- 引入DataTable -->
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+	<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+	<script src="js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="js/jquery.waypoints.min.js"></script>
+	<script src="js/jquery.stellar.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/aos.js"></script>
+	<script src="js/jquery.animateNumber.min.js"></script>
+	<script src="js/bootstrap-datepicker.js"></script>
+	<script src="js/jquery.timepicker.min.js"></script>
+	<script src="js/scrollax.min.js"></script>
+
+	<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		var table = $('#example').DataTable({
+	        ajax: function (d, cb) {
+	            fetch('clazz/init')
+	                .then(response => response.json())
+	                .then(data => {
+	                    console.log(data);
+	                    cb(data);
+	                });
+	        },
+			columns: [
+	 	            {data:'class_id'},
+	 	           {data:'class_name'},
+	 	          {data:'class_member_min'},
+	 	         {data:'class_member_max'},
+	 	            
+              ]
+			});
+
+	});
+
+	</script>
+
+</body>
+</html>

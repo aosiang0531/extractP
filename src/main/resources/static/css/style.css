@@ -46,10 +46,14 @@ html {
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   -ms-overflow-style: scrollbar;
+<<<<<<< HEAD
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); 
   /* 自訂 */
   background-color: #fff;}
   
+=======
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+>>>>>>> 8e899cc (feature/event move folder and update file)
 
 @-ms-viewport {
   width: device-width; }
@@ -151,14 +155,22 @@ a {
     color: #34c0e7;
     text-decoration: underline; }
 
+<<<<<<< HEAD
 /* a:not([href]):not([tabindex]) {
+=======
+a:not([href]):not([tabindex]) {
+>>>>>>> 8e899cc (feature/event move folder and update file)
   color: inherit;
   text-decoration: none; }
   a:not([href]):not([tabindex]):hover, a:not([href]):not([tabindex]):focus {
     color: inherit;
     text-decoration: none; }
   a:not([href]):not([tabindex]):focus {
+<<<<<<< HEAD
     outline: 0; } */
+=======
+    outline: 0; }
+>>>>>>> 8e899cc (feature/event move folder and update file)
 
 pre,
 code,
@@ -211,11 +223,19 @@ input,
 button,
 select,
 optgroup,
+<<<<<<< HEAD
 /* textarea {
   margin: 0;
   font-family: inherit;
   font-size: inherit;
   line-height: inherit; } */
+=======
+textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit; }
+>>>>>>> 8e899cc (feature/event move folder and update file)
 
 button,
 input {
@@ -7275,9 +7295,15 @@ body {
   background: #151111;
   font-size: 15px;
   line-height: 1.8;
+<<<<<<< HEAD
   /* font-weight: 300; */
   color: black;
   /* background: url(../images/bg_4.jpg) no-repeat fixed; */
+=======
+  font-weight: 300;
+  color: gray;
+  background: url(../images/bg_4.jpg) no-repeat fixed;
+>>>>>>> 8e899cc (feature/event move folder and update file)
   background-size: cover; }
   body.menu-show {
     overflow: hidden;
@@ -7298,12 +7324,19 @@ a {
     outline: none !important;
     text-decoration: none !important; }
 
+<<<<<<< HEAD
 
     /* 自訂 標題顏色 */
 h1, h2, h3, h4, h5,
 .h1, .h2, .h3, .h4, .h5 {
   line-height: 1.4;
   color: #000;
+=======
+h1, h2, h3, h4, h5,
+.h1, .h2, .h3, .h4, .h5 {
+  line-height: 1.4;
+  color: #fff;
+>>>>>>> 8e899cc (feature/event move folder and update file)
   font-weight: 400;
   font-family: "Josefin Sans", Arial, sans-serif; }
 
@@ -7331,7 +7364,11 @@ h1, h2, h3, h4, h5,
       .ftco-navbar-light .navbar-brand {
         color: #d2bfa4; } }
   .ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
+<<<<<<< HEAD
     /* 自訂 選單字體大小 字型 */
+=======
+    /* 選單字體大小 字型 */
+>>>>>>> 8e899cc (feature/event move folder and update file)
     font-size: 18px;
     padding-top: .9rem;
     padding-bottom: .9rem;
@@ -7770,8 +7807,12 @@ h1, h2, h3, h4, h5,
 
 @media (min-width: 992px) {
   .ftco-intro {
+<<<<<<< HEAD
     /* margin-top: -130px; */
    } }
+=======
+    margin-top: -130px; } }
+>>>>>>> 8e899cc (feature/event move folder and update file)
 
 .ftco-intro .container-wrap {
   z-index: 2 !important;
@@ -7791,11 +7832,16 @@ h1, h2, h3, h4, h5,
         width: 100%; } }
     .ftco-intro .wrap .info p {
       margin-bottom: 0; }
+<<<<<<< HEAD
 
       /* 自訂form表單 */
   .ftco-intro .wrap .book {
     /* 原版為35%改100% */
     width: 100%;
+=======
+  .ftco-intro .wrap .book {
+    width: 35%;
+>>>>>>> 8e899cc (feature/event move folder and update file)
     background: #c49b63; }
     @media (max-width: 767.98px) {
       .ftco-intro .wrap .book {
@@ -8425,6 +8471,7 @@ h1, h2, h3, h4, h5,
   .ftco-social a span {
     color: #c49b63; }
 
+<<<<<<< HEAD
 
     /* 表單 自訂 */
 .form-control {
@@ -8433,6 +8480,12 @@ h1, h2, h3, h4, h5,
   /* background: #6a3e0a66 ; */
   background: #fff ;
   /* color: rgba(255, 255, 255, 0.9) !important; */
+=======
+.form-control {
+  height: 58px !important;
+  background: transparent !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+>>>>>>> 8e899cc (feature/event move folder and update file)
   font-size: 18px;
   border-radius: 0px;
   -webkit-box-shadow: none !important;
@@ -8518,12 +8571,20 @@ textarea.form-control {
   font-size: 24px; }
 
 .ftco-section {
+<<<<<<< HEAD
   /* 自訂：section上下padding */
   padding: 3em 0;
   position: relative; }
   @media (max-width: 767.98px) {
     .ftco-section {
       padding: 2em 0; } }
+=======
+  padding: 7em 0;
+  position: relative; }
+  @media (max-width: 767.98px) {
+    .ftco-section {
+      padding: 6em 0; } }
+>>>>>>> 8e899cc (feature/event move folder and update file)
 
 .ftco-bg-dark {
   background: #030202; }
@@ -9305,6 +9366,7 @@ textarea.form-control {
     stroke-dashoffset: -136px; } }
 
 /* =============== 自訂css =============== */
+<<<<<<< HEAD
 /* 漢堡選單顏色 */
     .oi-menu {
       color: white;
@@ -9396,3 +9458,399 @@ object-fit: cover;
   flex-grow: 1;
 }
 
+=======
+/* 送出選單資料標籤 */
+
+    .btn.btn-primary {
+      background: #c49b63;
+      border: 1px solid #c49b63;
+      color: #000;
+      }
+      .btn.btn-primary:hover {
+        border: 1px solid #c49b63;
+        background: transparent;
+        color: #c49b63; }
+      .btn.btn-primary.btn-outline-primary {
+        border: 1px solid #c49b63;
+        background: transparent;
+        color: #c49b63; }
+      .btn.btn-primary.btn-outline-primary:hover {
+        border: 1px solid transparent;
+        background: #c49b63;
+        color: #fff; }
+
+/*下拉式選單*/
+.classoverview_selecter{
+  width: 20%;
+  padding: 2px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+}
+
+
+
+
+/* 課程頁面 */
+.rounded {
+  border-radius: 5px !important;
+}
+.btn-xs.btn-icon {
+  width: 34px;
+  height: 34px;
+  max-width: 34px !important;
+  max-height: 34px !important;
+  font-size: 10px;
+  line-height: 34px;
+}
+/* facebook button */
+.btn-facebook, .btn-facebook:active, .btn-facebook:focus {
+color: #fff !important;
+background: #4e68a1;
+border: 2px solid #4e68a1;
+}
+
+.btn-facebook:hover {
+color: #fff !important;
+background: #3b4f7a;
+border: 2px solid #3b4f7a;
+}
+
+.btn-facebook-link, .btn-facebook-link:active, .btn-facebook-link:focus {
+color: #4e68a1 !important;
+background: transparent;
+border: none;
+}
+
+.btn-facebook-link:hover {
+color: #3b4f7a !important;
+}
+
+.btn-outline-facebook, .btn-outline-facebook:active, .btn-outline-facebook:focus {
+color: #4e68a1 !important;
+background: transparent;
+border: 2px solid #4e68a1;
+}
+
+.btn-outline-facebook:hover {
+color: #fff !important;
+background: #4e68a1;
+border: 2px solid #4e68a1;
+}
+
+/* twitter button */
+.btn-twitter, .btn-twitter:active, .btn-twitter:focus {
+color: #fff !important;
+background: #65b5f2;
+border: 2px solid #65b5f2;
+}
+
+.btn-twitter:hover {
+color: #fff !important;
+background: #5294c6;
+border: 2px solid #5294c6;
+}
+
+.btn-twitter:hover {
+color: #fff !important;
+background: #5294c6;
+border: 2px solid #5294c6;
+}
+
+.btn-twitter-link, .btn-twitter-link:active, .btn-twitter-link:focus {
+color: #65b5f2 !important;
+background: transparent;
+border: none;
+}
+
+.btn-twitter-link:hover {
+color: #5294c6 !important;
+}
+
+.btn-outline-twitter, .btn-outline-twitter:active, .btn-outline-twitter:focus {
+color: #65b5f2 !important;
+background: transparent;
+border: 2px solid #65b5f2;
+}
+
+.btn-outline-twitter:hover {
+color: #fff !important;
+background: #65b5f2;
+border: 2px solid #65b5f2;
+}
+
+/* google button */
+.btn-google, .btn-google:active, .btn-google:focus {
+color: #fff !important;
+background: #e05d4b;
+border: 2px solid #e05d4b;
+}
+
+.btn-google:hover {
+color: #fff !important;
+background: #b94c3d;
+border: 2px solid #b94c3d;
+}
+
+.btn-google-link, .btn-google-link:active, .btn-google-link:focus {
+color: #e05d4b !important;
+background: transparent;
+border: none;
+}
+
+.btn-google-link:hover {
+color: #b94c3d !important;
+}
+
+.btn-outline-google, .btn-outline-google:active, .btn-outline-google:focus {
+color: #e05d4b !important;
+background: transparent;
+border: 2px solid #e05d4b;
+}
+
+.btn-outline-google:hover {
+color: #fff !important;
+background: #e05d4b;
+border: 2px solid #e05d4b;
+}
+
+/* linkedin button */
+.btn-linkedin, .btn-linkedin:active, .btn-linkedin:focus {
+color: #fff !important;
+background: #2083bc;
+border: 2px solid #2083bc;
+}
+
+.btn-linkedin:hover {
+color: #fff !important;
+background: #186592;
+border: 2px solid #186592;
+}
+
+.btn-linkedin-link, .btn-linkedin-link:active, .btn-linkedin-link:focus {
+color: #2083bc !important;
+background: transparent;
+border: none;
+}
+
+.btn-linkedin-link:hover {
+color: #186592 !important;
+}
+
+.btn-outline-linkedin, .btn-outline-linkedin:active, .btn-outline-linkedin:focus {
+color: #2083bc !important;
+background: transparent;
+border: 2px solid #2083bc;
+}
+
+.btn-outline-linkedin:hover {
+color: #fff !important;
+background: #2083bc;
+border: 2px solid #2083bc;
+}
+
+/* pinterest button */
+.btn-pinterest, .btn-pinterest:active, .btn-pinterest:focus {
+color: #fff !important;
+background: #d2373b;
+border: 2px solid #d2373b;
+}
+
+.btn-pinterest:hover {
+color: #fff !important;
+background: #ad2c2f;
+border: 2px solid #ad2c2f;
+}
+
+.btn-pinterest-link, .btn-pinterest-link:active, .btn-pinterest-link:focus {
+color: #d2373b !important;
+background: transparent;
+border: none;
+}
+
+.btn-pinterest-link:hover {
+color: #ad2c2f !important;
+}
+
+.btn-outline-pinterest, .btn-outline-pinterest:active, .btn-outline-pinterest:focus {
+color: #d2373b !important;
+background: transparent;
+border: 2px solid #d2373b;
+}
+
+.btn-outline-pinterest:hover {
+color: #fff !important;
+background: #d2373b;
+border: 2px solid #d2373b;
+}
+
+/* dribble button */
+.btn-dribbble, .btn-dribbble:active, .btn-dribbble:focus {
+color: #fff !important;
+background: #ec5f94;
+border: 2px solid #ec5f94;
+}
+
+.btn-dribbble:hover {
+color: #fff !important;
+background: #b4446e;
+border: 2px solid #b4446e;
+}
+
+.btn-dribbble-link, .btn-dribbble-link:active, .btn-dribbble-link:focus {
+color: #ec5f94 !important;
+background: transparent;
+border: none;
+}
+
+.btn-dribbble-link:hover {
+color: #b4446e !important;
+}
+
+.btn-outline-dribbble, .btn-outline-dribbble:active, .btn-outline-dribbble:focus {
+color: #ec5f94 !important;
+background: transparent;
+border: 2px solid #ec5f94;
+}
+
+.btn-outline-dribbble:hover {
+color: #fff !important;
+background: #ec5f94;
+border: 2px solid #ec5f94;
+}
+
+/* instagram button */
+.btn-instagram, .btn-instagram:active, .btn-instagram:focus {
+color: #fff !important;
+background: #4c5fd7;
+border: 2px solid #4c5fd7;
+}
+
+.btn-instagram:hover {
+color: #fff !important;
+background: #4252ba;
+border: 2px solid #4252ba;
+}
+
+.btn-instagram-link, .btn-instagram-link:active, .btn-instagram-link:focus {
+color: #4c5fd7 !important;
+background: transparent;
+border: none;
+}
+
+.btn-instagram-link:hover {
+color: #4252ba !important;
+}
+
+.btn-outline-instagram, .btn-outline-instagram:active, .btn-outline-instagram:focus {
+color: #4c5fd7 !important;
+background: transparent;
+border: 2px solid #4c5fd7;
+}
+
+.btn-outline-instagram:hover {
+color: #fff !important;
+background: #4c5fd7;
+border: 2px solid #4c5fd7;
+}
+
+/* youtube button */
+.btn-youtube, .btn-youtube:active, .btn-youtube:focus {
+color: #fff !important;
+background: #e52d27;
+border: 2px solid #e52d27;
+}
+
+.btn-youtube:hover {
+color: #fff !important;
+background: #b31217;
+border: 2px solid #b31217;
+}
+
+.btn-youtube-link, .btn-youtube-link:active, .btn-youtube-link:focus {
+color: #e52d27 !important;
+background: transparent;
+border: none;
+}
+
+.btn-youtube-link:hover {
+color: #b31217 !important;
+}
+
+.btn-outline-youtube, .btn-outline-youtube:active, .btn-outline-youtube:focus {
+color: #e52d27 !important;
+background: transparent;
+border: 2px solid #e52d27;
+}
+
+.btn-outline-youtube:hover {
+color: #fff !important;
+background: #e52d27;
+border: 2px solid #e52d27;
+}
+.btn-xs.btn-icon span, .btn-xs.btn-icon i {
+  line-height: 34px;
+}
+.btn-icon.btn-circle span, .btn-icon.btn-circle i {
+  margin-top: -1px;
+  margin-right: -1px;
+}
+.btn-icon i {
+  margin-top: -1px;
+}
+.btn-icon span, .btn-icon i {
+  display: block;
+  line-height: 50px;
+}
+a.btn, a.btn-social {
+  display: inline-block;
+}
+.mr-5 {
+  margin-right: 5px !important;
+}
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+.btn-facebook, .btn-facebook:active, .btn-facebook:focus {
+  color: #fff !important;
+  background: #4e68a1;
+  border: 2px solid #4e68a1;
+}
+.btn-circle {
+  border-radius: 50% !important;
+}
+.project-info-box p {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #d5dadb;
+}
+p {
+  font-family: "Barlow", sans-serif !important;
+  font-weight: 300;
+  font-size: 1rem;
+  color: #686c6d;
+  letter-spacing: 0.03rem;
+  margin-bottom: 10px;
+}
+b, strong {
+  font-weight: 700 !important;
+}
+
+.border-secondary {
+  border-color: #d5dadb !important;
+}
+.opc-25 {
+  opacity: 0.25 !important;
+}
+.mb-30 {
+  margin-bottom: 30px !important;
+}
+.mt-30 {
+  margin-top: 30px !important;
+}
+.spacer-line-full-width, .spacer-line-fw {
+  width: 100%;
+  line-height: 0;
+  border-bottom: 2px solid #f7f7f7;}
+
+>>>>>>> 8e899cc (feature/event move folder and update file)
