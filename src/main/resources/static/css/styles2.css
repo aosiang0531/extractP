@@ -1,14 +1,37 @@
 .navbar {
-    background-color: #D2BFA4
-    !important;
+	background-color: #D2BFA4 !important;
 }
-.customer-color{
-    background-color: #D2BFA4
-    !important;
+
+.customer-color {
+	background-color: #D2BFA4 !important;
 }
-.text-mutedcos{
-    color: white;
+
+.text-mutedcos {
+	color: white;
 }
-.navbar-brand2{
-    color: black;
+
+.navbar-brand2 {
+	color: black;
+}
+
+thead {
+	background-color: #D2BFA4;
+	color: black;
+}
+
+table {
+	width: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+}
+
+td, th {
+	word-wrap: break-word;
+	max-width: 100px; /* 調整單元格最大寬度，根據需要進行調整 */
+	border: 1px solid black; /* 設置邊框線條 */
+	padding: 5px;
+}
+
+.error-message {
+	color: red;
 }
