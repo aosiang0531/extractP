@@ -12,6 +12,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
@@ -41,7 +42,8 @@ public class ArticleGroupVO{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer article_group_id;
 
-	private Integer article_template_id;
+	@Column(name = "article_template_id")
+	private Integer article_group_article_template_id;
 
 	private String article_group_name;
 

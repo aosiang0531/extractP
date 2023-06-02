@@ -26,28 +26,24 @@ public class ArticleCommentReportController extends BaseController<ArticleCommen
 	@Override
 	@GetMapping
 	public List<ArticleCommentReportVO> findAll() {
-		// TODO Auto-generated method stub
 		return articleCommentReportService.findAll();
 	}
 
 	@Override
 	@GetMapping("/{id}")
 	public ArticleCommentReportVO findById(@PathVariable(value = "id") int id) {
-		// TODO Auto-generated method stub
 		return articleCommentReportService.findById(id);
 	}
 
 	@Override
 	@PostMapping
 	public ArticleCommentReportVO save(@RequestBody ArticleCommentReportVO vo) {
-		// TODO Auto-generated method stub
 		return articleCommentReportService.saveOrUpdate(vo);
 	}
 
 	@Override
 	@PutMapping("/{id}")
 	public ArticleCommentReportVO update(@RequestBody ArticleCommentReportVO vo, @PathVariable(value = "id") int id) {
-		// TODO Auto-generated method stub
 		return articleCommentReportService.saveOrUpdate(vo.setId(id));
 	}
 

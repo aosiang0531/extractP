@@ -50,7 +50,7 @@ public class ArticleVO {
 
 	private String article_content;
 
-	private String article_image;
+	private byte[] article_image;
 
 	@CreatedDate
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -76,33 +76,16 @@ public class ArticleVO {
 	private Boolean article_is_top;;
 	
 	
-	public Integer getMember_id() {
+	public Integer getMemberId() {
 	    return memberId;
 	}
 
-	public void setMember_id(Integer member_id) {
+	public void setMemberId(Integer member_id) {
 	    this.memberId = member_id;
 	}
 	
-
-//	@ManyToOne
-//	@JoinColumn(name = "article_group_id",insertable = false, updatable = false)
-//	private ArticleGroupVO articleGroup;
-//	
-//	
-//	@OneToMany(mappedBy = "article_id")
-//	private List<ArticleHastag> articleHastags;
-//	
-//	@OneToMany(mappedBy = "article_id")
-//	private List<ArticleComment> articleComments;
-//	
-//	@OneToMany(mappedBy = "article_id")
-//	private List<ArticleReport> artiicleReports;
-//	
-//	@OneToMany(mappedBy = "article_id")
-//	private List<MemberArticleFav> memberArticleFavs;
-//	
-//	@OneToMany(mappedBy = "article_id")
-//	private List<ArticleThunmb> articleThunmbs;
+//    @ManyToOne
+//    @JoinColumn(name = "member_id")
+//    private MemberVO member;
 
 }

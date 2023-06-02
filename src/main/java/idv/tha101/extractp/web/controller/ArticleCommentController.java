@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import idv.tha101.extractp.base.controller.BaseController;
+import idv.tha101.extractp.web.pojo.ArticleCommentDTO;
 import idv.tha101.extractp.web.pojo.ArticleCommentVO;
 import idv.tha101.extractp.web.service.ArticleCommentService;
 
@@ -52,6 +53,11 @@ public class ArticleCommentController extends BaseController<ArticleCommentVO> {
 	public void deleteById(@PathVariable(value = "id") int id) {
 		articleCommentService.deleteById(id);
 
+	}
+	
+	@GetMapping("/findByArticleId/{article_comment_article_id}")
+	public List<ArticleCommentDTO> findByArticleId(@PathVariable(value = "article_comment_article_id") int id) {
+		return articleCommentService.findByArticleId(id);
 	}
 
 }

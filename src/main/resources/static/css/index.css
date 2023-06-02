@@ -1,0 +1,226 @@
+* {
+    box-sizing: border-box;
+  }
+/* 搜尋 */
+div.card-body{
+  background-color: transparent;
+  padding: 0px 0px 0px 3px;
+}
+div.input-group{
+  padding: 0px !important;
+}
+div.input-group > input{
+  color: black !important;
+
+}
+div.input-group > button{
+  width: 40px; 
+  background-color: transparent !important;
+  margin-right: 2px;
+  border: none!important;
+}
+div.input-group > button > i{
+  color: #a4633a
+}
+
+/* 發表文章 */
+button.post-article{
+  background-color: rgba(229, 111, 38, 0.7);
+  color: azure;
+  height: 50px;
+  padding: 0px !important;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 50px !important;
+  border-radius: 10px;
+  width: 100%;
+  margin-bottom: 10px;
+  border: none;
+}
+
+/* 文章分類 */
+div.mb-4{
+  border:none;
+  background-color: transparent;
+}
+
+  div.card-header{
+    background-color: rgba(106, 70, 47, 0.71);
+    color: azure;
+    height: 50px;
+    padding: 0px !important;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 50px !important;
+    border-radius: 10px !important;
+  }
+  div.accordion-item{
+    background-color: rgba(167, 126, 67, 0.46);
+    width: 120px;
+    border-radius: 10px;
+    margin-left: 25%;
+    margin-top: 20%;
+    margin-bottom: 5%;
+  }
+  button.accordion-button{
+    width: 120px !important;
+    border-style: none !important;
+    font-size: 24px !important;
+    border-radius: 10px !important;
+    background-color:transparent;
+  }
+  button.accordion-body{
+    font-size: 18px; width: 120px;
+    border-radius: 10px !important;
+    background-color: transparent;
+    border-style: none !important;
+  }
+  /* 聊天室 */
+  button.public-chat{
+    background-color: rgba(237, 168, 125, 0.71);
+    color: azure;
+    height: 50px;
+    padding: 0px !important;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 50px !important;
+    border-radius: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+    border: none;
+  }
+
+  /* 輪播圖 */
+  div.carousel{
+    margin-bottom: 10px;
+    width: 85%;
+    margin-left: 10%;
+  }
+  div.carousel-item > img{
+    border-radius:3%;
+    max-width: 100%;
+    aspect-ratio: 16/9;
+  }
+  button.carousel-control-prev{
+    border: 0px; background-color: transparent;
+  }
+  button.carousel-control-next{
+    border: 0px; background-color: transparent;
+  }
+
+  /* 文章顯示 */
+    /* 整個頁籤及內容最外層區塊 */
+  /* div.tab_container{
+    } */
+  /* 頁籤區塊 */
+  div.tab_container div.tab_list_block {
+    padding-left: 20px;
+  }
+  /* 頁籤列表 */
+  div.tab_container div.tab_list_block ul.tab_list {
+    list-style: none;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+  }
+  div.tab_container div.tab_list_block ul.tab_list > li {
+    display: inline-block;
+  }
+  div.tab_container div.tab_list_block ul.tab_list > li > a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 2px 20px;
+    border-radius: 5px 5px 0 0;
+    cursor: pointer;
+    color: #ccc;
+    position: relative;
+    top: 1px;
+  }
+  /* 畫出底部黑線 */
+  div.tab_container div.tab_list_block ul.tab_list > li > a::after {
+    content: "";
+    position: absolute;
+    width: calc(100% + 2px);
+    height: 1px;
+    bottom: -1px;
+    left: -1px;
+    z-index: 1;
+  }
+  div.tab_container div.tab_list_block ul.tab_list > li > a.-on {
+    color: black;
+    font-weight: bold;
+  }
+  /* 將底部黑線改成白色 */
+  div.tab_container div.tab_list_block ul.tab_list > li > a.-on::after {
+    background-color: rgb(103, 69, 69);
+    width: 100%;
+    left: 0;
+  }
+  /* 頁籤內容區塊 */
+  /* div.tab_container div.tab_contents { */
+    /* border: 1px solid black; */
+      /* margin-top: 30px; */
+  /* } */
+  div.tab_container div.tab_contents div.tab {
+    padding: 10px;
+    display: none;
+  }
+  div.tab_container div.tab_contents div.tab.-on {
+    display: block;
+  }
+  div.tab2{
+    margin-top: 15px !important;
+    margin-left: 15px !important;
+  }
+  /* 文章顯示 */
+  div.article-appear{
+    margin-top: 10px
+  }
+
+  /* 熱門文章 */
+  div.article-group{
+    margin-top: 30px;
+    padding-right: 5px;
+    color: rgba(106, 70, 47, 0.71);
+  }
+  img.img-thumbnail {
+    max-width: 120px
+  }
+  div.media-body{
+    padding-left: 10px
+  }
+  p.text-body{
+    font-weight: bold
+  }
+  p.text-secondary{
+    margin-bottom: 10px
+  }
+  div.text-muted{
+    height: 30px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  div.text-muted > span {
+    flex-basis: 20%;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  /* 分頁 */
+  ul.pagination{
+    margin-top: 20px
+  }
+
+  /* 板塊文章顯示 */
+  div.rules{
+    display: block !important;
+  }
+
+  div.rules > p {
+    font-size: 16px;
+  }
+

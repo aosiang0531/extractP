@@ -46,9 +46,7 @@ html {
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   -ms-overflow-style: scrollbar;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); 
-  /* 自訂 */
-  background-color: #fff;}
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 
 @-ms-viewport {
   width: device-width; }
@@ -150,23 +148,6 @@ a {
     color: #34c0e7;
     text-decoration: underline; }
 
-/* a:not([href]):not([tabindex]) {
-=======
-a:not([href]):not([tabindex]) {
->>>>>>> 8e899cc (feature/event move folder and update file)
-=======
-a:not([href]):not([tabindex]) {
->>>>>>> 1bbd795 (modified order and add front-end)
-  color: inherit;
-  text-decoration: none; }
-  a:not([href]):not([tabindex]):hover, a:not([href]):not([tabindex]):focus {
-    color: inherit;
-    text-decoration: none; }
-  a:not([href]):not([tabindex]):focus {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    outline: 0; } */
-
 pre,
 code,
 kbd,
@@ -218,11 +199,6 @@ input,
 button,
 select,
 optgroup,
-/* textarea {
-  margin: 0;
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit; } */
 textarea {
   margin: 0;
   font-family: inherit;
@@ -1364,7 +1340,11 @@ pre {
   .table td {
     padding: 0.75rem;
     vertical-align: top;
+<<<<<<< HEAD
     }
+=======
+    border-top: 1px solid #dee2e6; }
+>>>>>>> 4153734 (feature/forum upload version 0.1)
   .table thead th {
     vertical-align: bottom;
     border-bottom: 2px solid #dee2e6; }
@@ -6006,20 +5986,6 @@ button.bg-dark:focus {
   position: -webkit-sticky !important;
   position: sticky !important; }
 
-.fixed-top {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 1030; }
-
-.fixed-bottom {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1030; }
-
 @supports ((position: -webkit-sticky) or (position: sticky)) {
   .sticky-top {
     position: -webkit-sticky;
@@ -7287,7 +7253,6 @@ body {
   background: #151111;
   font-size: 15px;
   line-height: 1.8;
-
   font-weight: 300;
   color: gray;
   background: url(../images/bg_4.jpg) no-repeat fixed;
@@ -7311,8 +7276,6 @@ a {
     outline: none !important;
     text-decoration: none !important; }
 
-
-    /* 自訂 標題顏色 */
 h1, h2, h3, h4, h5,
 .h1, .h2, .h3, .h4, .h5 {
   line-height: 1.4;
@@ -7344,7 +7307,6 @@ h1, h2, h3, h4, h5,
       .ftco-navbar-light .navbar-brand {
         color: #d2bfa4; } }
   .ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
-  
     /* 自訂 選單字體大小 字型 */
     font-size: 18px;
     padding-top: .9rem;
@@ -7784,8 +7746,7 @@ h1, h2, h3, h4, h5,
 
 @media (min-width: 992px) {
   .ftco-intro {
-    /* margin-top: -130px; */
-   } }
+    margin-top: -130px; } }
 
 .ftco-intro .container-wrap {
   z-index: 2 !important;
@@ -8533,12 +8494,11 @@ textarea.form-control {
   font-size: 24px; }
 
 .ftco-section {
-  /* 自訂：section上下padding */
-  padding: 3em 0;
+  padding: 7em 0;
   position: relative; }
   @media (max-width: 767.98px) {
     .ftco-section {
-      padding: 2em 0; } }
+      padding: 6em 0; } }
 
 .ftco-bg-dark {
   background: #030202; }
@@ -9321,10 +9281,6 @@ textarea.form-control {
 
 /* =============== 自訂css =============== */
 /* 漢堡選單顏色 */
-    .oi-menu {
-      color: white;
-
-    }
 
 /* Product */
 .product-wap { box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.10);}

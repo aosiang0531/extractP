@@ -11,6 +11,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
@@ -39,9 +40,11 @@ public class ArticleCommentReportVO {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer article_comment_report_id;
 
-	private Integer member_id;
+	@Column(name = "member_id")
+	private Integer article_comment_report_member_id;
 
-	private Integer article_comment_id;
+	@Column(name = "article_comment_id")
+	private Integer article_comment_report_article_comment_id;
 
 	private String article_comment_report_content;
 
@@ -52,9 +55,6 @@ public class ArticleCommentReportVO {
 	@LastModifiedDate
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Timestamp article_comment_report_last_modified_date;
-
-	@CreatedBy
-	private String article_comment_report_created_by;
 
 	@LastModifiedBy
 	private String article_comment_report_last_modified_by;
