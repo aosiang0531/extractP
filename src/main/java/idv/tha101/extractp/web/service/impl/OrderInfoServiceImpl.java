@@ -2,6 +2,7 @@ package idv.tha101.extractp.web.service.impl;
 
 import java.lang.reflect.Field;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +24,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 
 	@Autowired
 	OrderDetailRepository orderDetailRepository;
+	
 
 	@Override
 	public List<OrderInfoVO> findAll() {
@@ -75,6 +77,12 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 	public List<OrderInfoVO> findByMemberId(Integer member_id) {
 		return orderInfoRepository.findByMemberId(member_id);
 	}
+	
+	@Override
+	public List<OrderInfoVO> findPageByOrderStatus(Integer member_id, String status) {
+ 		return orderInfoRepository.findByMemberIdAndOrderStatus(member_id, status);
+	}
+
 
 	@Override
 	public List<OrderInfoVO> findPageByPaymentStatus(Integer member_id, String status) {
@@ -126,13 +134,11 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 	}
 
 	@Override
-	public List<Double> countSubTotal(Integer id) {
-		return orderDetailRepository.findByOrderId(id).stream().mapToDouble(it->it.getQuantity()*it.getPrice()).boxed().toList();
-	}
-
-	@Override
-	public double countTotal(Integer id) {
-		return orderDetailRepository.findByOrderId(id).stream().mapToDouble(it->it.getQuantity()*it.getPrice()).sum();
+	public HashMap<String, Double> countTotal(Integer id) {
+		double total = orderDetailRepository.findByOrderId(id).stream().mapToDouble(it->it.getQuantity()*it.getPrice()).sum();
+		HashMap<String, Double> map = new HashMap<>();
+		map.put("total",total);
+		return map;
 	}
 
 	@Override
@@ -144,5 +150,6 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 	public Collection<OrderDTO> findOrderInfo(Integer id) {
 		return orderDetailRepository.findOrderInfo(id);
 	}
+	
 
 }

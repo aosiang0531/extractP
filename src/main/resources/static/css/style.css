@@ -46,14 +46,9 @@ html {
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   -ms-overflow-style: scrollbar;
-<<<<<<< HEAD
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); 
   /* 自訂 */
   background-color: #fff;}
-  
-=======
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
->>>>>>> 8e899cc (feature/event move folder and update file)
 
 @-ms-viewport {
   width: device-width; }
@@ -155,11 +150,13 @@ a {
     color: #34c0e7;
     text-decoration: underline; }
 
-<<<<<<< HEAD
 /* a:not([href]):not([tabindex]) {
 =======
 a:not([href]):not([tabindex]) {
 >>>>>>> 8e899cc (feature/event move folder and update file)
+=======
+a:not([href]):not([tabindex]) {
+>>>>>>> 1bbd795 (modified order and add front-end)
   color: inherit;
   text-decoration: none; }
   a:not([href]):not([tabindex]):hover, a:not([href]):not([tabindex]):focus {
@@ -167,10 +164,8 @@ a:not([href]):not([tabindex]) {
     text-decoration: none; }
   a:not([href]):not([tabindex]):focus {
 <<<<<<< HEAD
+<<<<<<< HEAD
     outline: 0; } */
-=======
-    outline: 0; }
->>>>>>> 8e899cc (feature/event move folder and update file)
 
 pre,
 code,
@@ -223,19 +218,16 @@ input,
 button,
 select,
 optgroup,
-<<<<<<< HEAD
 /* textarea {
   margin: 0;
   font-family: inherit;
   font-size: inherit;
   line-height: inherit; } */
-=======
 textarea {
   margin: 0;
   font-family: inherit;
   font-size: inherit;
   line-height: inherit; }
->>>>>>> 8e899cc (feature/event move folder and update file)
 
 button,
 input {
@@ -1372,7 +1364,7 @@ pre {
   .table td {
     padding: 0.75rem;
     vertical-align: top;
-    border-top: 1px solid #dee2e6; }
+    }
   .table thead th {
     vertical-align: bottom;
     border-bottom: 2px solid #dee2e6; }
@@ -7295,15 +7287,10 @@ body {
   background: #151111;
   font-size: 15px;
   line-height: 1.8;
-<<<<<<< HEAD
-  /* font-weight: 300; */
-  color: black;
-  /* background: url(../images/bg_4.jpg) no-repeat fixed; */
-=======
+
   font-weight: 300;
   color: gray;
   background: url(../images/bg_4.jpg) no-repeat fixed;
->>>>>>> 8e899cc (feature/event move folder and update file)
   background-size: cover; }
   body.menu-show {
     overflow: hidden;
@@ -7324,19 +7311,12 @@ a {
     outline: none !important;
     text-decoration: none !important; }
 
-<<<<<<< HEAD
 
     /* 自訂 標題顏色 */
 h1, h2, h3, h4, h5,
 .h1, .h2, .h3, .h4, .h5 {
   line-height: 1.4;
-  color: #000;
-=======
-h1, h2, h3, h4, h5,
-.h1, .h2, .h3, .h4, .h5 {
-  line-height: 1.4;
   color: #fff;
->>>>>>> 8e899cc (feature/event move folder and update file)
   font-weight: 400;
   font-family: "Josefin Sans", Arial, sans-serif; }
 
@@ -7364,11 +7344,8 @@ h1, h2, h3, h4, h5,
       .ftco-navbar-light .navbar-brand {
         color: #d2bfa4; } }
   .ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
-<<<<<<< HEAD
+  
     /* 自訂 選單字體大小 字型 */
-=======
-    /* 選單字體大小 字型 */
->>>>>>> 8e899cc (feature/event move folder and update file)
     font-size: 18px;
     padding-top: .9rem;
     padding-bottom: .9rem;
@@ -7807,12 +7784,8 @@ h1, h2, h3, h4, h5,
 
 @media (min-width: 992px) {
   .ftco-intro {
-<<<<<<< HEAD
     /* margin-top: -130px; */
    } }
-=======
-    margin-top: -130px; } }
->>>>>>> 8e899cc (feature/event move folder and update file)
 
 .ftco-intro .container-wrap {
   z-index: 2 !important;
@@ -7832,16 +7805,12 @@ h1, h2, h3, h4, h5,
         width: 100%; } }
     .ftco-intro .wrap .info p {
       margin-bottom: 0; }
-<<<<<<< HEAD
 
       /* 自訂form表單 */
   .ftco-intro .wrap .book {
     /* 原版為35%改100% */
     width: 100%;
-=======
-  .ftco-intro .wrap .book {
-    width: 35%;
->>>>>>> 8e899cc (feature/event move folder and update file)
+
     background: #c49b63; }
     @media (max-width: 767.98px) {
       .ftco-intro .wrap .book {
@@ -8471,8 +8440,6 @@ h1, h2, h3, h4, h5,
   .ftco-social a span {
     color: #c49b63; }
 
-<<<<<<< HEAD
-
     /* 表單 自訂 */
 .form-control {
   /* height: 58px !important; */
@@ -8480,12 +8447,7 @@ h1, h2, h3, h4, h5,
   /* background: #6a3e0a66 ; */
   background: #fff ;
   /* color: rgba(255, 255, 255, 0.9) !important; */
-=======
-.form-control {
-  height: 58px !important;
-  background: transparent !important;
-  color: rgba(255, 255, 255, 0.9) !important;
->>>>>>> 8e899cc (feature/event move folder and update file)
+
   font-size: 18px;
   border-radius: 0px;
   -webkit-box-shadow: none !important;
@@ -8571,20 +8533,12 @@ textarea.form-control {
   font-size: 24px; }
 
 .ftco-section {
-<<<<<<< HEAD
   /* 自訂：section上下padding */
   padding: 3em 0;
   position: relative; }
   @media (max-width: 767.98px) {
     .ftco-section {
       padding: 2em 0; } }
-=======
-  padding: 7em 0;
-  position: relative; }
-  @media (max-width: 767.98px) {
-    .ftco-section {
-      padding: 6em 0; } }
->>>>>>> 8e899cc (feature/event move folder and update file)
 
 .ftco-bg-dark {
   background: #030202; }
@@ -9366,7 +9320,6 @@ textarea.form-control {
     stroke-dashoffset: -136px; } }
 
 /* =============== 自訂css =============== */
-<<<<<<< HEAD
 /* 漢堡選單顏色 */
     .oi-menu {
       color: white;
@@ -9458,7 +9411,6 @@ object-fit: cover;
   flex-grow: 1;
 }
 
-=======
 /* 送出選單資料標籤 */
 
     .btn.btn-primary {
@@ -9853,4 +9805,8 @@ b, strong {
   line-height: 0;
   border-bottom: 2px solid #f7f7f7;}
 
->>>>>>> 8e899cc (feature/event move folder and update file)
+/* 漢堡選單顏色 */
+    .oi-menu {
+      color: black;
+
+    }

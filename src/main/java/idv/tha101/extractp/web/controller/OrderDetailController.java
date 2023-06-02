@@ -1,6 +1,8 @@
 package idv.tha101.extractp.web.controller;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.gson.JsonObject;
+
 import idv.tha101.extractp.base.controller.BaseController;
-import idv.tha101.extractp.web.dao.OrderDetailRepository;
 import idv.tha101.extractp.web.pojo.OrderDTO;
 import idv.tha101.extractp.web.pojo.OrderDetailVO;
 import idv.tha101.extractp.web.service.OrderInfoService;
@@ -55,19 +58,23 @@ public class OrderDetailController extends BaseController<OrderDetailVO> {
 		return orderInfoService.saveOrUpdate(vo.setId(id));
 	}
 	
+	@PutMapping("/{id}/all")
+	public List<OrderDetailVO> updateAll(@RequestBody List<OrderDetailVO> reqlist, @PathVariable(value = "id") int id) {
+		List<OrderDetailVO> list = new ArrayList<OrderDetailVO>();
+		for(OrderDetailVO vo2 : reqlist) {
+			list.add(orderInfoService.saveOrUpdate(vo2));
+		}
+		return list;
+	}
+	
 	@GetMapping("/{id}")
 	public List<OrderDetailVO> findByOrderId(@PathVariable(value = "id") int id) {
 		return orderInfoService.findByOrderId(id);
 	}
 	
-	@GetMapping("/{id}/subtotal")
-	public List<Double> totalByOrderId(@PathVariable(value = "id") int id) {
-		return orderInfoService.countSubTotal(id);
-	}
-
 
 	@GetMapping("/{id}/total")
-	public double countTotal(@PathVariable(value = "id") int id) {
+	public HashMap<String, Double> countTotal(@PathVariable(value = "id") int id) {
 		return orderInfoService.countTotal(id);
 	}
 	
