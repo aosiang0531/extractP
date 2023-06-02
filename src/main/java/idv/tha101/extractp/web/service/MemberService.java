@@ -5,6 +5,9 @@ import idv.tha101.extractp.web.pojo.MemberVO;
 
 public interface MemberService extends BaseService<MemberVO>{
 
-//	List<MemberVO> findByOrder_status(String status);
-
+	MemberVO register(MemberVO memberVO);
+	
+	// Method
+    // To send a simple email
+//    String sendSimpleMail(MemberEmailDTO details);
 }

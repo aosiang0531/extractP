@@ -1,5 +1,7 @@
 package idv.tha101.extractp.web.dao;
 
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
 
@@ -9,5 +11,7 @@ import idv.tha101.extractp.web.pojo.MemberVO;
 @RepositoryRestResource
 @Repository
 public interface MemberRepository extends BaseRepository<MemberVO, Integer> {
+
+	boolean existsByEmail(String email);
 
 }

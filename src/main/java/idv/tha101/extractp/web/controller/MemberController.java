@@ -1,5 +1,4 @@
 package idv.tha101.extractp.web.controller;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import idv.tha101.extractp.base.controller.BaseController;
@@ -54,4 +52,19 @@ public class MemberController extends BaseController<MemberVO> {
 		memberservice.deleteById(id);
 	}
 
+	@PostMapping("/register")
+	public MemberVO register(@RequestBody MemberVO member) {
+		return memberservice.register(member);
+	}
+	
+//	// Sending a simple Email
+//    @PostMapping("/sendMail")
+//    public String
+//    sendMail(@RequestBody MemberEmailDTO details)
+//    {
+//        String status
+//            = emailService.sendSimpleMail(details);
+// 
+//        return status;
+//    }
 }

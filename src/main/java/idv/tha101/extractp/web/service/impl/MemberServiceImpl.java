@@ -11,27 +11,26 @@ import idv.tha101.extractp.web.dao.MemberRepository;
 import idv.tha101.extractp.web.pojo.MemberVO;
 import idv.tha101.extractp.web.service.MemberService;
 
-
 @Service
 public class MemberServiceImpl implements MemberService {
 
 	@Autowired
-	private MemberRepository memberrepository;
+	private MemberRepository memberRepository;
 
 	@Override
 	public List<MemberVO> findAll() {
-		return memberrepository.findAll();
+		return memberRepository.findAll();
 	}
 
 	@Override
 	public MemberVO findById(Integer id) {
-		return memberrepository.findById(id).orElseThrow();
+		return memberRepository.findById(id).orElseThrow();
 	}
 
 	@Override
 	public MemberVO saveOrUpdate(MemberVO vo) {
 		if (vo.getId() != null) {
-			Optional<MemberVO> optionalVO = memberrepository.findById(vo.getId());
+			Optional<MemberVO> optionalVO = memberRepository.findById(vo.getId());
 			if (optionalVO.isPresent()) {
 				MemberVO existingVO = optionalVO.get();
 
@@ -50,19 +49,40 @@ public class MemberServiceImpl implements MemberService {
 					}
 				}
 
-				return memberrepository.save(existingVO);
+				return memberRepository.save(existingVO);
 			} else {
 				return null;
 			}
 		} else {
-			return memberrepository.save(vo);
+			return memberRepository.save(vo);
 		}
 	}
 
 	@Override
 	public void deleteById(Integer id) {
-		memberrepository.deleteById(id);
+		memberRepository.deleteById(id);
 	}
 
+	@Override
+	public MemberVO register(MemberVO memberVO) {
+		if (memberVO.getId() == null) {
+			if (memberRepository.existsByEmail(memberVO.getEmail())) {
+				return null;
+			} else {
+				return memberRepository.save(memberVO);
+			}
+		} else {
+			return null;
+		}
+
+	}
+
+//	@Override
+//	public String sendSimpleMail(MemberEmailDTO details) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+	
+	
 
 }
