@@ -1,0 +1,125 @@
+		/* 整個頁籤及內容最外層區塊 */
+		div.tab_container {
+			box-sizing: border-box;
+		}
+
+		/* 頁籤區塊 */
+		div.tab_container div.tab_list_block {
+			padding-left: 100px;
+		}
+
+		/* 頁籤列表 */
+		div.tab_container div.tab_list_block ul.tab_list {
+			list-style: none;
+			display: inline-block;
+			margin: 0;
+			padding: 0;
+
+		}
+
+		div.tab_container div.tab_list_block ul.tab_list>li {
+			display: inline-block;
+
+		}
+
+		div.tab_container div.tab_list_block ul.tab_list>li>a {
+			text-decoration: none;
+			display: inline-block;
+			/* border: 1px solid #ccc; */
+			/* border-bottom: 1px solid black; */
+			padding: 2px 20px;
+			border-radius: 5px 5px 0 0;
+			cursor: pointer;
+			/* color: #ccc; */
+
+			position: relative;
+			top: 1px;
+		}
+
+		/* 畫出底部黑線 */
+		div.tab_container div.tab_list_block ul.tab_list>li>a::after {
+			background-color: white;
+			width: 100%;
+			left: 0;
+			color: #ccc !important;
+
+
+		}
+
+		div.tab_container div.tab_list_block ul.tab_list>li>a.-on {
+			/* border: 1px solid black; */
+			/* border-bottom: 1px solid white; */
+			font-weight: bold;
+
+		}
+
+		/* 將底部黑線改成白色 */
+		div.tab_container div.tab_list_block ul.tab_list>li>a.-on::after {
+			content: "";
+			position: absolute;
+			width: calc(100% + 2px);
+			height: 1px;
+			background-color: gray;
+			bottom: -1px;
+			left: -1px;
+			z-index: 1;
+
+		}
+
+
+		/* 頁籤內容區塊 */
+		div.tab_container div.tab_contents {
+			/* border: 1px solid black; */
+			margin-top: 30px;
+		}
+
+		div.tab_container div.tab_contents div.tab {
+			padding: 10px;
+			display: none;
+		}
+
+		div.tab_container div.tab_contents div.tab.-on {
+			display: block;
+		}
+
+		p,
+		.sub-total,
+		h5,
+		.table tbody tr td {
+			color: #c49b63;
+		}
+
+		button {
+			cursor: pointer;
+
+		}
+
+		div.overlay {
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			width: 100%;
+			height: 50vh;
+			transform: translate(-50%, -50%);
+			background-color: hsla(0, 0%, 0%, .5);
+			padding: 50vh 0;
+			display: none;
+		}
+
+		/* 元素 article 置中及基本樣式 */
+		div.overlay>article {
+			background-color: white;
+			width: 90%;
+			max-width: 800px;
+			border-radius: 10px;
+			box-shadow: 0 0 10px #ddd;
+			padding: 10px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+		label {
+			display: inline;
+		}

@@ -39,9 +39,9 @@ public class OrderInfoVO {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer order_id;
 	
-	@Column(name="member_id")
-	private Integer memberId;
-	private String order_status;
+	private Integer member_id;
+	
+	private String order_status = "未成立";
 	@CreatedDate
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Timestamp order_created_date;
@@ -50,11 +50,9 @@ public class OrderInfoVO {
 	private Timestamp order_payment_duedate;
 	private String order_payment_method;
 	
-	@Column(name="order_shipping_status")
-	private String orderShippingStatus;
+	private String order_shipping_status;
 	
-	@Column(name="order_payment_status")
-	private String orderPaymentStatus;
+	private String order_payment_status;
 
 	@LastModifiedDate
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -64,12 +62,6 @@ public class OrderInfoVO {
 	private String order_contact_number;
 	private String order_shipping_name;
 	
-	public Integer getMember_id() {
-		return memberId;
-	}
-	public void setMember_id(Integer member_id) {
-		this.memberId = member_id;
-	}
 	
 	
 //	@OneToMany(mappedBy = "orderInfoVO")
