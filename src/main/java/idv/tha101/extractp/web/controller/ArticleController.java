@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import idv.tha101.extractp.base.controller.BaseController;
 import idv.tha101.extractp.web.pojo.ArticleDTO;
+import idv.tha101.extractp.web.pojo.ArticleDTO2;
 import idv.tha101.extractp.web.pojo.ArticleVO;
 import idv.tha101.extractp.web.service.ArticleService;
-import idv.tha101.extractp.web.service.ArticleTagService;
 
 @RestController
 @RequestMapping("article")
@@ -64,17 +64,37 @@ public class ArticleController extends BaseController<ArticleVO>{
 		return articleService.findLatestArticle();
 	};
 	
-//	@GetMapping("temlatest")
-//	public Collection<ArticleDTO> findTemLatestArticle(){
-//		return articleService.findTemLatestArticle();
-//	};
-	
-//	@GetMapping("/{memberid}")
-//	public List<ArticleVO> findByMemberId(int memberId){
-//		return articleService.findByMemberId(memberId);
-//	}
-	
-	
+	@GetMapping("/temPop/{article_template_id}")
+	public Collection<ArticleDTO> findTemPop(@PathVariable(value = "article_template_id") int id){
+		return articleService.findTemPop(id);
+	};
 
+	@GetMapping("/temLatest/{article_template_id}")
+	public Collection<ArticleDTO> findTemLatest(@PathVariable(value = "article_template_id") int id){
+		return articleService.findTemLatest(id);
+	};
+	
+	@GetMapping("/memberId/{memberId}")
+	public List<ArticleVO> findByMemberId(@PathVariable(value = "memberId") int id){
+		return articleService.findByMemberId(id);
+	}
+	
+	@GetMapping("/groupPop/{article_group_id}")
+	public Collection<ArticleDTO> findGroupPop(@PathVariable(value = "article_group_id") int id){
+		return articleService.findGroupPop(id);
+	}
+	
+	@GetMapping("/groupLatest/{article_group_id}")
+	public Collection<ArticleDTO> findGroupLatest(@PathVariable(value = "article_group_id") int id){
+		return articleService.findGroupLatest(id);
+	}
+
+	@GetMapping("/detailsById/{article_id}")
+	public Collection<ArticleDTO2> findArticleDetailsById(@PathVariable(value = "article_id")int id) {
+		return articleService.findArticleDetailsById(id);
+	}
+
+	
+	
 
 }

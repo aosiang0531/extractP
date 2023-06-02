@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import idv.tha101.extractp.web.dao.ArticleCommentRepository;
+import idv.tha101.extractp.web.pojo.ArticleCommentDTO;
 import idv.tha101.extractp.web.pojo.ArticleCommentVO;
 import idv.tha101.extractp.web.service.ArticleCommentService;
 
@@ -62,6 +63,11 @@ public class ArticleCommentServiceImpl implements ArticleCommentService {
 	public void deleteById(Integer id) {
 		articleCommentRepository.deleteById(id);
 
+	}
+
+	@Override
+	public List<ArticleCommentDTO> findByArticleId(Integer id) {
+		return articleCommentRepository.findByArticleId(id);
 	}
 
 }

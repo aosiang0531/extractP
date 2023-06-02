@@ -8,6 +8,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
@@ -36,9 +37,11 @@ public class ArticleCommentVO {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer article_comment_id;
 
-	private Integer member_id;
+	@Column(name = "member_id")
+	private Integer article_comment_member_id;
 
-	private Integer article_id;
+	@Column(name = "article_id")
+	private Integer article_comment_article_id;
 
 	private String article_comment_content;
 

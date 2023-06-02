@@ -10,8 +10,10 @@ import org.springframework.stereotype.Service;
 
 import idv.tha101.extractp.web.dao.ArticleRepository;
 import idv.tha101.extractp.web.pojo.ArticleDTO;
+import idv.tha101.extractp.web.pojo.ArticleDTO2;
 import idv.tha101.extractp.web.pojo.ArticleVO;
 import idv.tha101.extractp.web.service.ArticleService;
+import jakarta.transaction.Transactional;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
@@ -30,6 +32,7 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
+	@Transactional
 	public ArticleVO saveOrUpdate(ArticleVO vo) {
 		if (vo.getId() != null) {
 			Optional<ArticleVO> optionalVO = articleRepository.findById(vo.getId());
@@ -74,14 +77,35 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleRepository.findLatestArticle();
 	}
 
-//	@Override
-//	public Collection<ArticleDTO> findTemLatestArticle() {
-//		return articleRepository.findTemPopArticle();
-//	}
+	@Override
+	public Collection<ArticleDTO> findTemPop(Integer id) {
+		return articleRepository.findTemPop(id);
+	}
 
-//	@Override
-//	public List<ArticleVO> findByMemberId(Integer memberId) {
-//		return articleRepository.findByMemberId(memberId);
-//	};
+	@Override
+	public Collection<ArticleDTO> findTemLatest(Integer id) {
+		return articleRepository.findTemLatest(id);
+	}
+
+	@Override
+	public List<ArticleVO> findByMemberId(Integer memberId) {
+		return articleRepository.findByMemberId(memberId);
+	}
+
+	@Override
+	public Collection<ArticleDTO> findGroupPop(Integer id) {
+		return articleRepository.findGroupPop(id);
+	}
+
+	@Override
+	public Collection<ArticleDTO> findGroupLatest(Integer id) {
+		return articleRepository.findGroupLatest(id);
+	}
+
+	@Override
+	public Collection<ArticleDTO2> findArticleDetailsById(Integer id) {
+		return articleRepository.findArticleDetailsById(id);
+	}
+
 
 }

@@ -4,11 +4,12 @@ import java.sql.Timestamp;
 
 public interface ArticleDTO {
 	
+	Integer getarticle_id();
 	String getmember_created_user();
 	String getarticle_group_name();
 	String getarticle_title();
 	String getarticle_content();
-	String getarticle_image();
+	byte[] getarticle_image();
 	Timestamp getarticle_created_date();
 	Integer getarticle_thunmb_number();
 	Integer getarticle_comment_number();
