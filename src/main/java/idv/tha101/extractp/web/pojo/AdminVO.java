@@ -4,6 +4,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
@@ -30,8 +31,16 @@ public class AdminVO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer admin_id;
-	private String admin_email;
+	@Column(name = "admin_email")
+	private String email;
 	private String admin_password;
 	private String admin_name;
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 }

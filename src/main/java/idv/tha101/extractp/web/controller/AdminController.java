@@ -52,5 +52,10 @@ public class AdminController extends BaseController<AdminVO> {
 	public void deleteById(@PathVariable(value = "id") int id) {
 		adminService.deleteById(id);
 	}
+	
+	@PostMapping("/register")
+	public AdminVO register(@RequestBody AdminVO vo) {
+		return adminService.register(vo);
+	}
 
 }
