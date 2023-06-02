@@ -1,5 +1,6 @@
 package idv.tha101.extractp.web.controller;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import idv.tha101.extractp.base.controller.BaseController;
 import idv.tha101.extractp.web.dao.OrderDetailRepository;
+import idv.tha101.extractp.web.pojo.OrderDTO;
 import idv.tha101.extractp.web.pojo.OrderDetailVO;
 import idv.tha101.extractp.web.service.OrderInfoService;
 
@@ -69,10 +71,10 @@ public class OrderDetailController extends BaseController<OrderDetailVO> {
 		return orderInfoService.countTotal(id);
 	}
 	
-//	@GetMapping("/{id}/info")
-//	public List<OrderDetailVO> findOrderDetail(@PathVariable(value = "id") int id){
-//		return orderInfoService.findOrderDetail(id);
-//	}
+	@GetMapping("/{id}/info")
+	public Collection<OrderDTO> findOrderInfo(@PathVariable(value = "id") int id){
+		return orderInfoService.findOrderInfo(id);
+	}
 
 
 

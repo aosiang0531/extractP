@@ -1,6 +1,7 @@
 package idv.tha101.extractp.web.service.impl;
 
 import java.lang.reflect.Field;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import idv.tha101.extractp.web.dao.OrderDetailRepository;
 import idv.tha101.extractp.web.dao.OrderInfoRepository;
+import idv.tha101.extractp.web.pojo.OrderDTO;
 import idv.tha101.extractp.web.pojo.OrderDetailVO;
 import idv.tha101.extractp.web.pojo.OrderInfoVO;
 import idv.tha101.extractp.web.service.OrderInfoService;
@@ -138,9 +140,9 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 		return orderDetailRepository.findById(id).orElseThrow();
 	}
 
-//	@Override
-//	public List<OrderDetailVO> findOrderDetail(Integer id) {
-//		return orderDetailRepository.findOrderDetail(id);
-//	}
+	@Override
+	public Collection<OrderDTO> findOrderInfo(Integer id) {
+		return orderDetailRepository.findOrderInfo(id);
+	}
 
 }
