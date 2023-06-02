@@ -1,15 +1,7 @@
-// 自動調整textArea高度
-var textarea = document.querySelector('#product_description');
-textarea.addEventListener('input', function () {
-    console.log("輸入框");
-    this.style.height = 'auto';
-    this.style.height = this.scrollHeight + 'px';
-});
-
-
 (() => {
-    // ============用到的元素=============
     const submit = document.querySelector('#submit');
+    const title = document.querySelector('#title')
+    const idAtTitle = document.querySelector('#idAtTitle')
     const category_id = document.querySelector('#category_id');
     const product_name = document.querySelector('#product_name');
     const image = document.querySelector('#image');
@@ -22,6 +14,38 @@ textarea.addEventListener('input', function () {
     const the_form = document.querySelector('#the_form');
 
 
+    //先將商品資料載入回來
+    const urlParams = new URLSearchParams(window.location.search);
+    const product_id = urlParams.get("id");
+    console.log("產品編號：" + product_id);
+
+    const url = `product/${product_id}`;
+
+    fetch(url)
+        .then((res) => res.json())
+        .then((product) => {
+            //獲得欲修改的產品資訊
+            const singleProduct = product;
+            console.log(singleProduct);
+
+
+            if (singleProduct.id != undefined) {
+                idAtTitle.innerHTML = singleProduct.id;
+                category_id.value = singleProduct.category_id;
+                product_name.value = singleProduct.name;
+                product_spec.value = singleProduct.spec;
+                product_price.value = singleProduct.price;
+                product_stock.value = singleProduct.stock;
+                product_description.value = singleProduct.description;
+                img.src = "data:image/png;base64," + singleProduct.image;
+            } else {
+                title.innerHTML = "查無此商品！";
+            }
+
+        });
+
+
+
     // reset按鈕
     the_form.addEventListener("reset", function () {
 
@@ -29,10 +53,12 @@ textarea.addEventListener('input', function () {
         // var hasImg = preview_area.getElementsByTagName("img")[0];
         if (img) {
             //若存在就將它移除
-            img.src = "";
+            preview_area.removeChild(img);
         }
     });
 
+
+    //修改資料
     submit.addEventListener('click', () => {
 
 
@@ -102,12 +128,13 @@ textarea.addEventListener('input', function () {
             image: imageData,
             stock: product_stock.value,
             price: product_price.value,
+
         });
 
-        fetch('/shop/product', {
-            method: 'POST',
+        fetch(`/shop/product/${product_id}`, {
+            method: 'put',
             headers: { 'Content-Type': 'application/json' },
-            body: productJson,
+            body: productJson
         })
             .then((resp) => resp.json())
             .then((body) => {
@@ -115,10 +142,12 @@ textarea.addEventListener('input', function () {
                 if (successful) {
                     submit.disabled = true;
                     msg.className = 'info';
-                    msg.textContent = '產品新增成功';
+                    msg.textContent = '產品修改成功';
+                    alert("產品修改成功");
+                    window.history.back();
                 } else {
                     msg.className = 'error';
-                    msg.textContent = '產品新增失敗';
+                    msg.textContent = '產品修改失敗';
                 }
             });
     }

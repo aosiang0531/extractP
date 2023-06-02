@@ -7,7 +7,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import idv.tha101.extractp.sample.pojo.SampleVO;
 import idv.tha101.extractp.web.dao.ProductRepository;
 import idv.tha101.extractp.web.pojo.ProductVO;
 import idv.tha101.extractp.web.service.ProductService;
@@ -17,6 +16,14 @@ public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	private ProductRepository repository;
+
+	public List<ProductVO> findByProductSoldCountZero() {
+		return repository.findByProductSoldCountZero();
+	}
+
+	public List<ProductVO> findByStatus(String status) {
+		return repository.findByProductStatus(status);
+	}
 
 	@Override
 	public List<ProductVO> findAll() {
@@ -35,7 +42,7 @@ public class ProductServiceImpl implements ProductService {
 			if (optionalVO.isPresent()) {
 				ProductVO existingVO = optionalVO.get();
 
-				Class<?> voClass = SampleVO.class;
+				Class<?> voClass = ProductVO.class;
 				Field[] fields = voClass.getDeclaredFields();
 
 				for (Field field : fields) {
