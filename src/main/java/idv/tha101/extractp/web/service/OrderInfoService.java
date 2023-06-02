@@ -1,11 +1,16 @@
 package idv.tha101.extractp.web.service;
 
+import java.util.Collection;
 import java.util.List;
 
+import idv.tha101.extractp.base.service.BaseService;
+import idv.tha101.extractp.web.pojo.OrderDTO;
 import idv.tha101.extractp.web.pojo.OrderDetailVO;
 import idv.tha101.extractp.web.pojo.OrderInfoVO;
 
-public interface OrderInfoService {
+public interface OrderInfoService extends BaseService<OrderInfoVO>{
+	
+	Collection<OrderDTO> findOrderInfo(Integer id);
 
 	List<OrderInfoVO> findAll();
 
