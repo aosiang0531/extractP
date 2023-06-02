@@ -1,31 +1,19 @@
 package idv.tha101.extractp.web.service;
 
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 import idv.tha101.extractp.base.service.BaseService;
+import idv.tha101.extractp.web.pojo.OrderDTO;
 import idv.tha101.extractp.web.pojo.OrderDetailVO;
-import idv.tha101.extractp.web.pojo.OrderInfoVO;
 
-public interface OrderDetailService extends BaseService<OrderInfoVO>{
-	
-	List<OrderInfoVO> findByMemberId(Integer member_id);
-	
-	List<OrderInfoVO> findPageByPaymentStatus(Integer member_id,String status);
-	
-	List<OrderInfoVO> findPageByShippingStatus(Integer member_id,String status);
-	
+public interface OrderDetailService extends BaseService<OrderDetailVO> {
+
 	List<OrderDetailVO> findByOrderId(Integer order_id);
-	
-	OrderDetailVO findByOrderDetailId(Integer id);
-	
-	OrderDetailVO saveOrUpdate(OrderDetailVO vo);
-	
-	void deleteByOrderDetailId(Integer id);
-	
-	List<Double> countSubTotal(Integer order_id);
-	
-	double countTotal(Integer order_id);
-	
-//	List<OrderDetailVO> findOrderDetail(Integer id);
+
+	HashMap<String, Double> countTotal(Integer order_id);
+
+	Collection<OrderDTO> findOrderInfo(Integer id);
 
 }
