@@ -1,5 +1,8 @@
 package idv.tha101.extractp.web.controller;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,67 +15,75 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import idv.tha101.extractp.base.controller.BaseController;
-import idv.tha101.extractp.web.dao.OrderDetailRepository;
+import idv.tha101.extractp.web.pojo.OrderDTO;
 import idv.tha101.extractp.web.pojo.OrderDetailVO;
-import idv.tha101.extractp.web.service.OrderInfoService;
+import idv.tha101.extractp.web.service.OrderDetailService;
 
 @RestController
 @RequestMapping("orderDetail")
 public class OrderDetailController extends BaseController<OrderDetailVO> {
 
 	@Autowired
-	private OrderInfoService orderInfoService;
+	OrderDetailService orderDetailService;
 
 	@Override
+	@GetMapping
 	public List<OrderDetailVO> findAll() {
-		return null;
+		return orderDetailService.findAll();
 	}
 
 	@Override
+	@GetMapping("/{id}")
 	public OrderDetailVO findById(@PathVariable(value = "id") int id) {
-		return orderInfoService.findByOrderDetailId(id);
+		return orderDetailService.findById(id);
 	}
 
 	@Override
 	@PostMapping
-	public OrderDetailVO save(OrderDetailVO vo) {
-		return orderInfoService.saveOrUpdate(vo);
+	public OrderDetailVO save(@RequestBody OrderDetailVO vo) {
+		System.out.println(vo);
+		return orderDetailService.saveOrUpdate(vo);
 	}
 
 	@Override
 	@DeleteMapping("/{id}")
 	public void deleteById(@PathVariable(value = "id") int id) {
-		orderInfoService.deleteByOrderDetailId(id);
+		orderDetailService.deleteById(id);
 
 	}
 
 	@Override
 	@PutMapping("/{id}")
 	public OrderDetailVO update(@RequestBody OrderDetailVO vo, @PathVariable(value = "id") int id) {
-		return orderInfoService.saveOrUpdate(vo.setId(id));
+		return orderDetailService.saveOrUpdate(vo.setId(id));
 	}
 	
-	@GetMapping("/{id}")
+	@PutMapping("/{id}/all")
+	public List<OrderDetailVO> updateAll(@RequestBody List<OrderDetailVO> reqlist, @PathVariable(value = "id") int id) {
+		List<OrderDetailVO> list = new ArrayList<OrderDetailVO>();
+		for(OrderDetailVO vo2 : reqlist) {
+			list.add(orderDetailService.saveOrUpdate(vo2));
+		}
+		return list;
+	}
+	
+	@GetMapping("/order/{id}")
 	public List<OrderDetailVO> findByOrderId(@PathVariable(value = "id") int id) {
-		return orderInfoService.findByOrderId(id);
+		return orderDetailService.findByOrderId(id);
 	}
 	
-	@GetMapping("/{id}/subtotal")
-	public List<Double> totalByOrderId(@PathVariable(value = "id") int id) {
-		return orderInfoService.countSubTotal(id);
-	}
-
 
 	@GetMapping("/{id}/total")
-	public double countTotal(@PathVariable(value = "id") int id) {
-		return orderInfoService.countTotal(id);
+	public HashMap<String, Double> countTotal(@PathVariable(value = "id") int id) {
+		return orderDetailService.countTotal(id);
 	}
 	
-//	@GetMapping("/{id}/info")
-//	public List<OrderDetailVO> findOrderDetail(@PathVariable(value = "id") int id){
-//		return orderInfoService.findOrderDetail(id);
-//	}
+	@GetMapping("/{id}/info")
+	public Collection<OrderDTO> findOrderInfo(@PathVariable(value = "id") int id){
+		return orderDetailService.findOrderInfo(id);
+	}
 
 
 

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <title>萃．練</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="../images/favicon.ico"
+    />
+
+    <link rel="stylesheet" href="../css/open-iconic-bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/animate.css" />
+
+    <link rel="stylesheet" href="../css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="../css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="../css/magnific-popup.css" />
+
+    <!-- <link rel="stylesheet" href="../css/aos.css" /> -->
+
+    <link rel="stylesheet" href="../css/ionicons.min.css" />
+
+    <link rel="stylesheet" href="../css/bootstrap-datepicker.css" />
+    <link rel="stylesheet" href="../css/jquery.timepicker.css" />
+
+    <link rel="stylesheet" href="../css/flaticon.css" />
+    <link rel="stylesheet" href="../css/icomoon.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <nav
+      class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
+      id="ftco-navbar"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="../index.html">
+          <img
+            src="../images/logo.png"
+            alt="Logo"
+            width="130"
+            height="60"
+            class="d-inline-block align-text-top"
+          />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#ftco-nav"
+          aria-controls="ftco-nav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="oi oi-menu"></span> 選單
+        </button>
+        <div class="collapse navbar-collapse" id="ftco-nav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a href="../index.html" class="nav-link">咖啡論壇</a>
+            </li>
+            <li class="nav-item">
+              <a href="../menu.html" class="nav-link">課程活動</a>
+            </li>
+            <li class="nav-item">
+              <a href="../shop/product_list.html" class="nav-link"
+                >(管理商品)</a
+              >
+            </li>
+            <li class="nav-item">
+              <a href="../shop/shop.html" class="nav-link">咖啡商城</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="../room.html"
+                id="dropdown04"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >個人頁面</a
+              >
+              <div class="dropdown-menu" aria-labelledby="dropdown04">
+                <a class="dropdown-item" href="../shop/shop.html">Shop</a>
+                <a class="dropdown-item" href="../shop/product-single.html"
+                  >Single Product</a
+                >
+                <a class="dropdown-item" href="../room.html">Cart</a>
+                <a class="dropdown-item" href="../checkout.html">Checkout</a>
+              </div>
+            </li>
+            <li class="nav-item cart">
+              <a href="../shop/cart.html" class="nav-link"
+                ><span class="icon icon-shopping_cart"></span
+                ><span
+                  class="bag d-flex justify-content-center align-items-center"
+                  ><small>0</small></span
+                ></a
+              >
+            </li>
+            <li class="nav-item cart">
+              <a href="../shop/cart.html" class="nav-link"
+                ><span class="icon icon-user"></span
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section class="ftco-section ftco-white">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 mb-5 ftco-animate">
+            <a
+              href="images/products/p01/p01-0.jpg"
+              id="imagePopup"
+              class="image-popup"
+              ><img
+                id="productImage"
+                src="images/products/p01/p01-0.jpg"
+                class="img-fluid"
+                alt="Colorlib Template"
+                style="width: 100%"
+            /></a>
+          </div>
+          <div class="col-lg-6 product-details pl-md-5 ftco-animate">
+            <h3 id="productName">商品名</h3>
+            <p class="price"><span id="productPrice">商品價格</span></p>
+            <p id="productSpec">商品規格</p>
+            <p id="productDescript">商品描述</p>
+            <div class="row mt-4">
+              <!-- <div class="col-md-6">
+                <div class="form-group d-flex">
+                  <div class="select-wrap">
+                    <div class="icon">
+                      <span class="ion-ios-arrow-down"></span>
+                    </div>
+                    <select name="" id="" class="form-control">
+                      <option value="">Small</option>
+                      <option value="">Medium</option>
+                      <option value="">Large</option>
+                      <option value="">Extra Large</option>
+                    </select>
+                  </div>
+                </div>
+              </div> -->
+              <div class="w-100"></div>
+              <div class="input-group col-md-6 d-flex mb-3">
+                <span class="input-group-btn mr-2">
+                  <button
+                    type="button"
+                    class="quantity-left-minus btn"
+                    data-type="minus"
+                    data-field=""
+                  >
+                    <i class="icon-minus"></i>
+                  </button>
+                </span>
+                <input
+                  type="text"
+                  id="quantity"
+                  name="quantity"
+                  class="form-control input-number"
+                  value="1"
+                  min="1"
+                  max="100"
+                />
+                <span class="input-group-btn ml-2">
+                  <button
+                    type="button"
+                    class="quantity-right-plus btn"
+                    data-type="plus"
+                    data-field=""
+                  >
+                    <i class="icon-plus"></i>
+                  </button>
+                </span>
+              </div>
+            </div>
+            <p>
+              <a href="cart.html" class="btn btn-primary py-3 px-5"
+                >加入購物車</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Start Footer -->
+    <footer class="bg-dark" id="tempaltemo_footer">
+      <div class="w-100 bg-black py-3">
+        <div class="container">
+          <div class="row pt-2">
+            <div class="col-12">
+              <p class="text-left text-light">
+                Copyright &copy; 2023 TibaMe THA101-Team7 萃．練
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- End Footer -->
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.easing.1.3.js"></script>
+    <script src="../js/jquery.waypoints.min.js"></script>
+    <script src="../js/jquery.stellar.min.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="../js/jquery.magnific-popup.min.js"></script>
+    <script src="../js/aos.js"></script>
+    <script src="../js/jquery.animateNumber.min.js"></script>
+    <script src="../js/bootstrap-datepicker.js"></script>
+    <script src="../js/jquery.timepicker.min.js"></script>
+    <script src="../js/scrollax.min.js"></script>
+    <script src="../js/main.js"></script>
+
+    <!-- Start Slider Script -->
+    <script src="..//js/slick.min.js"></script>
+    <script>
+      $("#carousel-related-product").slick({
+        infinite: true,
+        arrows: false,
+        slidesToShow: 4,
+        slidesToScroll: 3,
+        dots: true,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3,
+            },
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 3,
+            },
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 3,
+            },
+          },
+        ],
+      });
+    </script>
+    <!-- End Slider Script -->
+
+    <script></script>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const product_id = urlParams.get("id");
+      console.log("產品編號：" + product_id);
+
+      const productImageElement = document.getElementById("productImage");
+      const imagePopupElement = document.getElementById("imagePopup");
+      const productNameElement = document.getElementById("productName");
+      const productPriceElement = document.getElementById("productPrice");
+      const productSpecElement = document.getElementById("productSpec");
+      const productDescriptElement = document.getElementById("productDescript");
+
+      const url = `product/${product_id}`;
+
+      // 載入商品資訊;
+
+      fetch(url)
+        .then((res) => res.json())
+        .then((product) => {
+          //獲得單個產品資訊
+          const singleProduct = product;
+          console.log(singleProduct);
+
+          productNameElement.innerText = singleProduct.name;
+          productPriceElement.innerText = "$" + singleProduct.price;
+          productSpecElement.innerText = singleProduct.spec;
+          productDescriptElement.innerText = singleProduct.description;
+          productImageElement.src =
+            "data:image/png;base64," + singleProduct.image;
+          imagePopupElement.href =
+            "data:image/png;base64," + singleProduct.image;
+        });
+
+      var quantitiy = 0;
+      $(".quantity-right-plus").click(function (e) {
+        // Stop acting like a button
+        e.preventDefault();
+        // Get the field name
+        var quantity = parseInt($("#quantity").val());
+
+        // If is not undefined
+
+        $("#quantity").val(quantity + 1);
+
+        // Increment
+      });
+
+      $(".quantity-left-minus").click(function (e) {
+        // Stop acting like a button
+        e.preventDefault();
+        // Get the field name
+        var quantity = parseInt($("#quantity").val());
+
+        // If is not undefined
+
+        // Increment
+        if (quantity > 0) {
+          $("#quantity").val(quantity - 1);
+        }
+      });
+    </script>
+  </body>
+</html>

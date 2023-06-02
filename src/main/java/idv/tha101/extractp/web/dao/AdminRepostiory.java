@@ -10,4 +10,6 @@ import idv.tha101.extractp.web.pojo.AdminVO;
 @Repository
 public interface AdminRepostiory extends BaseRepository<AdminVO, Integer>{
 
+	boolean existsByEmail(String email);
+
 }

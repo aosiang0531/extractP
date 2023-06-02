@@ -4,7 +4,6 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import idv.tha101.extractp.shop.pojo.ProductVO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
@@ -36,8 +35,10 @@ public class OrderDetailVO {
 	private Integer order_detail_id;
 	@Column(name = "order_id", insertable = false, updatable = false)
 	private Integer orderId;
+	private Integer product_id;
 	private Integer order_detail_quantity;
 	private Double order_product_price;
+	
 
 	public Integer getOrder_id() {
 		return orderId;
@@ -53,6 +54,14 @@ public class OrderDetailVO {
 
 	public void setPrice(Double order_product_price) {
 		this.order_product_price = order_product_price;
+	}
+
+	public Integer getProduct_id() {
+		return product_id;
+	}
+
+	public void setProduct_id(Integer product_id) {
+		this.product_id = product_id;
 	}
 
 //	@ManyToOne

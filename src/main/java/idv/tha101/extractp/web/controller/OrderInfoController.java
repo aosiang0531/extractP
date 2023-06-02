@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import idv.tha101.extractp.base.controller.BaseController;
@@ -54,21 +53,28 @@ public class OrderInfoController extends BaseController<OrderInfoVO> {
 		orderInfoService.deleteById(id);
 	}
 
-	@GetMapping("/{memberId}/member")
-	public List<OrderInfoVO> findMemberList(@PathVariable(value = "memberId") int id) {
+	@GetMapping("/{member_id}/member")
+	public List<OrderInfoVO> findMemberList(@PathVariable(value = "member_id") int id) {
 		return orderInfoService.findByMemberId(id);
 	}
+	
+	@GetMapping("/{member_id}/orderstatus/{order_status}")
+	public List<OrderInfoVO> findByOrderStatus(
+			@PathVariable(value = "member_id") int id, 
+			@PathVariable(value = "order_status") String orderstatus) {
+		return orderInfoService.findPageByOrderStatus(id, orderstatus);
+	}
 
-	@GetMapping("/{memberId}/{payment_status}/paymentstatus")
+	@GetMapping("/{member_id}/paymentstatus/{payment_status}")
 	public List<OrderInfoVO> findByPaymentStatus(
-			@PathVariable(value = "memberId") int id, 
+			@PathVariable(value = "member_id") int id, 
 			@PathVariable(value = "payment_status") String paymentStatus) {
 		return orderInfoService.findPageByPaymentStatus(id, paymentStatus);
 	}
 	
-	@GetMapping("/{memberId}/{shipping_status}/shippingstatus")
+	@GetMapping("/{member_id}/shippingstatus/{shipping_status}")
 	public List<OrderInfoVO> findByShippingStatus(
-			@PathVariable(value = "memberId") int id, 
+			@PathVariable(value = "member_id") int id, 
 			@PathVariable(value = "shipping_status") String shippingStatus) {
 		return orderInfoService.findPageByShippingStatus(id, shippingStatus);
 	}

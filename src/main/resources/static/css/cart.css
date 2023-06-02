@@ -1,0 +1,26 @@
+input {
+    text-align: center;
+}
+
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.table tbody tr td.image-prod .img,
+.pic {
+    width: 150px;
+    height: 150px;
+}
+
+.table tbody tr td.product-name h3,
+.table tbody tr td.price,
+p,
+.sub-total {
+    color: #c49b63;
+
+}
+
+

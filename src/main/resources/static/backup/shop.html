@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <title>萃．練</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="../images/favicon.ico"
+    />
+
+    <link rel="stylesheet" href="../css/open-iconic-bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/animate.css" />
+
+    <link rel="stylesheet" href="../css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="../css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="../css/magnific-popup.css" />
+
+    <link rel="stylesheet" href="../css/ionicons.min.css" />
+
+    <link rel="stylesheet" href="../css/bootstrap-datepicker.css" />
+    <link rel="stylesheet" href="../css/jquery.timepicker.css" />
+
+    <link rel="stylesheet" href="../css/flaticon.css" />
+    <link rel="stylesheet" href="../css/icomoon.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+
+    <style>
+      a.nav-link {
+        color: black;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav
+      class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
+      id="ftco-navbar"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="../index.html">
+          <img
+            src="../images/logo.png"
+            alt="Logo"
+            width="130"
+            height="60"
+            class="d-inline-block align-text-top"
+          />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#ftco-nav"
+          aria-controls="ftco-nav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="oi oi-menu"></span> 選單
+        </button>
+        <div class="collapse navbar-collapse" id="ftco-nav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a href="../index.html" class="nav-link">咖啡論壇</a>
+            </li>
+            <li class="nav-item">
+              <a href="../menu.html" class="nav-link">課程活動</a>
+            </li>
+            <li class="nav-item">
+              <a href="../shop/new_product.html" class="nav-link">(新增商品)</a>
+            </li>
+            <li class="nav-item">
+              <a href="../shop/shop.html" class="nav-link">咖啡商城</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="../room.html"
+                id="dropdown04"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >個人頁面</a
+              >
+              <div class="dropdown-menu" aria-labelledby="dropdown04">
+                <a class="dropdown-item" href="../shop/shop.html">Shop</a>
+                <a class="dropdown-item" href="product-single.html"
+                  >Single Product</a
+                >
+                <a class="dropdown-item" href="../room.html">Cart</a>
+                <a class="dropdown-item" href="checkout.html">Checkout</a>
+              </div>
+            </li>
+            <li class="nav-item cart">
+              <a href="../shop/cart.html" class="nav-link"
+                ><span class="icon icon-shopping_cart"></span
+                ><span
+                  class="bag d-flex justify-content-center align-items-center"
+                  ><small>0</small></span
+                ></a
+              >
+            </li>
+            <li class="nav-item cart">
+              <a href="cart.html" class="nav-link"
+                ><span class="icon icon-user"></span
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- 次級選單 -->
+    <div style="background-color: #c49b63">
+      <div class="">
+        <div class="">
+          <div class="">
+            <ul class="nav d-flex justify-content-around pl-2 pr-2">
+              <li class="nav-item">
+                <a class="nav-link" id="allProductsBtn"><img />所有商品</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="category1Btn">咖啡器具</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="category2Btn">咖啡豆</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="category3Btn">濾掛咖啡</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END nav -->
+
+    <!-- Start Content -->
+    <section class="ftco-section ftco-white">
+      <!-- ftco-white套用自訂白色背景 -->
+      <div class="container">
+        <div class="col-lg-12">
+          <div class="row my-2">
+            <!-- Breadcrumb麵包屑 -->
+            <div class="col-md-6" id="breadcrumb"></div>
+
+            <!-- 排序 -->
+            <div class="col-md-6 d-flex justify-content-end">
+              <!-- <div class="d-flex"> -->
+              <select>
+                <option selected disabled>排序方式</option>
+                <option>價格 由低至高</option>
+                <option>價格 由高至低</option>
+              </select>
+              <!-- </div> -->
+            </div>
+          </div>
+          <!-- 商品列表開始 -->
+          <div class="row" id="list"></div>
+          <!-- 商品列表end -->
+
+          <!-- 分頁按鈕 -->
+          <div div="row">
+            <ul class="pagination pagination-lg justify-content-end">
+              <li class="page-item disabled">
+                <a
+                  class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0"
+                  href="#"
+                  tabindex="-1"
+                  >1</a
+                >
+              </li>
+              <li class="page-item">
+                <a
+                  class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark"
+                  href="#"
+                  >2</a
+                >
+              </li>
+              <li class="page-item">
+                <a
+                  class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark"
+                  href="#"
+                  >3</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- 分頁按鈕結束 -->
+        </div>
+      </div>
+    </section>
+    <!-- End Content -->
+
+    <!-- Start Footer -->
+    <footer class="bg-dark" id="tempaltemo_footer">
+      <div class="w-100 bg-black py-3">
+        <div class="container">
+          <div class="row pt-2">
+            <div class="col-12">
+              <p class="text-left text-light">
+                Copyright &copy; 2023 TibaMe THA101-Team7 萃．練
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- End Footer -->
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.easing.1.3.js"></script>
+    <script src="../js/jquery.waypoints.min.js"></script>
+    <script src="../js/jquery.stellar.min.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="../js/jquery.magnific-popup.min.js"></script>
+    <script src="../js/jquery.animateNumber.min.js"></script>
+    <script src="../js/bootstrap-datepicker.js"></script>
+    <script src="../js/jquery.timepicker.min.js"></script>
+    <script src="../js/scrollax.min.js"></script>
+    <!-- <script src="../js/google-map.js"></script> -->
+    <!-- <script src="../js/main.js"></script> -->
+
+    <script>
+      // 獲取所有商品列表
+      var allProducts = [];
+
+      // 獲取商品列表並渲染到頁面上
+      function loadAllProducts() {
+        //從controller叫出所有商品的json
+        const url = "product";
+        fetch(url)
+          .then((res) => res.json())
+          .then((productList) => {
+            allProducts = productList;
+            console.log(productList);
+            renderProductList(allProducts);
+          });
+      }
+
+      // 根據分類編號過濾商品列表並渲染到頁面上
+      function filterProductsByCategory(categoryId) {
+        var filteredProducts = allProducts.filter(function (product) {
+          return product.category_id === categoryId;
+        });
+        renderProductList(filteredProducts);
+
+        var categoryName;
+        switch (categoryId) {
+          case 1:
+            categoryName = "咖啡器具";
+            break;
+          case 2:
+            categoryName = "咖啡豆";
+            break;
+          case 3:
+            categoryName = "濾掛咖啡";
+            break;
+        }
+        // 清空麵包屑區域的內容
+        $("#breadcrumb").empty();
+
+        // 生成麵包屑的 HTML 代碼
+        var breadcrumbHtml = `
+            <a href="index.html">咖啡商城</a> /
+            <a>${categoryName}</a> /
+            `;
+
+        // 插入麵包屑的 HTML 到麵包屑區域
+        $("#breadcrumb").html(breadcrumbHtml);
+      }
+
+      // 更新商品列表的頁面顯示
+      function renderProductList(products) {
+        $("#list").empty(); // 清空商品列表區域
+
+        for (let product of products) {
+          console.log(product.id);
+
+          //讀出商品圖片
+          var imgUrl = "data:image/png;base64," + product.image;
+
+          // 生成商品HTML並添加到商品列表區域
+          var productHtml = `
+				<div class="col-md-3">
+					<div class="card mb-4 product-wap rounded-0">
+						<div class="card rounded-0">
+							<img class="card-img rounded-0 img-fluid" src=${imgUrl}>
+							<div
+								class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+								<ul class="list-unstyled">
+									<li><a class="btn btn-primary text-white mt-2" href="/product-single.html?id=${product.id}">
+										<i class="icon icon-eye"></i></a></li>
+									<li><a class="btn btn-primary text-white mt-2" href="/hello2.html?id=3">
+										<i class="icon icon-cart-plus"></i></a></li>
+								</ul>
+							</div>	
+						</div>
+						<div class="card-body">
+							<a href="${product.id}.html"" class="h5 text-decoration-none">${product.name}</a>
+							<ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+								<li>${product.spec}</li>
+							</ul>
+							<ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+								<p class="text-center mb-0">$${product.price}</p>
+							</ul>
+						</div>
+					</div>
+				</div>
+        		`;
+          $("#list").append(productHtml);
+        }
+      }
+
+      $(document).ready(function () {
+        loadAllProducts(); // 網頁載入時加載所有商品列表
+
+        // 清空麵包屑區域的內容
+        $("#breadcrumb").empty();
+
+        // 生成麵包屑的 HTML 代碼
+        var breadcrumbHtml = `
+            <a href="shop.html">咖啡商城</a> /
+            <span>所有商品</span>
+            `;
+
+        // 插入麵包屑的 HTML 到麵包屑區域
+        $("#breadcrumb").html(breadcrumbHtml);
+
+        $("#allProductsBtn").click(function () {
+          renderProductList(allProducts);
+        });
+
+        // 點擊「分類1」按鈕時過濾顯示分類1的商品
+        $("#category1Btn").click(function () {
+          filterProductsByCategory(1);
+        });
+
+        // 點擊「分類2」按鈕時過濾顯示分類2的商品
+        $("#category2Btn").click(function () {
+          filterProductsByCategory(2);
+        });
+
+        // 點擊「分類3」按鈕時過濾顯示分類3的商品
+        $("#category3Btn").click(function () {
+          filterProductsByCategory(3);
+        });
+      });
+    </script>
+  </body>
+</html>

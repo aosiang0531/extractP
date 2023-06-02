@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.admin.SpringApplicationAdminMXBean;
 import org.springframework.stereotype.Service;
 
 import idv.tha101.extractp.web.dao.AdminRepostiory;
@@ -62,5 +63,16 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void deleteById(Integer id) {
 		adminRepostiory.deleteById(id);
+	}
+
+	public AdminVO register(AdminVO adminVO) {
+
+		if (!adminRepostiory.existsByEmail(adminVO.getEmail())) {
+			return adminRepostiory.save(adminVO);
+
+		} else {
+			return null;
+		}
+
 	}
 }
