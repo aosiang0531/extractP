@@ -8,11 +8,14 @@ $(function() {
 	const info_url = "orderDetail/" + Id + "/info";
 	const pay_url = "orderDetail/" + Id + "/total";
 	const all_url = "orderDetail/" + Id + "/all";
-	const sum_url = "orderInfo/"+ Id;
+	const sum_url = "orderInfo/order/" + Id;
+	const add_url = "orderDetail";
+
 
 	let order_detail_ids = [];
 	let beforetotal = 0;
 
+	//==========訂單明細=========//
 	fetch(info_url)
 		.then(resp => resp.json())
 		.then(data => {
@@ -43,6 +46,7 @@ $(function() {
 
 			}
 
+			//==========付款金額=========//
 			fetch(pay_url)
 				.then(resp => resp.json())
 				.then(payment => {
@@ -68,8 +72,10 @@ $(function() {
 
 				});
 
+			//==========加價購=========//
 
-			//=========== 點選前往付款按鈕後 =========== //
+
+			//=========== 點選前往付款 =========== //
 			$(document).on("click", "#checkout", function() {
 				let elements = Array.from(document.querySelectorAll("input[name='quantity']"));
 				const total = document.querySelector("[name='total']").textContent.replace('$', '');
@@ -178,6 +184,40 @@ $(function() {
 
 		});
 
+	//=========== 刪除購物車的一筆訂單明細 =============//
+	$(document).on("click", ".product-remove", function() {
+		const detailId = $(this).closest(".text-center").attr("name");
+		const delete_url = "orderDetail/" + detailId;
+
+		let r = confirm("確認刪除?");
+		if (r) {
+			$(this).closest(".text-center").remove();
+
+			data = { "id": detailId };
+
+			fetch(delete_url, {
+				method: "DELETE",
+				headers: {
+					'Content-Type': 'application/json; charset=utf-8',
+				},
+				body: JSON.stringify(data)
+			})
+				.then(resp => resp.json())
+				.then(data => {
+					console.log(data);
+					console.log("success-delete");
+				})
+				.catch(error => {
+					console.log("Error:", error);
+				});
+
+			location.reload();
+
+		}
+
+
+	});
+
 	//========== 數量變動 =============//
 	//數量增加
 	$(document).on("click", ".increase", function() {
@@ -205,18 +245,8 @@ $(function() {
 		updateTotal();
 	});
 
-	//=========== 刪除購物車裡的商品 =============//
-	$(document).on("click", ".product-remove", function() {
-		let r = confirm("確認刪除?");
-		if (r) {
-			$(this).closest(".text-center").remove();
-			
 
 
-		}
-	});
-	
-	
 	//=========== 商品總金額 =============//
 	const updateTotal = () => {
 		const subTotalElements = document.querySelectorAll(".sub-total");

@@ -15,10 +15,12 @@ import idv.tha101.extractp.web.pojo.OrderDTO;
 @Repository
 public interface OrderDetailRepository extends BaseRepository<OrderDetailVO, Integer>{
 
+	
 	List<OrderDetailVO> findByOrderId(Integer order_id);
 	
 	@Query(value = "select \r\n"
 			+"    od.order_detail_id,\r\n"
+			+"    od.product_id,\r\n"
 			+ "    p.product_image,\r\n"
 			+ "	p.product_name,\r\n"
 			+ "    od.order_detail_quantity,\r\n"
