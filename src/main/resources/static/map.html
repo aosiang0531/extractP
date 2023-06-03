@@ -188,7 +188,7 @@
             map: null
         },
         methods: {
-            geocodeAddress(address) {
+            geocodeAddress(address, storeName) {
                 const geocoder = new google.maps.Geocoder();
                 geocoder.geocode({address}, (results, status) => {
                     if (status === 'OK') {
@@ -203,7 +203,11 @@
                         });
 
                         const infoWindow = new google.maps.InfoWindow({
-                            content: address // 地點名稱作為 InfoWindow 的內容
+                            content: storeName // 地點名稱作為 InfoWindow 的內容
+                        });
+
+                        marker.addListener('click', () => {
+                            infoWindow.open(this.map, marker);
                         });
 
                         // 顯示 InfoWindow
@@ -213,6 +217,7 @@
                     }
                 });
             },
+
             // init google map
             initMap() {
                 var mapStyles = [
@@ -224,26 +229,27 @@
                     }
                 ];
 
-                // 預設顯示的地點：緯育
+                // 地點：緯育
                 let location = {
-                    lat: 25.05216444811288, // 經度
-                    lng: 121.54347820553893 // 緯度
+                    lat: 25.05216444811288,
+                    lng: 121.54347820553893
                 };
 
                 // 建立地圖
                 this.map = new google.maps.Map(document.getElementById('map'), {
-                    center: location, // 中心點座標
-                    zoom: 16, // 1-20，數字愈大，地圖愈細：1是世界地圖，20就會到街道
+                    center: location,
+                    zoom: 19,
                     mapTypeId: 'roadmap',
-                    styles: mapStyles
+                    styles: mapStyles,
+                    disableDefaultUI: true
                 });
 
                 // 取得地址
-                axios.get('/stores/addresses')
+                axios.get('/stores')
                     .then(response => {
-                        const addresses = response.data;
-                        addresses.forEach(address => {
-                            this.geocodeAddress(address);
+                        const stores = response.data;
+                        stores.forEach(store => {
+                            this.geocodeAddress(store.storeAddress, store.storeName);
                         });
                     })
                     .catch(error => {
