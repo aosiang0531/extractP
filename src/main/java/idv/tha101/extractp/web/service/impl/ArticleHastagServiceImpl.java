@@ -1,12 +1,9 @@
 package idv.tha101.extractp.web.service.impl;
 
-import java.lang.reflect.Field;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import idv.tha101.extractp.sample.pojo.SampleVO;
 import idv.tha101.extractp.web.dao.ArticleHastagRepository;
 import idv.tha101.extractp.web.pojo.ArticleHastagVO;
 import idv.tha101.extractp.web.service.ArticleHastagService;

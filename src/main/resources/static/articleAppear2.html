@@ -146,8 +146,30 @@
           <!-- 文章圖片-->
           <figure id="art-img" class="mb-4">
           </figure>
-          <!-- 文章內容-->
+          <!-- 文章內容/標籤/按讚/留言/收藏-->
           <section id="art-content" class="mb-5" style="color: brown !important">
+          	<!-- 內容 -->
+          	<!-- 文章標籤 -->
+	        <div>
+	          <a class="badge bg-secondary text-decoration-none link-light" href="#!">Web Design</a>
+	          <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a>
+	        </div>
+	        <!-- 文章按讚/留言/收藏-->
+	        <div class="text-muted small text-center align-self-center class=row" style="display: inline-block;">
+	          <span class="d-none d-sm-inline-block mr-2" style="color: brown;">
+	            <i class="fa-regular fa-thumbs-up fa-xl thumbs-up"></i>
+	          </span>
+	          <span id="thumbs" class="d-none d-sm-inline-block mr-2" style="color: brown;"></span>
+	          <span style="color: brown;">
+	            <i class="fa-solid fa-comment-dots fa-xl mr-2"></i>
+	          </span>
+	          <span id="comment" style="color: brown;"></span>
+	          <span style="color: brown;">
+	            <i class="fa-solid fa-heart fa-xl like mr-2"></i>
+	          </span>
+	          <span id="favorite" style="color: brown;"></span>
+	         </div>
+	         <a href="#" class="btn_modal btn_report article-repo" type="button">檢舉</a>
           </section>
 
           <!-- 檢舉按鈕 -->

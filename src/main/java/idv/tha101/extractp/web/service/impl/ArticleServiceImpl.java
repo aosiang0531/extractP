@@ -2,16 +2,24 @@ package idv.tha101.extractp.web.service.impl;
 
 import java.lang.reflect.Field;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import idv.tha101.extractp.web.dao.ArticleRepository;
+import idv.tha101.extractp.web.dao.ArticleThunmbRepository;
+import idv.tha101.extractp.web.dao.MemberArticleFavRepository;
 import idv.tha101.extractp.web.pojo.ArticleDTO;
 import idv.tha101.extractp.web.pojo.ArticleDTO2;
+import idv.tha101.extractp.web.pojo.ArticleThunmbVO;
+import idv.tha101.extractp.web.pojo.ArticleThunmbVO.ThumbPK;
 import idv.tha101.extractp.web.pojo.ArticleVO;
+import idv.tha101.extractp.web.pojo.MemberArticleFavVO;
+import idv.tha101.extractp.web.pojo.MemberArticleFavVO.FavPk;
 import idv.tha101.extractp.web.service.ArticleService;
 import jakarta.transaction.Transactional;
 
@@ -20,6 +28,12 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Autowired
 	private ArticleRepository articleRepository;
+
+	@Autowired
+	private ArticleThunmbRepository articleThunmbRepository;
+
+	@Autowired
+	private MemberArticleFavRepository memberArticleFavRepository;
 
 	@Override
 	public List<ArticleVO> findAll() {
@@ -68,12 +82,12 @@ public class ArticleServiceImpl implements ArticleService {
 		articleRepository.deleteById(id);
 
 	}
-	
-	public Collection<ArticleDTO> findPopArticle(){
+
+	public Collection<ArticleDTO> findPopArticle() {
 		return articleRepository.findPopArticle();
 	};
-	
-	public Collection<ArticleDTO> findLatestArticle(){
+
+	public Collection<ArticleDTO> findLatestArticle() {
 		return articleRepository.findLatestArticle();
 	}
 
@@ -107,5 +121,44 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleRepository.findArticleDetailsById(id);
 	}
 
+	@Override
+	public List<ArticleVO> searchByArticleTitle(String keyword) {
+		return articleRepository.findByArticleTitleContaining(keyword);
+	}
+
+	@Override
+	public List<ArticleVO> searchByArticleContent(String keyword) {
+		return articleRepository.findByArticleContentContaining(keyword);
+	}
+
+	@Override
+	@Transactional
+	public Map<String, Integer> thumbUp(Integer articleId, Integer memberId) {
+		Map<String, Integer> map = new HashMap<>();
+		if (articleThunmbRepository.existsById(new ThumbPK(memberId, articleId))) {
+			map.put("result", 0);
+		} else {
+			ArticleVO article = articleRepository.getById(articleId);
+			article.setThunmb_number(article.getThunmb_number() + 1);
+			articleThunmbRepository.save(new ArticleThunmbVO().setPk(new ThumbPK(memberId, articleId)));
+			map.put("result", 1);
+		}
+		return map;
+	}
+
+	@Override
+	@Transactional
+	public Map<String, Integer> memberFav(Integer articleId, Integer memberId) {
+		Map<String, Integer> map = new HashMap<>();
+		if (memberArticleFavRepository.existsById(new FavPk(memberId, articleId))) {
+			map.put("result", 0);
+		} else {
+			ArticleVO article = articleRepository.getById(articleId);
+			article.setMember_article_fav_number(article.getMember_article_fav_number() + 1);
+			memberArticleFavRepository.save(new MemberArticleFavVO().setPk(new FavPk(memberId, articleId)));
+			map.put("result", 1);
+		}
+		return map;
+	}
 
 }

@@ -5,4 +5,5 @@ import idv.tha101.extractp.web.pojo.ArticleReportVO;
 
 public interface ArticleReportService extends BaseService<ArticleReportVO>{
 
+	
 }

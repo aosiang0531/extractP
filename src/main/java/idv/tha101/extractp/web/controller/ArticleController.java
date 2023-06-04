@@ -2,6 +2,7 @@ package idv.tha101.extractp.web.controller;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import idv.tha101.extractp.base.controller.BaseController;
@@ -21,11 +23,12 @@ import idv.tha101.extractp.web.service.ArticleService;
 
 @RestController
 @RequestMapping("article")
-public class ArticleController extends BaseController<ArticleVO>{
-	
+public class ArticleController extends BaseController<ArticleVO> {
+
 	@Autowired
 	private ArticleService articleService;
 //	private ArticleTagService articleTagService;
+
 
 	@GetMapping
 	public List<ArticleVO> findAll() {
@@ -47,53 +50,72 @@ public class ArticleController extends BaseController<ArticleVO>{
 	public ArticleVO update(@RequestBody ArticleVO vo, @PathVariable(value = "id") int id) {
 		return articleService.saveOrUpdate(vo.setId(id));
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public void deleteById(@PathVariable(value = "id") int id) {
 		articleService.deleteById(id);
-		
+
 	}
-	
+
 	@GetMapping("pop")
-	public Collection<ArticleDTO> findPopArticle(){
+	public Collection<ArticleDTO> findPopArticle() {
 		return articleService.findPopArticle();
 	};
-	
+
 	@GetMapping("latest")
-	public Collection<ArticleDTO> findLatestArticle(){
+	public Collection<ArticleDTO> findLatestArticle() {
 		return articleService.findLatestArticle();
 	};
-	
+
 	@GetMapping("/temPop/{article_template_id}")
-	public Collection<ArticleDTO> findTemPop(@PathVariable(value = "article_template_id") int id){
+	public Collection<ArticleDTO> findTemPop(@PathVariable(value = "article_template_id") int id) {
 		return articleService.findTemPop(id);
 	};
 
 	@GetMapping("/temLatest/{article_template_id}")
-	public Collection<ArticleDTO> findTemLatest(@PathVariable(value = "article_template_id") int id){
+	public Collection<ArticleDTO> findTemLatest(@PathVariable(value = "article_template_id") int id) {
 		return articleService.findTemLatest(id);
 	};
-	
+
 	@GetMapping("/memberId/{memberId}")
-	public List<ArticleVO> findByMemberId(@PathVariable(value = "memberId") int id){
+	public List<ArticleVO> findByMemberId(@PathVariable(value = "memberId") int id) {
 		return articleService.findByMemberId(id);
 	}
-	
+
 	@GetMapping("/groupPop/{article_group_id}")
-	public Collection<ArticleDTO> findGroupPop(@PathVariable(value = "article_group_id") int id){
+	public Collection<ArticleDTO> findGroupPop(@PathVariable(value = "article_group_id") int id) {
 		return articleService.findGroupPop(id);
 	}
-	
+
 	@GetMapping("/groupLatest/{article_group_id}")
-	public Collection<ArticleDTO> findGroupLatest(@PathVariable(value = "article_group_id") int id){
+	public Collection<ArticleDTO> findGroupLatest(@PathVariable(value = "article_group_id") int id) {
 		return articleService.findGroupLatest(id);
 	}
 
 	@GetMapping("/detailsById/{article_id}")
-	public Collection<ArticleDTO2> findArticleDetailsById(@PathVariable(value = "article_id")int id) {
+	public Collection<ArticleDTO2> findArticleDetailsById(@PathVariable(value = "article_id") int id) {
 		return articleService.findArticleDetailsById(id);
 	}
 
+	@GetMapping("/searchTitle")
+	public List<ArticleVO> searchArticleTitle(@RequestParam("keyword") String keyword) {
+		return articleService.searchByArticleTitle(keyword);
+	}
+
+	@GetMapping("/searchContent")
+	public List<ArticleVO> searchByArticleContent(@RequestParam("keyword") String keyword) {
+		return articleService.searchByArticleContent(keyword);
+	}
+
+	@PostMapping("/thumbUp")
+	public Map<String, Integer> saveThumb(@RequestBody Map<String, Integer> map) {
+		return articleService.thumbUp(map.get("article_id"), map.get("member_id"));
+	}
+	
+	@PostMapping("/memberFav")
+	public Map<String, Integer> saveMemberFav(@RequestBody Map<String, Integer> map) {
+		return articleService.memberFav(map.get("article_id"), map.get("member_id"));
+	}
 	
 	
 

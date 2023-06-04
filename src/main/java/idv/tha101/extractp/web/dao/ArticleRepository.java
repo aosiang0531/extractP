@@ -23,7 +23,7 @@ public interface ArticleRepository extends BaseRepository<ArticleVO, Integer> {
 	// 找熱門文章
 	@Query(value = "select "
 			+ " a.article_id,\r\n"
-			+ "	m.member_created_user,\r\n"
+			+ "	m.member_name,\r\n"
 			+ "	g.article_group_name, \r\n"
 			+ " a.article_title, \r\n"
 			+ " left(a.article_content, 55) 'article_content', \r\n"
@@ -43,7 +43,7 @@ public interface ArticleRepository extends BaseRepository<ArticleVO, Integer> {
 	// 找最新文章
 	@Query(value = "select "
 			+ " a.article_id,\r\n"
-			+ " m.member_created_user, \r\n"
+			+ " m.member_name, \r\n"
 			+ "	g.article_group_name,\r\n"
 			+ "	a.article_title, \r\n"
 			+ " left(a.article_content, 55) 'article_content', \r\n"
@@ -63,7 +63,7 @@ public interface ArticleRepository extends BaseRepository<ArticleVO, Integer> {
 	// 找特定板塊熱門文章
 	@Query(value = "select "
 			+ " a.article_id,\r\n"
-			+ " m.member_created_user, \r\n"
+			+ " m.member_name, \r\n"
 			+ "	g.article_group_name,\r\n"
 			+ "	a.article_title, \r\n"
 			+ " left(a.article_content, 55) 'article_content', \r\n"
@@ -85,7 +85,7 @@ public interface ArticleRepository extends BaseRepository<ArticleVO, Integer> {
 	// 顯示特定板塊之最新文章
 	@Query(value = "select "
 			+ " a.article_id,\r\n"
-			+ " m.member_created_user, \r\n"
+			+ " m.member_name, \r\n"
 			+ "	g.article_group_name,\r\n"
 			+ "	a.article_title, \r\n"
 			+ " left(a.article_content, 55) 'article_content', \r\n"
@@ -106,7 +106,7 @@ public interface ArticleRepository extends BaseRepository<ArticleVO, Integer> {
 	// 顯示特定分類之熱門文章
 	@Query(value = "select "
 			+ " a.article_id,\r\n"
-			+ " m.member_created_user,\r\n"
+			+ " m.member_name,\r\n"
 			+ "	g.article_group_name, \r\n"
 			+ " a.article_title, \r\n"
 			+ " left(a.article_content, 55) 'article_content', \r\n"
@@ -127,7 +127,7 @@ public interface ArticleRepository extends BaseRepository<ArticleVO, Integer> {
 	//	顯示特定分類之最新文章
 	@Query(value = "select "
 			+ " a.article_id,\r\n"
-			+ " m.member_created_user,\r\n"
+			+ " m.member_name,\r\n"
 			+ "	g.article_group_name, \r\n"
 			+ " a.article_title, \r\n"
 			+ " left(a.article_content, 55) 'article_content', \r\n"
@@ -148,7 +148,7 @@ public interface ArticleRepository extends BaseRepository<ArticleVO, Integer> {
 	// 顯示特定文章
     @Query(value = "select "
     		+ " a.article_id,\r\n"
-    		+ " m.member_created_user, \r\n"
+    		+ " m.member_name, \r\n"
     		+ "	article_title, \r\n"
     		+ " article_content, \r\n"
     		+ " article_image, \r\n"
@@ -162,8 +162,13 @@ public interface ArticleRepository extends BaseRepository<ArticleVO, Integer> {
     		+ "where a.article_id = ?;", nativeQuery = true)
     Collection<ArticleDTO2> findArticleDetailsById(Integer id);
 
-	// 模糊查詢
-//    List<ArticleVO> findByNameContaining(String name);
+	// 模糊查詢標題
+    List<ArticleVO> findByArticleTitleContaining(String keyword);
+    
+    // 模糊查詢內容
+    List<ArticleVO> findByArticleContentContaining(String keyword);
+    
+    
 
     
 }

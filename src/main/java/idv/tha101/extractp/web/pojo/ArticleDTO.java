@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public interface ArticleDTO {
 	
 	Integer getarticle_id();
-	String getmember_created_user();
+	String getmember_name();
 	String getarticle_group_name();
 	String getarticle_title();
 	String getarticle_content();

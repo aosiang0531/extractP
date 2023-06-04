@@ -8,13 +8,13 @@ $(function(){
 	.then(resp => resp.json())
 	.then(temPopList => {
 		for(var i = (temPopList.length-1); i > -1; i--){
-//			console.log(temPopList);
+			console.log(author);
 			var artId = temPopList[i].article_id;
 			var grpName = temPopList[i].article_group_name;
 			var img = "data:image/png; base64," + temPopList[i].article_image;
 			var title = temPopList[i].article_title;
 			var content = temPopList[i].article_content;
-			var author = temPopList[i].member_created_user;
+			var author = temPopList[i].member_name;
 			var thunmb = temPopList[i].article_thunmb_number;
 			var comment = temPopList[i].article_comment_number;
 			var fav = temPopList[i].member_article_fav_number;
@@ -80,7 +80,7 @@ $(function(){
 			var img = "data:image/png; base64," + tempLatestList[i].article_image;
 			var title = tempLatestList[i].article_title;
 			var content = tempLatestList[i].article_content;
-			var author = tempLatestList[i].member_created_user;
+			var author = tempLatestList[i].member_name;
 			var thunmb = tempLatestList[i].article_thunmb_number;
 			var comment = tempLatestList[i].article_comment_number;
 			var fav = tempLatestList[i].member_article_fav_number;

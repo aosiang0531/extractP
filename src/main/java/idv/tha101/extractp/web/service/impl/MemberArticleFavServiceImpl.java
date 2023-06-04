@@ -1,8 +1,6 @@
 package idv.tha101.extractp.web.service.impl;
 
-import java.lang.reflect.Field;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,19 +22,19 @@ public class MemberArticleFavServiceImpl implements MemberArticleFavService {
 
 	@Override
 	public MemberArticleFavVO findById(Integer id) {
-		return memberArticleFavRepository.findById(id).orElseThrow();
+		return null;
 	}
 
 	@Override
 	public MemberArticleFavVO saveOrUpdate(MemberArticleFavVO vo) {
-// TODO
+
 		return null;
 	}
 
 	@Override
 	public void deleteById(Integer id) {
-		memberArticleFavRepository.deleteById(id);
-
 	}
+	
+	
 
 }

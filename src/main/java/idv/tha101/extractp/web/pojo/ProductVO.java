@@ -38,7 +38,7 @@ import lombok.experimental.Accessors;
 public class ProductVO {
 	
 	@Transient
-	private boolean product_successful;
+	private Boolean product_successful;
 	@Transient
 	private String product_message;
 	

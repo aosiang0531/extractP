@@ -1,16 +1,4 @@
 
-//收藏功能 點愛心亮燈
-$(".like").click(function() {
-	$(this).toggleClass('cs');
-})
-
-
-//收藏功能 點讚亮燈
-$(".thumbs-up").click(function() {
-	$(this).toggleClass('cs');
-})
-
-
 //聊聊
 $(function() {
 	var INDEX = 0;
@@ -107,20 +95,22 @@ $(function() {
 //  抓到文章id  
 const tepURL = new URLSearchParams(window.location.search);
 const artId = tepURL.get("article");
+
+var thumbNum;
 var commentNum;
+var favNum;
 
 // 文章顯示
 const articleUrl = "article/detailsById/" + artId;
 fetch(articleUrl)
 	.then(resp => resp.json())
 	.then(artList => {
-		console.log("A" + artList);
 		var title = artList[0].article_title;
-		var author = artList[0].member_created_user;
+		var author = artList[0].member_name;
 		var content = artList[0].article_content;
-		var thumb = artList[0].article_thunmb_number;
+		thumbNum = artList[0].article_thunmb_number;
 		commentNum = artList[0].article_comment_number;
-		var fav = artList[0].member_article_fav_number;
+		favNum = artList[0].member_article_fav_number;
 		var img = "data:image/png; base64," + artList[0].article_image;
 		var time = artList[0].article_created_date;
 		var options = {
@@ -161,31 +151,18 @@ fetch(articleUrl)
                 " />			
 			`;
 		$("#art-img").append(artImg);
-
-
+		
 		let articleContent = `
 				<p class="fs-5 mb-4" style="white-space: pre-line;">
 				${content}
 	            </p>
-	            <!-- 文章標籤/按讚/留言/收藏-->
-	            <div>
-	              <a class="badge bg-secondary text-decoration-none link-light" href="#!">Web Design</a>
-	              <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a>
-	            </div>
-	            <div class="text-muted small text-center align-self-center class=row" style="display: inline-block;">
-	              <span id="thumbs" class="d-none d-sm-inline-block mr-2" style="color: brown;">
-	                <i class="fa-regular fa-thumbs-up fa-xl thumbs-up"></i>
-	                ${thumb}</span>
-	              <span style="color: brown;">
-	                <i class="fa-solid fa-comment-dots fa-xl mr-2"></i>
-	                ${commentNum}</span>
-	              <span id="favorite" style="color: brown;">
-	                <i class="fa-solid fa-heart fa-xl like mr-2"></i>
-	                ${fav}</span>
-	            </div>
-	            <a href="#" class="btn_modal btn_report article-repo" type="button">檢舉</a>
-			`;
-		$("#art-content").append(articleContent);
+	        `;    
+	    $("#art-content").prepend(articleContent);
+	        
+	    $("#thumbs").text(thumbNum);
+	    $("#comment").text(commentNum);
+	    $("#favorite").text(favNum);
+		
 	})
 
 //  顯示留言
@@ -195,7 +172,7 @@ fetch(commentUrl)
 	.then(commentList => {
 		for (var i = 0; i < commentList.length; i++) {
 			var commentId = commentList[i].article_comment_id
-			var creator = commentList[i].member_created_user;
+			var creator = commentList[i].member_name;
 			var content = commentList[i].article_comment_content;
 			var time = (new Date(commentList[i].article_comment_created_date)).toISOString().slice(0, 19).replace(/-/g, "/").replace("T", " ");
 			let commHtml = `
@@ -257,14 +234,22 @@ $(".btn-info").click(function() {
 			    	`);
 				$("#writecomment").val("");
 			// 新增留言數字
-//				var addCommNum = commentNum + 1;
-//				console.log("addNumber:" + addCommNum);
-				const articlePut = 'article/' + artId;
-//				fetch(articlePut, {
-//					method:'PUT',
-//					body:''
-//				})
-					
+				var addCommNum = commentNum + 1;
+				var data = {
+					"comment_number":addCommNum
+				}
+				var jsonData = JSON.stringify(data);
+				const articleCommentPut = 'article/' + artId;
+				fetch(articleCommentPut, {
+					method:'PUT',
+					body:jsonData,
+					headers: { 'Content-Type': 'application/json;charset=utf8' }
+					})
+					.then(resp => resp.json())
+					.then(commNumberData => {
+						location.reload();
+//						$("#comment").replaceWith(commNumberData.comment_number);
+					})
 			})
 	} else {
 		alert("評論內容請勿空白");
@@ -352,6 +337,58 @@ $(document).on("click", "div.overlay > article", function(e) {
 	e.stopPropagation();
 });
 
+
+// 點讚亮燈
+$(".thumbs-up").click(function() {
+	$(this).toggleClass('cs');
+	var data = {
+        "article_id": artId,
+		"member_id": 1
+		}
+	var jsonData = JSON.stringify(data);
+	const articleThumbPut = 'article/thumbUp';
+	fetch(articleThumbPut, {
+		method: 'POST',
+		body:jsonData,
+		headers: { 'Content-Type': 'application/json;charset=utf8' }
+		})
+		.then(resp => resp.json())
+		.then(thumbNumberData => {
+//			console.log(thumbNumberData);
+			if(thumbNumberData.result == 1){
+				$("#thumbs").replaceWith(thumbNum + 1);
+//				$(this).toggleClass('cs');
+			}else{
+				alert("已按讚");
+			}
+		})
+})
+
+//收藏功能 點愛心亮燈  favNum
+$(".like").click(function() {
+//	$(this).toggleClass('cs');
+	var data = {
+        "article_id": artId,
+		"member_id": 1
+		}
+	var jsonData = JSON.stringify(data);
+	const memberFavPut = 'article/memberFav';
+	fetch(memberFavPut, {
+		method:'POST',
+		body:jsonData,
+		headers:{'Content-Type': 'application/json;charset=utf8'}
+		})
+		.then(resp => resp.json())
+		.then(memberFavData => {
+			if(memberFavData.result == 1){
+				$("#favorite").replaceWith(favNum + 1);
+				$(this).toggleClass('cs');
+			}else{
+				alert("已收藏");
+			}
+		})
+
+})
 
 
 
