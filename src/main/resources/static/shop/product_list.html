@@ -74,7 +74,7 @@
               >
             </li>
             <li class="nav-item">
-              <a href="../shop/shop.html" class="nav-link">咖啡商城</a>
+              <a href="../shop/product_list.html" class="nav-link">咖啡商城</a>
             </li>
             <li class="nav-item dropdown">
               <a
@@ -144,20 +144,25 @@
         <div class="col-lg-12">
           <div class="row my-2">
             <!-- Breadcrumb麵包屑 -->
-            <div class="col-md-6" id="breadcrumb"></div>
+            <div class="col-md-6">
+              <div id="breadcrumb"></div>
+            </div>
+            <!-- 搜尋 -->
+            <div class="col-md-3 search-bar d-flex" style="display: flex; align-items: center;">
+              <input type="text" class="mx-2 flex-grow-2" id="searchInput" placeholder="搜尋商品" />
+              <span id="searchIcon" class="icon icon-search " style="position: absolute; right: 30px; top: 50%; transform: translateY(-50%);"></span>
+            </div>
 
             <!-- 排序 -->
-            <div class="col-md-6 d-flex justify-content-end">
-              <!-- <div class="d-flex"> -->
+            <div class="col-md-3 d-flex justify-content-end">
               <select id="sortOptions">
                 <option value="default" selected disabled>排序方式</option>
                 <option value="lowToHigh">價格由低到高</option>
                 <option value="highToLow">價格由高到低</option>
               </select>
-
-              <!-- </div> -->
             </div>
           </div>
+
           <!-- 商品列表開始 -->
           <div class="row" id="list"></div>
           <!-- 商品列表end -->
