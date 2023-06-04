@@ -4,14 +4,14 @@ const popurl = 'article/pop';
 fetch(popurl)
 	.then(resp => resp.json())
 	.then(artList => {
-		console.log(artList);
+//		console.log(artList);
 		for (var i = (artList.length -1); i > -1 ; i--) {
 			var artId = artList[i].article_id;
 			var grpName = artList[i].article_group_name;
 			var img = "data:image/png; base64," + artList[i].article_image;
 			var title = artList[i].article_title;
 			var content = artList[i].article_content;
-			var author = artList[i].member_created_user;
+			var author = artList[i].member_name;
 			var thunmb = artList[i].article_thunmb_number;
 			var comment = artList[i].article_comment_number;
 			var fav = artList[i].member_article_fav_number;
@@ -80,7 +80,7 @@ fetch(latesturl)
 			var img = "data:image/png; base64," + artList[i].article_image;
 			var title = artList[i].article_title;
 			var content = artList[i].article_content;
-			var author = artList[i].member_created_user;
+			var author = artList[i].member_name;
 			var thunmb = artList[i].article_thunmb_number;
 			var comment = artList[i].article_comment_number;
 			var fav = artList[i].member_article_fav_number;

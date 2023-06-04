@@ -46,9 +46,11 @@ public class ArticleVO {
 
 	private Integer article_group_id;
 
-	private String article_title;
+	@Column(name = "article_title")
+	private String articleTitle;
 
-	private String article_content;
+	@Column(name = "article_content")
+	private String articleContent;
 
 	private byte[] article_image;
 
@@ -82,6 +84,22 @@ public class ArticleVO {
 
 	public void setMemberId(Integer member_id) {
 	    this.memberId = member_id;
+	}
+
+	public String getArticleTitle() {
+		return articleTitle;
+	}
+
+	public void setArticleTitle(String articleTitle) {
+		this.articleTitle = articleTitle;
+	}
+
+	public String getArticleContent() {
+		return articleContent;
+	}
+
+	public void setArticleContent(String articleContent) {
+		this.articleContent = articleContent;
 	}
 	
 //    @ManyToOne

@@ -5,9 +5,11 @@ import org.springframework.stereotype.Repository;
 
 import idv.tha101.extractp.base.dao.BaseRepository;
 import idv.tha101.extractp.web.pojo.ArticleThunmbVO;
+import idv.tha101.extractp.web.pojo.ArticleThunmbVO.ThumbPK;
 
 @RepositoryRestResource
 @Repository
-public interface ArticleThunmbRepository extends BaseRepository<ArticleThunmbVO, Integer>{
+public interface ArticleThunmbRepository extends BaseRepository<ArticleThunmbVO, ThumbPK>{
+
 
 }

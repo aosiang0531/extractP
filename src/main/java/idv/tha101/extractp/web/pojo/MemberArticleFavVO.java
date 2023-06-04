@@ -35,18 +35,17 @@ import lombok.experimental.Accessors;
 public class MemberArticleFavVO {
 
 	@EmbeddedId
-	private PK pk;
+	private FavPk pk;
 
 	@CreatedDate
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Timestamp member_article_fav_created_date;
 
-//	@ManyToOne
-//	@JoinColumn(name = "article_id", insertable = false, updatable = false)
-//	private Article article;
-
 	@Embeddable
-	static class PK implements Serializable {
+	@Data
+	@NoArgsConstructor
+	@AllArgsConstructor
+	public static class FavPk implements Serializable {
 		private static final long serialVersionUID = 1L;
 
 		@Column
@@ -67,10 +66,35 @@ public class MemberArticleFavVO {
 				return false;
 			if (getClass() != obj.getClass())
 				return false;
-			PK other = (PK) obj;
+			FavPk other = (FavPk) obj;
 			return Objects.equals(article_id, other.article_id) && Objects.equals(member_id, other.member_id);
 		}
 
+		public Integer getMember_id() {
+			return member_id;
+		}
+
+		public void setMember_id(Integer member_id) {
+			this.member_id = member_id;
+		}
+
+		public Integer getArticle_id() {
+			return article_id;
+		}
+
+		public void setArticle_id(Integer article_id) {
+			this.article_id = article_id;
+		}
+
+	}
+
+	public FavPk getPk() {
+		return pk;
+	}
+
+	public MemberArticleFavVO setPk(FavPk pk) {
+		this.pk = pk;
+		return this;
 	}
 
 }

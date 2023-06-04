@@ -179,13 +179,13 @@ section,
 
 /* 收藏 */
 .like {
-  color: #ccc;
+  color: white;
   cursor: pointer;
 }
 
 /* 按讚 */
 .fa-thumbs-up {
-  color: #ccc;
+  color: white;
   cursor: pointer;
 }
 

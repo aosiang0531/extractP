@@ -27,7 +27,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Accessors(chain = true, prefix = "artiicle_report_")
+@Accessors(chain = true, prefix = "article_report_")
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @DynamicInsert
@@ -37,28 +37,28 @@ public class ArticleReportVO {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer artiicle_report_id;
+	private Integer article_report_id;
 
 	@Column(name = "member_id")
-	private Integer artiicle_report_member_id;
+	private Integer article_report_member_id;
 
 	@Column(name = "article_id")
-	private Integer artiicle_report_article_id;
+	private Integer article_report_article_id;
 
-	private String artiicle_report_content;
+	private String article_report_content;
 
 	@CreatedDate
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private Timestamp artiicle_report_created_date;
+	private Timestamp article_report_created_date;
 	
-	private Boolean artiicle_report_status;
+	private String article_report_status;
 
 	@LastModifiedDate
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private Timestamp artiicle_report_last_modified_date;
+	private Timestamp article_report_last_modified_date;
 
 	@LastModifiedBy
-	private String artiicle_report_last_modified_by;
+	private String article_report_last_modified_by;
 
 //	@ManyToOne
 //	@JoinColumn(name = "article_id",insertable = false, updatable = false)
