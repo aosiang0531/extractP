@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("store")
+@RequestMapping("stores")
 public class StoreController {
 
     @Autowired
@@ -31,12 +31,17 @@ public class StoreController {
 
     @PutMapping("/{id}")
     public Store update(@RequestBody Store store, @PathVariable(value = "id") int id) {
-        return service.save(store);
+        return service.update(id, store);
     }
 
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable(value = "id") int id) {
         service.deleteById(id);
+    }
+
+    @GetMapping("/addresses")
+    public List<String> getStoreAddresses() {
+        return service.findAllAddresses();
     }
 
 

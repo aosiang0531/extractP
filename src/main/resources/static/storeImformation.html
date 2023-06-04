@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <title>店家資訊</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+
+
+    <style>
+        h1 {
+            color: black;
+        }
+
+        .form-container {
+            margin: 0 auto;
+            max-width: 600px;
+            transform: translateX(10%);
+        }
+
+        .form-container {
+            position: relative;
+            background-color: #E4CABC;
+            padding: 40px;
+            border-radius: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+        <img src="images/logo.png" alt="Logo" width="130" height="60" class="d-inline-block align-text-top">
+        <a class="navbar-brand" href="index.html"></small></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> 選單
+        </button>
+        <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a href="index.html" class="nav-link">咖啡論壇</a></li>
+                <li class="nav-item"><a href="menu.html" class="nav-link">課程活動</a></li>
+                <li class="nav-item active"><a href="services.html" class="nav-link">咖啡地圖</a></li>
+                <li class="nav-item"><a href="blog.html" class="nav-link">咖啡商城</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="room.html" id="dropdown04" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">個人頁面</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown04">
+                        <a class="dropdown-item" href="shop.html">Shop</a>
+                        <a class="dropdown-item" href="product-single.html">Single Product</a>
+                        <a class="dropdown-item" href="room.html">Cart</a>
+                        <a class="dropdown-item" href="checkout.html">Checkout</a>
+                    </div>
+                </li>
+                <li class="nav-item cart"><a href="cart.html" class="nav-link"><span
+                        class="icon icon-shopping_cart"></span><span
+                        class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a>
+                </li>
+                <li class="nav-item cart"><a href="cart.html" class="nav-link"><span
+                        class="icon icon-user"></span></a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- END nav -->
+
+<!-- Start Content -->
+
+<section class="ftco-section ftco-white"> <!-- ftco-white套用自訂白色背景 -->
+    <div id="app" class="form-container">
+        <h1>店家資訊</h1>
+        <div class="form-row">
+            <label for="storeName">*咖啡店名</label>
+            <input type="text" v-model="storeName" id="storeName" placeholder="店名">
+        </div>
+        <br>
+        <div class="form-row">
+            <label for="storeTax">*統編</label>
+            <input type="text" v-model="storeTax" id="storeTax" placeholder="統編">
+        </div>
+        <br>
+        <div class="form-row">
+            <label for="storeInfo">簡介</label>
+            <textarea v-model="storeInfo" id="storeInfo" placeholder="簡介" rows="6" cols="50"
+                      maxlength="100"></textarea>
+        </div>
+        <br>
+        <div class="form-row">
+            <label for="storeAddress">*地址</label>
+            <input type="text" v-model="storeAddress" id="storeAddress" placeholder="地址">
+        </div>
+        <br>
+        <div class="form-row">
+            <label for="storeTime">營業時間</label>
+            <input type="text" v-model="storeTime" id="storeTime" placeholder="營業時間">
+        </div>
+        <br>
+        <div class="form-row">
+            <label for="storePhone">電話</label>
+            <input type="text" v-model="storePhone" id="storePhone" placeholder="電話">
+        </div>
+        <br>
+        <div class="form-row">
+            <label for="storeMenu">菜單</label>
+            <input type="file" id="storeMenu" placeholder="菜單" multiple>
+        </div>
+        <br>
+        <div class="form-row">
+            <label for="storeWebsite">網站</label>
+            <input type="text" v-model="storeWebsite" id="storeWebsite" placeholder="網站">
+        </div>
+        <br>
+        <div class="button-group">
+            <button @click="recommend">確定</button>
+            <a href="map.html">
+                <button>取消</button>
+            </a>
+        </div>
+    </div>
+
+</section>
+
+<!-- Start Footer -->
+<footer class="bg-dark" id="tempaltemo_footer">
+    <div class="w-100 bg-black py-3">
+        <div class="container">
+            <div class="row pt-2">
+                <div class="col-12">
+                    <p class="text-left text-light">
+                        Copyright &copy; 2023 TibaMe THA101-Team7 萃．練
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- End Footer -->
+
+<!--引入axios-->
+<script src="js/axios.min.js"></script>
+<!--引入vue-->
+<script src="js/vue.js"></script>
+
+<script>
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                storeName: '',
+                storeTax: '',
+                storeInfo: '',
+                storeAddress: '',
+                storeTime: '',
+                storePhone: '',
+                storeWebsite: ''
+            };
+        },
+        methods: {
+            recommend() {
+                if (this.storeName === '') {
+                    alert("請填寫店名");
+                    return;
+                } else if (this.storeTax === '') {
+                    alert("請填寫統編");
+                    return;
+                } else if (this.storeAddress === '') {
+                    alert("請填寫地址");
+                    return;
+                }
+
+                const recommendData = {
+                    storeName: this.storeName,
+                    storeTax: this.storeTax,
+                    storeInfo: this.storeInfo,
+                    storeAddress: this.storeAddress,
+                    storeTime: this.storeTime,
+                    storePhone: this.storePhone,
+                    storeWebsite: this.storeWebsite,
+                }
+
+                axios.post('store', recommendData)
+                    .then(response => {
+                        console.log("推薦成功");
+                        window.location.href = "store-list.html"
+                    })
+                    .catch(error => {
+                        console.error('失敗', error);
+                    })
+            }
+        }
+
+    })
+
+
+</script>
+
+
+</body>
+
+</html>
