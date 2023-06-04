@@ -1,6 +1,8 @@
 package idv.tha101.extractp.web.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,15 +16,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import idv.tha101.extractp.base.controller.BaseController;
 import idv.tha101.extractp.web.pojo.ArticleCommentReportVO;
+import idv.tha101.extractp.web.pojo.ArticleCommentVO;
 import idv.tha101.extractp.web.service.ArticleCommentReportService;
+import idv.tha101.extractp.web.service.ArticleCommentService;
+import jakarta.transaction.Transactional;
 
 @RestController
 @RequestMapping("article_comment_report")
-public class ArticleCommentReportController extends BaseController<ArticleCommentReportVO>{
+public class ArticleCommentReportController extends BaseController<ArticleCommentReportVO> {
 
 	@Autowired
 	private ArticleCommentReportService articleCommentReportService;
-	
+
+	@Autowired
+	private ArticleCommentService articleCommentService;
+
 	@Override
 	@GetMapping
 	public List<ArticleCommentReportVO> findAll() {
@@ -51,7 +59,21 @@ public class ArticleCommentReportController extends BaseController<ArticleCommen
 	@DeleteMapping("/{id}")
 	public void deleteById(@PathVariable(value = "id") int id) {
 		articleCommentReportService.deleteById(id);
-		
+	}
+
+	@PutMapping("review/{id}")
+	@Transactional
+	public Map<String, Integer> updateReportStatus(@PathVariable(value = "id") int id) {
+		System.out.println(id);
+		articleCommentReportService.saveOrUpdate(new ArticleCommentReportVO().setId(id).setStatus("1"));
+		ArticleCommentReportVO aCommentReportVO = articleCommentReportService.findById(id);
+		ArticleCommentVO aCommentVO = articleCommentService.findById(aCommentReportVO.getArticle_comment_id());
+		articleCommentService.saveOrUpdate(aCommentVO.setIs_hidden(true));
+		Map<String, Integer> map = new HashMap<>();
+		if (aCommentVO.getIs_hidden()) {
+			map.put("result", 1);
+		}
+		return map;
 	}
 
 }

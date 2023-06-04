@@ -48,6 +48,8 @@ public class ArticleCommentVO {
 	@CreatedDate
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Timestamp article_comment_created_date;
+	
+	private Boolean article_comment_is_hidden;
 
 //	@ManyToOne
 //	@JoinColumn(name = "article_id",insertable = false, updatable = false)

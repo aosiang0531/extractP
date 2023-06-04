@@ -27,7 +27,7 @@ public class ArticleReportController extends BaseController<ArticleReportVO> {
 
 	@Autowired
 	private ArticleReportService articleReportService;
-	
+
 	@Autowired
 	private ArticleService articleService;
 
@@ -60,20 +60,26 @@ public class ArticleReportController extends BaseController<ArticleReportVO> {
 	public void deleteById(@PathVariable(value = "id") int id) {
 		articleReportService.deleteById(id);
 	}
-	
-	@PutMapping("review/{id}")
+
+	@PutMapping("review")
 	@Transactional
-	public Map<String, Integer> updateReportStatus(@PathVariable(value = "id") int id){
-		System.out.println(id);
-		articleReportService.saveOrUpdate(new ArticleReportVO().setId(id).setStatus("1"));
-		ArticleReportVO aReportVO = articleReportService.findById(id);
-		ArticleVO article = articleService.findById(aReportVO.getArticle_id());
-		articleService.saveOrUpdate(article.setIs_hidden(true));
-		Map<String, Integer> map = new HashMap<>();
-		if(article.getIs_hidden()) {
-			map.put("result", 1);
+	public Map<String, Integer> updateReportStatus(@RequestBody Map<String, String> map) {
+		Map<String, Integer> result = new HashMap<>();
+		int id = Integer.parseInt(map.get("article_report_id"));
+		boolean isApproved = Boolean.parseBoolean(map.get("is_approved"));
+		if (isApproved) { // 檢舉通過
+			articleReportService.saveOrUpdate(new ArticleReportVO().setId(id).setStatus("1"));
+			ArticleReportVO aReportVO = articleReportService.findById(id);
+			ArticleVO article = articleService.findById(aReportVO.getArticle_id());
+			articleService.saveOrUpdate(article.setIs_hidden(true));
+			if (article.getIs_hidden()) {
+				result.put("result", 1);
+			}
+		} else {// 檢舉未通過
+			articleReportService.saveOrUpdate(new ArticleReportVO().setId(id).setStatus("2"));
+			result.put("result", 1);
 		}
-		return map;
+		return result;
 	}
 
 }
