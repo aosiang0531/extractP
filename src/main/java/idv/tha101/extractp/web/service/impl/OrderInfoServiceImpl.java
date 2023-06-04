@@ -3,6 +3,7 @@ package idv.tha101.extractp.web.service.impl;
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -70,20 +71,68 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 	}
 	
 	@Override
-	public List<OrderInfoVO> findPageByOrderStatus(Integer member_id, String status) {
+	public List<OrderInfoVO> findByMemberIdAndOrderStatus(Integer member_id, String status) {
  		return orderInfoRepository.findByMemberIdAndOrderStatus(member_id, status);
 	}
 
-
 	@Override
-	public List<OrderInfoVO> findPageByPaymentStatus(Integer member_id, String status) {
+	public List<OrderInfoVO> findByMemberIdAndPaymentStatus(Integer member_id, String status) {
 		return orderInfoRepository.findByMemberIdAndOrderPaymentStatus(member_id, status);
 	}
 
 	@Override
-	public List<OrderInfoVO> findPageByShippingStatus(Integer member_id, String status) {
+	public List<OrderInfoVO> findByMemberIdAndShippingStatus(Integer member_id, String status) {
 		return orderInfoRepository.findByMemberIdAndOrderShippingStatus(member_id, status);
 	}
+
+	@Override
+	public List<OrderInfoVO> findByOrderStatus() {
+		return orderInfoRepository.findByOrderStatus();
+	}
+
+	@Override
+	public List<OrderInfoVO> findByPaymentStatus(String status) {
+		List<OrderInfoVO> list = orderInfoRepository.findByOrderStatus();
+		if("未付款".equals(status)) {
+			return list.stream().collect(Collectors.toList());
+		}
+		return list;
+	}
+
+	@Override
+	public List<OrderInfoVO> findByShippingStatus(String status) {
+		List<OrderInfoVO> list = orderInfoRepository.findByOrderStatus();
+		if("待出貨".equals(status)) {
+			return list.stream().collect(Collectors.toList());
+		}else if(("已出貨").equals(status)) {
+			return list.stream().collect(Collectors.toList());
+		}else if(("處理中").equals(status)) {
+			return list.stream().collect(Collectors.toList());
+		}else if(("已完成").equals(status)) {
+			return list.stream().collect(Collectors.toList());
+		}
+			return list;
+	}
+
+	@Override
+	public OrderInfoVO addCart(Integer member_id) {
+		if(orderInfoRepository.addCart(member_id) == null) {
+			OrderInfoVO orderInfoVO = new OrderInfoVO();
+			orderInfoVO.setMember_id(member_id);
+			orderInfoVO.setStatus("未成立");
+			orderInfoRepository.save(orderInfoVO);
+			return orderInfoRepository.save(orderInfoVO);
+		}else {
+			return orderInfoRepository.addCart(member_id);
+		}
+	}
+
+	@Override
+	public List<OrderInfoVO> datePicker() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 		
 }

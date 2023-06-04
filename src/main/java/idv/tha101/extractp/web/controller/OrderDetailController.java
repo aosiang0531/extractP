@@ -85,6 +85,4 @@ public class OrderDetailController extends BaseController<OrderDetailVO> {
 		return orderDetailService.findOrderInfo(id);
 	}
 
-
-
 }

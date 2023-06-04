@@ -1,21 +1,20 @@
 $(function() {
 
 	const tepURL = new URLSearchParams(window.location.search);
-	const Id = tepURL.get("orderId");
-
+	const orderId = parseInt(tepURL.get("orderId"));
+	
 	const tbody = document.querySelector("tbody");
 	const pay = document.querySelector("#pay");
-	const info_url = "orderDetail/" + Id + "/info";
-	const pay_url = "orderDetail/" + Id + "/total";
-	const all_url = "orderDetail/" + Id + "/all";
-	const sum_url = "orderInfo/order/" + Id;
-	const add_url = "orderDetail";
-
+	const addOn = document.querySelector("#addonlist");
+	const info_url = "orderDetail/" + orderId + "/info";
+	const pay_url = "orderDetail/" + orderId + "/total";
+	const all_url = "orderDetail/" + orderId + "/all";
+	const sum_url = "orderInfo/" + orderId;
 
 	let order_detail_ids = [];
 	let beforetotal = 0;
 
-	//==========訂單明細=========//
+	//========== 購物車起始頁面 =========//
 	fetch(info_url)
 		.then(resp => resp.json())
 		.then(data => {
@@ -45,8 +44,8 @@ $(function() {
 				order_detail_ids.push(order_detail_id);
 
 			}
-
-			//==========付款金額=========//
+			
+			
 			fetch(pay_url)
 				.then(resp => resp.json())
 				.then(payment => {
@@ -71,25 +70,81 @@ $(function() {
 					pay.innerHTML = html;
 
 				});
+			
+			addOn.innerHTML = `<h4 style="color:black;">其他人也買了以下商品</h4>`;	
+			for(let i = 6; i < 9; i++){	//TODO
+				const product_url = "shop/product/" + i ;
+				fetch(product_url)
+					.then(resp => resp.json())
+					.then(data => {
+							const image = "data:image/png;base64," + data.image;
+							addOn.innerHTML += `
+							<div class="addproduct" name="${data.id}">
+								<p class="image-prod"><img class="img" src="${image}" width="100px" height="100px"></p>
+								<p class="product-name"><a href="#"><h6>${data.name}</h6></a></p>
+								<span style="color:black;">原價</span>
+								<span style="color:#c49b63;">$${data.price}</span>
+								<br>
+								<span style="color:black;">加購價</span>
+								<span style="color:#c49b63;" name = "specialPrice">$${data.price*0.8}</span>
+								<p class="addbtn" type="button" style="color:gray;">加入購物車</p>
+							</div>
+							`;
+						
+					});
+			}	
 
-			//==========加價購=========//
+
+			//==========點選加價購，新增一筆訂單明細=========//
+			$(document).on("click",".addbtn",function(){
+				const productId = $(this).closest(".addproduct").attr("name");
+				const price = $(this).closest(".addproduct").find('[name="specialPrice"]').text().replace(/[^\d.]/g, '');
+				const addDetail_url = "orderDetail";
+				
+				data = JSON.stringify({
+					"product_id": productId,
+        			"price": parseFloat(price),
+        			"order_id": 1,
+        			"quantity": 1
+				})
+
+				console.log(data);
+				fetch(addDetail_url, {
+					method: 'POST',
+					body: data,
+					headers: {
+						'Content-Type': 'application/json; charset=utf-8',
+					},
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						console.log(data);
+						console.log("success-addOn");
+					})
+					
+					location.reload();
+
+			});
+			
 
 
 			//=========== 點選前往付款 =========== //
 			$(document).on("click", "#checkout", function() {
 				let elements = Array.from(document.querySelectorAll("input[name='quantity']"));
+				let prices =  Array.from(document.querySelectorAll("td[name='price']"));
 				const total = document.querySelector("[name='total']").textContent.replace('$', '');
 
 				let datalist = [];
 				for (var i = 0; i < elements.length; i++) {
 					let data = JSON.stringify({
 						"id": order_detail_ids[i],
+						"price":prices[i].value,
 						"quantity": elements[i].value
 					});
 					datalist.push(data);
 				}
 
-				//存入更新後的數量
+				//存入更新後的訂單明細
 				fetch(all_url, {
 					method: 'PUT',
 					body: '[' + datalist + ']',
@@ -100,7 +155,7 @@ $(function() {
 					.then(resp => resp.json())
 					.then(data => {
 						console.log(data);
-						console.log("success-quantity");
+						console.log("success-quantity/price");
 					})
 
 				//存入更新後的總金額
@@ -123,7 +178,7 @@ $(function() {
 				});
 
 
-				window.location.href = 'checkout.html?orderId=' + Id;
+				window.location.href = 'checkout.html?orderId=' + orderId;
 
 
 			});
@@ -131,18 +186,20 @@ $(function() {
 			//============= 儲存訂單 ============= //
 			$(document).on("click", "#save", function() {
 				let elements = Array.from(document.querySelectorAll("input[name='quantity']"));
+				let prices =  Array.from(document.querySelectorAll("td[name='price']"));
 				const total = document.querySelector("[name='total']").textContent.replace('$', '');
 
 				let datalist = [];
 				for (var i = 0; i < elements.length; i++) {
 					let data = JSON.stringify({
 						"id": order_detail_ids[i],
+						"price":prices[i].value,
 						"quantity": elements[i].value
 					});
 					datalist.push(data);
 				}
 
-				//存入更新後的數量
+				//存入更新後的訂單明細
 				fetch(all_url, {
 					method: 'PUT',
 					body: '[' + datalist + ']',
@@ -153,7 +210,7 @@ $(function() {
 					.then(resp => resp.json())
 					.then(data => {
 						console.log(data);
-						console.log("success-quantity");
+						console.log("success-quantity/price");
 					})
 
 				//存入更新後的總金額

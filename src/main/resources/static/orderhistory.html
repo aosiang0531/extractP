@@ -86,15 +86,25 @@
 		<!-- ftco-white套用自訂白色背景 -->
 		<div class="tab_container">
 			<!-- start 分類頁籤 -->
-			<div class="tab_list_block">
-				<ul class="tab_list">
-					<li><a href="#" data-target="tab1" class="tab -on">全部</a></li>
-					<li><a href="#" data-target="tab2" class="tab">未成立</a></li>
-					<li><a href="#" data-target="tab3" class="tab">待付款</a></li>
-					<li><a href="#" data-target="tab4" class="tab">待收貨</a></li>
-					<li><a href="#" data-target="tab5" class="tab">處理中</a></li>
-					<li><a href="#" data-target="tab6" class="tab">已完成</a></li>
-				</ul>
+			<div class=row>
+				<div class="col-md-7 tab_list_block">
+					<ul class="tab_list">
+						<li><a href="#" data-target="tab1" class="tab -on">全部</a></li>
+						<li><a href="#" data-target="tab2" class="tab">未成立</a></li>
+						<li><a href="#" data-target="tab3" class="tab">待付款</a></li>
+						<li><a href="#" data-target="tab4" class="tab">待收貨</a></li>
+						<li><a href="#" data-target="tab5" class="tab">處理中</a></li>
+						<li><a href="#" data-target="tab6" class="tab">已完成</a></li>
+					</ul>
+				</div>
+				<div class="col-md-5">
+					<label for="searchdate">訂單日期區間</label> 
+					<input type="date" id="startDate" name="date" value="" style="color:gray">
+					<span>~</span>
+					<input type="date" id="endDate" name="date" value="" style="color:gray">
+					<span class="custom-button">搜尋</span>
+				</div>
+
 			</div>
 			<!-- End分類頁籤 -->
 
@@ -270,21 +280,19 @@
 			<article>
 				<h5>訂單詳情</h5>
 				<div class="col-md-12">
-	        	<div class="row">
-	             	<label class="col-md-4">商品名稱</label>
-	                 <label class="col-md-2">商品數量</label>
-	                 <label class="col-md-2">商品小計</label>
-	             </div>
-           		</div>
-           		<div class="col-md-12" name="overlaycontent">
-           		
-           		</div>
+					<div class="row">
+						<label class="col-md-4">商品名稱</label> <label class="col-md-2">商品數量</label>
+						<label class="col-md-2">商品小計</label>
+					</div>
+				</div>
+				<div class="col-md-12" name="overlaycontent"></div>
 				<div class="d-flex justify-content-end">
-	            	<button type="button" class="btn_modal_close btn btn-primary py-3 px-4 ">關閉</button>
-	            </div>
+					<button type="button"
+						class="btn_modal_close btn btn-primary py-3 px-4 ">關閉</button>
+				</div>
 			</article>
 		</div>
-		
+
 	</section>
 
 

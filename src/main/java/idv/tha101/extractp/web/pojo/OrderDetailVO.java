@@ -33,7 +33,6 @@ public class OrderDetailVO {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer order_detail_id;
-	@Column(name = "order_id", insertable = false, updatable = false)
 	private Integer orderId;
 	private Integer product_id;
 	private Integer order_detail_quantity;

@@ -62,6 +62,15 @@ public class OrderInfoVO {
 	private String order_contact_number;
 	private String order_shipping_name;
 	
+	public Integer getMember_id() {
+		return member_id;
+	}
+	public void setMember_id(Integer member_id) {
+		this.member_id = member_id;
+	}
+	
+	
+	
 	
 	
 //	@OneToMany(mappedBy = "orderInfoVO")

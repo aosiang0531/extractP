@@ -10,6 +10,6 @@ public interface OrderDTO {
 	Integer getOrder_detail_id();
 	double getSubtotal();
 	Integer getProduct_id();
-	
+	String getStatus();
 
 }
