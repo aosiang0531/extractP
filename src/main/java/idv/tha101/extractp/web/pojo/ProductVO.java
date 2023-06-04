@@ -48,10 +48,10 @@ public class ProductVO {
 	private Integer product_id;
 	
 	@Column(name = "category_id")
-	private Integer category_id;
+	private Integer categoryId;
 	
 	@Column(name = "product_name")
-	private String product_name;
+	private String productName;
 	
 	@Column(name = "product_image")
 	private byte[] product_image;
@@ -103,12 +103,20 @@ public class ProductVO {
 	@LastModifiedBy
 	private String product_last_modified_by;
 	
-	public Integer getCategory_id() {
-		return category_id;
+	public Integer getCategoryId() {
+		return categoryId;
 	}
 	
-	public void setCategory_id(Integer category_id) {
-		this.category_id = category_id;
+	public void setCategoryId(Integer category_id) {
+		this.categoryId = category_id;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
 

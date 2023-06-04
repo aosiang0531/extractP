@@ -25,10 +25,26 @@ public class ProductController extends BaseController<ProductVO> {
 	@Autowired
 	private ProductService service;
 	
+	
+	//以關鍵字+產品分類查詢商品
+		@GetMapping("/search/{keyword}/{categoryId}")
+		public List<ProductVO> findByKeywordAndCategory(@PathVariable(value = "keyword") String keyword,@PathVariable(value = "categoryId") int categoryId){
+			System.out.println("start searching..");
+			return service.findByProductNameAndCategoryId("%" + keyword + "%",categoryId);
+		}
+	
+	//以關鍵字模糊查詢商品
+	@GetMapping("/search/{keyword}")
+	public List<ProductVO> findByKeyword(@PathVariable(value = "keyword") String keyword){
+		System.out.println("start searching..");
+		return service.findByProductNameLike("%" + keyword + "%");
+	}
+	
 	// 查詢所有「已上架」商品
 	@GetMapping("/onSale")
 	public List<ProductVO> findAllByStatus() {
 		System.out.println("載入所有已上架商品");
+
 		return service.findByStatus("上架中");
 	}
 	

@@ -30,6 +30,8 @@
     <link rel="stylesheet" href="../css/flaticon.css" />
     <link rel="stylesheet" href="../css/icomoon.css" />
     <link rel="stylesheet" href="../css/style.css" />
+    <!-- 商城css -->
+    <link rel="stylesheet" href="../shop/css/shop.css" />
   </head>
 
   <body>
@@ -284,7 +286,7 @@
           const singleProduct = product;
           console.log(singleProduct);
 
-          productNameElement.innerText = singleProduct.name;
+          productNameElement.innerText = singleProduct.productName;
           productPriceElement.innerText = "$" + singleProduct.price;
           productSpecElement.innerText = singleProduct.spec;
           productDescriptElement.innerText = singleProduct.description;

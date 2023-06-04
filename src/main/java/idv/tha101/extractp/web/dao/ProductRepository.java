@@ -25,6 +25,10 @@ public interface ProductRepository extends BaseRepository<ProductVO, Integer> {
     @Query("SELECT p FROM ProductVO p WHERE p.product_sold_count = 0")
     List<ProductVO> findByProductSoldCountZero();
     
+    List<ProductVO> findByProductNameLike(String keyword);
+    List<ProductVO> findByProductNameLikeAndCategoryId(String productName, Integer categoryId);
+
+    
 	
 
 

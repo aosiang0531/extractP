@@ -30,16 +30,9 @@
     <link rel="stylesheet" href="../css/flaticon.css" />
     <link rel="stylesheet" href="../css/icomoon.css" />
     <link rel="stylesheet" href="../css/style.css" />
-    <style>
-      textarea#description,
-      input#productName {
-        width: 100%;
-      }
 
-      textarea {
-        resize: none;
-      }
-    </style>
+    <!-- 商城css -->
+    <link rel="stylesheet" href="../shop/css/shop.css" />
   </head>
 
   <body>
@@ -124,7 +117,7 @@
 
     <section class="ftco-section ftco-white">
       <div class="container">
-        <h1 id="title">修改編號：<span id="idAtTitle"></span>號商品</h1>
+        <h1>新增商品</h1>
 
         <form id="the_form">
           <!-- 選擇分類 -->
@@ -134,7 +127,7 @@
               <div class="main-group">
                 <br />
                 <select class="form-select" id="category_id">
-                  <option selected disabled>請選擇分類</option>
+                  <option selected disabled value="">請選擇分類</option>
                   <option value="1">咖啡器具</option>
                   <option value="2">咖啡豆</option>
                   <option value="3">濾掛咖啡</option>
@@ -193,7 +186,7 @@
 
           <!-- 按鈕 -->
           <button type="button" class="btn btn-primary me-3" id="submit">
-            確定修改
+            確定新增
           </button>
           <button type="reset" class="btn btn-secondary">重新填寫</button>
           <div id="msg" class="error"></div>
@@ -234,6 +227,6 @@
     <script src="../js/jquery.timepicker.min.js"></script>
     <script src="../js/scrollax.min.js"></script>
 
-    <script src="../shop/js/edit_product.js"></script>
+    <script src="../shop/js/product_new.js"></script>
   </body>
 </html>

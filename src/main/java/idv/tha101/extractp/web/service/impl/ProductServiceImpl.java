@@ -16,7 +16,16 @@ public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	private ProductRepository repository;
-
+	
+	
+	public List<ProductVO> findByProductNameAndCategoryId(String keyword,int id){
+		return repository.findByProductNameLikeAndCategoryId(keyword,id);
+	}
+	public List<ProductVO> findByProductNameLike(String keyword){
+		return repository.findByProductNameLike(keyword);
+		}
+	
+	//找出0庫存商品
 	public List<ProductVO> findByProductSoldCountZero() {
 		return repository.findByProductSoldCountZero();
 	}

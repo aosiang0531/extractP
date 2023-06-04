@@ -30,16 +30,8 @@
     <link rel="stylesheet" href="../css/flaticon.css" />
     <link rel="stylesheet" href="../css/icomoon.css" />
     <link rel="stylesheet" href="../css/style.css" />
-    <style>
-      textarea#description,
-      input#productName {
-        width: 100%;
-      }
-
-      textarea {
-        resize: none;
-      }
-    </style>
+    <!-- 商城css -->
+    <link rel="stylesheet" href="../shop/css/shop.css" />
   </head>
 
   <body>
@@ -77,7 +69,7 @@
               <a href="../menu.html" class="nav-link">課程活動</a>
             </li>
             <li class="nav-item">
-              <a href="../shop/new_product.html" class="nav-link">(新增商品)</a>
+              <a href="../shop/product_new.html" class="nav-link">(新增商品)</a>
             </li>
             <li class="nav-item">
               <a href="../shop/shop.html" class="nav-link">咖啡商城</a>
@@ -123,84 +115,110 @@
     <!-- Start Content -->
 
     <section class="ftco-section ftco-white">
+      <!-- ftco-white套用自訂白色背景 -->
       <div class="container">
-        <h1>新增商品</h1>
+        <div class="row">
+          <div class="col-md-6">
+            <h1>商品管理</h1>
+          </div>
+          <div class="col-md-6 text-end">
+            <input
+              type="button"
+              class="btn btn-primary"
+              onclick="javascript:location.href='product_new.html'"
+              value="新增商品"
+            />
+          </div>
+        </div>
+        <div class="tab_container">
+          <div class="tab_list_block">
+            <ul class="tab_list">
+              <li>
+                <a href="#" data-target="tab1" class="tab -on">全部商品</a>
+              </li>
+              <li><a href="#" data-target="tab2" class="tab">上架中</a></li>
+              <li><a href="#" data-target="tab3" class="tab">已下架</a></li>
+            </ul>
+          </div>
 
-        <form id="the_form">
-          <!-- 選擇分類 -->
-          <h5 for="category" class="form-label">選擇分類</h5>
-          <div class="row">
-            <div class="col-md-6 mb-4">
-              <div class="main-group">
-                <br />
-                <select class="form-select" id="category_id">
-                  <option selected disabled value="" >請選擇分類</option>
-                  <option value="1">咖啡器具</option>
-                  <option value="2">咖啡豆</option>
-                  <option value="3">濾掛咖啡</option>
-                </select>
+          <div class="tab_contents">
+            <!-- 頁籤一 -->
+            <div class="tab tab1 -on">
+              <div class="table-responsive mt-4">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>商品圖片</th>
+                      <th>商品名稱</th>
+                      <th>商品編號</th>
+                      <th>規格</th>
+                      <th>價格</th>
+                      <th>庫存</th>
+                      <th>已售出</th>
+                      <th>操作</th>
+                    </tr>
+                  </thead>
+                  <tbody id="allProductList">
+                    <!-- 商品資料列 -->
+
+                    <!-- 其他商品資料列+= -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- 頁籤二 -->
+            <div class="tab tab2">
+              <div class="table-responsive mt-4">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>商品圖片</th>
+                      <th>商品名稱</th>
+                      <th>商品編號</th>
+                      <th>規格</th>
+                      <th>價格</th>
+                      <th>庫存</th>
+                      <th>已售出</th>
+                      <th>操作</th>
+                    </tr>
+                  </thead>
+                  <tbody id="availableProductList">
+                    <!-- 商品資料列 -->
+
+                    <!-- 其他商品資料列+= -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- 頁籤三 -->
+            <div class="tab tab3">
+              <div class="table-responsive mt-4">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>商品圖片</th>
+                      <th>商品名稱</th>
+                      <th>商品編號</th>
+                      <th>規格</th>
+                      <th>價格</th>
+                      <th>庫存</th>
+                      <th>已售出</th>
+                      <th>操作</th>
+                    </tr>
+                  </thead>
+                  <tbody id="unAvailableProductList">
+                    <!-- 商品資料列 -->
+
+                    <!-- 其他商品資料列+= -->
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
-
-          <hr />
-
-          <!-- 上傳圖片 -->
-          <h5 class="form-label me-3">上傳圖片</h5>
-
-          <div>
-            <label for="image">上傳圖片: </label>
-            <input type="file" name="image" id="image" />
-            <img id="img" />
-          </div>
-
-          <hr />
-
-          <!-- 商品詳情 -->
-          <h5 class="form-label me-3">商品詳情</h5>
-          <div class="row">
-            <div class="col-md-6 mb-4">
-              <label for="product_name" class="form-label">商品名稱</label>
-              <input type=" text" id="product_name" style="width: 100%" />
-            </div>
-            <div class="col-md-6 mb-4">
-              <label for="product_spec" class="form-label">商品規格</label>
-              <input type=" text" id="product_spec" style="width: 100%" />
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-6 mb-4">
-              <label for="product_price" class="form-label">商品價格</label>
-              <input type="number" id="product_price" />
-            </div>
-            <div class="col-md-6 mb-4">
-              <label for="product_stock" class="">數量</label>
-              <input type="number" id="product_stock" />
-            </div>
-          </div>
-
-          <div class="mb-4">
-            <label for="product_description" class="form-label">商品說明</label>
-            <textarea
-              id="product_description"
-              rows="5"
-              style="width: 100%"
-            ></textarea>
-          </div>
-
-          <hr />
-
-          <!-- 按鈕 -->
-          <button type="button" class="btn btn-primary me-3" id="submit">
-            確定新增
-          </button>
-          <button type="reset" class="btn btn-secondary">重新填寫</button>
-          <div id="msg" class="error"></div>
-        </form>
+        </div>
+        <!-- End 頁籤 -->
       </div>
     </section>
-
     <!-- End Content -->
 
     <!-- Start Footer -->
@@ -228,12 +246,54 @@
     <script src="../js/jquery.stellar.min.js"></script>
     <script src="../js/owl.carousel.min.js"></script>
     <script src="../js/jquery.magnific-popup.min.js"></script>
-    <!-- <script src="js/aos.js"></script> -->
+    <!-- <script src="../js/aos.js"></script> -->
     <script src="../js/jquery.animateNumber.min.js"></script>
     <script src="../js/bootstrap-datepicker.js"></script>
     <script src="../js/jquery.timepicker.min.js"></script>
     <script src="../js/scrollax.min.js"></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> -->
+    <!-- <script src="../js/google-map.js"></script> -->
 
-    <script src="../shop/js/newProduct.js"></script>
+    <script src="../shop/js/product_manage.js"></script>
+    <script>
+      $(function () {
+        // 頁籤點擊事件處理
+        $("a.tab").on("click", function (e) {
+          e.preventDefault();
+
+          // 移除所有頁籤的選中狀態
+          $(this).closest("ul").find("a.tab").removeClass("-on");
+          $(this).addClass("-on");
+
+          // 找到對應的頁籤內容，加上 -on 來顯示
+          $("div.tab").removeClass("-on");
+          $("div.tab." + $(this).attr("data-target")).addClass("-on");
+
+          // 根據頁籤的目標值過濾商品列表
+          filterProductList($(this).attr("data-target"));
+        });
+
+        // 初始時顯示全部商品
+        filterProductList("tab1");
+
+        // 過濾商品列表
+        function filterProductList(target) {
+          // 隱藏所有商品
+          $("#allProductList > tr").hide();
+
+          // 根據目標值顯示符合條件的商品
+          if (target === "tab1") {
+            // 全部商品
+            $("#allProductList > tr").show();
+          } else if (target === "tab2") {
+            // 上架中商品
+            $("#allProductList > tr[data-status='available']").show();
+          } else if (target === "tab3") {
+            // 已下架商品
+            $("#allProductList > tr[data-status='unAvailable']").show();
+          }
+        }
+      });
+    </script>
   </body>
 </html>

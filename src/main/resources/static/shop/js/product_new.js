@@ -74,44 +74,45 @@ textarea.addEventListener('input', function () {
             return;
         }
 
-        let imageBase64 = null;
-        if (image.files && image.files.length > 0) {
-            const file = image.files[0];
-            const fileReader = new FileReader();
+        msg.textContent = '';
 
+        var file = image.files[0];
+        var imageBase64 = null;
+
+        if (file) {
+            var fileReader = new FileReader();
             fileReader.onload = function (event) {
-                imageBase64 = event.target.result;
-                console.log(imageBase64);
+                var tempImg = event.target.result;
+                imageBase64 = tempImg.replace(/^data:image\/(png|jpeg|jpg);base64,/, '');
                 submitFormWithImage(imageBase64);
             };
-
             fileReader.readAsDataURL(file);
         } else {
-            //沒圖片時
             submitFormWithImage(null);
         }
     });
 
     function submitFormWithImage(imageData) {
-
-        const productJson = JSON.stringify({
-            category_id: category_id.value,
-            name: product_name.value,
+        var productJson = JSON.stringify({
+            categoryId: category_id.value,
+            productName: product_name.value,
             description: product_description.value,
             spec: product_spec.value,
             image: imageData,
             stock: product_stock.value,
-            price: product_price.value,
+            price: product_price.value
         });
 
         fetch('/shop/product', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: productJson,
+            body: productJson
         })
-            .then((resp) => resp.json())
-            .then((body) => {
-                const { successful } = body;
+            .then(function (resp) {
+                return resp.json();
+            })
+            .then(function (body) {
+                var successful = body.successful;
                 if (successful) {
                     submit.disabled = true;
                     msg.className = 'info';
@@ -120,16 +121,18 @@ textarea.addEventListener('input', function () {
                     msg.className = 'error';
                     msg.textContent = '產品新增失敗';
                 }
+            })
+            .catch(function (error) {
+                console.error(error);
+                msg.className = 'error';
+                msg.textContent = '發生錯誤，請稍後再試';
             });
     }
 
-
-    image.addEventListener('change', () => {
-        const file = image.files[0];
-        // console.log(file);
+    image.addEventListener('change', function () {
+        var file = image.files[0];
         if (file) {
             img.src = URL.createObjectURL(file);
-
         }
     });
 

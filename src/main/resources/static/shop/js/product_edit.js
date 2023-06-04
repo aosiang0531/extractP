@@ -31,8 +31,8 @@
 
             if (singleProduct.id != undefined) {
                 idAtTitle.innerHTML = singleProduct.id;
-                category_id.value = singleProduct.category_id;
-                product_name.value = singleProduct.name;
+                category_id.value = singleProduct.categoryId;
+                product_name.value = singleProduct.productName;
                 product_spec.value = singleProduct.spec;
                 product_price.value = singleProduct.price;
                 product_stock.value = singleProduct.stock;
@@ -100,35 +100,31 @@
             return;
         }
 
-        let imageBase64 = null;
-        if (image.files && image.files.length > 0) {
-            const file = image.files[0];
-            const fileReader = new FileReader();
+        var file = image.files[0];
+        var imageBase64 = null;
 
+        if (file) {
+            var fileReader = new FileReader();
             fileReader.onload = function (event) {
-                imageBase64 = event.target.result;
-                console.log(imageBase64);
+                var tempImg = event.target.result;
+                imageBase64 = tempImg.replace(/^data:image\/(png|jpeg|jpg);base64,/, '');
                 submitFormWithImage(imageBase64);
             };
-
             fileReader.readAsDataURL(file);
         } else {
-            //沒圖片時
             submitFormWithImage(null);
         }
     });
 
     function submitFormWithImage(imageData) {
-
-        const productJson = JSON.stringify({
-            category_id: category_id.value,
-            name: product_name.value,
+        var productJson = JSON.stringify({
+            categoryId: category_id.value,
+            productName: product_name.value,
             description: product_description.value,
             spec: product_spec.value,
             image: imageData,
             stock: product_stock.value,
-            price: product_price.value,
-
+            price: product_price.value
         });
 
         fetch(`/shop/product/${product_id}`, {
@@ -153,12 +149,10 @@
     }
 
 
-    image.addEventListener('change', () => {
-        const file = image.files[0];
-        // console.log(file);
+    image.addEventListener('change', function () {
+        var file = image.files[0];
         if (file) {
             img.src = URL.createObjectURL(file);
-
         }
     });
 
