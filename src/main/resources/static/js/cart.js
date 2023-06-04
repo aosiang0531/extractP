@@ -81,7 +81,7 @@ $(function() {
 							addOn.innerHTML += `
 							<div class="addproduct" name="${data.id}">
 								<p class="image-prod"><img class="img" src="${image}" width="100px" height="100px"></p>
-								<p class="product-name"><a href="#"><h6>${data.name}</h6></a></p>
+								<p class="product-name"><a href="#"><h6>${data.productName}</h6></a></p>
 								<span style="color:black;">原價</span>
 								<span style="color:#c49b63;">$${data.price}</span>
 								<br>

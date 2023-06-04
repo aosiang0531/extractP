@@ -15,5 +15,7 @@ public interface OrderDetailService extends BaseService<OrderDetailVO> {
 	HashMap<String, Double> countTotal(Integer order_id);
 
 	Collection<OrderDTO> findOrderInfo(Integer id);
+	
+	Collection<OrderDTO> findOrderInfoByMemberId(Integer member_id);
 
 }

@@ -1,6 +1,7 @@
 package idv.tha101.extractp.web.service.impl;
 
 import java.lang.reflect.Field;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -106,8 +107,6 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 			return list.stream().collect(Collectors.toList());
 		}else if(("已出貨").equals(status)) {
 			return list.stream().collect(Collectors.toList());
-		}else if(("處理中").equals(status)) {
-			return list.stream().collect(Collectors.toList());
 		}else if(("已完成").equals(status)) {
 			return list.stream().collect(Collectors.toList());
 		}
@@ -120,7 +119,6 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 			OrderInfoVO orderInfoVO = new OrderInfoVO();
 			orderInfoVO.setMember_id(member_id);
 			orderInfoVO.setStatus("未成立");
-			orderInfoRepository.save(orderInfoVO);
 			return orderInfoRepository.save(orderInfoVO);
 		}else {
 			return orderInfoRepository.addCart(member_id);
@@ -128,10 +126,14 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 	}
 
 	@Override
-	public List<OrderInfoVO> datePicker() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<OrderInfoVO> pickDate(Integer member_id,Timestamp date1,Timestamp date2) {
+		List<OrderInfoVO> list = orderInfoRepository.findByMemberId(member_id).stream()
+							.filter(e -> e.getCreated_date().after(date1) && 
+									e.getCreated_date().before(date2)).collect(Collectors.toList());
+		return list;
 	}
+
+	
 
 
 		

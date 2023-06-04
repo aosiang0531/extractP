@@ -84,5 +84,11 @@ public class OrderDetailController extends BaseController<OrderDetailVO> {
 	public Collection<OrderDTO> findOrderInfo(@PathVariable(value = "id") int id){
 		return orderDetailService.findOrderInfo(id);
 	}
-
+	
+	//會員"未成立"訂單的所有訂單明細
+	@GetMapping("/{member_id}/unplaced")
+	public Collection<OrderDTO> findOrderInfoByMemberId(@PathVariable(value = "member_id") int id){
+		System.out.println(orderDetailService.findOrderInfoByMemberId(id));
+		return orderDetailService.findOrderInfoByMemberId(id);
+	}
 }

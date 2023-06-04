@@ -116,4 +116,8 @@ label {
 	border-top: none;
 }
 
+input[type="date"] {
+  width: 130px;
+}
+
 

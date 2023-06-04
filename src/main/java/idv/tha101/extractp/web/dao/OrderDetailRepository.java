@@ -30,7 +30,23 @@ public interface OrderDetailRepository extends BaseRepository<OrderDetailVO, Int
 			+ "join PRODUCT p\r\n"
 			+ "	on od.product_id = p.product_id\r\n"
 			+ "where order_id = ?;",nativeQuery = true)
-	Collection<OrderDTO> findOrderInfo(Integer id);
-
-
+	Collection<OrderDTO> findOrderInfo(Integer order_id);
+	
+	@Query(value = "select \r\n"
+			+ "	od.order_detail_id,\r\n"
+			+ "    od.product_id,\r\n"
+			+ "    od.order_id,\r\n"
+			+ "    p.product_image,\r\n"
+			+ "    p.product_name,\r\n"
+			+ "    od.order_detail_quantity,\r\n"
+			+ "    od.order_product_price,\r\n"
+			+ "    od.order_detail_quantity * od.order_product_price AS subtotal,\r\n"
+			+ "    oi.order_status\r\n"
+			+ "from ORDER_DETAIL od\r\n"
+			+ "join PRODUCT p\r\n"
+			+ "on od.product_id = p.product_id\r\n"
+			+ "join ORDER_INFO oi\r\n"
+			+ "on od.order_id = oi.order_id\r\n"
+			+ "where member_id = ? and order_status = \"未成立\";",nativeQuery = true)
+	Collection<OrderDTO> findOrderInfoByMemberId(Integer member_id);
 }
