@@ -86,10 +86,10 @@ public class OrderInfoController extends BaseController<OrderInfoVO> {
 		return orderInfoService.findByMemberIdAndShippingStatus(id, shippingStatus);
 	}
 	
-	@PostMapping("/{member_id}/unplaced")
+	@GetMapping("/{member_id}/unplaced")
 	//購物車:未成立狀態的訂單
-	public OrderInfoVO addCart(@PathVariable(value = "member_id") int id) {
-		return orderInfoService.addCart(id);
+	public OrderInfoVO findCart(@PathVariable(value = "member_id") int id) {
+		return orderInfoService.findCart(id);
 	}
 	
 	@GetMapping("/orderStatus")
@@ -123,18 +123,4 @@ public class OrderInfoController extends BaseController<OrderInfoVO> {
 		return orderInfoService.pickDate(member_id, timestamp1, timestamp2);
 	}
 	
-//	@PutMapping("/updateShippingStatus")
-//	@Transactional
-//	public Map<String, Integer> updateShippingStatus(@RequestBody Map<String, String> map) {
-//		//TODO
-//		Map<String, Integer> result = new HashMap<>();
-//		int id = Integer.parseInt(map.get("order_id"));
-//		String shippingStatus = map.get("order_shipping_status");
-//		if("待出貨".equals(shippingStatus)) {
-//			OrderInfoVO orderInfoVO = orderInfoService.saveOrUpdate(null)
-//		}
-//		
-//		return null;
-//		
-//	}
 }

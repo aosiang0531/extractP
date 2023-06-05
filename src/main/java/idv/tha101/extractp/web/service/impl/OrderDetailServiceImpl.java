@@ -83,13 +83,9 @@ public class OrderDetailServiceImpl  implements OrderDetailService{
 	}
 
 	@Override
-	public Collection<OrderDTO> findOrderInfo(Integer id) {
+	public List<OrderDTO> findOrderInfo(Integer id) {
 		return orderDetailRepository.findOrderInfo(id);
 	}
 
-	@Override
-	public Collection<OrderDTO> findOrderInfoByMemberId(Integer member_id) {
-		return orderDetailRepository.findOrderInfoByMemberId(member_id);
-	}
 	
 }

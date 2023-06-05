@@ -1,6 +1,5 @@
 package idv.tha101.extractp.web.service;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -14,8 +13,7 @@ public interface OrderDetailService extends BaseService<OrderDetailVO> {
 
 	HashMap<String, Double> countTotal(Integer order_id);
 
-	Collection<OrderDTO> findOrderInfo(Integer id);
+	List<OrderDTO> findOrderInfo(Integer id);
 	
-	Collection<OrderDTO> findOrderInfoByMemberId(Integer member_id);
 
 }

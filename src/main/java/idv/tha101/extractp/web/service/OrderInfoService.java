@@ -24,7 +24,7 @@ public interface OrderInfoService extends BaseService<OrderInfoVO> {
 
 	List<OrderInfoVO> findByShippingStatus(String status);
 
-	OrderInfoVO addCart(Integer member_id);
+	OrderInfoVO findCart(Integer member_id);
 
 	List<OrderInfoVO> pickDate(Integer member_id, Timestamp date1, Timestamp date2);
 

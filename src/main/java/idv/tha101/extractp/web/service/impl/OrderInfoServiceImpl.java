@@ -114,7 +114,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 	}
 
 	@Override
-	public OrderInfoVO addCart(Integer member_id) {
+	public OrderInfoVO findCart(Integer member_id) {
 		if(orderInfoRepository.addCart(member_id) == null) {
 			OrderInfoVO orderInfoVO = new OrderInfoVO();
 			orderInfoVO.setMember_id(member_id);

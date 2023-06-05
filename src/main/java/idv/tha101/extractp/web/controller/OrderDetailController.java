@@ -19,12 +19,17 @@ import org.springframework.web.bind.annotation.RestController;
 import idv.tha101.extractp.base.controller.BaseController;
 import idv.tha101.extractp.web.pojo.OrderDTO;
 import idv.tha101.extractp.web.pojo.OrderDetailVO;
+import idv.tha101.extractp.web.pojo.OrderInfoVO;
 import idv.tha101.extractp.web.service.OrderDetailService;
+import idv.tha101.extractp.web.service.OrderInfoService;
 
 @RestController
 @RequestMapping("orderDetail")
 public class OrderDetailController extends BaseController<OrderDetailVO> {
 
+	@Autowired
+	OrderInfoService orderInfoService;
+	
 	@Autowired
 	OrderDetailService orderDetailService;
 
@@ -81,14 +86,18 @@ public class OrderDetailController extends BaseController<OrderDetailVO> {
 	}
 	
 	@GetMapping("/{id}/info")
-	public Collection<OrderDTO> findOrderInfo(@PathVariable(value = "id") int id){
+	public List<OrderDTO> findOrderInfo(@PathVariable(value = "id") int id){
 		return orderDetailService.findOrderInfo(id);
 	}
-	
-	//會員"未成立"訂單的所有訂單明細
-	@GetMapping("/{member_id}/unplaced")
-	public Collection<OrderDTO> findOrderInfoByMemberId(@PathVariable(value = "member_id") int id){
-		System.out.println(orderDetailService.findOrderInfoByMemberId(id));
-		return orderDetailService.findOrderInfoByMemberId(id);
+
+	//將訂單明細存入會員"未成立"的訂單
+	@PutMapping("/{member_id}/unplaced")
+	public OrderInfoVO addProductToOrder(@RequestBody OrderDetailVO vo, @PathVariable(value = "member_id") int id){
+		//用member_id查未成立訂單
+		OrderInfoVO info = orderInfoService.findById(id);
+		vo.setOrder_id(info.getId());
+		//detail 存到未成立訂單info
+		orderDetailService.saveOrUpdate(vo);
+		return info;		
 	}
 }
