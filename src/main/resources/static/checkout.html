@@ -88,11 +88,11 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xl-9 ftco-animate">
-					<form action="#" class="billing-form p-3 p-md-5">
+					<form action="#" class="billing-form p-3 p-md-5" id="checkoutForm">
 						<h1 class="mb-4 billing-heading">結帳</h1>
 						<div class="row align-items-end">
 							<div class="col-md-12 ">
-								<label for="payment" style="font-size: 20px;">付款方式</label>
+								<label for="payment" style="font-size: 20px;">付款方式</label>								
 								<hr>
 								<div class="radio d-flex justify-content-between">
 									<label for="order_payment_method"><input type="radio"
@@ -120,7 +120,7 @@
 							</div>
 							<div class="col-md-12">
 								<div class="form-group mt-4">
-									<label style="font-size: 20px;">收貨地址</label>
+									<label for="address" style="font-size: 20px;">收貨地址</label>
 									<hr>
 									<div class="row dropdown" name="order_shipping_address">
 										<select name="country" id="country_box">
@@ -128,11 +128,10 @@
 										</select> <select name="district" id="district_box">
 											<option value="">選擇鄉鎮市區</option>
 										</select> <input type="hidden" id="zipcode_box" placeholder="郵遞區號">
-										<input class="col-md-7 form-control" type="text"
+										<input class="col-md-7 form-control required" type="text"
 											name="subaddress" aria-describedby="form-address-input"
-											required="" placeholder="路, 巷, 門牌, 樓層">
+											placeholder="路, 巷, 門牌, 樓層">
 									</div>
-									<div id="msg" class="error"></div>
 								</div>
 							</div>
 

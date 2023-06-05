@@ -97,16 +97,6 @@ public class OrderInfoController extends BaseController<OrderInfoVO> {
 		return orderInfoService.findByOrderStatus();
 	}
 	
-	@GetMapping("/paymentStatus/{payment_status}")
-	public List<OrderInfoVO> findByPaymentStatus(@PathVariable(value = "payment_status") String status) {
-		return orderInfoService.findByPaymentStatus(status);
-	}
-	
-	@GetMapping("/shippingStatus/{shipping_status}")
-	public List<OrderInfoVO> findByShippingStatus(@PathVariable(value = "shipping_status") String status) {
-		return orderInfoService.findByShippingStatus(status);
-	}
-	
 	@PostMapping("/pickDate")
 	public List<OrderInfoVO> pickDate(@RequestBody Map<String, String> map) {
 		String date1 = map.get("date1");
@@ -122,5 +112,7 @@ public class OrderInfoController extends BaseController<OrderInfoVO> {
 		
 		return orderInfoService.pickDate(member_id, timestamp1, timestamp2);
 	}
+	
+	
 	
 }

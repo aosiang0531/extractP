@@ -104,7 +104,7 @@ $(function() {
 				data = JSON.stringify({
 					"product_id": productId,
         			"price": parseFloat(price),
-        			"order_id": 1,
+        			"order_id": orderId,
         			"quantity": 1
 				})
 
@@ -233,7 +233,7 @@ $(function() {
 				});
 
 
-				window.location.href = 'orderhistory.html?memberId=' + 1;	//TODO
+				window.location.href = 'orderhistory.html?orderId=' + orderId;
 
 
 			});

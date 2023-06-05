@@ -1,12 +1,12 @@
 $(function() {
-	
+
 	const tepURL = new URLSearchParams(window.location.search);
-	const Id = tepURL.get("orderId");
+	const orderId = tepURL.get("orderId");
 
 	const pay = document.querySelector("#pay");
-	const pay_url = "orderDetail/" + Id + "/total";
-	
-	
+	const pay_url = "orderDetail/" + orderId + "/total";
+
+
 	fetch(pay_url)
 		.then(resp => resp.json())
 		.then(payment => {
@@ -25,29 +25,30 @@ $(function() {
 							<span style="color:black;">總付款金額</span>
 							<span style="color:#c49b63;">$${payment.total + 60}</span>
 						</p>
-						<p class="text-center"><a href="#" class="btn btn-primary py-3 px-4" id="checkout">前往付款</a></p>
+						<button type="submit" class="btn btn-primary py-3 px-4" id="checkout">前往付款</button>
 					`;
 			pay.innerHTML = html;
 		});
 
 
 	// ============ 點選確定結帳 ============ //
-	
 	$(document).on("click", "#checkout", function() {
 		let r = confirm("確定結帳?");
 		if (r) {
-			const order_payment_method = document.querySelector('input[name="order_payment_method"]:checked').value;
-			const order_shipping_method = document.querySelector('input[name="order_shipping_method"]:checked').value;
-			const order_shipping_address = country_box.value + district_box.value + document.querySelector('input[name="subaddress"]').value;
+
+			const payment = document.querySelector('input[name="order_payment_method"]:checked').value;
+			const shipping = document.querySelector('input[name="order_shipping_method"]:checked').value;
+			const address = country_box.value + district_box.value + document.querySelector('input[name="subaddress"]').value;
+
 			let orderdata = JSON.stringify({
-				"payment_method": order_payment_method,
-				"shipping_method": order_shipping_method,
-				"shipping_address": order_shipping_address,
+				"payment_method": payment,
+				"shipping_method": shipping,
+				"shipping_address": address,
 				"status": "已成立"
 			});
 
 			$.ajax({
-				url: "/orderInfo/1",
+				url: "/orderInfo/" + orderId,
 				type: "PUT",
 				data: orderdata,
 				dataType: "json",
@@ -63,8 +64,9 @@ $(function() {
 			})
 
 			alert("訂單成立");
-			window.location.href = 'orderhistory.html?memberId=' + 1;
+			window.location.href = 'orderhistory.html?orderId=' + orderId;
 		}
+
 
 
 	})

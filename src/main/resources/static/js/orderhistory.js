@@ -1,19 +1,19 @@
 $(function() {
 
 	const tepURL = new URLSearchParams(window.location.search);
-	const Id = tepURL.get("memberId");
+	let memberId = tepURL.get("memberId"); //TODO
 	memberId = 1; //TODO
 
 	const allorder = document.querySelector("#allorder");
-	const placed = document.querySelector("#orderplaced");
-	const unpaid = document.querySelector("#orderunpaid");
-	const process = document.querySelector("#orderprocess");
-	const delivery = document.querySelector("#orderdelivery");
-	const complete = document.querySelector("#ordercomplete");
+	const unPlaced = document.querySelector("#unPlaced");
+	const unpaid = document.querySelector("#unpaid");
+	const process = document.querySelector("#process");
+	const delivery = document.querySelector("#delivery");
+	const complete = document.querySelector("#complete");
 	const startDateInput = document.querySelector("#startDate");
 	const endDateInput = document.querySelector("#endDate");
 	const allorder_url = "orderInfo/" + memberId + "/member";
-	const placed_url = "orderInfo/" + memberId + "/orderStatus/未成立";
+	const unPlaced_url = "orderInfo/" + memberId + "/orderStatus/未成立";
 	const unpaid_url = "orderInfo/" + memberId + "/paymentStatus/待付款";
 	const process_url = "orderInfo/" + memberId + "/shippingStatus/待出貨";
 	const delivery_url = "orderInfo/" + memberId + "/shippingStatus/已出貨";
@@ -21,232 +21,46 @@ $(function() {
 	const date_url = "orderInfo/pickDate";
 
 	//====================各訂單的頁籤分類====================//	
-	//	全部頁籤			
+	//全部頁籤			
 	fetch(allorder_url)
 		.then(resp => resp.json())
 		.then(data => {
-			
-			for (let order of data) {
-				const time = (new Date(order.created_date)).toISOString().slice(0, 19).replace(/-/g, "/").replace("T", " ");
-
-				if (order.status == "未成立") {
-					allorder.innerHTML += `
-	                    <tr class="text-center">	
-		                    <td name="order_id"><h6>${order.id}</h6></td>
-		
-		                    <td name="order_date"><h6>${time}</h6></td>
-		
-		                    <td name="total" class="total-price"><h6>$${order.payment_amount}</h6></td>
-		                    
-							<td name="order_status" class="orderstatus"><h6>${order.status}</h6></td>
-							
-		                    <td name="order_payment_status" class="paymentstatus"><h6>${order.payment_status}</h6></td>
-		
-		                    <td name="order_shipping_status" class="shippingstatus"><h6>${order.shipping_status}</h6></td>
-		    
-		                    <td class="order-content">
-	                        <button type="button"
-	                            class="btn_modal btn btn-primary py-3 px-4" name="unpaidbtn">繼續購物</button>
-	                   		</td>
-	                   		
-	                   		<td class="order-content">
-		                        <button type="button"
-		                            class="btn_modal btn btn-primary py-3 px-4 " name="contentbtn">訂單詳情</button>
-		                    </td>
-                   		</tr>
-					`;
-
-				} else {
-					allorder.innerHTML += `
-		            	<tr class="text-center">	
-			             	<td name="order_id"><h6>${order.id}</h6></td>
-			
-			                <td name="order_date"><h6>${time}</h6></td>
-			
-			                <td name="total" class="total-price"><h6>$${order.payment_amount}</h6></td>
-							
-							<td name="order_status" class="orderstatus"><h6>${order.status}</h6></td>
-							
-			                <td name="order_payment_status" class="paymentstatus"><h6>${order.payment_status}</h6></td>
-			
-			                <td name="order_shipping_status" class="shippingstatus"><h6>${order.shipping_status}</h6></td>
-							
-							<th>&nbsp;
-							
-			                <td class="order-content">
-			                	<button type="button"
-			                            class="btn_modal btn btn-primary py-3 px-4 " name="contentbtn">訂單詳情</button>
-			               	</td>
-	                   	</tr>
-						`;
-				}
-
-
-			}
+			orderlist(allorder, data);
 		});
 
 	//未成立頁籤			
-	fetch(placed_url)
+	fetch(unPlaced_url)
 		.then(resp => resp.json())
 		.then(data => {
-			for (let order of data) {
-				const time = (new Date(order.created_date)).toISOString().slice(0, 19).replace(/-/g, "/").replace("T", " ");
-
-				placed.innerHTML += `
-	                <tr class="text-center">
-	
-	                	<td name="order_id"><h6>${order.id}</h6></td>
-	
-	                    <td name="order_date"><h6>${time}</h6></td>
-	
-	                    <td name="total" class="total-price"><h6>$${order.payment_amount}</h6></td>
-	                    
-	                    <td name="order_status" class="orderstatus"><h6>${order.status}</h6></td>
-	
-	                    <td name="order_payment_status" class="paymentstatus"><h6>${order.payment_status}</h6></td>
-	
-	                    <td name="order_shipping_status" class="shippingstatus"><h6>${order.shipping_status}</h6></td>
-
-	                    <td class="order-content">
-	                        <button type="button"
-	                            class="btn_modal btn btn-primary py-3 px-4" name="unpaidbtn">繼續購物</button>
-	                    </td>
-	                    
-						 <td class="order-content">
-			             	<button type="button"
-			                 	class="btn_modal btn btn-primary py-3 px-4 " name="contentbtn">訂單詳情</button>
-			            </td>
-	
-	                </tr>
-					`;
-			}
+			orderlist(unPlaced, data);
 		});
 
 	//待付款頁籤		
 	fetch(unpaid_url)
 		.then(resp => resp.json())
 		.then(data => {
-			for (let order of data) {
-				const time = (new Date(order.created_date)).toISOString().slice(0, 19).replace(/-/g, "/").replace("T", " ");
-
-				if (order.payment_method != "貨到付款") {
-					unpaid.innerHTML += `
-	            	<tr class="text-center">
-	
-	                	<td name="order_id"><h6>${order.id}</h6></td>
-	
-	                    <td name="order_date"><h6>${time}</h6></td>
-	                    
-	                    <td name="order_status" class="orderstatus"><h6>${order.status}</h6></td>
-	
-	                    <td name="total" class="total-price"><h6>$${order.payment_amount}</h6></td>
-	
-	                    <td name="order_payment_status" class="paymentstatus"><h6>${order.payment_status}</h6></td>
-	
-	                    <td name="order_shipping_status" class="shippingstatus"><h6>${order.shipping_status}</h6></td>
-	                    
-	                    <td class="order-content">
-			             	<button type="button"
-			                 	class="btn_modal btn btn-primary py-3 px-4 " name="contentbtn">訂單詳情</button>
-			            </td>
-	                    
-	                </tr>
-					`;
-				}
-
-			}
+			orderlist(unpaid, data);
 		});
 
 	//待出貨頁籤				
 	fetch(process_url)
 		.then(resp => resp.json())
 		.then(data => {
-			for (let order of data) {
-				const time = (new Date(order.created_date)).toISOString().slice(0, 19).replace(/-/g, "/").replace("T", " ");
-				process.innerHTML += `
-	            	<tr class="text-center">
-	
-	                    <td name="order_id"><h6>${order.id}</h6></td>
-	
-	                    <td name="order_date"><h6>${time}</h6></td>
-	
-	                    <td name="total" class="total-price"><h6>$${order.payment_amount}</h6></td>
-	                    
-	                    <td name="order_status" class="orderstatus"><h6>${order.status}</h6></td>
-	
-	                    <td name="order_payment_status" class="paymentstatus"><h6>${order.payment_status}</h6></td>
-	
-	                    <td name="order_shipping_status" class="shippingstatus"><h6>${order.shipping_status}</h6></td>
-	
-	                    <td class="order-content">
-	                        <button type="button"
-	                            class="btn_modal btn btn-primary py-3 px-4" name="contentbtn">訂單詳情</button>
-	                    </td>
-	                </tr>
-					`;
-			}
+			orderlist(process, data);
 		});
 
 	//待收貨頁籤		
 	fetch(delivery_url)
 		.then(resp => resp.json())
 		.then(data => {
-			for (let order of data) {
-				const time = (new Date(order.created_date)).toISOString().slice(0, 19).replace(/-/g, "/").replace("T", " ");
-
-				delivery.innerHTML += `
-	            	<tr class="text-center">
-	
-	                    <td name="order_id"><h6>${order.id}</h6></td>
-	
-	                    <td name="order_date"><h6>${time}</h6></td>
-	
-	                    <td name="total" class="total-price"><h6>$${order.payment_amount}</h6></td>
-	                    
-	                    <td name="order_status" class="orderstatus"><h6>${order.status}</h6></td>
-	
-	                    <td name="order_payment_status" class="paymentstatus"><h6>${order.payment_status}</h6></td>
-	
-	                    <td name="order_shipping_status" class="shippingstatus"><h6>${order.shipping_status}</h6></td>
-	
-	                    <td class="order-content">
-	                        <button type="button"
-	                            class="btn_modal btn btn-primary py-3 px-4" name="contentbtn">訂單詳情</button>
-	                    </td>
-	                </tr>
-					`;
-			}
+			orderlist(delivery, data);
 		});
 
 	//已完成頁籤		
 	fetch(complete_url)
 		.then(resp => resp.json())
 		.then(data => {
-			for (let order of data) {
-				const time = (new Date(order.created_date)).toISOString().slice(0, 19).replace(/-/g, "/").replace("T", " ");
-
-				complete.innerHTML += `
-	                    <tr class="text-center">
-	
-	                    <td name="order_id"><h6>${order.id}</h6></td>
-	
-	                    <td name="order_date"><h6>${time}</h6></td>
-	
-	                    <td name="total" class="total-price"><h6>$${order.payment_amount}</h6></td>
-	                    
-	                    <td name="order_status" class="orderstatus"><h6>${order.status}</h6></td>
-	
-	                    <td name="order_payment_status" class="paymentstatus"><h6>${order.payment_status}</h6></td>
-	
-	                    <td name="order_shipping_status" class="shippingstatus"><h6>${order.shipping_status}</h6></td>
-	
-	                    <td class="order-content">
-	                        <button type="button"
-	                            class="btn_modal btn btn-primary py-3 px-4" name="contentbtn">訂單詳情</button>
-	                    </td>
-	                </tr>
-					`;
-			}
+			orderlist(complete, data);
 		});
 
 
@@ -296,6 +110,7 @@ $(function() {
 	startDateInput.addEventListener("change", function() {
 		const startDate = startDateInput.value;
 		startDateInput.setAttribute("value", startDate);
+		endDateInput.setAttribute("min", startDate);
 	});
 
 	endDateInput.addEventListener("change", function() {
@@ -303,7 +118,7 @@ $(function() {
 		endDateInput.setAttribute("value", endDate);
 	});
 
-
+	let isAppended = false;
 	$(document).on('click', '.custom-button', function() {
 		let data = JSON.stringify({
 			"member_id": memberId,
@@ -320,23 +135,72 @@ $(function() {
 		})
 			.then(resp => resp.json())
 			.then(data => {
-				console.log(data);
+				allorder.innerHTML = "";
 
-				$("#allorder").empty();
+				orderlist(allorder, data);
 
-				for (let order of data) {
-					const time = (new Date(order.created_date)).toISOString().slice(0, 19).replace(/-/g, "/").replace("T", " ");
-					if (order.status == "未成立") {
-						allorder.innerHTML += `
+				if (!isAppended) {
+					let clean = `<span class="clean-button">清除搜尋</span>`;
+					$('[name="datePick"]').append(clean);
+					isAppended = true;	// 設置為已經添加過清除搜尋
+
+				}
+
+			});
+
+
+
+	});
+
+	$(document).on('click', '.clean-button', function() {
+
+		fetch(allorder_url)
+			.then(resp => resp.json())
+			.then(data => {
+				startDateInput.value = null;
+				endDateInput.value = null;
+				orderlist(allorder, data);
+			});
+
+	});
+
+
+	//====================頁籤功能====================//
+
+	$("div.overlay > article").on("click", function(e) {
+		e.stopPropagation();
+	});
+
+	$("a.tab").on("click", function(e) {
+		e.preventDefault();
+
+		/* 將頁籤列表移除所有 -on，再將指定的加上 -on */
+		$(this).closest("ul").find("a.tab").removeClass("-on");
+		$(this).addClass("-on");
+
+		/* 找到對應的頁籤內容，加上 -on 來顯示 */
+		$("div.tab").removeClass("-on");
+		$("div.tab." + $(this).attr("data-target")).addClass("-on");
+	});
+
+
+	//依tab顯示對應狀態的訂單
+	function orderlist(tabName, data) {
+		tabName.innerHTML = "";
+		for (let order of data) {
+			const time = (new Date(order.created_date)).toISOString().slice(0, 19).replace(/-/g, "/").replace("T", " ");
+
+			if (order.status == "未成立") {
+				html = `
 	                    <tr class="text-center">	
 		                    <td name="order_id"><h6>${order.id}</h6></td>
 		
 		                    <td name="order_date"><h6>${time}</h6></td>
 		
 		                    <td name="total" class="total-price"><h6>$${order.payment_amount}</h6></td>
-							
-							<td name="order_status" class="orderstatus"><h6>${order.status}</h6></td>
 		                    
+							<td name="order_status" class="orderstatus"><h6>${order.status}</h6></td>
+							
 		                    <td name="order_payment_status" class="paymentstatus"><h6>${order.payment_status}</h6></td>
 		
 		                    <td name="order_shipping_status" class="shippingstatus"><h6>${order.shipping_status}</h6></td>
@@ -353,8 +217,8 @@ $(function() {
                    		</tr>
 					`;
 
-					} else {
-						allorder.innerHTML += `
+			} else {
+				html = `
 		            	<tr class="text-center">	
 			             	<td name="order_id"><h6>${order.id}</h6></td>
 			
@@ -376,34 +240,14 @@ $(function() {
 			               	</td>
 	                   	</tr>
 						`;
-					}
-
-				}
-
-
-
-			});
-	});
+			}
+			tabName.innerHTML += html;
+		}
+	}
 
 
 
 
-	//====================頁籤功能====================//
 
-	$("div.overlay > article").on("click", function(e) {
-		e.stopPropagation();
-	});
 
-	$("a.tab").on("click", function(e) {
-		e.preventDefault();
-
-		/* 將頁籤列表移除所有 -on，再將指定的加上 -on */
-		$(this).closest("ul").find("a.tab").removeClass("-on");
-		$(this).addClass("-on");
-
-		/* 找到對應的頁籤內容，加上 -on 來顯示 */
-		$("div.tab").removeClass("-on");
-		$("div.tab." + $(this).attr("data-target")).addClass("-on");
-	});
-	
 });
