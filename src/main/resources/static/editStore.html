@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 
 <head>
-    <title>店家資訊</title>
+    <title>編輯咖啡店家</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
@@ -65,7 +65,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a href="index.html" class="nav-link">咖啡論壇</a></li>
                 <li class="nav-item"><a href="menu.html" class="nav-link">課程活動</a></li>
-                <li class="nav-item active"><a href="services.html" class="nav-link">咖啡地圖</a></li>
+                <li class="nav-item active"><a href="map.html" class="nav-link">咖啡地圖</a></li>
                 <li class="nav-item"><a href="blog.html" class="nav-link">咖啡商城</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="room.html" id="dropdown04" data-toggle="dropdown"
@@ -95,7 +95,7 @@
 
 <section class="ftco-section ftco-white"> <!-- ftco-white套用自訂白色背景 -->
     <div id="app" class="form-container">
-        <h1>店家資訊</h1>
+        <h1>編輯店家</h1>
         <div class="form-row">
             <label for="storeName">*咖啡店名</label>
             <input type="text" v-model="storeName" id="storeName" placeholder="店名">
@@ -128,8 +128,9 @@
         </div>
         <br>
         <div class="form-row">
-            <label for="storeMenu">菜單</label>
-            <input type="file" id="storeMenu" placeholder="菜單" multiple>
+            <label for="storeOrder">菜單</label>
+            <input type="file" id="storeOrder" name="storeOrder" accept="image/*" placeholder="菜單" multiple
+                   @change="fileChange">
         </div>
         <br>
         <div class="form-row">
@@ -138,10 +139,8 @@
         </div>
         <br>
         <div class="button-group">
-            <button @click="recommend">確定</button>
-            <a href="map.html">
-                <button>取消</button>
-            </a>
+            <button @click="update">確定</button>
+            <button @click="cancelEdit">取消</button>
         </div>
     </div>
 
@@ -173,54 +172,85 @@
         el: '#app',
         data() {
             return {
+                storeId: '',
                 storeName: '',
                 storeTax: '',
+                memberId: '',
                 storeInfo: '',
                 storeAddress: '',
                 storeTime: '',
                 storePhone: '',
-                storeWebsite: ''
+                storeOrder: null,
+                storeWebsite: '',
             };
         },
         methods: {
-            recommend() {
-                if (this.storeName === '') {
-                    alert("請填寫店名");
-                    return;
-                } else if (this.storeTax === '') {
-                    alert("請填寫統編");
-                    return;
-                } else if (this.storeAddress === '') {
-                    alert("請填寫地址");
-                    return;
+            fileChange(e) {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const base64Image = e.target.result;
+                    const imageData = base64Image.split(';base64,')[1];
+                    this.storeOrder = imageData;
                 }
 
-                const recommendData = {
+                if (file) {
+                    reader.readAsDataURL(file);
+                }
+            },
+            update() {
+                const updateData = {
+                    storeId: this.storeId,
                     storeName: this.storeName,
                     storeTax: this.storeTax,
+                    memberId: sessionStorage.getItem('memberId'),
                     storeInfo: this.storeInfo,
                     storeAddress: this.storeAddress,
                     storeTime: this.storeTime,
                     storePhone: this.storePhone,
-                    storeWebsite: this.storeWebsite,
+                    storeOrder: this.storeOrder,
+                    storeWebsite: this.storeWebsite
                 }
 
-                axios.post('store', recommendData)
+                axios.put('stores/' + this.storeId, updateData)
                     .then(response => {
-                        console.log("推薦成功");
-                        window.location.href = "store-list.html"
+                        console.log("編輯成功");
+                        window.location.href = "storeList.html";
                     })
                     .catch(error => {
                         console.error('失敗', error);
                     })
+            },
+            cancelEdit() {
+                alert("取消編輯");
             }
-        }
+        },
 
+        mounted() {
+            // 取得session storage中的storeId
+            this.storeId = sessionStorage.getItem('storeId');
+
+            // 使用storeId向後端發送請求，取得店家資料
+            axios.get('stores/' + this.storeId)
+                .then(response => {
+                    const store = response.data;
+                    this.storeName = store.storeName;
+                    this.storeTax = store.storeTax;
+                    this.memberId = store.memberId;
+                    this.storeInfo = store.storeInfo;
+                    this.storeAddress = store.storeAddress;
+                    this.storeTime = store.storeTime;
+                    this.storePhone = store.storePhone;
+                    this.storeOrder = store.storeOrder;
+                    this.storeWebsite = store.storeWebsite;
+                })
+                .catch(error => {
+                    console.error('失敗', error);
+                });
+        }
     })
 
-
 </script>
-
 
 </body>
 

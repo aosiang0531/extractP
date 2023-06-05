@@ -89,4 +89,9 @@ public class StoreServiceImpl implements StoreService {
 
         return addresses;
     }
+
+    @Override
+    public List<Store> findByMemberId(int memberId) {
+        return repository.findByMemberId(memberId);
+    }
 }

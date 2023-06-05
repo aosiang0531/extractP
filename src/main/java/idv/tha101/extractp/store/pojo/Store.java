@@ -24,7 +24,7 @@ public class Store {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer storeId;
     private String storeTax;
-    private String memberId;
+    private Integer memberId;
     private String storeName;
     private String storeInfo;
     private String storeAddress;

@@ -63,7 +63,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a href="index.html" class="nav-link">咖啡論壇</a></li>
                 <li class="nav-item"><a href="menu.html" class="nav-link">課程活動</a></li>
-                <li class="nav-item active"><a href="services.html" class="nav-link">咖啡地圖</a></li>
+                <li class="nav-item active"><a href="map.html" class="nav-link">咖啡地圖</a></li>
                 <li class="nav-item"><a href="blog.html" class="nav-link">咖啡商城</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="room.html" id="dropdown04" data-toggle="dropdown"
@@ -102,12 +102,12 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="store in stores" :key="store.storeTax">
+            <tr v-for="store in stores" :key="store.storeId">
                 <td>{{ store.storeName }}</td>
-                <td v-if="false">{{ store.storeTax }}</td>
+                <td v-if="false">{{ store.storeId }}</td>
                 <td>
-                    <button @click="inform(store.storeTax)">查看</button>
-                    <button>編輯</button>
+                    <button @click="inform(store.storeId)">查看</button>
+                    <button @click="edit(store.storeId)">編輯</button>
                 </td>
             </tr>
             </tbody>
@@ -126,15 +126,17 @@
         el: '#app',
         data() {
             return {
-                stores: []
+                stores: [],
+                memberId: null
             }
         },
         created() {
+            this.memberId = sessionStorage.getItem('memberId');
             this.getStores();
         },
         methods: {
             getStores() {
-                axios.get('/store')
+                axios.get('stores/member/' + this.memberId)
                     .then(response => {
                         this.stores = response.data;
                     })
@@ -142,8 +144,13 @@
                         console.error(error);
                     });
             },
-            inform(storeTax) {
-                console.log(storeTax);
+            inform(storeId) {
+                sessionStorage.setItem('storeId', storeId);
+                window.location.href = "storeInformation.html";
+            },
+            edit(storeId) {
+                sessionStorage.setItem('storeId', storeId);
+                window.location.href = "editStore.html";
             }
 
         }

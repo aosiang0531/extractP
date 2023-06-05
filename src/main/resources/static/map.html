@@ -56,6 +56,20 @@
             margin-top: 50px;
         }
 
+        #button-container {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        .custom-button {
+            padding: 10px 20px;
+            background-color: #000;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
     </style>
 </head>
 
@@ -114,9 +128,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="store in stores" :key="store.storeTax">
+                <tr v-for="store in stores" :key="store.storeId">
                     <td>{{ store.storeName }}</td>
-                    <td v-if="false">{{ store.storeTax }}</td>
+                    <td v-if="false">{{ store.storeId }}</td>
                 </tr>
                 </tbody>
             </table>
@@ -127,6 +141,9 @@
         <div class="row">
             <div class="col">
                 <div id="map" class="embed-responsive embed-responsive-16by9"></div>
+                <div id="button-container">
+                    <a href="recommendStore.html" class="custom-button">推薦店家</a>
+                </div>
             </div>
         </div>
     </div>
@@ -155,6 +172,9 @@
 <script src="js/vue.js"></script>
 
 <script>
+
+    sessionStorage.setItem("memberId", "1");
+
     new Vue({
         el: '#app',
         data() {
@@ -167,7 +187,7 @@
         },
         methods: {
             getStores() {
-                axios.get('/stores')
+                axios.get('stores')
                     .then(response => {
                         this.stores = response.data;
                     })
@@ -175,8 +195,8 @@
                         console.error(error);
                     });
             },
-            inform(storeTax) {
-                console.log(storeTax);
+            inform(storeId) {
+                console.log(storeId);
             }
 
         }
@@ -203,7 +223,7 @@
                         });
 
                         const infoWindow = new google.maps.InfoWindow({
-                            content: storeName // 地點名稱作為 InfoWindow 的內容
+                            content: storeName //
                         });
 
                         marker.addListener('click', () => {
@@ -245,7 +265,7 @@
                 });
 
                 // 取得地址
-                axios.get('/stores')
+                axios.get('stores')
                     .then(response => {
                         const stores = response.data;
                         stores.forEach(store => {
@@ -267,7 +287,6 @@
 
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbNE1Dl6LtHx2dtrTk0-zhnojjZrqPeZc"></script>
-
 
 </body>
 
