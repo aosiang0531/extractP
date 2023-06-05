@@ -30,7 +30,6 @@
     <link rel="stylesheet" href="../css/flaticon.css" />
     <link rel="stylesheet" href="../css/icomoon.css" />
     <link rel="stylesheet" href="../css/style.css" />
-
     <!-- 商城css -->
     <link rel="stylesheet" href="../shop/css/shop.css" />
   </head>
@@ -114,88 +113,69 @@
         </div>
       </div>
     </nav>
+    <!-- 次級選單 -->
+    <div style="background-color: #c49b63">
+      <div class="">
+        <div class="">
+          <div class="">
+            <ul class="nav d-flex justify-content-around pl-2 pr-2">
+              <li class="nav-item">
+                <a class="nav-link" id="allProductsBtn"><img />所有商品</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="category1Btn">咖啡器具</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="category2Btn">咖啡豆</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="category3Btn">濾掛咖啡</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END nav -->
 
     <!-- Start Content -->
-
     <section class="ftco-section ftco-white">
       <div class="container">
-        <h1 id="title">修改編號：<span id="idAtTitle"></span>號商品</h1>
+        <div class="col-lg-12">
+          <div class="row my-2">
+            <!-- Breadcrumb麵包屑 -->
+            <div class="col-md-6">
+              <div id="breadcrumb"></div>
+            </div>
+            <!-- 搜尋 -->
+            <div class="col-md-3 search-bar d-flex" style="display: flex; align-items: center;">
+              <input type="text" class="mx-2 flex-grow-2" id="searchInput" placeholder="搜尋商品" />
+              <span id="searchIcon" class="icon icon-search " style="position: absolute; right: 30px; top: 50%; transform: translateY(-50%);"></span>
+            </div>
 
-        <form id="the_form">
-          <!-- 選擇分類 -->
-          <h5 for="category" class="form-label">選擇分類</h5>
-          <div class="row">
-            <div class="col-md-6 mb-4">
-              <div class="main-group">
-                <br />
-                <select class="form-select" id="category_id">
-                  <option selected disabled>請選擇分類</option>
-                  <option value="1">咖啡器具</option>
-                  <option value="2">咖啡豆</option>
-                  <option value="3">濾掛咖啡</option>
-                </select>
-              </div>
+            <!-- 排序 -->
+            <div class="col-md-3 d-flex justify-content-end">
+              <select id="sortOptions">
+                <option value="default" selected disabled>排序方式</option>
+                <option value="lowToHigh">價格由低到高</option>
+                <option value="highToLow">價格由高到低</option>
+              </select>
             </div>
           </div>
 
-          <hr />
+          <!-- 商品列表開始 -->
+          <div class="row" id="list"></div>
+          <!-- 商品列表end -->
 
-          <!-- 上傳圖片 -->
-          <h5 class="form-label me-3">上傳圖片</h5>
+          <!-- 分頁按鈕 -->
+			<nav id="pagination" class="mt-4">
+			  <ul class="pagination justify-content-center"></ul>
+			</nav>
 
-          <div>
-            <label for="image">上傳圖片: </label>
-            <input type="file" name="image" id="image" />
-            <img id="img" />
-          </div>
 
-          <hr />
-
-          <!-- 商品詳情 -->
-          <h5 class="form-label me-3">商品詳情</h5>
-          <div class="row">
-            <div class="col-md-6 mb-4">
-              <label for="product_name" class="form-label">商品名稱</label>
-              <input type=" text" id="product_name" style="width: 100%" />
-            </div>
-            <div class="col-md-6 mb-4">
-              <label for="product_spec" class="form-label">商品規格</label>
-              <input type=" text" id="product_spec" style="width: 100%" />
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-6 mb-4">
-              <label for="product_price" class="form-label">商品價格</label>
-              <input type="number" id="product_price" />
-            </div>
-            <div class="col-md-6 mb-4">
-              <label for="product_stock" class="">數量</label>
-              <input type="number" id="product_stock" />
-            </div>
-          </div>
-
-          <div class="mb-4">
-            <label for="product_description" class="form-label">商品說明</label>
-            <textarea
-              id="product_description"
-              rows="5"
-              style="width: 100%"
-            ></textarea>
-          </div>
-
-          <hr />
-
-          <!-- 按鈕 -->
-          <button type="button" class="btn btn-primary me-3" id="submit">
-            確定修改
-          </button>
-          <button type="reset" class="btn btn-secondary">重新填寫</button>
-          <div id="msg" class="error"></div>
-        </form>
+        </div>
       </div>
     </section>
-
     <!-- End Content -->
 
     <!-- Start Footer -->
@@ -228,7 +208,8 @@
     <script src="../js/bootstrap-datepicker.js"></script>
     <script src="../js/jquery.timepicker.min.js"></script>
     <script src="../js/scrollax.min.js"></script>
+    <script src="../shop/js/product_list2.js"></script>
 
-    <script src="../shop/js/product_edit.js"></script>
+    <script></script>
   </body>
 </html>

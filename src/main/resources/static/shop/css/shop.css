@@ -128,5 +128,9 @@
         resize: none;
       }
       
+      img#img {
+      max-width:200px;
+      }
+      
       
       

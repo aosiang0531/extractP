@@ -61,7 +61,7 @@ textarea.addEventListener('input', function () {
         // 檢查商品庫存是否有效
         const productStock = parseInt(product_stock.value);
         if (isNaN(productStock) || productStock <= 0 || productStock >= 100) {
-            errorMessages.push('請輸入有效的商品庫存數量(0~100)');
+            errorMessages.push('請輸入有效的商品庫存數量(1~100)');
         }
 
         // 檢查商品描述是否為空
@@ -83,7 +83,7 @@ textarea.addEventListener('input', function () {
             var fileReader = new FileReader();
             fileReader.onload = function (event) {
                 var tempImg = event.target.result;
-                imageBase64 = tempImg.replace(/^data:image\/(png|jpeg|jpg);base64,/, '');
+                imageBase64 = tempImg.replace(/^data:image\/(png|jpeg|jpg|gif);base64,/, '');
                 submitFormWithImage(imageBase64);
             };
             fileReader.readAsDataURL(file);

@@ -32,6 +32,20 @@
     <link rel="stylesheet" href="../css/style.css" />
     <!-- 商城css -->
     <link rel="stylesheet" href="../shop/css/shop.css" />
+
+    <style>
+      .ftco-navbar-light.scrolled {
+        position: fixed;
+        right: 0;
+        left: 0;
+        top: 0;
+        margin-bottom: 130px;
+        background: #d2bfa4 !important;
+        -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        border: none;
+      }
+    </style>
   </head>
 
   <body>
@@ -66,15 +80,15 @@
               <a href="../index.html" class="nav-link">咖啡論壇</a>
             </li>
             <li class="nav-item">
-              <a href="../menu.html" class="nav-link">課程活動</a>
+              <a href="../classEventIndex.html" class="nav-link">課程活動</a>
             </li>
             <li class="nav-item">
-              <a href="../shop/product_list.html" class="nav-link"
-                >(管理商品)</a
+              <a href="../shop/product_manage.html" class="nav-link"
+                >咖啡地圖</a
               >
             </li>
             <li class="nav-item">
-              <a href="../shop/shop.html" class="nav-link">咖啡商城</a>
+              <a href="../shop/product_list.html" class="nav-link">咖啡商城</a>
             </li>
             <li class="nav-item dropdown">
               <a
@@ -96,7 +110,7 @@
               </div>
             </li>
             <li class="nav-item cart">
-              <a href="../shop/cart.html" class="nav-link"
+              <a href="../cart.html" class="nav-link"
                 ><span class="icon icon-shopping_cart"></span
                 ><span
                   class="bag d-flex justify-content-center align-items-center"
@@ -105,7 +119,7 @@
               >
             </li>
             <li class="nav-item cart">
-              <a href="../shop/cart.html" class="nav-link"
+              <a href="../cart.html" class="nav-link"
                 ><span class="icon icon-user"></span
               ></a>
             </li>
@@ -118,13 +132,10 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-6 mb-5 ftco-animate">
-            <a
-              href="images/products/p01/p01-0.jpg"
-              id="imagePopup"
-              class="image-popup"
+            <a href="" id="imagePopup" class="image-popup"
               ><img
                 id="productImage"
-                src="images/products/p01/p01-0.jpg"
+                src=""
                 class="img-fluid"
                 alt="Colorlib Template"
                 style="width: 100%"
@@ -185,9 +196,7 @@
               </div>
             </div>
             <p>
-              <a href="cart.html" class="btn btn-primary py-3 px-5"
-                >加入購物車</a
-              >
+              <a id="addToCart" class="btn btn-primary py-3 px-5">加入購物車</a>
             </p>
           </div>
         </div>
@@ -227,102 +236,41 @@
     <script src="../js/main.js"></script>
 
     <!-- Start Slider Script -->
-    <script src="..//js/slick.min.js"></script>
+    <!--     <script src="../js/slick.min.js"></script> -->
     <script>
-      $("#carousel-related-product").slick({
-        infinite: true,
-        arrows: false,
-        slidesToShow: 4,
-        slidesToScroll: 3,
-        dots: true,
-        responsive: [
-          {
-            breakpoint: 1024,
-            settings: {
-              slidesToShow: 3,
-              slidesToScroll: 3,
-            },
-          },
-          {
-            breakpoint: 600,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 3,
-            },
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 3,
-            },
-          },
-        ],
-      });
+      //       $("#carousel-related-product").slick({
+      //         infinite: true,
+      //         arrows: false,
+      //         slidesToShow: 4,
+      //         slidesToScroll: 3,
+      //         dots: true,
+      //         responsive: [
+      //           {
+      //             breakpoint: 1024,
+      //             settings: {
+      //               slidesToShow: 3,
+      //               slidesToScroll: 3,
+      //             },
+      //           },
+      //           {
+      //             breakpoint: 600,
+      //             settings: {
+      //               slidesToShow: 2,
+      //               slidesToScroll: 3,
+      //             },
+      //           },
+      //           {
+      //             breakpoint: 480,
+      //             settings: {
+      //               slidesToShow: 2,
+      //               slidesToScroll: 3,
+      //             },
+      //           },
+      //         ],
+      //       });
     </script>
     <!-- End Slider Script -->
 
-    <script></script>
-    <script>
-      const urlParams = new URLSearchParams(window.location.search);
-      const product_id = urlParams.get("id");
-      console.log("產品編號：" + product_id);
-
-      const productImageElement = document.getElementById("productImage");
-      const imagePopupElement = document.getElementById("imagePopup");
-      const productNameElement = document.getElementById("productName");
-      const productPriceElement = document.getElementById("productPrice");
-      const productSpecElement = document.getElementById("productSpec");
-      const productDescriptElement = document.getElementById("productDescript");
-
-      const url = `product/${product_id}`;
-
-      // 載入商品資訊;
-
-      fetch(url)
-        .then((res) => res.json())
-        .then((product) => {
-          //獲得單個產品資訊
-          const singleProduct = product;
-          console.log(singleProduct);
-
-          productNameElement.innerText = singleProduct.productName;
-          productPriceElement.innerText = "$" + singleProduct.price;
-          productSpecElement.innerText = singleProduct.spec;
-          productDescriptElement.innerText = singleProduct.description;
-          productImageElement.src =
-            "data:image/png;base64," + singleProduct.image;
-          imagePopupElement.href =
-            "data:image/png;base64," + singleProduct.image;
-        });
-
-      var quantitiy = 0;
-      $(".quantity-right-plus").click(function (e) {
-        // Stop acting like a button
-        e.preventDefault();
-        // Get the field name
-        var quantity = parseInt($("#quantity").val());
-
-        // If is not undefined
-
-        $("#quantity").val(quantity + 1);
-
-        // Increment
-      });
-
-      $(".quantity-left-minus").click(function (e) {
-        // Stop acting like a button
-        e.preventDefault();
-        // Get the field name
-        var quantity = parseInt($("#quantity").val());
-
-        // If is not undefined
-
-        // Increment
-        if (quantity > 0) {
-          $("#quantity").val(quantity - 1);
-        }
-      });
-    </script>
+    <script src="../shop/js/product_single.js"></script>
   </body>
 </html>

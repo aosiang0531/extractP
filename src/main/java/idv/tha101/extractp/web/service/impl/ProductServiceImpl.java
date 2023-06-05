@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import idv.tha101.extractp.web.dao.ProductRepository;
@@ -16,22 +18,35 @@ public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	private ProductRepository repository;
-	
-	
-	public List<ProductVO> findByProductNameAndCategoryId(String keyword,int id){
-		return repository.findByProductNameLikeAndCategoryId(keyword,id);
+
+	public List<ProductVO> findByNameAndStatus(String keyword, String status) {
+		return repository.findByProductNameLikeAndProductStatus(keyword, status);
 	}
-	public List<ProductVO> findByProductNameLike(String keyword){
+
+	public List<ProductVO> findByProductNameAndCategoryId(String keyword, int id) {
+		return repository.findByProductNameLikeAndCategoryId(keyword, id);
+	}
+
+	public List<ProductVO> findByProductNameLike(String keyword) {
 		return repository.findByProductNameLike(keyword);
-		}
-	
-	//找出0庫存商品
+	}
+
+	// 找出0庫存商品
+	public List<ProductVO> findByProductStockZero() {
+		return repository.findByProductStockZero();
+	}
+
+	// 找出0售出商品
 	public List<ProductVO> findByProductSoldCountZero() {
 		return repository.findByProductSoldCountZero();
 	}
 
 	public List<ProductVO> findByStatus(String status) {
 		return repository.findByProductStatus(status);
+	}
+	// 分頁版 查詢所有「已上架」商品，並分頁返回結果
+	public Page<ProductVO> findAllOnSale(Pageable pageable) {
+		return repository.findByProductStatus("上架中", pageable);
 	}
 
 	@Override

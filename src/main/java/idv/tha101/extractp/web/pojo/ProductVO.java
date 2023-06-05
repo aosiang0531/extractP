@@ -17,6 +17,8 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
@@ -82,6 +84,16 @@ public class ProductVO {
 	public void setProductStatus(String productStatus) {
 		this.productStatus = productStatus;
 	}
+	
+	@PreUpdate
+    @PrePersist
+    private void updateStatus() {
+        if (product_stock == 0) {
+        	productStatus = "已下架";
+//        }else if(product_stock > 0) {
+//        	productStatus = "上架中";
+        }
+    }
 	
 	
 	

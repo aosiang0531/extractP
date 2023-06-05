@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,14 +29,22 @@ public class ProductController extends BaseController<ProductVO> {
 	
 	
 	//以關鍵字+產品分類查詢商品
-		@GetMapping("/search/{keyword}/{categoryId}")
-		public List<ProductVO> findByKeywordAndCategory(@PathVariable(value = "keyword") String keyword,@PathVariable(value = "categoryId") int categoryId){
-			System.out.println("start searching..");
-			return service.findByProductNameAndCategoryId("%" + keyword + "%",categoryId);
-		}
+	@GetMapping("/search/{keyword}/{categoryId}")
+	public List<ProductVO> findByKeywordAndCategory(@PathVariable(value = "keyword") String keyword,@PathVariable(value = "categoryId") int categoryId){
+		System.out.println("start searching..");
+		return service.findByProductNameAndCategoryId("%" + keyword + "%",categoryId);
+	}
 	
-	//以關鍵字模糊查詢商品
+	
+	//以關鍵字模糊查詢「上架中」商品
 	@GetMapping("/search/{keyword}")
+	public List<ProductVO> findAvailableByKeyword(@PathVariable(value = "keyword") String keyword){
+		System.out.println("start searching..");
+		return service.findByNameAndStatus("%" + keyword + "%", "上架中");
+	}
+	
+	//以關鍵字模糊查詢所有商品
+	@GetMapping("/searchAll/{keyword}")
 	public List<ProductVO> findByKeyword(@PathVariable(value = "keyword") String keyword){
 		System.out.println("start searching..");
 		return service.findByProductNameLike("%" + keyword + "%");
@@ -47,6 +57,15 @@ public class ProductController extends BaseController<ProductVO> {
 
 		return service.findByStatus("上架中");
 	}
+	
+	// 查詢所有「已上架」商品(分頁)
+	@GetMapping("/onSalePaged")
+	public Page<ProductVO> findAllOnSale(Pageable pageable) {
+        return service.findAllOnSale(pageable);
+    }
+	
+	
+	
 	
 	@GetMapping("/onSale/sort/{method}")
 	public List<ProductVO> findAllByStatusSort(@PathVariable(value = "method") String method) {
@@ -88,7 +107,14 @@ public class ProductController extends BaseController<ProductVO> {
 	// 查詢已售完商品
 	@GetMapping("/soldOut")
 	public List<ProductVO> findAllBySoldOut() {
-//		System.out.println("載入所有售完商品");
+		System.out.println("載入所有售完商品");
+		return service.findByProductStockZero();
+	}
+	
+	// 查詢已售完商品
+	@GetMapping("/soldZero")
+	public List<ProductVO> findAllBySoldZero() {
+		System.out.println("載入所有售完商品");
 		return service.findByProductSoldCountZero();
 	}
 

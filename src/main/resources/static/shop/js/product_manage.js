@@ -29,6 +29,7 @@ function changeStatus(productId, status) {
 			method: "POST",
 		})
 			.then((response) => {
+				console.log(response);
 				if (response.ok) {
 					console.log("成功");
 					//成功後刷新頁面
@@ -73,7 +74,9 @@ function changeStatus(productId, status) {
 				var imgUrl = "data:image/png;base64," + product.image;
 				//讀出商品上架狀態
 				var status = "";
-				if (product.productStatus == "上架中") {
+				if (product.stock == 0) {
+					status = "soldOut";
+				} else if (product.productStatus == "上架中") {
 					status = "available";
 				} else if (product.productStatus == "已下架") {
 					status = "unAvailable";
@@ -108,10 +111,13 @@ function changeStatus(productId, status) {
                 </tr>                
                 `;
 
-				if (status === "available") {
+				if (status === "soldOut" || status === "unAvailable soldOut") {
+					//添加上架中商品到專屬頁籤
+					$("#soldOut").append(productHtml);
+				} else if (status === "available") {
 					//添加上架中商品到專屬頁籤
 					$("#availableProductList").append(productHtml);
-				} else if (status === "unAvailable") {
+				} else if (status === "unAvailable" || status === "unAvailable soldOut") {
 					//添加已下架商品到專屬頁籤
 					$("#unAvailableProductList").append(productHtml);
 				}

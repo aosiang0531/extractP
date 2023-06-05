@@ -70,7 +70,6 @@
         console.log("分類為" + category_id.value);
         if (product_name.value.length < 3 || product_name.value.length > 50) {
             errorMessages.push('產品名長度須介於3~50字元');
-
         }
 
         // 檢查商品規格是否為空
@@ -86,7 +85,7 @@
 
         // 檢查商品庫存是否有效
         const productStock = parseInt(product_stock.value);
-        if (isNaN(productStock) || productStock <= 0 || productStock >= 100) {
+        if (isNaN(productStock) || productStock < 0 || productStock >= 100) {
             errorMessages.push('請輸入有效的商品庫存數量(0~100)');
         }
 

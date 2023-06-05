@@ -94,7 +94,7 @@
               </div>
             </li>
             <li class="nav-item cart">
-              <a href="../shop/cart.html" class="nav-link"
+              <a href="../cart.html" class="nav-link"
                 ><span class="icon icon-shopping_cart"></span
                 ><span
                   class="bag d-flex justify-content-center align-items-center"
@@ -103,7 +103,7 @@
               >
             </li>
             <li class="nav-item cart">
-              <a href="../shop/cart.html" class="nav-link"
+              <a href="../cart.html" class="nav-link"
                 ><span class="icon icon-user"></span
               ></a>
             </li>
@@ -138,6 +138,7 @@
               </li>
               <li><a href="#" data-target="tab2" class="tab">上架中</a></li>
               <li><a href="#" data-target="tab3" class="tab">已下架</a></li>
+              <li><a href="#" data-target="tab4" class="tab">已售完</a></li>
             </ul>
           </div>
 
@@ -207,6 +208,30 @@
                     </tr>
                   </thead>
                   <tbody id="unAvailableProductList">
+                    <!-- 商品資料列 -->
+
+                    <!-- 其他商品資料列+= -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+                        <!-- 頁籤四 -->
+            <div class="tab tab4">
+              <div class="table-responsive mt-4">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>商品圖片</th>
+                      <th>商品名稱</th>
+                      <th>商品編號</th>
+                      <th>規格</th>
+                      <th>價格</th>
+                      <th>庫存</th>
+                      <th>已售出</th>
+                      <th>操作</th>
+                    </tr>
+                  </thead>
+                  <tbody id="soldOut">
                     <!-- 商品資料列 -->
 
                     <!-- 其他商品資料列+= -->
@@ -291,6 +316,9 @@
           } else if (target === "tab3") {
             // 已下架商品
             $("#allProductList > tr[data-status='unAvailable']").show();
+          } else if (target === "tab4") {
+            // 已售完商品
+            $("#allProductList > tr[data-status='soldOut']").show();
           }
         }
       });
