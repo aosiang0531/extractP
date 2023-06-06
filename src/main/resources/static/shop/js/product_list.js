@@ -1,18 +1,16 @@
 var allProducts = [];
-
+var itemsPerPage = 8; // 每頁顯示的商品數量
+var currentPage = 1; // 當前頁碼
 
 //商品加入購物車
 function addToCart(productId, price) {
 	var memberId = 1;
-
 	var newDetail = JSON.stringify({
 		"product_id": productId,
 		//加入購物車時應該還不需更新價格，結帳時才要，「專題先加」
 		"price": price,
 		"quantity": 1, //從商品列表加入，預設數量為1
-		//"order_id": cartId //orderId由detailController的方法由會員id自動取得
 	});
-	// console.log(newDetail);
 
 	fetch(`/orderDetail/${memberId}/unplaced`, {
 		method: "PUT", headers: { 'Content-Type': 'application/json' },
@@ -20,25 +18,10 @@ function addToCart(productId, price) {
 	})
 		.then((resp) => resp.json())
 		.then((body) => {
-			console.log(body);
-			 alert("成功加入購物車");
-
+//			console.log(body);
+			alert("成功加入購物車");
 		});
 }
-
-//取得會員購物車
-//function loadCart(memberId) {
-//	//假會員編號：1，記得改！！
-//	var memberId = 3;
-//	const url = `/orderInfo/${memberId}/unplaced`;
-//	fetch(url, { method: 'POST' })
-//		.then((res) => res.json())
-//		.then((cart) => {
-//			console.log("購物車編號：" + cart.id);
-//			// 取得購物車編號
-//			sessionStorage.setItem('cartId', cart.id);
-//		});
-//}
 
 
 //以關鍵字搜尋商品
@@ -67,15 +50,32 @@ function searchBykeyword(keyword) {
 
 // 獲取已上架商品列表並渲染到頁面上
 function loadAllProducts() {
-	// 從controller叫出所有商品的json
-	const url = "/shop/product/onSale";
+	const url = "/shop/product/onSalePaged";
 	fetch(url)
 		.then((res) => res.json())
 		.then((productList) => {
-			allProducts = productList;
-			//            console.log(productList);
-			renderProductList(allProducts);
+			allProducts = productList.content;
+//			console.log(allProducts);
+			renderProductList(getCurrentPageProducts());
+			renderPagination();
 		});
+
+	$("#breadcrumb").empty();
+	// 生成麵包屑的 HTML 代碼
+	var breadcrumbHtml = `
+		    <a href="product_list.html">咖啡商城</a> /
+		    <span>所有商品</span>
+		    `;
+
+	// 插入麵包屑的 HTML 到麵包屑區域
+	$("#breadcrumb").html(breadcrumbHtml);
+}
+
+// 根據當前頁碼返回對應的商品陣列
+function getCurrentPageProducts() {
+	const startIndex = (currentPage - 1) * itemsPerPage;
+	const endIndex = startIndex + itemsPerPage;
+	return allProducts.slice(startIndex, endIndex);
 }
 
 // 根據分類編號過濾商品列表並渲染到頁面上
@@ -157,37 +157,62 @@ function renderProductList(products) {
 	}
 }
 
+// 生成分頁按鈕
+function renderPagination() {
+	const totalPages = Math.ceil(allProducts.length / itemsPerPage);
+	$("#pagination-ul").empty(); // 清空分頁按鈕區域
+
+	for (let i = 1; i <= totalPages; i++) {
+		//		const pageButton = `<button class="page-btn">${i}</button>`;
+		const pageButton = `<li class="page-item">
+				                <a
+				                  class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark"
+				                  href="#"
+				                  >${i}</a
+				                >
+				              </li>`;
+		$("#pagination-ul").append(pageButton);
+	}
+
+	// 顯示當前頁碼的按鈕為 disabled
+	$(".page-item").eq(currentPage - 1).addClass("disabled");
+
+	// 設置分頁按鈕點擊事件
+	$(".page-link").click(function () {
+		const newPage = parseInt($(this).text());
+		currentPage = newPage;
+		renderProductList(getCurrentPageProducts());
+		renderPagination();
+	});
+}
+
+//點擊分頁按鈕後，捲動到最上方
+$(document).on('click', '.page-item', function () {
+	//    console.log("HEY");
+	$("html, body").animate({ scrollTop: 0 }, "fast");
+});
+
+
+function searchItem() {
+	var keyword = $("#searchInput").val().trim();
+	console.log(keyword);
+	$("#searchInput").val("");
+	if (keyword != "") {
+		searchBykeyword(keyword);
+	} else {
+		alert("請輸入關鍵字");
+	}
+}
+
+//網頁載入時執行
 $(document).ready(function () {
 	// 網頁載入時加載所有商品列表
 	loadAllProducts();
 
-	// 載入會員購物車ID
-//	loadCart();
-
-	// 清空麵包屑區域的內容
-	$("#breadcrumb").empty();
-
-	// 生成麵包屑的 HTML 代碼
-	var breadcrumbHtml = `
-        <a href="product_list.html">咖啡商城</a> /
-        <span>所有商品</span>
-        `;
-
-	// 插入麵包屑的 HTML 到麵包屑區域
-	$("#breadcrumb").html(breadcrumbHtml);
-
 	// 重新載入所有商品列表
 	$("#allProductsBtn").click(function () {
 		loadAllProducts();
-		$("#breadcrumb").empty();
-		// 生成麵包屑的 HTML 代碼
-		var breadcrumbHtml = `
-		    <a href="product_list.html">咖啡商城</a> /
-		    <span>所有商品</span>
-		    `;
 
-		// 插入麵包屑的 HTML 到麵包屑區域
-		$("#breadcrumb").html(breadcrumbHtml);
 	});
 
 	// 點擊「分類1」按鈕時過濾顯示分類1的商品
@@ -207,24 +232,16 @@ $(document).ready(function () {
 
 	// 點擊「搜尋」按鈕時顯示輸入的關鍵字商品
 	$("#searchIcon").click(function () {
-		var keyword = $("#searchInput").val().trim();
-		console.log(keyword);
-		$("#searchInput").val("");
-		if (keyword != "") {
-			searchBykeyword(keyword);
-		} else {
-			alert("請輸入關鍵字");
-		}
-
+		searchItem();
 	});
 
 	//搜尋框按enter等同按下搜尋icon
 	$("#searchInput").keydown(function (event) {
-		if (event.keyCode === 13) { // 13 代表 Enter 鍵的鍵碼
-			$("#searchIcon").click(); // 點擊 id 為 searchIcon 的元素
+		// 13代表Enter鍵的鍵碼
+		if (event.keyCode === 13) {
+			$("#searchIcon").click();
 		}
 	});
-
 
 	//排序
 	$("#sortOptions").change(function () {
@@ -247,8 +264,5 @@ $(document).ready(function () {
 		}
 		renderProductList(allProducts);
 	});
-
-
-	//分頁
 
 });

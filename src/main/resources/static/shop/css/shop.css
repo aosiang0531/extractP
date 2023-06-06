@@ -23,6 +23,12 @@
   a.nav-link {
     color: rgb(122, 55, 55);
   }
+  
+.page-item.disabled .page-link {
+	background-color:#d2bfa4;
+	
+
+	}
 
 
 /* =======Product Manage======= */

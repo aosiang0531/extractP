@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import idv.tha101.extractp.web.dao.ProductRepository;
 import idv.tha101.extractp.web.pojo.ProductVO;
@@ -40,11 +41,13 @@ public class ProductServiceImpl implements ProductService {
 	public List<ProductVO> findByProductSoldCountZero() {
 		return repository.findByProductSoldCountZero();
 	}
-
+	
+	// 查詢所有「已上架」商品
 	public List<ProductVO> findByStatus(String status) {
 		return repository.findByProductStatus(status);
 	}
-	// 分頁版 查詢所有「已上架」商品，並分頁返回結果
+	
+	// 查詢所有「已上架」商品分頁版
 	public Page<ProductVO> findAllOnSale(Pageable pageable) {
 		return repository.findByProductStatus("上架中", pageable);
 	}
@@ -58,7 +61,8 @@ public class ProductServiceImpl implements ProductService {
 	public ProductVO findById(Integer id) {
 		return repository.findById(id).orElseThrow();
 	}
-
+	
+	@Transactional
 	@Override
 	public ProductVO saveOrUpdate(ProductVO vo) {
 		if (vo.getId() != null) {

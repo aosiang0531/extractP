@@ -13,9 +13,10 @@ public interface ProductService extends BaseService<ProductVO>{
 	List<ProductVO> findByProductNameAndCategoryId(String keyword,int id);
 	List<ProductVO> findByProductNameLike(String keyword);
 	List<ProductVO> findByProductStockZero();
-	List<ProductVO> findByProductSoldCountZero();
+	
+	// 查詢所有「已上架」商品
 	List<ProductVO> findByStatus(String status);
-	//分頁版
+	// 查詢所有「已上架」商品分頁版
 	Page<ProductVO> findAllOnSale(Pageable pageable);
 	
 	

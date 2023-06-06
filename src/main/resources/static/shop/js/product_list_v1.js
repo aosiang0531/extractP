@@ -21,7 +21,7 @@ function addToCart(productId, price) {
 		.then((resp) => resp.json())
 		.then((body) => {
 			console.log(body);
-			 alert("成功加入購物車");
+			alert("成功加入購物車");
 
 		});
 }
@@ -162,7 +162,7 @@ $(document).ready(function () {
 	loadAllProducts();
 
 	// 載入會員購物車ID
-//	loadCart();
+	//	loadCart();
 
 	// 清空麵包屑區域的內容
 	$("#breadcrumb").empty();

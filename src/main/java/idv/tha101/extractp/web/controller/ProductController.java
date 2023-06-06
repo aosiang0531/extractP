@@ -35,7 +35,6 @@ public class ProductController extends BaseController<ProductVO> {
 		return service.findByProductNameAndCategoryId("%" + keyword + "%",categoryId);
 	}
 	
-	
 	//以關鍵字模糊查詢「上架中」商品
 	@GetMapping("/search/{keyword}")
 	public List<ProductVO> findAvailableByKeyword(@PathVariable(value = "keyword") String keyword){
@@ -54,18 +53,14 @@ public class ProductController extends BaseController<ProductVO> {
 	@GetMapping("/onSale")
 	public List<ProductVO> findAllByStatus() {
 		System.out.println("載入所有已上架商品");
-
 		return service.findByStatus("上架中");
 	}
 	
-	// 查詢所有「已上架」商品(分頁)
+	// 查詢所有「已上架」商品(分頁版本)
 	@GetMapping("/onSalePaged")
 	public Page<ProductVO> findAllOnSale(Pageable pageable) {
         return service.findAllOnSale(pageable);
     }
-	
-	
-	
 	
 	@GetMapping("/onSale/sort/{method}")
 	public List<ProductVO> findAllByStatusSort(@PathVariable(value = "method") String method) {
@@ -111,13 +106,6 @@ public class ProductController extends BaseController<ProductVO> {
 		return service.findByProductStockZero();
 	}
 	
-	// 查詢已售完商品
-	@GetMapping("/soldZero")
-	public List<ProductVO> findAllBySoldZero() {
-		System.out.println("載入所有售完商品");
-		return service.findByProductSoldCountZero();
-	}
-
 	@Override
 	@GetMapping
 	public List<ProductVO> findAll() {
@@ -152,19 +140,11 @@ public class ProductController extends BaseController<ProductVO> {
 		service.deleteById(id);
 		System.out.println("已刪除" + id + "號產品");
 	}
-
-//  @GetMapping("/product-single.html")
-//	public ProductVO singleProduct( @RequestParam("id") int id, Model model) {
-//		 ProductVO product = service.findById(id);
-//		 model.addAttribute("product", product);
-//		 
-//		 return product;
-//	}
-
-//	@Override
+	
 //	@GetMapping("/SingleProduct")	//http://localhost:8080/product/SingleProduct?id=
 //	public ProductVO findById(@RequestParam("id") int id) {
 //		return service.findById(id);
 //	}
+
 
 };
