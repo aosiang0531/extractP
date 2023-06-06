@@ -141,8 +141,11 @@ fetch(articleUrl)
             			</div>
 			`;
 		$("#art-header").append(articleHeader);
-
-		let artImg = `
+	
+		if(img == "data:image/png; base64,null"){
+			$("#art-img").html("<br>");
+		} else {
+			let artImg = `
 				  <img class="img-fluid rounded" src="${img}" 
 				  style="
                   border-radius: 3% !important;
@@ -150,7 +153,10 @@ fetch(articleUrl)
                   aspect-ratio: 16/9 !important;
                 " />			
 			`;
-		$("#art-img").append(artImg);
+			$("#art-img").append(artImg);
+		}
+
+
 		
 		let articleContent = `
 				<p class="fs-5 mb-4" style="white-space: pre-line;">
@@ -340,10 +346,9 @@ $(document).on("click", "div.overlay > article", function(e) {
 
 // 點讚亮燈
 $(".thumbs-up").click(function() {
-	$(this).toggleClass('cs');
 	var data = {
         "article_id": artId,
-		"member_id": 1
+		"member_id": 2
 		}
 	var jsonData = JSON.stringify(data);
 	const articleThumbPut = 'article/thumbUp';
@@ -354,10 +359,8 @@ $(".thumbs-up").click(function() {
 		})
 		.then(resp => resp.json())
 		.then(thumbNumberData => {
-//			console.log(thumbNumberData);
 			if(thumbNumberData.result == 1){
 				$("#thumbs").replaceWith(thumbNum + 1);
-//				$(this).toggleClass('cs');
 			}else{
 				alert("已按讚");
 			}
@@ -366,10 +369,9 @@ $(".thumbs-up").click(function() {
 
 //收藏功能 點愛心亮燈  favNum
 $(".like").click(function() {
-//	$(this).toggleClass('cs');
 	var data = {
         "article_id": artId,
-		"member_id": 1
+		"member_id": 2
 		}
 	var jsonData = JSON.stringify(data);
 	const memberFavPut = 'article/memberFav';
@@ -382,7 +384,6 @@ $(".like").click(function() {
 		.then(memberFavData => {
 			if(memberFavData.result == 1){
 				$("#favorite").replaceWith(favNum + 1);
-				$(this).toggleClass('cs');
 			}else{
 				alert("已收藏");
 			}

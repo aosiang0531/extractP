@@ -10,6 +10,8 @@ public interface ArticleDTO {
 	String getarticle_title();
 	String getarticle_content();
 	byte[] getarticle_image();
+	Boolean getarticle_is_hidden();
+	Boolean getarticle_is_top();
 	Timestamp getarticle_created_date();
 	Integer getarticle_thunmb_number();
 	Integer getarticle_comment_number();

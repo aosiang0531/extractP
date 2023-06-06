@@ -3,6 +3,7 @@ package idv.tha101.extractp.web.controller;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,7 +29,6 @@ public class ArticleController extends BaseController<ArticleVO> {
 	@Autowired
 	private ArticleService articleService;
 //	private ArticleTagService articleTagService;
-
 
 	@GetMapping
 	public List<ArticleVO> findAll() {
@@ -59,27 +59,51 @@ public class ArticleController extends BaseController<ArticleVO> {
 
 	@GetMapping("pop")
 	public Collection<ArticleDTO> findPopArticle() {
-		return articleService.findPopArticle();
+		Collection<ArticleDTO> articleDTOs = articleService.findPopArticle();
+		Collection<ArticleDTO> collection = articleDTOs.stream()
+														.filter(a -> a.getarticle_is_hidden() != true)
+														.toList();
+		return collection;
 	};
 
 	@GetMapping("latest")
 	public Collection<ArticleDTO> findLatestArticle() {
-		return articleService.findLatestArticle();
+		Collection<ArticleDTO> articleDTOs = articleService.findLatestArticle();
+		Collection<ArticleDTO> collection = articleDTOs.stream()
+														.filter(a -> a.getarticle_is_hidden() != true)
+														.toList();
+		
+		return collection;
 	};
 
 	@GetMapping("/temPop/{article_template_id}")
 	public Collection<ArticleDTO> findTemPop(@PathVariable(value = "article_template_id") int id) {
-		return articleService.findTemPop(id);
+		Collection<ArticleDTO> articleDTOs = articleService.findTemPop(id);
+		Collection<ArticleDTO> collection = articleDTOs.stream()
+														.filter(a -> a.getarticle_is_hidden() != true)
+														.toList();
+		
+		return collection;
 	};
 
 	@GetMapping("/temLatest/{article_template_id}")
 	public Collection<ArticleDTO> findTemLatest(@PathVariable(value = "article_template_id") int id) {
-		return articleService.findTemLatest(id);
+		Collection<ArticleDTO> articleDTOs = articleService.findTemLatest(id);
+		Collection<ArticleDTO> collection = articleDTOs.stream()
+														.filter(a -> a.getarticle_is_hidden() != true)
+														.toList();
+		
+		return collection;
 	};
 
+	// 以會員ID找到文章
 	@GetMapping("/memberId/{memberId}")
 	public List<ArticleVO> findByMemberId(@PathVariable(value = "memberId") int id) {
-		return articleService.findByMemberId(id);
+		List<ArticleVO> articleVOs = articleService.findByMemberId(id);
+		List<ArticleVO> list = articleVOs.stream()
+										.filter(a -> a.getIs_hidden() != true)
+										.collect(Collectors.toList());
+		return list;
 	}
 
 	@GetMapping("/groupPop/{article_group_id}")
@@ -92,31 +116,35 @@ public class ArticleController extends BaseController<ArticleVO> {
 		return articleService.findGroupLatest(id);
 	}
 
+	// 顯示特定完整文章
 	@GetMapping("/detailsById/{article_id}")
 	public Collection<ArticleDTO2> findArticleDetailsById(@PathVariable(value = "article_id") int id) {
 		return articleService.findArticleDetailsById(id);
 	}
 
-	@GetMapping("/searchTitle")
+	// 標題模糊查詢
+	@GetMapping("searchTitle")
 	public List<ArticleVO> searchArticleTitle(@RequestParam("keyword") String keyword) {
-		return articleService.searchByArticleTitle(keyword);
+		List<ArticleVO> articleVOs = articleService.searchByArticleTitle(keyword);
+		List<ArticleVO> list = articleVOs.stream()
+										.filter(a -> a.getIs_hidden() != true)
+										.collect(Collectors.toList());
+		return list;
 	}
 
-	@GetMapping("/searchContent")
+	@GetMapping("searchContent")
 	public List<ArticleVO> searchByArticleContent(@RequestParam("keyword") String keyword) {
 		return articleService.searchByArticleContent(keyword);
 	}
 
-	@PostMapping("/thumbUp")
+	@PostMapping("thumbUp")
 	public Map<String, Integer> saveThumb(@RequestBody Map<String, Integer> map) {
 		return articleService.thumbUp(map.get("article_id"), map.get("member_id"));
 	}
-	
-	@PostMapping("/memberFav")
+
+	@PostMapping("memberFav")
 	public Map<String, Integer> saveMemberFav(@RequestBody Map<String, Integer> map) {
 		return articleService.memberFav(map.get("article_id"), map.get("member_id"));
 	}
-	
-	
 
 }

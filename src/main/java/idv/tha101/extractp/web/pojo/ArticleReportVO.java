@@ -51,7 +51,17 @@ public class ArticleReportVO {
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Timestamp article_report_created_date;
 	
-	private String article_report_status;
+	@Column(name = "article_report_status")
+	private String articleReportStatus;
+
+	public String getArticleReportStatus() {
+		return articleReportStatus;
+	}
+
+	public ArticleReportVO setArticleReportStatus(String articleReportStatus) {
+		 this.articleReportStatus = articleReportStatus;
+		 return this;
+	}
 
 	@LastModifiedDate
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")

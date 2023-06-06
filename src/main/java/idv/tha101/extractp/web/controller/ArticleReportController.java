@@ -68,7 +68,7 @@ public class ArticleReportController extends BaseController<ArticleReportVO> {
 		int id = Integer.parseInt(map.get("article_report_id"));
 		boolean isApproved = Boolean.parseBoolean(map.get("is_approved"));
 		if (isApproved) { // 檢舉通過
-			articleReportService.saveOrUpdate(new ArticleReportVO().setId(id).setStatus("1"));
+			articleReportService.saveOrUpdate(new ArticleReportVO().setId(id).setArticleReportStatus("1"));
 			ArticleReportVO aReportVO = articleReportService.findById(id);
 			ArticleVO article = articleService.findById(aReportVO.getArticle_id());
 			articleService.saveOrUpdate(article.setIs_hidden(true));
@@ -76,10 +76,17 @@ public class ArticleReportController extends BaseController<ArticleReportVO> {
 				result.put("result", 1);
 			}
 		} else {// 檢舉未通過
-			articleReportService.saveOrUpdate(new ArticleReportVO().setId(id).setStatus("2"));
+			articleReportService.saveOrUpdate(new ArticleReportVO().setId(id).setArticleReportStatus("2"));
 			result.put("result", 1);
 		}
 		return result;
 	}
+	
+	// 以文章狀態查詢
+	@GetMapping("reportStatus/{reportStatus}")
+	public List<ArticleReportVO> findByStatus(@PathVariable(value = "reportStatus") String reportStatus){
+		return articleReportService.findByStatus(reportStatus);
+	}
+	
 
 }

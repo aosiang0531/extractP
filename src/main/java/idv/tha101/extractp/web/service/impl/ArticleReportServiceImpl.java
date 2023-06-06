@@ -64,4 +64,9 @@ public class ArticleReportServiceImpl implements ArticleReportService {
 
 	}
 
+	@Override
+	public List<ArticleReportVO> findByStatus(String reportStatus) {
+		return articleReportRepository.findByArticleReportStatus(reportStatus);
+	}
+
 }

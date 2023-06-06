@@ -70,6 +70,16 @@ window.addEventListener("popstate", function() {
 	tab_active();
 });
 
+$(window).on("load", function(){
+// 搜尋文章
+ $("#button-search").on("click", function(){
+	 let search_text = ($("input.form-control").val()).trim();
+	 if(search_text == ""){
+		 alert("請輸入關鍵字");
+		 return;
+	 }
+	 window.location.href = 'SearchResult.html?keyword=' + search_text;
+ });
 
 // 整數1轉換成英文字串"One"
 function numberToWord(number) {
@@ -94,7 +104,6 @@ fetch(url)
 		for (var i = 0; i < artTemList.length; i++) {
 			var nameValue = artTemList[i].name;
 			var idValue = artTemList[i].id;
-//			console.log(idValue);
 			var word = numberToWord(i + 1);
 			var headingId = `flush-heading` + word;
 			var collapseId = `flush-collapse` + word;
@@ -124,102 +133,8 @@ fetch(url)
              </div>`;
 			$("#accordionFlushExample").append(tem_html);
 		}
-//		$("#btn-tem").on("click", function(){
-//			console.log("A");
-//		let temp = `
-//            <!-- 文章顯示 -->
-//            <div class="article-appear">
-//              <div class="tab_container">
-//                <!-- 頁籤 -->
-//                <div class="tab_list_block">
-//                  <ul class="tab_list">
-//                    <li>
-//                      <a href="#" data-target="tab1" class="tab -on"
-//                        >熱門文章</a
-//                      >
-//                    </li>
-//                    <li>
-//                      <a href="#" data-target="tab2" class="tab">最新文章</a>
-//                    </li>
-//                    <li>
-//                      <a href="#" data-target="tab3" class="tab">板塊規則</a>
-//                    </li>
-//                  </ul>
-//                </div>
-//                <div class="tab_contents">
-//                  <!-- 熱門文章 -->
-//                  <div class="tab tab1 -on">
-//                    <div
-//                      class="inner-main-body p-2 p-sm-3 collapse forum-content show"
-//                    >
-//                      <!-- 分頁 -->
-//                      <ul
-//                        class="pagination pagination-sm pagination-circle justify-content-center mb-0"
-//                      >
-//                        <li class="page-item disabled">
-//                          <span class="page-link has-icon"
-//                            ><i class="fa-solid fa-chevron-left fa-xl"></i
-//                          ></span>
-//                        </li>
-//                        <li class="page-item">
-//                          <a class="page-link" href="javascript:void(0)">1</a>
-//                        </li>
-//                        <li class="page-item active">
-//                          <span class="page-link">2</span>
-//                        </li>
-//                        <li class="page-item">
-//                          <a class="page-link" href="javascript:void(0)">3</a>
-//                        </li>
-//                        <li class="page-item">
-//                          <a
-//                            class="page-link has-icon"
-//                            href="javascript:void(0)"
-//                            ><i class="fa-solid fa-chevron-right fa-xl"></i
-//                          ></a>
-//                        </li>
-//                      </ul>
-//                    </div>
-//                  </div>
-//                  <!-- 最新文章 -->
-//                  <div class="tab tab2">
-//                    <ul
-//                      class="pagination pagination-sm pagination-circle justify-content-center mb-0"
-//                    >
-//                      <li class="page-item disabled">
-//                        <span class="page-link has-icon"
-//                          ><i class="fa-solid fa-chevron-left fa-xl"></i
-//                        ></span>
-//                      </li>
-//                      <li class="page-item">
-//                        <a class="page-link" href="javascript:void(0)">1</a>
-//                      </li>
-//                      <li class="page-item active">
-//                        <span class="page-link">2</span>
-//                      </li>
-//                      <li class="page-item">
-//                        <a class="page-link" href="javascript:void(0)">3</a>
-//                      </li>
-//                      <li class="page-item">
-//                        <a class="page-link has-icon" href="javascript:void(0)"
-//                          ><i class="fa-solid fa-chevron-right fa-xl"></i
-//                        ></a>
-//                      </li>
-//                    </ul>
-//                  </div>
-//                  <!-- 板塊規則 -->
-//                  <div class="tab tab3">
-//                  </div>
-//                </div>
-//              </div>
-//            </div>`;
-//            $(".col-sm-10").empty();
-//            $(".col-sm-10").append(temp);
-//		})
 	})
 	
-
-	
-
 // 文章分類
 const btnGrp = document.querySelector('#btn-grp');
 const url2 = 'article_group';
@@ -228,9 +143,9 @@ fetch(url2)
 	.then(artGrpList => {
 //		 console.log(artGrpList);
 		for (var i = 0; i < artGrpList.length; i++) {
+			var templateId = artGrpList[i].article_template_id
 			var nameValue2 = artGrpList[i].name;
 			var idValue = artGrpList[i].article_template_id;
-//			 console.log(idValue);
 			let grp_html = `
 				<button
 					id = "btn-grp"
@@ -253,3 +168,4 @@ fetch(url2)
 	})
 
 	
+});

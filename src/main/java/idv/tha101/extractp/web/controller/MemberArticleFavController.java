@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import idv.tha101.extractp.base.controller.BaseController;
 import idv.tha101.extractp.web.pojo.MemberArticleFavVO;
+import idv.tha101.extractp.web.pojo.MemberArticleFavVO.FavPk;
 import idv.tha101.extractp.web.service.MemberArticleFavService;
 
 @RestController
@@ -33,7 +34,6 @@ public class MemberArticleFavController extends BaseController<MemberArticleFavV
 	@Override
 	@GetMapping("/{id}")
 	public MemberArticleFavVO findById(@PathVariable(value = "id") int id) {
-		// TODO Auto-generated method stub
 		return memberArticleFavService.findById(id);
 	}
 
@@ -56,6 +56,11 @@ public class MemberArticleFavController extends BaseController<MemberArticleFavV
 	public void deleteById(int id) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@DeleteMapping
+	public void deleteFav(@RequestBody FavPk pk) {
+		memberArticleFavService.deleteFav(pk);
 	}
 
 }

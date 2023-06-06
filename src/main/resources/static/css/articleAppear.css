@@ -94,7 +94,7 @@ div.mb-4{
   }
 
   /* 文章顯示區 */
-  body{margin-top:20px;}
+/*   body{margin-top:20px;} */
 
 .comment-wrapper .panel-body {
     max-height:650px;
@@ -179,19 +179,14 @@ section,
 
 /* 收藏 */
 .like {
-  color: white;
+  color: brown;
   cursor: pointer;
 }
 
 /* 按讚 */
 .fa-thumbs-up {
-  color: white;
-  cursor: pointer;
-}
-
-/* icon顏色切換 */
-.cs {
   color: brown;
+  cursor: pointer;
 }
 
 /* 聊聊 */

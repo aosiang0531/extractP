@@ -61,19 +61,31 @@ public class ArticleCommentReportController extends BaseController<ArticleCommen
 		articleCommentReportService.deleteById(id);
 	}
 
-	@PutMapping("review/{id}")
+	@PutMapping("review")
 	@Transactional
-	public Map<String, Integer> updateReportStatus(@PathVariable(value = "id") int id) {
-		System.out.println(id);
-		articleCommentReportService.saveOrUpdate(new ArticleCommentReportVO().setId(id).setStatus("1"));
-		ArticleCommentReportVO aCommentReportVO = articleCommentReportService.findById(id);
-		ArticleCommentVO aCommentVO = articleCommentService.findById(aCommentReportVO.getArticle_comment_id());
-		articleCommentService.saveOrUpdate(aCommentVO.setIs_hidden(true));
-		Map<String, Integer> map = new HashMap<>();
-		if (aCommentVO.getIs_hidden()) {
-			map.put("result", 1);
+	public Map<String, Integer> updateReportStatus(@RequestBody Map<String, String> map) {
+		Map<String, Integer> result = new HashMap<>();
+		int id = Integer.parseInt(map.get("article_comment_report_id"));
+		boolean isApproved = Boolean.parseBoolean(map.get("is_approved"));
+		if (isApproved) { // 檢舉通過
+			articleCommentReportService.saveOrUpdate(new ArticleCommentReportVO().setId(id).setArticleCommentReportStatus("1"));
+			ArticleCommentReportVO aCommentReportVO = articleCommentReportService.findById(id);
+			ArticleCommentVO aCommentVO = articleCommentService.findById(aCommentReportVO.getArticle_comment_id());
+			articleCommentService.saveOrUpdate(aCommentVO.setIs_hidden(true));
+			if (aCommentVO.getIs_hidden()) {
+				result.put("result", 1);
+			}
+		} else {// 檢舉未通過
+			articleCommentReportService.saveOrUpdate(new ArticleCommentReportVO().setId(id).setArticleCommentReportStatus("2"));
+			result.put("result", 1);
 		}
-		return map;
+		return result;
+	}
+	
+	// 以狀態查詢留言檢舉
+	@GetMapping("reportStatus/{reportStatus}")
+	List<ArticleCommentReportVO> findByStatus(@PathVariable(value = "reportStatus")String reportStatus){
+		return articleCommentReportService.findByArticleCommentReportStatus(reportStatus);
 	}
 
 }

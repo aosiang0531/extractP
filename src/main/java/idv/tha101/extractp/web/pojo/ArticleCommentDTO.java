@@ -8,4 +8,5 @@ public interface ArticleCommentDTO {
 	String getmember_name();
 	String getarticle_comment_content();
 	Timestamp getarticle_comment_created_date();
+	Boolean getarticle_comment_is_hidden();
 }

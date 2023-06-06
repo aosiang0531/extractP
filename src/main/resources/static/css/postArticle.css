@@ -4,7 +4,7 @@
 /* 搜尋 */
 div.card-body{
   background-color: transparent;
-  padding: 0px 0px 0px 3px;
+  padding: 0px 0px 0px 3px !important;
 }
 div.input-group{
   padding: 0px !important;
@@ -14,41 +14,41 @@ div.input-group > input{
 
 }
 div.input-group > button{
-  width: 40px; 
+  width: 40px !important; 
   background-color: transparent !important;
-  margin-right: 2px;
+  margin-right: 2px !important;
   border: none!important;
 }
 div.input-group > button > i{
-  color: #a4633a
+  color: #a4633a !important
 }
 
 /* 發表文章 */
 button.post-article{
-  background-color: rgba(229, 111, 38, 0.7);
-  color: azure;
-  height: 50px;
+  background-color: rgba(229, 111, 38, 0.7) !important;
+  color: azure !important;
+  height: 50px !important;
   padding: 0px !important;
-  font-size: 30px;
-  font-weight: bold;
-  text-align: center;
+  font-size: 30px !important;
+  font-weight: bold !important;
+  text-align: center !important;
   line-height: 50px !important;
-  border-radius: 10px;
-  width: 100%;
-  margin-bottom: 10px;
-  border: none;
+  border-radius: 10px !important;
+  width: 100% !important;
+  margin-bottom: 10px !important;
+  border: none !important;
 }
 
 /* 文章分類 */
 div.mb-4{
-  border:none;
-  background-color: transparent;
+  border:none !important;
+  background-color: transparent !important;
 }
 
   div.card-header{
-    background-color: rgba(106, 70, 47, 0.71);
-    color: azure;
-    height: 50px;
+    background-color: rgba(106, 70, 47, 0.71) !important;
+    color: azure !important;
+    height: 50px !important;
     padding: 0px !important;
     font-size: 30px;
     font-weight: bold;
@@ -100,13 +100,14 @@ div.mb-4{
     border-radius: 10px !important;
   }
   span.input-group-text{
-    background-color: transparent;
+    background-color: transparent !important;
     font-size: x-large;
     font-weight: bold !important;
     color: gray;
     border: none;
   }
   input.post-title{
+  	background-color: transparent !important;
     font-size: x-large !important;
     color: aliceblue !important;
   }

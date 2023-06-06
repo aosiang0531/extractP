@@ -47,7 +47,17 @@ public class ArticleCommentReportVO {
 
 	private String article_comment_report_content;
 	
-	private String article_comment_report_status;
+	@Column(name = "article_comment_report_status")
+	private String articleCommentReportStatus;
+
+	public String getArticleCommentReportStatus() {
+		return articleCommentReportStatus;
+	}
+
+	public ArticleCommentReportVO setArticleCommentReportStatus(String articleCommentReportStatus) {
+		this.articleCommentReportStatus = articleCommentReportStatus;
+		return this;
+	}
 
 	@CreatedDate
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")

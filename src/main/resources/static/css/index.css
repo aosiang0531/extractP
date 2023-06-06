@@ -182,12 +182,15 @@ div.mb-4{
 
   /* 熱門文章 */
   div.article-group{
+    text-align: center;
     margin-top: 30px;
     padding-right: 5px;
     color: rgba(106, 70, 47, 0.71);
+    width:80px;
   }
   img.img-thumbnail {
-    max-width: 120px
+    max-width: 120px;
+    aspect-ratio: 4/3;
   }
   div.media-body{
     padding-left: 10px

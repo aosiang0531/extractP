@@ -130,7 +130,9 @@ public class ArticleServiceImpl implements ArticleService {
 	public List<ArticleVO> searchByArticleContent(String keyword) {
 		return articleRepository.findByArticleContentContaining(keyword);
 	}
-
+	
+	
+	// 按讚,新增文章讚數及新增thumb資料表
 	@Override
 	@Transactional
 	public Map<String, Integer> thumbUp(Integer articleId, Integer memberId) {
@@ -145,7 +147,8 @@ public class ArticleServiceImpl implements ArticleService {
 		}
 		return map;
 	}
-
+	
+	// 收藏,新增文章收藏數及新增member_fav資料表
 	@Override
 	@Transactional
 	public Map<String, Integer> memberFav(Integer articleId, Integer memberId) {

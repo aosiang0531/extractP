@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import idv.tha101.extractp.web.dao.ArticleCommentReportRepository;
 import idv.tha101.extractp.web.pojo.ArticleCommentReportVO;
+import idv.tha101.extractp.web.pojo.ArticleReportVO;
 import idv.tha101.extractp.web.service.ArticleCommentReportService;
 
 @Service
@@ -62,6 +63,11 @@ public class ArticleCommentReportServiceImpl implements ArticleCommentReportServ
 	public void deleteById(Integer id) {
 		articleCommentReportRepository.deleteById(id);
 
+	}
+
+	@Override
+	public List<ArticleCommentReportVO> findByArticleCommentReportStatus(String status) {
+		return articleCommentReportRepository.findByArticleCommentReportStatus(status);
 	}
 
 }

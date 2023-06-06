@@ -1,4 +1,4 @@
-$(function(){
+$(window).on("load", function(){
 	const tepURL = new URLSearchParams(window.location.search);
 	const tempId = tepURL.get("temp");
 
@@ -8,12 +8,11 @@ $(function(){
 	.then(resp => resp.json())
 	.then(temPopList => {
 		for(var i = (temPopList.length-1); i > -1; i--){
-			console.log(author);
 			var artId = temPopList[i].article_id;
 			var grpName = temPopList[i].article_group_name;
-			var img = "data:image/png; base64," + temPopList[i].article_image;
+			var img = temPopList[i].article_image ? "data:image/png;base64," + temPopList[i].article_image : "./images/logo.png";
 			var title = temPopList[i].article_title;
-			var content = temPopList[i].article_content;
+			var content = temPopList[i].article_content.replace(/<[^>]+>/g, '').slice(0, 55);
 			var author = temPopList[i].member_name;
 			var thunmb = temPopList[i].article_thunmb_number;
 			var comment = temPopList[i].article_comment_number;
@@ -40,10 +39,10 @@ $(function(){
 								 class="img-thumbnail" />
 							<div class="media-body">
 								<h6>
-									<a href="articleAppear2.html" data-toggle="collapse"
-										data-target=".forum-content" class="text-body">${title}</a>
+									<p data-toggle="collapse"
+										data-target=".forum-content" class="text-body">${title}</p>
 								</h6>
-								<p class="text-secondary">${content}</p>
+								<p class="text-secondary">${content}......</p>
 								<div class="text-muted small text-center align-self-center class=row">
 									<span class="d-none d-sm-inline-block"> 
 										<i class="fa-regular fa-thumbs-up fa-xl"></i> 
@@ -77,9 +76,9 @@ $(function(){
 		for (var i = (tempLatestList.length -1); i > -1 ; i--) {
 			var artId = tempLatestList[i].article_id;
 			var grpName = tempLatestList[i].article_group_name;
-			var img = "data:image/png; base64," + tempLatestList[i].article_image;
+			var img = tempLatestList[i].article_image ? "data:image/png;base64," + tempLatestList[i].article_image : "./images/logo.png";
 			var title = tempLatestList[i].article_title;
-			var content = tempLatestList[i].article_content;
+			var content = tempLatestList[i].article_content.replace(/<[^>]+>/g, '').slice(0, 55);
 			var author = tempLatestList[i].member_name;
 			var thunmb = tempLatestList[i].article_thunmb_number;
 			var comment = tempLatestList[i].article_comment_number;
@@ -106,10 +105,10 @@ $(function(){
 								 class="img-thumbnail" />
 							<div class="media-body">
 								<h6>
-									<a href="articleAppear2.html" data-toggle="collapse"
-										data-target=".forum-content" class="text-body">${title}</a>
+									<p data-toggle="collapse"
+										data-target=".forum-content" class="text-body">${title}</p>
 								</h6>
-								<p class="text-secondary">${content}</p>
+								<p class="text-secondary">${content}......</p>
 								<div class="text-muted small text-center align-self-center class=row">
 									<span class="d-none d-sm-inline-block"> 
 										<i class="fa-regular fa-thumbs-up fa-xl"></i> 
@@ -154,18 +153,5 @@ $(function(){
 			`;
 			$(".tab3").append(temRuleHtml);			
 		})
-
-
-
-
-
-
-
-
-
-
-
-
-
-  		
+	
 });

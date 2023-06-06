@@ -16,8 +16,6 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -66,16 +64,16 @@ public class ArticleVO {
 	private String article_last_modified_by;
 
 	
-	private Integer article_thunmb_number;
+	private Integer article_thunmb_number = 0;
 	
-	private Integer article_comment_number;
+	private Integer article_comment_number = 0;
 	
 	@Column(name = "member_article_fav_number")
-	private Integer article_member_article_fav_number;
+	private Integer article_member_article_fav_number = 0;
 	
-	private Boolean article_is_hidden;
+	private Boolean article_is_hidden = false;
 	
-	private Boolean article_is_top;;
+	private Boolean article_is_top = false;
 	
 	
 	public Integer getMemberId() {

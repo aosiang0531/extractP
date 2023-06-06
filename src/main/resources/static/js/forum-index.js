@@ -1,16 +1,15 @@
-
+$(window).on("load", function(){
 // 熱門文章
 const popurl = 'article/pop';
 fetch(popurl)
 	.then(resp => resp.json())
 	.then(artList => {
-//		console.log(artList);
 		for (var i = (artList.length -1); i > -1 ; i--) {
 			var artId = artList[i].article_id;
 			var grpName = artList[i].article_group_name;
-			var img = "data:image/png; base64," + artList[i].article_image;
+			var img = artList[i].article_image ? "data:image/png;base64," + artList[i].article_image : "./images/logo.png";
 			var title = artList[i].article_title;
-			var content = artList[i].article_content;
+			var content = artList[i].article_content.replace(/<[^>]+>/g, '').slice(0, 55);
 			var author = artList[i].member_name;
 			var thunmb = artList[i].article_thunmb_number;
 			var comment = artList[i].article_comment_number;
@@ -26,7 +25,6 @@ fetch(popurl)
 				  minute: '2-digit', 
 				  second: '2-digit' 
 				};
-				
 			var formattedTime = new Date(time).toLocaleString('zh-TW', options);			
 			let popArticle = `
 				<div class="card mb-2"
@@ -41,7 +39,7 @@ fetch(popurl)
 									<p data-toggle="collapse"
 										data-target=".forum-content" class="text-body">${title}</p>
 								</h6>
-								<p class="text-secondary">${content}</p>
+								<p class="text-secondary">${content}......</p>
 								<div class="text-muted small text-center align-self-center class=row">
 									<span class="d-none d-sm-inline-block"> 
 										<i class="fa-regular fa-thumbs-up fa-xl"></i> 
@@ -64,7 +62,6 @@ fetch(popurl)
 				</div>`;
 			$(".inner-main-body").prepend(popArticle);
 		}
-		
 	})
 
 
@@ -77,9 +74,9 @@ fetch(latesturl)
 		for (var i = (artList.length -1); i > -1 ; i--) {
 			var artId = artList[i].article_id;
 			var grpName = artList[i].article_group_name;
-			var img = "data:image/png; base64," + artList[i].article_image;
+			var img = artList[i].article_image ? "data:image/png;base64," + artList[i].article_image : "./images/logo.png";
 			var title = artList[i].article_title;
-			var content = artList[i].article_content;
+			var content = artList[i].article_content.replace(/<[^>]+>/g, '').slice(0, 55);
 			var author = artList[i].member_name;
 			var thunmb = artList[i].article_thunmb_number;
 			var comment = artList[i].article_comment_number;
@@ -109,7 +106,7 @@ fetch(latesturl)
 									<p data-toggle="collapse"
 										data-target=".forum-content" class="text-body">${title}</p>
 								</h6>
-								<p class="text-secondary">${content}</p>
+								<p class="text-secondary">${content}......</p>
 								<div class="text-muted small text-center align-self-center class=row">
 									<span class="d-none d-sm-inline-block"> 
 										<i class="fa-regular fa-thumbs-up fa-xl"></i> 
@@ -130,8 +127,8 @@ fetch(latesturl)
 						</div>
 					</div>
 				</div>`;
-			
 			$(".tab2").prepend(latestArticle);
 		}
 	})
 
+});
