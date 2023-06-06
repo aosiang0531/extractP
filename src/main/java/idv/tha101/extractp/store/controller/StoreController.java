@@ -50,9 +50,4 @@ public class StoreController {
         service.deleteById(id);
     }
 
-    @GetMapping("addresses")
-    public List<String> getStoreAddresses() {
-        return service.findAllAddresses();
-    }
-
 }

@@ -36,15 +36,29 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            transform: scale(1.3);
+            /*transform: scale(1.3);*/
         }
 
         table {
             margin: 0 auto;
+            font-size: 20px;
         }
 
         h1 {
             color: black;
+        }
+
+        th {
+            text-align: center;
+            font-size: 28px;
+        }
+
+        .button-left {
+            margin-left: 30px;
+        }
+
+        .button-right {
+            margin-left: 30px;
         }
     </style>
 </head>
@@ -106,8 +120,8 @@
                 <td>{{ store.storeName }}</td>
                 <td v-if="false">{{ store.storeId }}</td>
                 <td>
-                    <button @click="inform(store.storeId)">查看</button>
-                    <button @click="edit(store.storeId)">編輯</button>
+                    <button @click="inform(store.storeId)" class = "button-left">查看</button>
+                    <button @click="edit(store.storeId)" class = "button-right">編輯</button>
                 </td>
             </tr>
             </tbody>
