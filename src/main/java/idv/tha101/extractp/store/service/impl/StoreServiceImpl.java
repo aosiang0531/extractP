@@ -6,7 +6,6 @@ import idv.tha101.extractp.store.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -76,18 +75,6 @@ public class StoreServiceImpl implements StoreService {
             return repository.save(store);
         }
         return null;
-    }
-
-    @Override
-    public List<String> findAllAddresses() {
-        List<Store> stores = repository.findAll();
-        List<String> addresses = new ArrayList<>();
-
-        for (Store store : stores) {
-            addresses.add(store.getStoreAddress());
-        }
-
-        return addresses;
     }
 
     @Override

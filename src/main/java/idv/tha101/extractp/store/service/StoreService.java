@@ -15,7 +15,5 @@ public interface StoreService {
 
     Store update(int id, Store updateStore);
 
-    List<String> findAllAddresses();
-
     List<Store> findByMemberId(int memberId);
 }
