@@ -32,8 +32,23 @@
 
 
     <style>
-        h1 {
+        .title {
+            display: flex;
+            justify-content: center;
+            padding: 5px 10px 30px;
+            width: 500px;
+        }
+
+        .title img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .title h1 {
             color: black;
+            text-align: center;
+            font-weight: 600;
+            margin: 30px 30px 10px;
         }
 
         .form-container {
@@ -52,12 +67,11 @@
         .center-content {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            margin: 0 35%;
         }
 
         .center-content p {
-            text-align: center;
+            font-size: 18px;
         }
     </style>
 </head>
@@ -66,7 +80,9 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <img src="images/logo.png" alt="Logo" width="130" height="60" class="d-inline-block align-text-top">
+        <a href="index.html">
+            <img src="images/logo.png" alt="Logo" width="130" height="60" class="d-inline-block align-text-top">
+        </a>
         <a class="navbar-brand" href="index.html"></small></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
                 aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -106,7 +122,10 @@
 
 <section class="ftco-section ftco-white"> <!-- ftco-white套用自訂白色背景 -->
     <div id="app" class="center-content">
-        <h1>{{ store.storeName }}</h1>
+        <div class="title">
+            <img src="images/cold-coffee.png" alt="">
+            <h1>{{ store.storeName }}</h1>
+        </div>
         <p>簡介：{{ store.storeInfo }}</p>
         <p>統編：{{ store.storeTax }}</p>
         <p>地址：{{ store.storeAddress }}</p>

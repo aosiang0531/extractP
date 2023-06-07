@@ -32,11 +32,22 @@
 
 
     <style>
-        h1 {
+
+        .title {
+            display: flex;
+            justify-content: center;
+            padding: 5px 10px 30px;
+        }
+
+        .title img {
+            width: 100px;
+        }
+
+        .title h1 {
             color: black;
             text-align: center;
             font-weight: 600;
-            margin: 20px;
+            margin: 30px 30px 10px;
         }
 
         .form-container {
@@ -56,8 +67,6 @@
             color: black;
             font-size: 28px;
         }
-
-        /*font-weight: 600;*/
 
         input {
             margin-left: 60px;
@@ -93,7 +102,9 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <img src="images/logo.png" alt="Logo" width="130" height="60" class="d-inline-block align-text-top">
+        <a href="index.html">
+            <img src="images/logo.png" alt="Logo" width="130" height="60" class="d-inline-block align-text-top">
+        </a>
         <a class="navbar-brand" href="index.html"></small></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
                 aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -133,7 +144,11 @@
 
 <section class="ftco-section ftco-white"> <!-- ftco-white套用自訂白色背景 -->
     <div id="app" class="form-container">
-        <h1>推薦咖啡店家</h1>
+        <div class="title">
+            <img src="images/coffee-shop.png" alt="">
+            <h1>推薦咖啡店家</h1>
+        </div>
+
         <div class="form-row">
             <label for="storeName">店名</label>
             <input type="text" v-model="storeName" id="storeName" placeholder="店名">
@@ -178,9 +193,7 @@
         <br>
         <div class="button-group">
             <button @click="recommend">確定</button>
-            <a href="map.html">
-                <button class="button-group-right">取消</button>
-            </a>
+            <button class="button-group-right" @click="confirmCancel">取消</button>
         </div>
     </div>
 
@@ -208,6 +221,7 @@
 <script src="js/vue.js"></script>
 
 <script>
+
     new Vue({
         el: '#app',
         data() {
@@ -223,6 +237,7 @@
                 storeWebsite: ''
             };
         },
+
         methods: {
             fileChange(e) {
                 const file = e.target.files[0];
@@ -232,21 +247,35 @@
                     const imageData = base64Image.split(';base64,')[1];
                     this.storeOrder = imageData;
                 }
-
                 if (file) {
                     reader.readAsDataURL(file);
                 }
             },
 
             recommend() {
-                if (this.storeName === '') {
-                    alert("請填寫店名");
+                if (this.storeName.trim() === '') {
+                    alert("店名未填寫");
                     return;
-                } else if (this.storeTax === '') {
-                    alert("請填寫統編");
+                } else if (this.storeTax.trim() === '') {
+                    alert("統編未填寫");
                     return;
-                } else if (this.storeAddress === '') {
-                    alert("請填寫地址");
+                } else if (this.storeInfo.trim() === '') {
+                    alert("簡介未填寫");
+                    return;
+                } else if (this.storeAddress.trim() === '') {
+                    alert("地址未填寫");
+                    return;
+                } else if (this.storeTime.trim() === '') {
+                    alert("時間未填寫");
+                    return;
+                } else if (this.storePhone.trim() === '') {
+                    alert("電話未填寫");
+                    return;
+                } else if (this.storeOrder === null) {
+                    alert("菜單未上傳");
+                    return;
+                } else if (this.storeWebsite.trim() === '') {
+                    alert("網站未填寫");
                     return;
                 }
 
@@ -270,9 +299,16 @@
                     .catch(error => {
                         console.error('失敗', error);
                     })
-            }
-        }
+            },
 
+            confirmCancel() {
+                const confirmed = confirm("確定要取消嗎?");
+                if (confirmed) {
+                    window.location.href = "map.html";
+                }
+            }
+
+        }
     })
 
 </script>
