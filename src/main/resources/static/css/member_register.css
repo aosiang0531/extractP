@@ -147,7 +147,9 @@ input {
     text-decoration: none;
 }
 
-#msg{
-	color:red;
+.error{
+	color: red;
+	
+	
 }
 

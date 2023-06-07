@@ -184,8 +184,10 @@ input {
 }
 
 .flex{
-	display: inline-flex;  
+	 /* display: inline-flex;   */
 	 flex-direction:column;
+	 text-align:  center;
+	 margin: 5px;
 }
 
 .account-settings .user-profile {
@@ -223,4 +225,11 @@ input {
 }
 .account-settings .about p {
     font-size: 0.825rem;
+}
+
+.center{
+	display:  flex;
+	justify-content: center;
+	align-items: center;
+	text-align:  center;
 }

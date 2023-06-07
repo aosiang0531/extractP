@@ -41,7 +41,8 @@ public class MemberVO {
 	@Column(name = "member_email")
 	private String email;
 	private String member_name;
-	private String member_password;
+	@Column(name = "member_password")
+	private String password;
 	private String member_phone;
 	private String member_identity;
 	private String member_is_suspended;
@@ -65,6 +66,15 @@ public class MemberVO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 	
 
 }

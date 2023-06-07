@@ -7,11 +7,17 @@ import org.springframework.stereotype.Repository;
 
 import idv.tha101.extractp.base.dao.BaseRepository;
 import idv.tha101.extractp.web.pojo.MemberVO;
+import java.util.List;
+
 
 @RepositoryRestResource
 @Repository
 public interface MemberRepository extends BaseRepository<MemberVO, Integer> {
 
 	boolean existsByEmail(String email);
+	
+	MemberVO findByEmailAndPassword(String email, String password);
+	
+	MemberVO findByEmail(String email);
 
 }

@@ -77,12 +77,25 @@ public class MemberServiceImpl implements MemberService {
 
 	}
 
+	@Override
+	public MemberVO login(String email, String password) {
+		MemberVO memberVO = memberRepository.findByEmail(email);
+		if (memberVO != null && memberVO.getPassword().equals(password)) {
+			return memberVO;
+		} else {
+			return null; // 登入失敗 返回null
+		}
+	}
+
+	@Override
+	public MemberVO findByEmail(String email) {
+		return memberRepository.findByEmail(email);
+	}
+
 //	@Override
 //	public String sendSimpleMail(MemberEmailDTO details) {
 //		// TODO Auto-generated method stub
 //		return null;
 //	}
-	
-	
 
 }

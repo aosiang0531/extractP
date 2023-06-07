@@ -84,11 +84,15 @@
                             <div class="account-settings">
                                 <div class="user-profile">
                                     <div class="user-avatar">
-                                        <img id="img" src="images/300.jpg" alt="Maxwell Admin">
+                                        <img id="img" src="images/300.jpg" alt="Member Image">
+                                 
                                     </div>
-                                    <h2 class="user-name">Yuki Hayashi</h2>
+                                    	<div id="name"><h2 class="user-name">Yuki Hayashi</h2></div>
+        
                                     <div class="file">
-                                        <input type="file" id="file" accept="image/*">
+                                        <input type="file" id="file">
+                                        <button type="button" id="imgupdate" name="submit" class="btn btn-primary">上傳圖片</button>
+                                        <!-- accept="image/*" class="btn btn-secondary" -->
                                     </div>
                                 </div>
 
@@ -106,15 +110,18 @@
 
                                 <div class="input">
                                     <label class="input-label">用戶名稱</label>
-                                    <input type="text" name="memberName" class="input-field" value="" required/>  
+                                    <input type="text" name="memberName" onblur="nameError()" class="input-field" value="" required/>
+                                    <div id="nameError" class="error"></div>  
                                 </div>
                                 <div class="input">
                                     <label class="input-label">手機號碼</label>
-                                    <input type="tel" name="memberPhone" class="input-field" value="" required/>
+                                    <input type="tel" name="memberPhone" onblur="phoneError()" class="input-field" value="" required/>
+                                	<div id="phoneError" class="error"></div>
                                 </div>
                                 <div class="input">
                                     <label class="input-label">電子信箱</label>
-                                    <input type="text" name="memberEmail" class="input-field" value="" required/>
+                                    <input type="text" name="memberEmail" onblur="emailError()" class="input-field" value="" required/>
+									<div id="emailError" class="error"></div>                                 
                                  </div>
 
                             </div>
@@ -125,7 +132,8 @@
                                         
                                         <button type="button" id="update" name="submit" class="btn btn-primary">更新</button>
 										<button type="button" id="cancel" name="submit" class="btn btn-secondary">回上頁</button>
-									</div>
+												<div id="msg" class="error"></div>
+											</div>
                                 </div>
                             </div>
                         </div>
@@ -183,97 +191,7 @@
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 	<script src="js/google-map.js"></script>
 	<script src="js/main.js"></script>
-
-
-<script>
-  $(document).ready(function() {
-  // 頁面加載時執行的操作
-  var memberId = 17; // 請替換為真實的會員ID
-
-  // 構建後端端點URL並替換會員ID
-  var url = "member/{id}".replace("{id}", memberId);
-
-  // 發送AJAX請求獲取會員資料
-  $.ajax({
-    url: url,
-    type: "GET",
-    success: function(response) {
-      // 將會員資料顯示在相應的input元素中
-      $("input[name='memberName']").val(response.name);
-      $("input[name='memberPhone']").val(response.phone);
-      $("input[name='memberEmail']").val(response.email);
-    },
-    error: function(error) {
-      console.log("獲取會員資料失敗");
-    }
-  });
-});
-</script>
-
-<script>
-  $(document).ready(function() {
-  // 監聽更新按鈕的點擊事件
-  $("#update").click(function() {
-    e.stopPropagation();
-
-    
-    
-    // 獲取會員ID
-    var memberId = 17; // 請替換為真實的會員ID
-
-    // 構建後端端點URL並替換會員ID
-    var url = "member/{id}".replace("{id}", memberId);
-
-    // 獲取表單數據
-    var memberName = $("input[name='memberName']").val();
-    var memberPhone = $("input[name='memberPhone']").val();
-    var memberEmail = $("input[name='memberEmail']").val();
-    
-
-    // 構建要發送的數據
-    var data = {
-      name: memberName,
-      phone: memberPhone,
-      email: memberEmail,
-      image : memberImage
-    };
-
-    msg.textContent = '';
-    const fileReader = new FileReader();
-    fileReader.addEventListener('load', e => {
-    const memberImage = e.target.result.split(',')[1]; //去掉base64編碼逗號前面
-    // 發送AJAX請求
-      $.ajax({
-        url: url,
-        type: "PUT",
-        data: JSON.stringify(data),
-        contentType: "application/json",
-        success: function(response) {
-          // 更新成功後的處理邏輯
-          console.log("更新成功");
-        },
-        error: function(error) {
-          // 更新失敗後的處理邏輯
-          console.log("更新失敗");
-        }
-      });
-      
-    });
-    fileReader.readAsDataURL(memberImage.files[0]);
-  });
-});
-
-</script>
-
-<script>
-  $(document).ready(function() {
-    $('#cancel').click(function(e) {
-      e.stopPropagation();
-      window.location.href = 'member_personalpage.html'; // 替換為個人頁面的URL
-    });
-  });
-</script>
-
+	<script src="js/member/member_editinfo.js"></script>
 
 
 </body>

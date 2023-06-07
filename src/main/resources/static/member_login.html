@@ -86,20 +86,27 @@
                             </h2>
                         </div>
                         <form class="card-form">
-                            <!-- <div class="input">
-                                <input type="text" class="input-field" value="" required/>
-                                <label class="input-label">Full name</label>
-                            </div> -->
+                            
                                         <div class="input">
-                                <input type="text" id="email${member.email}" name="memberEmail" class="input-field" value="" required/>
-                                <label class="input-label">Email</label>
-                            </div>
-                                        <div class="input">
-                                <input type="password" id="password${member.password}" name="memberPassword" class="input-field" required/>
+								<input type="email" id="email" name="memberEmail"
+									onblur="emailError()"
+									class="input-field" value="" required /> <label
+									class="input-label">Email</label>
+								<div id="emailError" class="error"></div>
+							</div>
+
+							<div class="input">
+                                <input type="password" id="password" name="memberPassword" 
+                                onblur="passwordError()"
+                                class="input-field" required/>
                                 <label class="input-label">Password</label>
+								<div id="passwordError" class="error"></div>
                             </div>
+                            
                             <div class="action" id="loginButton">
                                 <button class="action-button">Log In</button>
+								
+								
                             </div>
                         </form>
 
@@ -160,37 +167,11 @@
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 	<script src="js/google-map.js"></script>
 	<script src="js/main.js"></script>
+	<script src="js/member/member_login.js"></script>
 
-	<script>
-		// 當按下登入按鈕時觸發事件
-$('#loginButton').click(function(e) {
-    e.preventDefault(); // 防止表單提交
 
-    // 取得輸入的郵件和密碼
-    var email = $('#email').val();
-    var password = $('#password').val();
 
-    // 發送 AJAX 請求
-    $.ajax({
-        url: 'member',
-        method: 'GET',
-        // data: {
-        //     email: email,
-        //     password: password
-        // },
-        success: function(response) {
-            // 登入成功，導向客戶頁面
-            window.location.href = 'member_personalpage.html';
-        },
-        error: function(xhr, status, error) {
-            // 登入失敗，顯示錯誤訊息
-            var errorMessage = xhr.responseText;
-            alert('登入失敗：' + errorMessage);
-        }
-    });
-});
 
-	</script>
 
 </body>
 
