@@ -141,6 +141,7 @@ public class ArticleServiceImpl implements ArticleService {
 			map.put("result", 0);
 		} else {
 			ArticleVO article = articleRepository.getById(articleId);
+//			System.out.println("AAAA:" + article);
 			article.setThunmb_number(article.getThunmb_number() + 1);
 			articleThunmbRepository.save(new ArticleThunmbVO().setPk(new ThumbPK(memberId, articleId)));
 			map.put("result", 1);

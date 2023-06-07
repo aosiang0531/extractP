@@ -48,14 +48,14 @@ public class MemberArticleFavVO {
 	public static class FavPk implements Serializable {
 		private static final long serialVersionUID = 1L;
 
-		@Column
-		private Integer member_id;
+		@Column(name = "member_id")
+		private Integer memberId;
 		@Column
 		private Integer article_id;
 
 		@Override
 		public int hashCode() {
-			return Objects.hash(article_id, member_id);
+			return Objects.hash(article_id, memberId);
 		}
 
 		@Override
@@ -67,15 +67,15 @@ public class MemberArticleFavVO {
 			if (getClass() != obj.getClass())
 				return false;
 			FavPk other = (FavPk) obj;
-			return Objects.equals(article_id, other.article_id) && Objects.equals(member_id, other.member_id);
+			return Objects.equals(article_id, other.article_id) && Objects.equals(memberId, other.memberId);
 		}
 
 		public Integer getMember_id() {
-			return member_id;
+			return memberId;
 		}
 
 		public void setMember_id(Integer member_id) {
-			this.member_id = member_id;
+			this.memberId = member_id;
 		}
 
 		public Integer getArticle_id() {

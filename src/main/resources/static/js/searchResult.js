@@ -1,4 +1,4 @@
-$(function(){
+$(window).on("load", function(){
 
 	const tepURL = new URLSearchParams(window.location.search);
 	const keyword = tepURL.get("keyword");

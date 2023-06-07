@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import idv.tha101.extractp.base.controller.BaseController;
 import idv.tha101.extractp.web.pojo.ArticleCommentReportVO;
 import idv.tha101.extractp.web.pojo.ArticleCommentVO;
+import idv.tha101.extractp.web.pojo.ArticleVO;
 import idv.tha101.extractp.web.service.ArticleCommentReportService;
 import idv.tha101.extractp.web.service.ArticleCommentService;
+import idv.tha101.extractp.web.service.ArticleService;
 import jakarta.transaction.Transactional;
 
 @RestController
@@ -30,6 +32,9 @@ public class ArticleCommentReportController extends BaseController<ArticleCommen
 
 	@Autowired
 	private ArticleCommentService articleCommentService;
+	
+	@Autowired
+	private ArticleService articleService;
 
 	@Override
 	@GetMapping
@@ -67,11 +72,16 @@ public class ArticleCommentReportController extends BaseController<ArticleCommen
 		Map<String, Integer> result = new HashMap<>();
 		int id = Integer.parseInt(map.get("article_comment_report_id"));
 		boolean isApproved = Boolean.parseBoolean(map.get("is_approved"));
-		if (isApproved) { // 檢舉通過
+		// 檢舉通過
+		if (isApproved) { 
+			// 更改留言狀態,讓它隱藏
 			articleCommentReportService.saveOrUpdate(new ArticleCommentReportVO().setId(id).setArticleCommentReportStatus("1"));
 			ArticleCommentReportVO aCommentReportVO = articleCommentReportService.findById(id);
 			ArticleCommentVO aCommentVO = articleCommentService.findById(aCommentReportVO.getArticle_comment_id());
 			articleCommentService.saveOrUpdate(aCommentVO.setIs_hidden(true));
+			// 更改文章留言數
+			ArticleVO article = articleService.findById(aCommentVO.getArticle_id());
+			articleService.saveOrUpdate(article.setComment_number(article.getComment_number() - 1));
 			if (aCommentVO.getIs_hidden()) {
 				result.put("result", 1);
 			}

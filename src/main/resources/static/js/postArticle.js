@@ -72,9 +72,11 @@ $(document).ready(function() {
 			return;
 		}
 		//	處理圖片
+		var imageBase64;
 		var content = $('#summernote').summernote('code');
 		var imgRegex = /<img[^>]+src="([^">]+)/g;
 		var matches = content.match(imgRegex);
+		var cleanedContent = content; // 初始化为原始内容
 		if (matches) {
 			for (var i = 0; i < matches.length; i++) {
 				// 提取圖片的 URL
@@ -87,6 +89,9 @@ $(document).ready(function() {
 				// 获取处理后的内容
 				var cleanedContent = strippedContent;
 			}
+		}
+		if(!cleanedContent){
+			cleanedContent = content_text;
 		}
 		var data = {
 			"articleTitle": title_text,
