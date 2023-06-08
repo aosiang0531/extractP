@@ -111,6 +111,11 @@ div.mb-4{
     font-size: x-large !important;
     color: aliceblue !important;
   }
+    input.tag{
+  	background-color: transparent !important;
+    font-size: x-large !important;
+    color: aliceblue !important;
+  }
   select{
     font-size: x-large;
     font-weight: bold;

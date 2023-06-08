@@ -1,8 +1,12 @@
 package idv.tha101.extractp.web.service;
 
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import idv.tha101.extractp.base.service.BaseService;
 import idv.tha101.extractp.web.pojo.ArticleDTO;
@@ -14,6 +18,8 @@ public interface ArticleService extends BaseService<ArticleVO>{
 	List<ArticleVO> findByMemberId(Integer memberId);
 	
 	Collection<ArticleDTO> findPopArticle();
+	
+	Page<ArticleDTO> findPopArticle(Pageable pageable);
 	
 	Collection<ArticleDTO> findLatestArticle();
 	

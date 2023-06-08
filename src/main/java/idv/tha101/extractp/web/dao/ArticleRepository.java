@@ -3,6 +3,8 @@ package idv.tha101.extractp.web.dao;
 import java.util.Collection;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
@@ -42,6 +44,29 @@ public interface ArticleRepository extends BaseRepository<ArticleVO, Integer> {
 			+ "order by (article_thunmb_number + article_comment_number + member_article_fav_number) desc;", nativeQuery = true)
 	Collection<ArticleDTO> findPopArticle();
 	
+	// 找熱門文章
+	@Query(value = "select "
+			+ " a.article_id,\r\n"
+			+ "	m.member_name,\r\n"
+			+ "	g.article_group_name, \r\n"
+			+ " a.article_title, \r\n"
+			+ " a.article_content 'article_content', \r\n"
+			+ "	a.article_image, \r\n"
+			+ "	a.article_is_hidden, \r\n"
+			+ "	a.article_is_top, \r\n"
+			+ " a.article_created_date, \r\n"
+			+ " a.article_thunmb_number,\r\n"
+			+ " a.article_comment_number, \r\n"
+			+ " a.member_article_fav_number \r\n"
+			+ "from article a \r\n"
+			+ "join article_group g\r\n"
+			+ "	on a.article_group_id = g.article_group_id\r\n"
+			+ "join MEMBER m\r\n"
+			+ "	on a.member_id = m.member_id\r\n"
+			+ "order by (article_thunmb_number + article_comment_number + member_article_fav_number) desc;", nativeQuery = true)
+	Page<ArticleDTO> findPopArticle(Pageable pageable);
+	
+	
 	// 找最新文章
 	@Query(value = "select "
 			+ " a.article_id,\r\n"
@@ -63,6 +88,28 @@ public interface ArticleRepository extends BaseRepository<ArticleVO, Integer> {
 			+ "	on a.member_id = m.member_id\r\n"
 			+ "order by article_created_date desc;", nativeQuery = true)
 	Collection<ArticleDTO> findLatestArticle();
+	
+	// 找最新文章
+	@Query(value = "select "
+			+ " a.article_id,\r\n"
+			+ " m.member_name, \r\n"
+			+ "	g.article_group_name,\r\n"
+			+ "	a.article_title, \r\n"
+			+ " a.article_content 'article_content', \r\n"
+			+ "	a.article_image, \r\n"
+			+ "	a.article_is_hidden, \r\n"
+			+ "	a.article_is_top, \r\n"
+			+ " a.article_created_date, \r\n"
+			+ " a.article_thunmb_number,\r\n"
+			+ " a.article_comment_number, \r\n"
+			+ " a.member_article_fav_number\r\n"
+			+ "from article a \r\n"
+			+ "join article_group g\r\n"
+			+ "	on a.article_group_id = g.article_group_id\r\n"
+			+ "join MEMBER m\r\n"
+			+ "	on a.member_id = m.member_id\r\n"
+			+ "order by article_created_date desc;", nativeQuery = true)
+	Page<ArticleDTO> findLatestArticle(Pageable pageable);
 	
 	// 找特定板塊熱門文章
 	@Query(value = "select "

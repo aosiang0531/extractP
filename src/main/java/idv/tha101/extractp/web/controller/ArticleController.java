@@ -1,11 +1,14 @@
 package idv.tha101.extractp.web.controller;
 
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -65,6 +68,18 @@ public class ArticleController extends BaseController<ArticleVO> {
 														.toList();
 		return collection;
 	};
+	
+	@GetMapping("popPage")
+	public Page<ArticleDTO> findPopArticleByPage(Pageable pageable) {
+		Page<ArticleDTO> articleDTOs = articleService.findPopArticle(pageable);
+//		Collection<ArticleDTO> collection = articleDTOs.stream()
+//														.filter(a -> a.getarticle_is_hidden() != true)
+//														.toList();
+		return articleDTOs;
+	};
+	
+	
+	
 
 	@GetMapping("latest")
 	public Collection<ArticleDTO> findLatestArticle() {
