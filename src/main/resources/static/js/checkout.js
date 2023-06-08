@@ -6,6 +6,10 @@ $(function() {
 	const pay = document.querySelector("#pay");
 	const pay_url = "orderDetail/" + orderId + "/total";
 
+	const paymentError = document.querySelector("#paymentError");
+	const shippingError = document.querySelector("#shippingError");
+	const addressError = document.querySelector("#addressError");
+
 
 	fetch(pay_url)
 		.then(resp => resp.json())
@@ -36,32 +40,85 @@ $(function() {
 		let r = confirm("確定結帳?");
 		if (r) {
 
-			const payment = document.querySelector('input[name="order_payment_method"]:checked').value;
-			const shipping = document.querySelector('input[name="order_shipping_method"]:checked').value;
-			const address = country_box.value + district_box.value + document.querySelector('input[name="subaddress"]').value;
-
-			let orderdata = JSON.stringify({
-				"payment_method": payment,
-				"shipping_method": shipping,
-				"shipping_address": address,
-				"status": "已成立"
-			});
-
-			$.ajax({
-				url: "/orderInfo/" + orderId,
-				type: "PUT",
-				data: orderdata,
-				dataType: "json",
-				contentType: "application/json; charset=utf-8",
-				success: function(data) {
-					console.log(data);
-					console.log("success");
-				},
-				error: function(xhr) {
-					console.log("error");
-					console.log(xhr);
+			const payment = document.querySelector('input[name="order_payment_method"]:checked');
+			const shipping = document.querySelector('input[name="order_shipping_method"]:checked');
+			const subaddress = document.querySelector('input[name="subaddress"]').value;
+			const address = country_box.value + district_box.value + subaddress
+			if (payment == null || shipping == null || country_box.value == "" || district_box.value == "" || subaddress == "") {
+				if (payment == null) {
+					paymentError.classList.remove("-on");
+				} else {
+					paymentError.classList.add("-on");
 				}
-			})
+
+				if (shipping == null) {
+					shippingError.classList.remove("-on");
+				} else {
+					shippingError.classList.add("-on");
+				}
+
+				if (country_box.value == "" || district_box.value == "" || subaddress == "") {
+					addressError.classList.remove("-on");
+				} else {
+					addressError.classList.add("-on");
+				}
+				return;
+			}
+
+			if (payment.value == "貨到付款") {
+				let orderdata = JSON.stringify({
+					"payment_method": payment.value,
+					"shipping_method": shipping.value,
+					"shipping_address": address,
+					"status": "已成立",
+					"shipping_status": "待出貨"
+				});
+
+				$.ajax({
+					url: "/orderInfo/" + orderId,
+					type: "PUT",
+					data: orderdata,
+					dataType: "json",
+					contentType: "application/json; charset=utf-8",
+					success: function(data) {
+						console.log(data);
+						console.log("success");
+					},
+					error: function(xhr) {
+						console.log("error");
+						console.log(xhr);
+					}
+				})
+
+			} else {
+				let orderdata = JSON.stringify({
+					"payment_method": payment.value,
+					"shipping_method": shipping.value,
+					"shipping_address": address,
+					"status": "已成立",
+					"payment_status": "已付款",
+					"shipping_status": "待出貨"
+				});
+
+				$.ajax({
+					url: "/orderInfo/" + orderId,
+					type: "PUT",
+					data: orderdata,
+					dataType: "json",
+					contentType: "application/json; charset=utf-8",
+					success: function(data) {
+						console.log(data);
+						console.log("success");
+					},
+					error: function(xhr) {
+						console.log("error");
+						console.log(xhr);
+					}
+				})
+			}
+
+
+
 
 			alert("訂單成立");
 			window.location.href = 'orderhistory.html?orderId=' + orderId;

@@ -47,3 +47,12 @@ h1 {
   .cart-total {
     margin-top: 200px;
   }
+  
+.hidden.-on {	
+	display: none;
+}
+
+.hidden{
+	color:red;
+}
+

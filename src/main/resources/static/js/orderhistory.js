@@ -1,7 +1,7 @@
 $(function() {
 
 	const tepURL = new URLSearchParams(window.location.search);
-	let memberId = tepURL.get("memberId"); //TODO
+	let memberId = tepURL.get("memberId"); 
 	memberId = 1; //TODO
 
 	const allorder = document.querySelector("#allorder");
@@ -19,6 +19,7 @@ $(function() {
 	const delivery_url = "orderInfo/" + memberId + "/shippingStatus/已出貨";
 	const complete_url = "orderInfo/" + memberId + "/shippingStatus/已完成";
 	const date_url = "orderInfo/pickDate";
+	
 
 	//====================各訂單的頁籤分類====================//	
 	//全部頁籤			
@@ -187,7 +188,8 @@ $(function() {
 	//依tab顯示對應狀態的訂單
 	function orderlist(tabName, data) {
 		tabName.innerHTML = "";
-		for (let order of data) {
+		for (let i = data.length - 1; i >= 0; i--) { //訂單編號由大到小排列
+			let order = data[i];
 			const time = (new Date(order.created_date)).toISOString().slice(0, 19).replace(/-/g, "/").replace("T", " ");
 
 			if (order.status == "未成立") {
@@ -244,10 +246,6 @@ $(function() {
 			tabName.innerHTML += html;
 		}
 	}
-
-
-
-
-
+	
 
 });

@@ -92,27 +92,29 @@
 						<h1 class="mb-4 billing-heading">結帳</h1>
 						<div class="row align-items-end">
 							<div class="col-md-12 ">
-								<label for="payment" style="font-size: 20px;">付款方式</label>								
+								<label for="payment" style="font-size: 20px;">付款方式</label>	
+								<span id="paymentError" class="hidden -on">請選擇付款方式</span>							
 								<hr>
 								<div class="radio d-flex justify-content-between">
 									<label for="order_payment_method"><input type="radio"
-										name="order_payment_method" class="mr-2" value="信用卡付款">信用卡付款</label>
+										name="order_payment_method" class="mr-2" value="信用卡">信用卡付款</label>
 									<label for="order_payment_method"><input type="radio"
 										name="order_payment_method" class="mr-2" value="貨到付款">貨到付款</label>
 									<label for="order_payment_method"><input type="radio"
-										name="order_payment_method" class="mr-2" value="ATM付款">ATM付款</label>
+										name="order_payment_method" class="mr-2" value="轉帳">ATM轉帳</label>
 								</div>
 								<div class="form-group mt-4"></div>
 							</div>
 							<div class="col-md-12">
 								<div class="form-group mt-4">
 									<label for="shipping" style="font-size: 20px;">寄送方式</label>
+									<span id="shippingError" class="hidden -on">請填寫寄送方式</span>	
 									<hr>
 									<div class="radio d-flex justify-content-between">
 										<label for="order_shipping_method"><input type="radio"
-											name="order_shipping_method" class="mr-2" value="宅配到府">宅配到府</label>
+											name="order_shipping_method" class="mr-2" value="宅配">宅配到府</label>
 										<label for="order_shipping_method"><input type="radio"
-											name="order_shipping_method" class="mr-2" value="郵局">郵局</label>
+											name="order_shipping_method" class="mr-2" value="郵寄">郵局</label>
 										<label style="visibility: hidden;"><input type="radio"
 											class="mr-2">超商店到店</label>
 									</div>
@@ -121,6 +123,7 @@
 							<div class="col-md-12">
 								<div class="form-group mt-4">
 									<label for="address" style="font-size: 20px;">收貨地址</label>
+									<span id="addressError" class="hidden -on">請填寫收貨地址</span>	
 									<hr>
 									<div class="row dropdown" name="order_shipping_address">
 										<select name="country" id="country_box">
