@@ -142,41 +142,43 @@
     <section class="ftco-section ftco-white">
       <div class="container">
         <div class="col-lg-12">
-          <div class="row my-2">
+          <div class="row d-flex my-2">
+          
             <!-- Breadcrumb麵包屑 -->
-            <div class="col-md-6">
+            <div class="col-4 d-flex justify-content-start">
+            <div class="align-self-center">
               <div id="breadcrumb"></div>
             </div>
-            <!-- 搜尋 -->
-            <div
-              class="col-md-3 search-bar d-flex"
-              style="display: flex; align-items: center"
-            >
-              <input
-                type="text"
-                class="mx-2 flex-grow-2"
-                id="searchInput"
-                placeholder="搜尋商品"
-              />
-              <span
-                id="searchIcon"
-                class="icon icon-search"
-                style="
-                  position: absolute;
-                  right: 30px;
-                  top: 50%;
-                  transform: translateY(-50%);
-                "
-              ></span>
             </div>
 
             <!-- 排序 -->
-            <div class="col-md-3 d-flex justify-content-end">
-              <select id="sortOptions">
+            <div class="col-4 d-flex justify-content-end">
+              <select id="sortOptions" class="align-self-center">
                 <option value="default" selected disabled>排序方式</option>
                 <option value="lowToHigh">價格由低到高</option>
                 <option value="highToLow">價格由高到低</option>
               </select>
+            </div>
+
+            <!-- 搜尋 -->
+            <div class="col-4 d-flex justify-content-center card-body">
+              <div class="input-group search-bar row justify-content-end">
+                <input
+                  id="searchInput"
+                  class="col-10 my-2"
+                  type="text"
+                  placeholder="搜尋商品"
+                  aria-label="Enter search term..."
+                  aria-describedby="searchIcon"
+                />
+                <button
+                  class="btn btn-search col-2"
+                  id="searchIcon"
+                  type="button"
+                >
+                  <i class="fa-solid fa-magnifying-glass fa-2xl"></i>
+                </button>
+              </div>
             </div>
           </div>
 
@@ -186,38 +188,9 @@
 
           <!-- 分頁按鈕 -->
           <div id="pagination" class="row mt-4 justify-content-center">
-            <ul
-              id="pagination-ul"
-              class="pagination pagination-lg"
-            ></ul>
+            <ul id="pagination-ul" class="pagination pagination-lg"></ul>
           </div>
-          <!-- 分頁按鈕 -->
-          <!-- <div id="pagination" class="row mt-4">
-            <ul class="pagination pagination-lg justify-content-end">
-              <li class="page-item disabled">
-                <a
-                  class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0"
-                  href="#"
-                  tabindex="-1"
-                  >1</a
-                >
-              </li>
-              <li class="page-item">
-                <a
-                  class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark"
-                  href="#"
-                  >2</a
-                >
-              </li>
-              <li class="page-item">
-                <a
-                  class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark"
-                  href="#"
-                  >3</a
-                >
-              </li>
-            </ul>
-          </div> -->
+
           <!-- 分頁按鈕結束 -->
         </div>
       </div>
@@ -254,6 +227,10 @@
     <script src="../js/bootstrap-datepicker.js"></script>
     <script src="../js/jquery.timepicker.min.js"></script>
     <script src="../js/scrollax.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/cb3aaf37f3.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="../shop/js/product_list.js"></script>
 
     <script></script>

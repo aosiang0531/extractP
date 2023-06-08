@@ -12,7 +12,8 @@
     const msg = document.querySelector('#msg');
     const img = document.querySelector('#img');
     const the_form = document.querySelector('#the_form');
-
+    const statusRadioButtons = document.getElementsByName("productStatus");
+	
 
     //先將商品資料載入回來
     const urlParams = new URLSearchParams(window.location.search);
@@ -38,6 +39,15 @@
                 product_stock.value = singleProduct.stock;
                 product_description.value = singleProduct.description;
                 img.src = "data:image/png;base64," + singleProduct.image;
+				
+				for (let radioButton of statusRadioButtons) {
+				  if (radioButton.value === singleProduct.productStatus) {
+				    radioButton.checked = true;
+				    break; // 
+				  }
+				 }
+
+                
             } else {
                 title.innerHTML = "查無此商品！";
             }
@@ -60,7 +70,7 @@
 
     //修改資料
     submit.addEventListener('click', () => {
-
+		
 
         const errorMessages = [];
         //檢查輸入的內容
@@ -116,6 +126,8 @@
     });
 
     function submitFormWithImage(imageData) {
+				const statusValue = document.querySelector('input[name="productStatus"]:checked').value;
+		console.log("狀態為~："+statusValue);
         var productJson = JSON.stringify({
             categoryId: category_id.value,
             productName: product_name.value,
@@ -123,7 +135,8 @@
             spec: product_spec.value,
             image: imageData,
             stock: product_stock.value,
-            price: product_price.value
+            price: product_price.value,
+            productStatus: statusValue
         });
 
         fetch(`/shop/product/${product_id}`, {

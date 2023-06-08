@@ -18,7 +18,7 @@ function addToCart(productId, price) {
 	})
 		.then((resp) => resp.json())
 		.then((body) => {
-//			console.log(body);
+			//			console.log(body);
 			alert("成功加入購物車");
 		});
 }
@@ -55,7 +55,7 @@ function loadAllProducts() {
 		.then((res) => res.json())
 		.then((productList) => {
 			allProducts = productList.content;
-//			console.log(allProducts);
+			//			console.log(allProducts);
 			renderProductList(getCurrentPageProducts());
 			renderPagination();
 		});
@@ -212,7 +212,6 @@ $(document).ready(function () {
 	// 重新載入所有商品列表
 	$("#allProductsBtn").click(function () {
 		loadAllProducts();
-
 	});
 
 	// 點擊「分類1」按鈕時過濾顯示分類1的商品

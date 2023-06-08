@@ -50,7 +50,7 @@
 
   <body>
     <nav
-      class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
+      class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light"
       id="ftco-navbar"
     >
       <div class="container">
@@ -144,7 +144,12 @@
           <div class="col-lg-6 product-details pl-md-5 ftco-animate">
             <h3 id="productName">商品名</h3>
             <p class="price"><span id="productPrice">商品價格</span></p>
-            <p id="productSpec">商品規格</p>
+            <div class="d-flex">
+              <div class="mr-2"><h5>商品規格：</h5></div>
+              <div class="mr-2"><p id="productSpec"></p></div>
+              <div class="mr-2"><h5>庫存：</h5></div>
+              <div><p id="productStock"></p></div>
+            </div>
             <p id="productDescript">商品描述</p>
             <div class="row mt-4">
               <!-- <div class="col-md-6">

@@ -47,11 +47,16 @@ public class ProductServiceImpl implements ProductService {
 		return repository.findByProductStatus(status);
 	}
 	
-	// 查詢所有「已上架」商品分頁版
+	// 查詢所有「已上架」商品-分頁版
 	public Page<ProductVO> findAllOnSale(Pageable pageable) {
 		return repository.findByProductStatus("上架中", pageable);
 	}
-
+	
+	// 查詢所有商品-分頁版
+	public Page<ProductVO> findAll(Pageable pageable) {
+		return repository.findAll(pageable);
+	}
+	
 	@Override
 	public List<ProductVO> findAll() {
 		return repository.findAll();

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>新增商品</h1>
+    <form id="productForm" enctype="multipart/form-data">
+      <label for="category">分類編號:</label>
+      <select id="category" name="category">
+        <option value="1">分類1</option>
+        <option value="2">分類2</option>
+        <option value="3">分類3</option>
+      </select>
+      <br /><br />
+      <label for="productName">產品名稱:</label>
+      <input type="text" id="productName" name="productName" />
+      <br /><br />
+      <label for="images">圖片上傳:</label>
+      <input type="file" id="images" name="images" multiple />
+      <br /><br />
+      <input type="submit" value="新增" />
+    </form>
+
+    <script>
+      const form = document.getElementById("productForm");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        const requestOptions = {
+          method: "POST",
+          body: formData,
+        };
+
+        fetch("/shop/product/testUpload", requestOptions)
+          .then((resp) => resp.json())
+          .then((data) => {
+            // 處理回應的資料
+            console.log(data);
+          })
+          .catch((error) => {
+            // 處理錯誤
+            console.error(error);
+          });
+      });
+    </script>
+  </body>
+</html>

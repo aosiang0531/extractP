@@ -1,13 +1,15 @@
 const urlParams = new URLSearchParams(window.location.search);
-const product_id = urlParams.get("id");
-console.log("產品編號：" + product_id);
+
 const productImageElement = document.getElementById("productImage");
 const imagePopupElement = document.getElementById("imagePopup");
 const productNameElement = document.getElementById("productName");
 const productPriceElement = document.getElementById("productPrice");
 const productSpecElement = document.getElementById("productSpec");
+const productStockElement = document.getElementById("productStock");
 const productDescriptElement = document.getElementById("productDescript");
+const product_id = urlParams.get("id");
 const url = `product/${product_id}`;
+console.log("產品編號：" + product_id);
 let price = 0;
 let quantity = 0;
 
@@ -46,6 +48,7 @@ fetch(url)
         productNameElement.innerText = singleProduct.productName;
         productPriceElement.innerText = "$" + singleProduct.price;
         productSpecElement.innerText = singleProduct.spec;
+        productStockElement.innerText = singleProduct.stock;
         productDescriptElement.innerText = singleProduct.description;
         productImageElement.src =
             "data:image/png;base64," + singleProduct.image;
@@ -59,10 +62,13 @@ $(".quantity-right-plus").click(function (e) {
     e.preventDefault();
     // 取得數量
     quantity = parseInt($("#quantity").val());
-    // 數量+1
-    $("#quantity").val(quantity + 1);
-    quantity = parseInt($("#quantity").val());
-    console.log(quantity);
+    
+    // 數量小於庫存時才能+1
+    if(quantity < productStockElement.textContent){
+	    $("#quantity").val(quantity + 1);
+	    quantity = parseInt($("#quantity").val());
+	    console.log(quantity);
+    }
 });
 
 $(".quantity-left-minus").click(function (e) {

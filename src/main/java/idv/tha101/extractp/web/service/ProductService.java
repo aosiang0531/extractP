@@ -16,8 +16,10 @@ public interface ProductService extends BaseService<ProductVO>{
 	
 	// 查詢所有「已上架」商品
 	List<ProductVO> findByStatus(String status);
-	// 查詢所有「已上架」商品分頁版
+	// 查詢所有「已上架」商品-分頁版
 	Page<ProductVO> findAllOnSale(Pageable pageable);
+	// 查詢所有商品-分頁版
+	Page<ProductVO> findAll(Pageable pageable);
 	
 	
 

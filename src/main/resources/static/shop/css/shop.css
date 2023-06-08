@@ -13,7 +13,7 @@
   color:#808080;
   }
 
-  h3{
+  h3, h5{
     color:black;
   }
 
@@ -26,8 +26,13 @@
   
 .page-item.disabled .page-link {
 	background-color:#d2bfa4;
-	
-
+	}
+.btn-search{
+	background-color:transparent; 
+	border-style:none;
+	}
+	select#sortOptions{
+	height:33px;
 	}
 
 
@@ -42,12 +47,13 @@
     color: rgb(0, 0, 0);
   }
 
-
   .table {
     min-width: 0 !important;
     width: 100%;
     text-align: center;
   }
+  
+  
 
   /* 頁籤區塊 */
   div.tab_container div.tab_list_block {
