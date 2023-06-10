@@ -203,9 +203,9 @@ $(function() {
 		                    
 							<td name="order_status" class="orderstatus"><h6>${order.status}</h6></td>
 							
-		                    <td name="order_payment_status" class="paymentstatus"><h6>${order.payment_status}</h6></td>
+		                    <td name="order_payment_status" class="paymentstatus"><h6></h6></td>
 		
-		                    <td name="order_shipping_status" class="shippingstatus"><h6>${order.shipping_status}</h6></td>
+		                    <td name="order_shipping_status" class="shippingstatus"><h6></h6></td>
 		    
 		                    <td class="order-content">
 	                        <button type="button"

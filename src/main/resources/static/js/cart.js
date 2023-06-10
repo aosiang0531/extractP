@@ -2,7 +2,8 @@ $(function() {
 
 	const tepURL = new URLSearchParams(window.location.search);
 	const orderId = parseInt(tepURL.get("orderId"));
-	
+	const memberId = 1;
+
 	const tbody = document.querySelector("tbody");
 	const pay = document.querySelector("#pay");
 	const addOn = document.querySelector("#addonlist");
@@ -44,8 +45,8 @@ $(function() {
 				order_detail_ids.push(order_detail_id);
 
 			}
-			
-			
+
+
 			fetch(pay_url)
 				.then(resp => resp.json())
 				.then(payment => {
@@ -70,15 +71,15 @@ $(function() {
 					pay.innerHTML = html;
 
 				});
-			
-			addOn.innerHTML = `<h4 style="color:black;">其他人也買了以下商品</h4>`;	
-			for(let i = 6; i < 9; i++){	//TODO
-				const product_url = "shop/product/" + i ;
+
+			addOn.innerHTML = `<h4 style="color:black;">其他人也買了以下商品</h4>`;
+			for (let i = 5; i < 7; i++) {	
+				const product_url = "shop/product/" + i;
 				fetch(product_url)
 					.then(resp => resp.json())
 					.then(data => {
-							const image = "data:image/png;base64," + data.image;
-							addOn.innerHTML += `
+						const image = "data:image/png;base64," + data.image;
+						addOn.innerHTML += `
 							<div class="addproduct" name="${data.id}">
 								<p class="image-prod"><img class="img" src="${image}" width="100px" height="100px"></p>
 								<p class="product-name"><a href="#"><h6>${data.productName}</h6></a></p>
@@ -86,31 +87,31 @@ $(function() {
 								<span style="color:#c49b63;">$${data.price}</span>
 								<br>
 								<span style="color:black;">加購價</span>
-								<span style="color:#c49b63;" name = "specialPrice">$${data.price*0.8}</span>
+								<span style="color:#c49b63;" name = "specialPrice">$${data.price * 0.8}</span>
 								<p class="addbtn" type="button" style="color:gray;">加入購物車</p>
 							</div>
 							`;
-						
+
 					});
-			}	
+			}
 
 
 			//==========點選加價購，新增一筆訂單明細=========//
-			$(document).on("click",".addbtn",function(){
+			$(document).on("click", ".addbtn", function() {
 				const productId = $(this).closest(".addproduct").attr("name");
 				const price = $(this).closest(".addproduct").find('[name="specialPrice"]').text().replace(/[^\d.]/g, '');
-				const addDetail_url = "orderDetail";
-				
+				const addDetail_url = "/orderDetail/1/unplaced";	//memberId
+
 				data = JSON.stringify({
 					"product_id": productId,
-        			"price": parseFloat(price),
-        			"order_id": orderId,
-        			"quantity": 1
+					"price": parseFloat(price),
+					"order_id": orderId,
+					"quantity": 1
 				})
 
 				console.log(data);
 				fetch(addDetail_url, {
-					method: 'POST',
+					method: 'PUT',
 					body: data,
 					headers: {
 						'Content-Type': 'application/json; charset=utf-8',
@@ -121,24 +122,24 @@ $(function() {
 						console.log(data);
 						console.log("success-addOn");
 					})
-					
-					location.reload();
+
+				location.reload();
 
 			});
-			
+
 
 
 			//=========== 點選前往付款 =========== //
 			$(document).on("click", "#checkout", function() {
 				let elements = Array.from(document.querySelectorAll("input[name='quantity']"));
-				let prices =  Array.from(document.querySelectorAll("td[name='price']"));
+				let prices = Array.from(document.querySelectorAll("td[name='price']"));
 				const total = document.querySelector("[name='total']").textContent.replace('$', '');
 
 				let datalist = [];
 				for (var i = 0; i < elements.length; i++) {
 					let data = JSON.stringify({
 						"id": order_detail_ids[i],
-						"price":prices[i].value,
+						"price": prices[i].value,
 						"quantity": elements[i].value
 					});
 					datalist.push(data);
@@ -186,14 +187,14 @@ $(function() {
 			//============= 儲存訂單 ============= //
 			$(document).on("click", "#save", function() {
 				let elements = Array.from(document.querySelectorAll("input[name='quantity']"));
-				let prices =  Array.from(document.querySelectorAll("td[name='price']"));
+				let prices = Array.from(document.querySelectorAll("td[name='price']"));
 				const total = document.querySelector("[name='total']").textContent.replace('$', '');
 
 				let datalist = [];
 				for (var i = 0; i < elements.length; i++) {
 					let data = JSON.stringify({
 						"id": order_detail_ids[i],
-						"price":prices[i].value,
+						"price": prices[i].value,
 						"quantity": elements[i].value
 					});
 					datalist.push(data);
@@ -293,6 +294,10 @@ $(function() {
 	$(document).on("click", ".decrease", function() {
 		var num = $(this).siblings(".input-number").val();
 		num--;
+		if (num < 1) {
+			alert("數量不可小於1");
+			num = 1
+		}
 		$(this).siblings(".input-number").val(num);
 		$(this).siblings(".input-number").attr("value", num);
 		var price = $(this).parents(".quantity").siblings(".price").text().substr(1);
