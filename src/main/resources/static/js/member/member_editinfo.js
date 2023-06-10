@@ -53,7 +53,7 @@ function phoneError(){
 
 
   // 頁面加載時執行的操作
-  var memberId = 17; // 請替換為真實的會員ID
+  var memberId = 1; // 請替換為真實的會員ID
 
   // 構建後端端點URL並替換會員ID
   var url = "member/{id}".replace("{id}", memberId);
@@ -69,7 +69,14 @@ function phoneError(){
       $("input[name='memberEmail']").val(response.email);
       
       // 顯示會員圖片
-      img.src = "data:image/jpeg;base64," + response.image;
+      //img.src = "data:image/jpeg;base64," + response.image;
+      if (response.image) {
+				// 顯示會員圖片
+				img.src = "data:image/jpeg;base64," + response.image;
+			} else {
+				// 如果没有會員圖片，顯示默認圖片
+				img.src = "images/300.jpg";
+			}
       
        const html = `<h2 class="user-name">${response.name}</h2>`;
        document.querySelector("#name").innerHTML = html;
@@ -94,7 +101,7 @@ function phoneError(){
     console.log("HI");
 
     // 獲取會員ID
-    var memberId = 17; // 請替換為真實的會員ID
+    var memberId = 1; // 請替換為真實的會員ID
 
     // 構建後端端點URL並替換會員ID
     var url = "member/{id}".replace("{id}", memberId);
@@ -115,21 +122,21 @@ function phoneError(){
 
     };
     
-    const accLength = $("#email").val().length;
-	if (accLength === 0 ) {
-	return;
-	}
+//    const accLength = $("#email").val().length;
+//	if (accLength === 0 ) {
+//	return;
+//	}
 
 
-	const phoneLength = $("#phone").val().length;
-	if (phoneLength === 0) {
-	return;
-	}
-	
-	const nameLength = $("#phone").val().length;
-	if (nameLength === 0) {
-	return;
-	}
+//	const phoneLength = $("#phone").val().length;
+//	if (phoneLength === 0) {
+//	return;
+//	}
+//	
+//	const nameLength = $("#name").val().length;
+//	if (nameLength === 0) {
+//	return;
+//	}
 
     // 發送AJAX請求
     $.ajax({
@@ -140,6 +147,7 @@ function phoneError(){
       success: function(response) {
         // 更新成功後的處理邏輯
         console.log("更新成功");
+        window.location.href = 'member_editinfo.html';
       },
       error: function(error) {
         // 更新失敗後的處理邏輯
@@ -165,7 +173,7 @@ function phoneError(){
   });
   
 //獲取會員ID
-  var memberId = 17; // 請替換為真實的會員ID
+  var memberId = 1; // 請替換為真實的會員ID
 
   // 構建後端端點URL並替換會員ID
   var url = "member/{id}".replace("{id}", memberId);
@@ -181,7 +189,19 @@ function phoneError(){
         	image: btoa(e.target.result)
       })
     })
-   
+   		.then(response => {
+        if (response.ok) {
+          // 上傳成功後跳轉頁面
+          window.location.href = 'member_editinfo.html';
+        } else {
+          // 上傳失敗時的處理程式碼
+          console.log('上傳失敗');
+        }
+      })
+      .catch(error => {
+        // 錯誤處理程式碼
+        console.log('發生錯誤', error);
+      });
   });
   fr.readAsBinaryString(file.files[0]);
 }); 

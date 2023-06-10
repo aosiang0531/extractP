@@ -28,6 +28,7 @@
 				// 處理後端的回應
 				console.log(response);
 				// 執行必要的操作或顯示成功訊息
+				alert("已送出重設密碼信");
 				window.location.href="member_login.html";
 			  },
 			  error: function(error) {
