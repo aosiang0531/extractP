@@ -1,7 +1,6 @@
 // 自動調整textArea高度
 var textarea = document.querySelector('#product_description');
 textarea.addEventListener('input', function () {
-    console.log("輸入框");
     this.style.height = 'auto';
     this.style.height = this.scrollHeight + 'px';
 });
@@ -34,7 +33,6 @@ textarea.addEventListener('input', function () {
     });
 
     submit.addEventListener('click', () => {
-
 
         const errorMessages = [];
         //檢查輸入的內容

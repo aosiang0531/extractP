@@ -92,7 +92,8 @@ public class OrderDetailController extends BaseController<OrderDetailVO> {
 	@PutMapping("/{member_id}/unplaced")
 	public OrderInfoVO addProductToOrder(@RequestBody OrderDetailVO vo, @PathVariable(value = "member_id") int id) {
 		// 用member_id查找未成立訂單(取得購物車)
-		OrderInfoVO info = orderInfoService.findById(id);
+		OrderInfoVO info = orderInfoService.findCart(id);
+		System.out.println(info.getId());
 
 		// 查詢購物車中是否已存在此項產品
 		List<OrderDetailVO> list = orderDetailService.findByOrderId(info.getId());
@@ -116,5 +117,15 @@ public class OrderDetailController extends BaseController<OrderDetailVO> {
 		}
 
 		return info;
+	}
+	
+	//取得會員購物車明細數量
+	@GetMapping("/{member_id}/countItems")
+	public int countCartItem(@PathVariable(value = "member_id") int id) {
+		OrderInfoVO cart = orderInfoService.findCart(id);
+		List<OrderDetailVO> list = orderDetailService.findByOrderId(cart.getId());
+		int count = list.size();
+		System.out.println("購物車內有"+count+"個商品");
+		return count;
 	}
 }

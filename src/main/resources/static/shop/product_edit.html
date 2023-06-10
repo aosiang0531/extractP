@@ -123,11 +123,11 @@
 
         <form id="the_form">
           <!-- 選擇分類 -->
-          <h5 for="category" class="form-label">選擇分類</h5>
+          
           <div class="row">
             <div class="col-md-6 mb-4">
               <div class="main-group">
-                <br />
+                <h5 for="category_id" class="form-label">選擇分類</h5>
                 <select class="form-select" id="category_id">
                   <option selected disabled>請選擇分類</option>
                   <option value="1">咖啡器具</option>
@@ -141,10 +141,8 @@
           <hr />
 
           <!-- 上傳圖片 -->
-          <h5 class="form-label me-3">上傳圖片</h5>
-
           <div>
-            <label for="image">上傳圖片: </label>
+            <h5 class="form-label me-3">上傳圖片</h5>
             <input type="file" name="image" id="image" />
             <img id="img" />
           </div>
@@ -198,10 +196,13 @@
           <hr />
 
           <!-- 按鈕 -->
-          <button type="button" class="btn btn-primary me-3" id="submit">
-            確定修改
-          </button>
-          <button type="reset" class="btn btn-secondary">重新填寫</button>
+          <div>
+	          <button type="button" class="btn btn-primary me-3" id="submit">
+	            確定修改
+	          </button>
+	          <button type="reset" class="btn btn-secondary">重新填寫</button>
+          	
+          </div>
           <div id="msg" class="error"></div>
         </form>
       </div>

@@ -1,20 +1,19 @@
 package idv.tha101.extractp.web.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +22,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -36,7 +36,10 @@ public class ProductController extends BaseController<ProductVO> {
 
 	@Autowired
 	private ProductService service;
-
+	
+	 @Value("${logging.file.path}"+"extractP\\src\\main\\resources\\static\\shop\\")
+	    private String imageUploadPath;
+	
 	// 以關鍵字+產品分類查詢商品
 	@GetMapping("/search/{keyword}/{categoryId}")
 	public List<ProductVO> findByKeywordAndCategory(@PathVariable(value = "keyword") String keyword,
@@ -212,5 +215,51 @@ public class ProductController extends BaseController<ProductVO> {
 		map.put("成功", "ture");
 		return map;
 	}
+	
+    @GetMapping("/insertImages")
+    @ResponseBody
+    public String insertProductImages() {
+    	
+        File[] imageFiles = {
+                new File(imageUploadPath+"shop_products/001.jpg"),
+                new File(imageUploadPath+"shop_products/002.jpg"),
+                new File(imageUploadPath+"shop_products/003.jpg"),
+                new File(imageUploadPath+"shop_products/004.jpg"),
+                new File(imageUploadPath+"shop_products/005.jpg"),
+                new File(imageUploadPath+"shop_products/006.jpg"),
+                new File(imageUploadPath+"shop_products/007.jpg"),
+                new File(imageUploadPath+"shop_products/008.jpg"),
+                new File(imageUploadPath+"shop_products/009.jpg"),
+                new File(imageUploadPath+"shop_products/010.jpg"),
+                new File(imageUploadPath+"shop_products/011.jpg"),
+                new File(imageUploadPath+"shop_products/012.jpg"),
+                new File(imageUploadPath+"shop_products/013.jpg"),
+                new File(imageUploadPath+"shop_products/014.jpg"),
+                new File(imageUploadPath+"shop_products/015.jpg"),
+                new File(imageUploadPath+"shop_products/016.jpg")
+        };
+
+
+        for (int i = 0; i < imageFiles.length; i++) {
+            File imageFile = imageFiles[i];
+
+            try (FileInputStream fis = new FileInputStream(imageFile)) {
+            	
+                byte[] imageData = new byte[(int) imageFile.length()];
+                fis.read(imageData);
+                
+                ProductVO product = new ProductVO();
+                product.setImage(imageData);
+                product.setId(i + 1);
+                
+                service.saveOrUpdate(product);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return "成功";
+    }
+
 
 };

@@ -1,15 +1,17 @@
 var allProducts = [];
 var itemsPerPage = 8; // 每頁顯示的商品數量
 var currentPage = 1; // 當前頁碼
+var countCartItem;
+var memberId = 1;
+const cartItemNumber = document.querySelector('#cartItemNumber');
 
 //商品加入購物車
 function addToCart(productId, price) {
-	var memberId = 1;
+
 	var newDetail = JSON.stringify({
 		"product_id": productId,
-		//加入購物車時應該還不需更新價格，結帳時才要，「專題先加」
 		"price": price,
-		"quantity": 1, //從商品列表加入，預設數量為1
+		"quantity": 1, //從商品列表加入時，預設數量為1
 	});
 
 	fetch(`/orderDetail/${memberId}/unplaced`, {
@@ -20,9 +22,30 @@ function addToCart(productId, price) {
 		.then((body) => {
 			//			console.log(body);
 			alert("成功加入購物車");
+			countCartItem();
+
 		});
 }
 
+//// 顯示購物車明細數量
+function countCartItem() {
+	setTimeout(() => {
+		fetch(`/orderDetail/${memberId}/countItems`)
+			.then((resp) => {
+				if (resp.ok) {
+					return resp.text();
+				}
+			})
+			.then((count) => {
+				// 更新數字
+				cartItemNumber.innerHTML = count;
+			})
+			.catch(error => {
+				// 發生錯誤時的處理邏輯
+				console.log('發生錯誤:', error);
+			});
+	}, 100); // 非同步延遲處理，使它可以在網頁上不刷新即顯示
+}
 
 //以關鍵字搜尋商品
 function searchBykeyword(keyword) {
@@ -54,8 +77,9 @@ function loadAllProducts() {
 	fetch(url)
 		.then((res) => res.json())
 		.then((productList) => {
+			console.log("AAA"+productList);
 			allProducts = productList.content;
-			//			console.log(allProducts);
+			console.log(allProducts);
 			renderProductList(getCurrentPageProducts());
 			renderPagination();
 		});
@@ -82,7 +106,7 @@ function getCurrentPageProducts() {
 function filterProductsByCategory(categoryId) {
 	console.log("分類編號:" + categoryId);
 
-	var filteredProducts = allProducts.filter(function (product) {
+	var filteredProducts = allProducts.filter(function(product) {
 		return product.categoryId === categoryId;
 	});
 
@@ -106,7 +130,7 @@ function filterProductsByCategory(categoryId) {
 
 	// 生成麵包屑的 HTML 代碼
 	var breadcrumbHtml = `
-        <a href="index.html">咖啡商城</a> /
+        <a href="product_list.html">咖啡商城</a> /
         <a>${categoryName}</a> 
         `;
 
@@ -178,7 +202,7 @@ function renderPagination() {
 	$(".page-item").eq(currentPage - 1).addClass("disabled");
 
 	// 設置分頁按鈕點擊事件
-	$(".page-link").click(function () {
+	$(".page-link").click(function() {
 		const newPage = parseInt($(this).text());
 		currentPage = newPage;
 		renderProductList(getCurrentPageProducts());
@@ -187,7 +211,7 @@ function renderPagination() {
 }
 
 //點擊分頁按鈕後，捲動到最上方
-$(document).on('click', '.page-item', function () {
+$(document).on('click', '.page-item', function() {
 	//    console.log("HEY");
 	$("html, body").animate({ scrollTop: 0 }, "fast");
 });
@@ -205,37 +229,40 @@ function searchItem() {
 }
 
 //網頁載入時執行
-$(document).ready(function () {
+$(document).ready(function() {
 	// 網頁載入時加載所有商品列表
 	loadAllProducts();
 
+	// 載入購物車清單數量
+	countCartItem();
+
 	// 重新載入所有商品列表
-	$("#allProductsBtn").click(function () {
+	$("#allProductsBtn").click(function() {
 		loadAllProducts();
 	});
 
 	// 點擊「分類1」按鈕時過濾顯示分類1的商品
-	$("#category1Btn").click(function () {
+	$("#category1Btn").click(function() {
 		filterProductsByCategory(1);
 	});
 
 	// 點擊「分類2」按鈕時過濾顯示分類2的商品
-	$("#category2Btn").click(function () {
+	$("#category2Btn").click(function() {
 		filterProductsByCategory(2);
 	});
 
 	// 點擊「分類3」按鈕時過濾顯示分類3的商品
-	$("#category3Btn").click(function () {
+	$("#category3Btn").click(function() {
 		filterProductsByCategory(3);
 	});
 
 	// 點擊「搜尋」按鈕時顯示輸入的關鍵字商品
-	$("#searchIcon").click(function () {
+	$("#searchIcon").click(function() {
 		searchItem();
 	});
 
 	//搜尋框按enter等同按下搜尋icon
-	$("#searchInput").keydown(function (event) {
+	$("#searchInput").keydown(function(event) {
 		// 13代表Enter鍵的鍵碼
 		if (event.keyCode === 13) {
 			$("#searchIcon").click();
@@ -243,21 +270,21 @@ $(document).ready(function () {
 	});
 
 	//排序
-	$("#sortOptions").change(function () {
+	$("#sortOptions").change(function() {
 		var selectedOption = $(this).val();
 		if (selectedOption === "lowToHigh") {
 			// 價格由低到高排序
-			allProducts.sort(function (a, b) {
+			allProducts.sort(function(a, b) {
 				return a.price - b.price;
 			});
 		} else if (selectedOption === "highToLow") {
 			// 價格由高到低排序
-			allProducts.sort(function (a, b) {
+			allProducts.sort(function(a, b) {
 				return b.price - a.price;
 			});
 		} else {
 			//預設順序
-			allProducts.sort(function (a, b) {
+			allProducts.sort(function(a, b) {
 				return a.id - b.id;
 			});
 		}

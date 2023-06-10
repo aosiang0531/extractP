@@ -1,5 +1,4 @@
 const urlParams = new URLSearchParams(window.location.search);
-
 const productImageElement = document.getElementById("productImage");
 const imagePopupElement = document.getElementById("imagePopup");
 const productNameElement = document.getElementById("productName");
@@ -9,6 +8,8 @@ const productStockElement = document.getElementById("productStock");
 const productDescriptElement = document.getElementById("productDescript");
 const product_id = urlParams.get("id");
 const url = `product/${product_id}`;
+
+var memberId = 1;
 console.log("產品編號：" + product_id);
 let price = 0;
 let quantity = 0;
@@ -33,7 +34,28 @@ function addToCart() {
         .then((body) => {
             console.log(body);
             alert("成功加入購物車");
+            countCartItem();
         });
+}
+
+// 顯示購物車明細數量
+function countCartItem() {
+	setTimeout(() => {
+		fetch(`/orderDetail/${memberId}/countItems`)
+			.then((resp) => {
+				if (resp.ok) {
+					return resp.text();
+				}
+			})
+			.then((count) => {
+				// 更新數字
+				cartItemNumber.innerHTML = count;
+			})
+			.catch(error => {
+				// 發生錯誤時的處理邏輯
+				console.log('發生錯誤:', error);
+			});
+	}, 100); // 延遲處理
 }
 
 
@@ -54,6 +76,7 @@ fetch(url)
             "data:image/png;base64," + singleProduct.image;
         imagePopupElement.href =
             "data:image/png;base64," + singleProduct.image;
+        countCartItem();
     });
 
 //var quantitiy = 0;

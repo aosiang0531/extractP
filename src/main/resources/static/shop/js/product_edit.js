@@ -1,3 +1,10 @@
+// 自動調整textArea高度
+var textarea = document.querySelector('#product_description');
+textarea.addEventListener('input', function () {
+    this.style.height = 'auto';
+    this.style.height = this.scrollHeight + 'px';
+});
+
 (() => {
     const submit = document.querySelector('#submit');
     const title = document.querySelector('#title')
@@ -63,7 +70,7 @@
         // var hasImg = preview_area.getElementsByTagName("img")[0];
         if (img) {
             //若存在就將它移除
-            preview_area.removeChild(img);
+            img.src = "";
         }
     });
 
