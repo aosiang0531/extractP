@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.admin.SpringApplicationAdminMXBean;
 import org.springframework.stereotype.Service;
 
 import idv.tha101.extractp.web.dao.AdminRepostiory;

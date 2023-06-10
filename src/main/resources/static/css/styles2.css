@@ -27,11 +27,13 @@ table {
 
 td, th {
 	word-wrap: break-word;
-	max-width: 100px; /* 調整單元格最大寬度，根據需要進行調整 */
-	border: 1px solid black; /* 設置邊框線條 */
+	max-width: 100px;
+	border: 1px solid black;
 	padding: 5px;
+	text-align: center; 
 }
 
 .error-message {
 	color: red;
 }
+

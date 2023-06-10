@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,6 +32,7 @@
 		crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+
 	<header>
 		<nav class="custom-navbar navbar navbar-expand-lg navbar-dark bg-dark">
 			<div class="container">
@@ -39,7 +42,7 @@
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarNav"
 					aria-controls="navbarNav" aria-expanded="false"
-					aria-label="Toggle navigation">
+					aria-label="Toggle navigation" onclick="handleNavbarToggle()">
 					<span class="navbar-toggler-icon"></span>
 				</button>
 
@@ -51,7 +54,6 @@
 							href="admin_search.html">管理</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="admin_clazz_event.html">活動/課程審核</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">商家檢舉</a></li>
 				</div>
 
 				<ul class="navbar-nav">
@@ -63,6 +65,8 @@
 		</nav>
 	</header>
 
+
+
 	<main class="container mt-4">
 		<h1 class="text-center">管理系統</h1>
 
@@ -72,24 +76,26 @@
 				<div id="searchForm">
 					<div class="input-group mb-3">
 						<div class="dropdown">
-							<button class="btn btn-secondary dropdown-toggle" type="button"
-								id="searchTypeDropdown" data-bs-toggle="dropdown"
+							<button class="btn btn-secondary dropdown-toggle ms-2"
+								type="button" id="searchTypeDropdown" data-bs-toggle="dropdown"
 								aria-expanded="false">請選擇查詢</button>
 							<ul class="dropdown-menu" aria-labelledby="searchTypeDropdown">
 								<li><button id="memberButton" class="dropdown-item"
-										onclick="handleSearchTypeClick('member')">會員</button></li>
+										onclick="handleSearchTypeClick('member')">會員列表</button></li>
 								<li><button id="adminButton" class="dropdown-item"
-										onclick="handleSearchTypeClick('admin')">管理員</button></li>
-								<li><button id="articleButton" class="dropdown-item"
-										onclick="handleSearchTypeClick('article')">文章</button></li>
+										onclick="handleSearchTypeClick('admin')">管理員列表</button></li>
 								<li><button id="orderButton" class="dropdown-item"
-										onclick="handleSearchTypeClick('order')">訂單</button></li>
-								<li><button id="adButton" class="dropdown-item"
-										onclick="handleSearchTypeClick('ad')">廣告</button></li>
+										onclick="handleSearchTypeClick('order')">訂單列表</button></li>
+								<li><button id="articleButton" class="dropdown-item"
+										onclick="handleSearchTypeClick('article')">文章檢舉列表</button></li>
+								<li><button id="commentButton" class="dropdown-item"
+										onclick="handleSearchTypeClick('comment')">留言檢舉列表</button></li>
+
 							</ul>
 						</div>
-						<input type="text" class="form-control" placeholder="輸入會員名稱或關鍵字" />
-						<button class="btn btn-primary" type="submit">搜尋</button>
+
+						<div id="searchContainer"></div>
+
 					</div>
 				</div>
 			</div>
@@ -108,22 +114,6 @@
 				</table>
 			</div>
 		</div>
-		<div class="row justify-content-center">
-			<div class="col-md-6">
-				<nav aria-label="Page navigation">
-					<ul class="pagination justify-content-center">
-						<li class="page-item disabled"><a class="page-link" href="#"
-							tabindex="-1" aria-disabled="true">上一頁</a></li>
-						<li class="page-item active" aria-current="page"><a
-							class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<!-- 其他分頁連結 -->
-						<li class="page-item"><a class="page-link" href="#">下一頁</a></li>
-					</ul>
-				</nav>
-			</div>
-		</div>
 	</main>
 
 	<footer class="footer customer-color mt-auto py-3 bg-light">
@@ -132,13 +122,13 @@
 				THA101-Team7 萃．練</span>
 		</div>
 	</footer>
-
+	<!-- 會員編輯彈窗 -->
 	<div class="modal fade" id="editMemberModal" tabindex="-1"
 		aria-labelledby="editMemberModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="editMemberModalLabel">編輯會員</h5>
+					<h5 class="modal-title" id="editMemberModalLabel">停權狀態</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
@@ -151,8 +141,8 @@
 						<div class="mb-3">
 							<label for="isSuspended" class="form-label">是否停權</label> <select
 								class="form-select" id="isSuspended">
-								<option value="">否</option>
-								<option value="">是</option>
+								<option value="0" selected>停用</option>
+								<option value="1">啟用</option>
 							</select>
 						</div>
 					</form>
@@ -161,7 +151,155 @@
 					<button type="button" class="btn btn-secondary"
 						data-bs-dismiss="modal">取消</button>
 					<button type="button" class="btn btn-primary"
-						onclick="saveMemberChanges()">確認</button>
+						data-bs-dismiss="modal" onclick="saveMemberChanges()">確認</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 文章檢舉彈窗 -->
+	<div class="modal fade" id="editArticleModal" tabindex="-1"
+		aria-labelledby="editArticleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="editArticleModalLabel">文章檢舉狀態</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form id="editArticleForm">
+						<div class="mb-3">
+							<label for="articleId" class="form-label">文章編號</label> <input
+								type="text" class="form-control" id="articleId" disabled>
+						</div>
+						<div class="mb-3">
+							<label for="articleStatus" class="form-label">審核狀態</label> <select
+								class="form-select" id="articleStatus">
+								<option value="true" selected>通過</option>
+								<option value="false">未通過</option>
+							</select>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">取消</button>
+					<button type="button" class="btn btn-primary"
+						onclick="saveArticleChanges()">確認</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal" id="articleDetailsModal" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">文章詳細資料</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<p>
+						<strong>文章編號:</strong> <span id="articleId_forView"></span>
+					</p>
+					<p>
+						<strong>文章標題:</strong> <span id="articleTitle"></span>
+					</p>
+					<p>
+						<strong>文章內容:</strong> <span id="articleContent"></span>
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">關閉</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 留言檢舉彈窗 -->
+	<div class="modal fade" id="editCommentModal" tabindex="-1"
+		aria-labelledby="editCommentModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="editCommentModalLabel">留言檢舉審核狀態</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form id="editCommentForm">
+						<div class="mb-3">
+							<label for="commentId" class="form-label">留言編號</label> <input
+								type="text" class="form-control" id="commentId" disabled>
+						</div>
+						<div class="mb-3">
+							<label for="commentStatus" class="form-label">審核狀態</label> <select
+								class="form-select" id="commentStatus">
+								<option value="true" selected>通過</option>
+								<option value="false">未通過</option>
+							</select>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">取消</button>
+					<button type="button" class="btn btn-primary"
+						onclick="saveCommentChanges()">確認</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<div class="modal" id="commentDetailsModal" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">留言詳細資料</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<p>
+						<strong>留言編號:</strong> <span id="commentIdField"></span>
+					</p>
+					<p>
+						<strong>留言內容:</strong> <span id="commentContentField"></span>
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">關閉</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- 訂單的互動視窗 -->
+	<div class="modal" id="editOrderModal" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">編輯訂單</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<p>確認是否將該訂單的狀態改為已出貨？</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">取消</button>
+					<button type="button" class="btn btn-primary" id="confirmButton"
+						data-bs-dismiss="modal" onclick="">確認</button>
 				</div>
 			</div>
 		</div>
@@ -176,312 +314,18 @@
 	integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
 	crossorigin="anonymous"></script>
 <script>
-    function handleSearchTypeClick(type) {
-      // 在這裡放置查詢類型按鈕的點擊處理程式碼
-      console.log("點擊了查詢類型: " + type);
-    }
-  </script>
-<script>
-
-
-//----------------------------------------member-----------------------------------------
-const memberButton = document.getElementById('memberButton');
-memberButton.addEventListener('click', handleMemberClick);
-
-
-function handleMemberClick() {
-	  fetch('member')
-	    .then(response => response.json())
-	    .then(data => {
-	      const tableHead = document.getElementById('tableHead');
-	      tableHead.innerHTML = '';
-
-	      const theadRow = document.createElement('tr');
-	      theadRow.innerHTML = `
-	        <th>會員編號</th>
-	        <th>會員名稱</th>
-	        <th>會員信箱</th>
-	        <th>會員電話</th>
-	        <th>會員身分</th>
-	        <th>會員圖片</th>
-	        <th>是否停權</th>
-	        <th></th>
-	      `;
-	      tableHead.appendChild(theadRow);
-
-	      const tableBody = document.getElementById('memberTableBody');
-	      tableBody.innerHTML = '';
-
-	      data.forEach(member => {
-	        const row = document.createElement('tr');
-	        row.innerHTML = `
-	          <td>${member.id}</td>
-	          <td>${member.name}</td>
-	          <td>${member.email}</td>
-	          <td>${member.phone}</td>
-	          <td>${member.identity}</td>
-	          <td><img src="${member.image}" style="width: 200px; height: auto;"></td>
-	          <td>${member.is_suspended}</td>
-	          <td><button class="btn btn-primary" onclick="editMember(${member.id})">編輯</button></td>
-	        `;
-	        tableBody.appendChild(row);
-	      });
-	    })
-	    .catch(error => {
-	      console.error('發生錯誤:', error);
-	    });
+	function handleSearchTypeClick(type) {
+		// 在這裡放置查詢類型按鈕的點擊處理程式碼
+		console.log("點擊了查詢類型: " + type);
 	}
-	
-function editMember(memberId) {
-	  console.log(memberId);
-	  const memberIdInput = document.getElementById('memberId');
-	  memberIdInput.value = memberId;
-
-	  const editMemberModal = new bootstrap.Modal(document.getElementById('editMemberModal'));
-	  editMemberModal.show();
-	 
-	}
-function saveMemberChanges() {
-	  const memberId = document.getElementById('memberId').value;
-	  const isSuspended = document.getElementById('isSuspended').value;
-
-	  const data = {
-	    memberId: memberId,
-	    isSuspended: isSuspended
-	    
-	  };
-	  
-	  // 发送 AJAX 请求更新会员数据
-	  fetch('/member/' + memberId, {
-	    method: 'PUT',
-	    headers: {
-	      'Content-Type': 'application/json'
-	    },
-	    body: JSON.stringify(data)
-	  })
-	    .then(response => {
-	      if (response.ok) {
-	        // 更新成功，关闭编辑窗口
-	        const editMemberModal = new bootstrap.Modal(document.getElementById('editMemberModal'));
-	        editMemberModal.hide();
-
-	        // 刷新会员数据列表
-	        // TODO: 刷新列表的代码
-	      } else {
-	        // 更新失败，显示错误消息
-	        throw new Error('更新会员数据失败');
-	      }
-	    })
-	    .catch(error => {
-	      // 更新失败，显示错误消息
-	      alert('更新会员数据失败：' + error.message);
-	    });
-	}
-
-	 
-
-//--------------------------------------admin------------------------------------------
-const adminButton = document.getElementById('adminButton');
-adminButton.addEventListener('click', handleAdminClick);	
-	
-	
-function handleAdminClick() {
-	  fetch('admin')
-	    .then(response => response.json())
-	    .then(data => {
-	      const tableHead = document.getElementById('tableHead');
-	      tableHead.innerHTML = '';
-
-	      const theadRow = document.createElement('tr');
-	      theadRow.innerHTML = `
-	        <th>管理員編號</th>
-	        <th>管理員名稱</th>
-	        <th>管理員信箱</th>
-	        <th></th>
-	      `;
-	      tableHead.appendChild(theadRow);
-
-	      const tableBody = document.getElementById('memberTableBody');
-	      tableBody.innerHTML = '';
-
-	      data.forEach(admin => {
-	        const row = document.createElement('tr');
-	        row.innerHTML = `
-	          <td>${admin.id}</td>
-	          <td>${admin.name}</td>
-	          <td>${admin.email}</td>
-	          <td><button class="btn btn-primary" onclick="editAdmin(${admin.id})">編輯</button></td>
-	        `;
-	        tableBody.appendChild(row);
-	      });
-	    })
-	    .catch(error => {
-	      console.error('發生錯誤:', error);
-	    });
-	}
-	
-function editAdmin(adminId) {
-	  
-	  console.log("Edit admin with ID:", adminId);
-
-	}
-	
-//------------------------------------ad----------------------------------------------
-const adButton = document.getElementById('adButton');
-adButton.addEventListener('click', handleAdClick);	
-	
-	
-function handleAdClick() {
-	  fetch('ad')
-	    .then(response => response.json())
-	    .then(data => {
-	      const tableHead = document.getElementById('tableHead');
-	      tableHead.innerHTML = '';
-
-	      const theadRow = document.createElement('tr');
-	      theadRow.innerHTML = `
-	        <th>廣告編號</th>
-	        <th>廣告名稱</th>
-	        <th>頭放日期</th>
-	        <th>欄位版面</th>
-	        <th>頭放金額</th>
-	        <th>狀態</th>
-	        <th>審核</th>
-	        <th></th>
-	      `;
-	      tableHead.appendChild(theadRow);
-
-	      const tableBody = document.getElementById('memberTableBody');
-	      tableBody.innerHTML = '';
-
-	      data.forEach(ad => {
-	        const row = document.createElement('tr');
-	        row.innerHTML = `
-	          <td>${ad.adId}</td>
-	          <td>${ad.adTitle}</td>
-	          <td>${ad.adStartDate}</td>
-	          <td>${ad.adField}</td>
-	          <td>${ad.adSpend}</td>
-	          <td>${ad.adDeliverStatus}</td>
-	          <td>${ad.adReviewStatus}</td>
-	          <td><button class="btn btn-primary" onclick="editProduct(${product.Id})">編輯</button></td>
-	        `;
-	        tableBody.appendChild(row);
-	      });
-	    })
-	    .catch(error => {
-	      console.error('發生錯誤:', error);
-	    });
-	}
-	
-function editAdmin(productId) {
-	  
-	  console.log("Edit admin with ID:", adminId);
-
-	}	
-	
-	
-//--------------------------------------article------------------------------------------
-const articleButton = document.getElementById('articleButton');
-articleButton.addEventListener('click', handleArticleClick);	
-	
-	
-function handleArticleClick() {
-	  fetch('article')
-	    .then(response => response.json())
-	    .then(data => {
-	      const tableHead = document.getElementById('tableHead');
-	      tableHead.innerHTML = '';
-
-	      const theadRow = document.createElement('tr');
-	      theadRow.innerHTML = `
-	        <th>管理員編號</th>
-	        <th>管理員名稱</th>
-	        <th>管理員信箱</th>
-	        <th></th>
-	      `;
-	      tableHead.appendChild(theadRow);
-
-	      const tableBody = document.getElementById('memberTableBody');
-	      tableBody.innerHTML = '';
-
-	      data.forEach(admin => {
-	        const row = document.createElement('tr');
-	        row.innerHTML = `
-	          <td>${admin.id}</td>
-	          <td>${admin.name}</td>
-	          <td>${admin.email}</td>
-	          <td><button class="btn btn-primary" onclick="editAdmin(${admin.id})">編輯</button></td>
-	        `;
-	        tableBody.appendChild(row);
-	      });
-	    })
-	    .catch(error => {
-	      console.error('發生錯誤:', error);
-	    });
-	}
-	
-function editAdmin(adminId) {
-	  
-	  console.log("Edit admin with ID:", adminId);
-
-	}
-	
-	
-
-//------------------------------------orderinfo----------------------------------------------
-// const orderButton = document.getElementById('orderButton');
-// orderButton.addEventListener('click', handleOrderClick);	
-	
-	
-// function handleOrderClick() {
-// 	  fetch('orderInfo')
-// 	    .then(response => response.json())
-// 	    .then(data => {
-// 	      const tableHead = document.getElementById('tableHead');
-// 	      tableHead.innerHTML = '';
-
-// 	      const theadRow = document.createElement('tr');
-// 	      theadRow.innerHTML = `
-// 	        <th>訂單編號</th>
-// 	        <th>付款金額</th>
-// 	        <th>狀態/到期時間</th>
-// 	        <th>運送方式</th>
-// 	        <th>操作</th>
-// 	        <th></th>
-// 	      `;
-// 	      tableHead.appendChild(theadRow);
-
-// 	      const tableBody = document.getElementById('memberTableBody');
-// 	      tableBody.innerHTML = '';
-
-// 	      data.forEach(order => {
-// 	        const row = document.createElement('tr');
-// 	        row.innerHTML = `
-// 	          <td>${order.id}</td>
-// 	          <td>${order.payment_amount}</td>
-// 	          <td>${order.status}</td>
-// 	          <td>${order.shipping_method}</td>
-// 	          <td>${order.adSpend}</td>
-// 	          <td>${order.adDeliverStatus}</td>
-// 	          <td>${order.adReviewStatus}</td>
-// 	          <td><button class="btn btn-primary" onclick="editProduct(${order.Id})">編輯</button></td>
-// 	        `;
-// 	        tableBody.appendChild(row);
-// 	      });
-// 	    })
-// 	    .catch(error => {
-// 	      console.error('發生錯誤:', error);
-// 	    });
-// 	}
-	
-// function editAdmin(productId) {
-	  
-// 	  console.log("Edit admin with ID:", adminId);
-
-// 	}	
-
-
 </script>
+<script src="https://kit.fontawesome.com/664595efd5.js"
+	crossorigin="anonymous"></script>
+
+<script src="js/manage_member.js"></script>
+<script src="js/manage_admin.js"></script>
+<script src="js/manage_commentReport.js"></script>
+<script src="js/manage_orderInfo.js"></script>
+<script src="js/manage_articleReport.js"></script>
 
 </html>

@@ -50,7 +50,6 @@
 							href="admin_search.html">管理</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="admin_clazz_event.html">活動/課程審核</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">商家檢舉</a></li>
 				</div>
 
 				<ul class="navbar-nav">
@@ -100,63 +99,7 @@
 				THA101-Team7 萃．練</span>
 		</div>
 	</footer>
-	<script>
-		$(document).ready(function() {
-			$("#registerButton").click(function() {
-				// 獲取輸入值
-				const email = $("#email").val();
-				const password = $("#password").val();
-				const name = $("#name").val();
-
-				$(".error-message").text("");
-
-				// 正则表达式验证
-				const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-				const passwordRegex = /^[a-zA-Z0-9]{6,12}$/;
-
-				let hasError = false;
-				if (!emailRegex.test(email)) {
-					$("#emailError").text("請輸入有效的Email");
-					hasError = true;
-				}
-				if (!passwordRegex.test(password)) {
-					$("#passwordError").text("密碼應為6-12位的英文或數字");
-					hasError = true;
-				}
-				if (name.trim() === "") {
-					$("#nameError").text("管理員名稱不能為空");
-					hasError = true;
-				}
-				if (hasError) {
-					return;
-				}
-
-				// 建立要發送的請求數據物件
-				const requestData = {
-					email : email,
-					password : password,
-					name : name
-				};
-
-				$.ajax({
-					url : "admin/register", // 請替換為後端接口的實際路徑
-					type : "POST",
-					data : JSON.stringify(requestData),
-					contentType : "application/json",
-					success : function(response) {
-						// 處理成功回應
-						console.log("註冊成功");
-						// 執行頁面跳轉
-						window.location.href = "admin_login.html"; // 請替換為要跳轉的頁面 URL
-					},
-					error : function(error) {
-						$("#emailError").text("註冊失敗");
-						console.error("註冊失敗:", error);
-					}
-				});
-			});
-		});
-	</script>
+	<script src="js/manage_register.js"></script>
 
 
 </body>
