@@ -7,10 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   
   <link rel="stylesheet" href="css/articleAppear.css" />
-  <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
-
   
-
+  <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
   <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet" />
@@ -130,13 +128,13 @@
             <button class="public-chat">聊天室</button>
           </a>
           <!-- Side widget-->
-          <div class="card mb-4">
-            <div class="card-header">廣告</div>
-            <div class="card-body">
-              You can put anything you want inside of these side widgets. They
-              are easy to use, and feature the Bootstrap 5 card component!
-            </div>
-          </div>
+<!--           <div class="card mb-4 noShow"> -->
+<!--             <div class="card-header">廣告</div> -->
+<!--             <div class="card-body"> -->
+<!--               You can put anything you want inside of these side widgets. They -->
+<!--               are easy to use, and feature the Bootstrap 5 card component! -->
+<!--             </div> -->
+<!--           </div> -->
         </div>
 
         <!-- 文章顯示 -->
@@ -236,22 +234,17 @@
             </div>
           </div>
         </div>
-
-
         <!-- 作者資訊 -->
         <div class="col-sm-2">
-          <div>
-            <div class="card chatroom">
-              <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle"
-                style="border-radius: 50%; width: 90px; height: 90px;" />
-                <h5>用戶名稱</h5>
-                <a href="#" id="chatroom" style="color: brown; float: left;">聊聊</a>
-              <p class="card-text">XX篇文章</p>
-            </div>
+          <div id="author-info" class="card chatroom">
+            <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle"/>
+            <h5 class="user-name"></h5>
+            <a href="#" id="chatroom" style="color: brown; float: left;">聊聊</a>
+<!--             <p class="card-text">XX篇文章</p> -->
           </div>
           <!-- 廣告資訊 -->
-          <br>
-          <div>廣告</div>
+<!--           <br> -->
+<!--           <div>廣告</div> -->
         </div>
       </div>
     </div>

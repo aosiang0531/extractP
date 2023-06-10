@@ -21,7 +21,6 @@ public interface ArticleRepository extends BaseRepository<ArticleVO, Integer> {
 	// 找特定作者文章
 	List<ArticleVO> findByMemberId(Integer memberId);
 	
-	
 	// 找熱門文章
 	@Query(value = "select "
 			+ " a.article_id,\r\n"
@@ -207,10 +206,13 @@ public interface ArticleRepository extends BaseRepository<ArticleVO, Integer> {
 	// 顯示特定文章
     @Query(value = "select "
     		+ " a.article_id,\r\n"
+    		+ " a.member_id,\r\n"
     		+ " m.member_name, \r\n"
     		+ "	article_title, \r\n"
     		+ " article_content, \r\n"
     		+ " article_image, \r\n"
+			+ "	a.article_is_hidden, \r\n"
+			+ "	a.article_is_top, \r\n"
     		+ " article_created_date, \r\n"
     		+ " article_thunmb_number, \r\n"
     		+ " article_comment_number, \r\n"

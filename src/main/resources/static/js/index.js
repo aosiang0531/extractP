@@ -132,6 +132,11 @@ fetch(url)
                 </div>
              </div>`;
 			$("#accordionFlushExample").append(tem_html);
+			
+			// 添加按钮点击事件监听器
+            $(`#btn-tem-${i}`).on("click", function() {
+            $(this).toggleClass("collapsed");
+            });
 		}
 	})
 	
@@ -143,7 +148,8 @@ fetch(url2)
 	.then(artGrpList => {
 //		 console.log(artGrpList);
 		for (var i = 0; i < artGrpList.length; i++) {
-			var templateId = artGrpList[i].article_template_id
+			
+			var groupId = artGrpList[i].id
 			var nameValue2 = artGrpList[i].name;
 			var idValue = artGrpList[i].article_template_id;
 			let grp_html = `
@@ -151,7 +157,7 @@ fetch(url2)
 					id = "btn-grp"
                    class="accordion-body"
                    data-tempid="${idValue}"
-                   onclick="window.location.href = 'TemplateAppear.html?temp=' + ${idValue};"
+                   onclick="window.location.href = 'TemplateAppear.html?group=' + ${groupId} + '&temp=' + ${idValue};"
                  >
                    ${nameValue2}
                  </button>`;

@@ -23,6 +23,8 @@ public interface ArticleService extends BaseService<ArticleVO>{
 	
 	Collection<ArticleDTO> findLatestArticle();
 	
+	Page<ArticleDTO> findLatestArticle(Pageable pageable);
+	
 	Collection<ArticleDTO> findTemPop(Integer id);
 	
 	Collection<ArticleDTO> findTemLatest(Integer id);

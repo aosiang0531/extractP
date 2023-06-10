@@ -96,6 +96,10 @@ public class ArticleServiceImpl implements ArticleService {
 	public Collection<ArticleDTO> findLatestArticle() {
 		return articleRepository.findLatestArticle();
 	}
+	
+	public Page<ArticleDTO> findLatestArticle(Pageable pageable) {
+		return articleRepository.findLatestArticle(pageable);
+	}
 
 	@Override
 	public Collection<ArticleDTO> findTemPop(Integer id) {

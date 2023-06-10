@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 public interface ArticleDTO2 {
 
 	Integer getarticle_id();
+	Integer getmember_id();
 	String getmember_name();
 	String getarticle_title();
 	String getarticle_content();

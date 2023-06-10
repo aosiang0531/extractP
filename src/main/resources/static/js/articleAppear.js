@@ -96,6 +96,8 @@ $(function() {
 const tepURL = new URLSearchParams(window.location.search);
 const artId = tepURL.get("article");
 
+var author;
+var authorId;
 var thumbNum;
 var commentNum;
 var favNum;
@@ -106,7 +108,8 @@ fetch(articleUrl)
 	.then(resp => resp.json())
 	.then(artList => {
 		var title = artList[0].article_title;
-		var author = artList[0].member_name;
+		author = artList[0].member_name;
+		authorId = artList[0].member_id;
 		var content = artList[0].article_content;
 		thumbNum = artList[0].article_thunmb_number;
 		commentNum = artList[0].article_comment_number;
@@ -155,9 +158,6 @@ fetch(articleUrl)
 			`;
 			$("#art-img").append(artImg);
 		}
-
-
-		
 		let articleContent = `
 				<p class="fs-5 mb-4" style="white-space: pre-line;">
 				${content}
@@ -168,8 +168,22 @@ fetch(articleUrl)
 	    $("#thumbs").text(thumbNum);
 	    $("#comment").text(commentNum);
 	    $("#favorite").text(favNum);
+	    $(".user-name").text(author);
 		
 	})
+	
+//	顯示作者資訊
+//var authorData2 = [];
+//const authorUrl = 'article/memberId/2';
+//fetch(articleUrl)
+//	.then((resp) => resp.json())
+//	.then((authorData) => {
+//		authorData2 = authorData;
+////		var jsonString = JSON.stringify(authorData);
+////		var length = jsonString.length;
+//		console.log("AAA:" +authorData2);
+//	})	
+	
 
 //  顯示留言
 const commentUrl = 'article_comment/findByArticleId/' + artId;

@@ -1,6 +1,5 @@
 package idv.tha101.extractp.web.controller;
 
-
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,11 +48,14 @@ public class ArticleController extends BaseController<ArticleVO> {
 		return articleService.saveOrUpdate(vo);
 	}
 
-	@Override
 	@PutMapping("/{id}")
-	public ArticleVO update(@RequestBody ArticleVO vo, @PathVariable(value = "id") int id) {
-		return articleService.saveOrUpdate(vo.setId(id));
-	}
+    public ArticleVO update(@RequestBody ArticleVO vo, @PathVariable(value = "id") int id) {
+        ArticleVO oldVo = articleService.findById(id);
+        vo.setId(id);
+        vo.setThunmb_number(oldVo.getThunmb_number());
+        vo.setMember_article_fav_number(oldVo.getMember_article_fav_number());
+        return articleService.saveOrUpdate(vo);
+    }
 
 	@DeleteMapping("/{id}")
 	public void deleteById(@PathVariable(value = "id") int id) {
@@ -63,51 +66,47 @@ public class ArticleController extends BaseController<ArticleVO> {
 	@GetMapping("pop")
 	public Collection<ArticleDTO> findPopArticle() {
 		Collection<ArticleDTO> articleDTOs = articleService.findPopArticle();
-		Collection<ArticleDTO> collection = articleDTOs.stream()
-														.filter(a -> a.getarticle_is_hidden() != true)
-														.toList();
+		Collection<ArticleDTO> collection = articleDTOs.stream().filter(a -> a.getarticle_is_hidden() != true).toList();
 		return collection;
 	};
-	
+
 	@GetMapping("popPage")
 	public Page<ArticleDTO> findPopArticleByPage(Pageable pageable) {
 		Page<ArticleDTO> articleDTOs = articleService.findPopArticle(pageable);
-//		Collection<ArticleDTO> collection = articleDTOs.stream()
-//														.filter(a -> a.getarticle_is_hidden() != true)
-//														.toList();
-		return articleDTOs;
+		Collection<ArticleDTO> collection = articleDTOs.stream().filter(a -> a.getarticle_is_hidden() != true).toList();
+		Page<ArticleDTO> r = new PageImpl<ArticleDTO>((List<ArticleDTO>) collection);
+		return r;
 	};
-	
-	
-	
 
 	@GetMapping("latest")
 	public Collection<ArticleDTO> findLatestArticle() {
 		Collection<ArticleDTO> articleDTOs = articleService.findLatestArticle();
-		Collection<ArticleDTO> collection = articleDTOs.stream()
-														.filter(a -> a.getarticle_is_hidden() != true)
-														.toList();
-		
+		Collection<ArticleDTO> collection = articleDTOs.stream().filter(a -> a.getarticle_is_hidden() != true).toList();
+
 		return collection;
+	};
+
+	@GetMapping("latestPage")
+	public Page<ArticleDTO> findLatestArticle(Pageable pageable) {
+		Page<ArticleDTO> articleDTOs = articleService.findLatestArticle(pageable);
+		Collection<ArticleDTO> collection = articleDTOs.stream().filter(a -> a.getarticle_is_hidden() != true).toList();
+		Page<ArticleDTO> r = new PageImpl<ArticleDTO>((List<ArticleDTO>) collection);
+		return r;
 	};
 
 	@GetMapping("/temPop/{article_template_id}")
 	public Collection<ArticleDTO> findTemPop(@PathVariable(value = "article_template_id") int id) {
 		Collection<ArticleDTO> articleDTOs = articleService.findTemPop(id);
-		Collection<ArticleDTO> collection = articleDTOs.stream()
-														.filter(a -> a.getarticle_is_hidden() != true)
-														.toList();
-		
+		Collection<ArticleDTO> collection = articleDTOs.stream().filter(a -> a.getarticle_is_hidden() != true).toList();
+
 		return collection;
 	};
 
 	@GetMapping("/temLatest/{article_template_id}")
 	public Collection<ArticleDTO> findTemLatest(@PathVariable(value = "article_template_id") int id) {
 		Collection<ArticleDTO> articleDTOs = articleService.findTemLatest(id);
-		Collection<ArticleDTO> collection = articleDTOs.stream()
-														.filter(a -> a.getarticle_is_hidden() != true)
-														.toList();
-		
+		Collection<ArticleDTO> collection = articleDTOs.stream().filter(a -> a.getarticle_is_hidden() != true).toList();
+
 		return collection;
 	};
 
@@ -115,10 +114,8 @@ public class ArticleController extends BaseController<ArticleVO> {
 	@GetMapping("/memberId/{memberId}")
 	public List<ArticleVO> findByMemberId(@PathVariable(value = "memberId") int id) {
 		List<ArticleVO> articleVOs = articleService.findByMemberId(id);
-		List<ArticleVO> list = articleVOs.stream()
-										.filter(a -> a.getIs_hidden() != true)
-										.collect(Collectors.toList());
-		return list;
+//		List<ArcleVOti> list = articleVOs.stream().filter(a -> a.getIs_hidden() != true).collect(Collectors.toList());
+		return articleVOs;
 	}
 
 	@GetMapping("/groupPop/{article_group_id}")
@@ -141,9 +138,7 @@ public class ArticleController extends BaseController<ArticleVO> {
 	@GetMapping("searchTitle")
 	public List<ArticleVO> searchArticleTitle(@RequestParam("keyword") String keyword) {
 		List<ArticleVO> articleVOs = articleService.searchByArticleTitle(keyword);
-		List<ArticleVO> list = articleVOs.stream()
-										.filter(a -> a.getIs_hidden() != true)
-										.collect(Collectors.toList());
+		List<ArticleVO> list = articleVOs.stream().filter(a -> a.getIs_hidden() != true).collect(Collectors.toList());
 		return list;
 	}
 

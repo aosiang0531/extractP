@@ -17,6 +17,7 @@ $(document).ready(function() {
 });
 $('.edit').hide();
 
+// 編輯文章
 if (artId) {
 	$('.post').hide();
 	const artUrl = 'article/' + artId;

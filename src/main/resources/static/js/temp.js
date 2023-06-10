@@ -1,9 +1,10 @@
 $(window).on("load", function(){
-	const tepURL = new URLSearchParams(window.location.search);
-	const tempId = tepURL.get("temp");
+	const URL = new URLSearchParams(window.location.search);
+	const groupId = URL.get("group");
+	const tempId = URL.get("temp");
 
 //  熱門文章
-	const temPopUrl = 'article/temPop/' + tempId;
+	const temPopUrl = 'article/groupPop/' + groupId;
 	fetch(temPopUrl)
 	.then(resp => resp.json())
 	.then(temPopList => {
@@ -12,7 +13,7 @@ $(window).on("load", function(){
 			var grpName = temPopList[i].article_group_name;
 			var img = temPopList[i].article_image ? "data:image/png;base64," + temPopList[i].article_image : "./images/logo.png";
 			var title = temPopList[i].article_title;
-			var content = temPopList[i].article_content.replace(/<[^>]+>/g, '').slice(0, 55);
+			var content = temPopList[i].article_content.replace(/<[^>]+>/g, '').slice(0, 30);
 			var author = temPopList[i].member_name;
 			var thunmb = temPopList[i].article_thunmb_number;
 			var comment = temPopList[i].article_comment_number;
@@ -69,7 +70,7 @@ $(window).on("load", function(){
 	
 	
 // 最新文章
-	const temLatestUrl = 'article/temLatest/' + tempId;
+	const temLatestUrl = 'article/groupLatest/' + groupId;
 	fetch(temLatestUrl)
 		.then(resp => resp.json())
 		.then(tempLatestList => {
@@ -78,7 +79,7 @@ $(window).on("load", function(){
 			var grpName = tempLatestList[i].article_group_name;
 			var img = tempLatestList[i].article_image ? "data:image/png;base64," + tempLatestList[i].article_image : "./images/logo.png";
 			var title = tempLatestList[i].article_title;
-			var content = tempLatestList[i].article_content.replace(/<[^>]+>/g, '').slice(0, 55);
+			var content = tempLatestList[i].article_content.replace(/<[^>]+>/g, '').slice(0, 30);
 			var author = tempLatestList[i].member_name;
 			var thunmb = tempLatestList[i].article_thunmb_number;
 			var comment = tempLatestList[i].article_comment_number;
