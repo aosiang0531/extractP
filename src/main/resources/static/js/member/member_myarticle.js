@@ -26,11 +26,8 @@ $(document).ready(function() {
 	const file = document.querySelector("#file");
 	const img = document.querySelector("#img");
 
+	var memberId = 1; 
 
-	// 頁面加載時執行的操作
-	var memberId = 1; // 請替換為真實的會員ID
-
-	// 構建後端端點URL並替換會員ID
 	var url = "member/{id}".replace("{id}", memberId);
 
 	// 發送AJAX請求獲取會員資料
@@ -45,7 +42,7 @@ $(document).ready(function() {
 				// 顯示會員圖片
 				img.src = "data:image/jpeg;base64," + response.image;
 			} else {
-				// 如果没有會員圖片，顯示默認圖片
+				// 如果没有會員圖片，顯示咖啡圖片
 				img.src = "images/300.jpg";
 			}
 
@@ -68,10 +65,8 @@ $(document).ready(function() {
 	const article = document.querySelector("#article");
 	const img = document.querySelector("#articleimg");
 
-	// 頁面加載時執行的操作
-	var memberId = 1; // 請替換為真實的會員ID
 
-	// 構建後端端點URL並替換會員ID
+	var memberId = 1; 
 	var url = "article/memberId/{id}".replace("{id}", memberId);
 
 	// 發送AJAX請求獲取文章資料
@@ -151,7 +146,7 @@ $(document).ready(function() {
 
 /* 編輯文章 */
 $(document).ready(function() {
-	// 編輯文章按鈕的點擊事件處理程序
+
 	$(document).on('click', '[id^="editarticle"]', function(e) {
 		e.preventDefault();
 
@@ -160,7 +155,7 @@ $(document).ready(function() {
 
 		// 使用Ajax傳遞ID參數並跳轉到另一個畫面
 		$.ajax({
-			url: 'article',  // 替換為編輯文章畫面的URL
+			url: 'article',  
 			type: 'GET',
 			data: { id: articleId },  // 傳遞文章ID作為參數
 			success: function(response) {
@@ -182,16 +177,12 @@ $(document).ready(function() {
 
 		// 獲取文章ID
 		var articleId = $(this).attr('id').replace('deletearticle', '');
-
-
-		// 構建後端端點URL並替換會員ID
 		var url = "article/{articleId}".replace("{articleId}", articleId);
 
 
-		// 發送AJAX DELETE請求
 		$.ajax({
 			type: "DELETE",
-			url: url, // 替換為後端接口的實際URL
+			url: url, 
 			contentType: "application/json",
 			success: function(response) {
 				console.log(response);

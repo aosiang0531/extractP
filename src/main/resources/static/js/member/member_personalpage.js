@@ -2,44 +2,44 @@
 $(document).ready(function() {
 	$('#logoutButton').click(function(e) {
 		e.stopPropagation();
-		e.preventDefault(); // 防止表單提交
-		window.location.href = 'member_login.html'; // 替換為個人頁面的URL
+		e.preventDefault(); 
+		window.location.href = 'member_login.html'; 
 	});
 
 	$('#editinfo').click(function(e) {
 		e.stopPropagation();
-		e.preventDefault(); // 防止表單提交
-		window.location.href = 'member_editinfo.html'; // 替換為個人頁面的URL
+		e.preventDefault(); 
+		window.location.href = 'member_editinfo.html'; 
 	});
 
 	$('#editpassword').click(function(e) {
 		e.stopPropagation();
-		e.preventDefault(); // 防止表單提交
-		window.location.href = 'member_editpassword.html'; // 替換為個人頁面的URL
+		e.preventDefault(); 
+		window.location.href = 'member_editpassword.html'; 
 	});
 
 	$('#managearticle').click(function(e) {
 		e.stopPropagation();
-		e.preventDefault(); // 防止表單提交
-		window.location.href = 'member_myarticle.html'; // 替換為個人頁面的URL
+		e.preventDefault(); 
+		window.location.href = 'member_myarticle.html'; 
 	});
 
 	//			$('#manageshop').click(function(e) {
 	//				e.stopPropagation();
-	//				e.preventDefault(); // 防止表單提交
-	//				window.location.href = 'member_myarticle.html'; // 替換為個人頁面的URL
+	//				e.preventDefault(); 
+	//				window.location.href = 'member_myarticle.html';
 	//			});
 	//			
 	$('#manageorder').click(function(e) {
 		e.stopPropagation();
-		e.preventDefault(); // 防止表單提交
-		window.location.href = 'orderhistory.html?memberId=' + '1'; // 替換為個人頁面的URL
+		e.preventDefault(); 
+		window.location.href = 'orderhistory.html?memberId=' + '1'; 
 	});
 	//				
 	//			$('#managead').click(function(e) {
 	//				e.stopPropagation();
-	//				e.preventDefault(); // 防止表單提交
-	//				window.location.href = 'member_myarticle.html'; // 替換為個人頁面的URL
+	//				e.preventDefault(); 
+	//				window.location.href = 'member_myarticle.html'; 
 	//			});
 
 });
@@ -51,13 +51,9 @@ $(document).ready(function() {
 $(document).ready(function() {
 	const img = document.querySelector("#img");
 
-	// 頁面加載時執行的操作
-	var memberId = 1; // 請替換為真實的會員ID
-
-	// 構建後端端點URL並替換會員ID
+	var memberId = 1;
 	var url = "member/{id}".replace("{id}", memberId);
 
-	// 發送AJAX請求獲取會員資料
 	$.ajax({
 		url: url,
 		type: "GET",
@@ -69,7 +65,7 @@ $(document).ready(function() {
 				// 顯示會員圖片
 				img.src = "data:image/jpeg;base64," + response.image;
 			} else {
-				// 如果没有會員圖片，顯示默認圖片
+				// 如果没有會員圖片，顯示咖啡圖片
 				img.src = "images/300.jpg";
 			}
 

@@ -30,9 +30,9 @@
     	}
 	}
 	
-		// 當按下登入按鈕時觸發事件
+
 		$('#loginButton').click(function(e) {
-    	e.preventDefault(); // 防止表單提交
+    	e.preventDefault(); 
 
 		// 取得輸入的郵件和密碼
 		var email = $('#email').val();
@@ -66,8 +66,7 @@
                      sessionStorage.setItem('memberEmail', data.email);
                      sessionStorage.setItem('memberName', data.name);
                      
-                     
-                     // 登入成功，重定向到指定頁面
+                    
                      window.location.href = 'member_personalpage.html';
                   })
                      

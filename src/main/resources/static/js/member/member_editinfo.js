@@ -52,18 +52,14 @@ function phoneError(){
     const img = document.querySelector("#img");
 
 
-  // 頁面加載時執行的操作
-  var memberId = 1; // 請替換為真實的會員ID
-
-  // 構建後端端點URL並替換會員ID
+  var memberId = 1; 
   var url = "member/{id}".replace("{id}", memberId);
 
-  // 發送AJAX請求獲取會員資料
   $.ajax({
     url: url,
     type: "GET",
     success: function(response) {
-      // 將會員資料顯示在相應的input元素中
+      // 將會員資料顯示在input框框中
       $("input[name='memberName']").val(response.name);
       $("input[name='memberPhone']").val(response.phone);
       $("input[name='memberEmail']").val(response.email);
@@ -74,7 +70,7 @@ function phoneError(){
 				// 顯示會員圖片
 				img.src = "data:image/jpeg;base64," + response.image;
 			} else {
-				// 如果没有會員圖片，顯示默認圖片
+				// 如果没有會員圖片，顯示咖啡圖片
 				img.src = "images/300.jpg";
 			}
       
@@ -95,26 +91,22 @@ function phoneError(){
 /*PUT更新*/
 
   $(document).ready(function() {
-  // 監聽更新按鈕的點擊事件
+
   $("#update").click(function(e) {
     e.stopPropagation();
     console.log("HI");
 
-    // 獲取會員ID
-    var memberId = 1; // 請替換為真實的會員ID
 
-    // 構建後端端點URL並替換會員ID
+    var memberId = 1; 
     var url = "member/{id}".replace("{id}", memberId);
 
-  
-    
 
-    // 獲取表單數據
+    // 獲取表單元素
     var memberName = $("input[name='memberName']").val();
     var memberPhone = $("input[name='memberPhone']").val();
     var memberEmail = $("input[name='memberEmail']").val();
 
-    // 構建要發送的數據
+    // 要發送的數據
     var data = {
       name: memberName,
       phone: memberPhone,
@@ -138,7 +130,7 @@ function phoneError(){
 //	return;
 //	}
 
-    // 發送AJAX請求
+
     $.ajax({
       url: url,
       type: "PUT",
@@ -172,10 +164,7 @@ function phoneError(){
     img.src = URL.createObjectURL(file.files[0]);
   });
   
-//獲取會員ID
-  var memberId = 1; // 請替換為真實的會員ID
-
-  // 構建後端端點URL並替換會員ID
+  var memberId = 1; 
   var url = "member/{id}".replace("{id}", memberId);
   
   document.querySelector('#imgupdate').addEventListener('click', (e) =>{
@@ -210,7 +199,7 @@ function phoneError(){
   $(document).ready(function() {
     $('#cancel').click(function(e) {
       e.stopPropagation();
-      window.location.href = 'member_personalpage.html'; // 替換為個人頁面的URL
+      window.location.href = 'member_personalpage.html'; 
     });
   });
 

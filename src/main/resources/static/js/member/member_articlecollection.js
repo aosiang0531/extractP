@@ -15,7 +15,7 @@ window.addEventListener('load', function() {
 $(document).ready(function() {
 	$('#a1').click(function(e) {
 		e.stopPropagation();
-		window.location.href = 'member_myarticle.html'; // 替換為個人頁面的URL
+		window.location.href = 'member_myarticle.html';
 	});
 });
 
@@ -26,11 +26,7 @@ $(document).ready(function() {
 	const file = document.querySelector("#file");
 	const img = document.querySelector("#img");
 
-
-	// 頁面加載時執行的操作
-	var memberId = 2; // 請替換為真實的會員ID
-
-	// 構建後端端點URL並替換會員ID
+	var memberId = 2;
 	var url = "member/{id}".replace("{id}", memberId);
 
 	// 發送AJAX請求獲取會員資料
@@ -45,7 +41,7 @@ $(document).ready(function() {
 				// 顯示會員圖片
 				img.src = "data:image/jpeg;base64," + response.image;
 			} else {
-				// 如果没有會員圖片，顯示默認圖片
+				// 如果没有會員圖片，顯示咖啡圖片
 				img.src = "images/300.jpg";
 			}
 
@@ -68,14 +64,9 @@ $(document).ready(function() {
 	const article = document.querySelector("#article");
 	const img = document.querySelector("#articleimg");
 
-	// 頁面加載時執行的操作
-	var memberId = 2; // 請替換為真實的會員ID
-
-	// 構建後端端點URL並替換會員ID
+	var memberId = 2; 
 	var url = "member_article_fav/memberFav/{id}".replace("{id}", memberId);
 
-
-	// 發送AJAX請求獲取文章資料
 	$.ajax({
 		url: url,
 		type: "GET",
@@ -161,50 +152,10 @@ $('#cancel').click(function(e) {
 	}
 });
 
-//移除收藏
-//$('#remove').click(function(e) {
-//  e.stopPropagation();
-//  e.preventDefault();
-
-//  // 獲取已勾選 checkbox 的 id
-//  var checkboxIds = [];
-//  $('.checkbox:checked').each(function() {
-//    checkboxIds.push(this.id);
-//  });
-//
-//  for (var i = 0; i < checkboxIds.length; i++) {
-//	  
-//		// 發送AJAX DELETE請求
-//		$.ajax({
-//			type: "DELETE",
-//			url: 'member_article_fav', 
-//			contentType: "application/json",
-//			success: function(response) {
-//				console.log(response);
-//				alert("文章移除收藏成功");
-//				window.location.href = 'member_articlecollection.html';
-//			},
-//			error: function(error) {
-//				console.log(error);
-//			}
-//		});
-//
-//  }
-//});
-
 // 獲取移除按鈕元素
 $('#remove').click(function(e) {
 	e.stopPropagation();
 	e.preventDefault();
-	//  // 獲取所有被選取的checkbox元素
-	//  var checkboxes = document.querySelectorAll("input[type='checkbox']:checked");
-	//  // 儲存文章ID的陣列
-	//  var articleIds = [];
-	//
-	//  // 將選取的checkbox的value（文章ID）加入到文章ID陣列中
-	//  checkboxes.forEach(function(checkbox) {
-	//    articleIds.push(checkbox.value);
-	//  });
 
 	// 獲取已勾選 checkbox 的 id
 	var articleId = [];
@@ -225,7 +176,7 @@ $('#remove').click(function(e) {
 
 		console.log(data);
 
-		// 使用Ajax的DELETE方法刪除文章
+
 		if (articleId.length > 0) {
 			$.ajax({
 				url: 'member_article_fav',

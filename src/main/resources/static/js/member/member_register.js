@@ -96,11 +96,9 @@
 		return;
 		}
 		
-   
-        // 發送AJAX POST請求
         $.ajax({
             type: "POST",
-            url: "member/register", // 替換為後端接口的實際URL
+            url: "member/register", 
             data: JSON.stringify(formData),
             contentType: "application/json",
             success: function(response) {
