@@ -1,13 +1,12 @@
 package idv.tha101.extractp.web.dao;
 
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import java.util.Optional;
+
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
 
 import idv.tha101.extractp.base.dao.BaseRepository;
 import idv.tha101.extractp.web.pojo.MemberVO;
-import java.util.List;
 
 
 @RepositoryRestResource
@@ -18,6 +17,6 @@ public interface MemberRepository extends BaseRepository<MemberVO, Integer> {
 	
 	MemberVO findByEmailAndPassword(String email, String password);
 	
-	MemberVO findByEmail(String email);
+	Optional<MemberVO> findByEmail(String email);
 
 }

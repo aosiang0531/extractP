@@ -51,9 +51,9 @@ public class SampleVO {
     private Timestamp sample_last_modified_date;
     
     @CreatedBy
-    private String sample_created_by;
+    private Integer sample_created_by;
 
     @LastModifiedBy
-    private String sample_last_modified_by;
+    private Integer sample_last_modified_by;
 
 }

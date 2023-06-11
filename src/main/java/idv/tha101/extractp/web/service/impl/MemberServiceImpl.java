@@ -79,7 +79,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public MemberVO login(String email, String password) {
-		MemberVO memberVO = memberRepository.findByEmail(email);
+		MemberVO memberVO = memberRepository.findByEmail(email).orElseThrow();
 		if (memberVO != null && memberVO.getPassword().equals(password)) {
 			return memberVO;
 		} else {
@@ -89,7 +89,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public MemberVO findByEmail(String email) {
-		return memberRepository.findByEmail(email);
+		return memberRepository.findByEmail(email).orElseThrow();
 	}
 
 //	@Override
