@@ -48,7 +48,7 @@
 		return;
 		}
 
-		fetch('member/login', {
+		fetch('auth/authenticate', {
                  method: 'POST',
                  headers: {
                      'Content-Type': 'application/json'
@@ -61,10 +61,11 @@
              .then(response => {
                  if (response.ok) {
                   response.json().then(data =>{
-                   
-                     sessionStorage.setItem('memberId', data.id);
-                     sessionStorage.setItem('memberEmail', data.email);
-                     sessionStorage.setItem('memberName', data.name);
+                   console.log(data);
+                   localStorage.setItem("jwt", data.access_token);
+//                     sessionStorage.setItem('memberId', data.id);
+//                     sessionStorage.setItem('memberEmail', data.email);
+//                     sessionStorage.setItem('memberName', data.name);
                      
                     
                      window.location.href = 'member_personalpage.html';
