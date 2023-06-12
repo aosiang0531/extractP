@@ -10,7 +10,7 @@ $(document).ready(function () {
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,12}$/;
-    const phoneRegex = /^09\d{8}$/; 
+    const phoneRegex = /^09\d{8}$/;
 
     let hasError = false;
     if (!emailRegex.test(email)) {
@@ -25,14 +25,10 @@ $(document).ready(function () {
       $("#nameError").text("管理員名稱不能為空");
       hasError = true;
     }
-    if (hasError) {
-      return;
-    }
     if (phone.trim() === "") {
       $("#phoneError").text("管理員電話不能為空");
       hasError = true;
-    }
-    if (!phoneRegex.test(phone)) {
+    } else if (!phoneRegex.test(phone)) {
       $("#phoneError").text("請輸入有效的號碼");
       hasError = true;
     }
@@ -50,7 +46,6 @@ $(document).ready(function () {
       identity: "管理員",
       is_suspended: "1",
       phone: phone
-      
     };
 
     $.ajax({
