@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <title>萃．練</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="images/favicon.ico"
+    />
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css" />
+    <link rel="stylesheet" href="css/animate.css" />
+
+    <link rel="stylesheet" href="css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="css/magnific-popup.css" />
+
+    <!-- <link rel="stylesheet" href="css/aos.css" /> -->
+
+    <link rel="stylesheet" href="css/ionicons.min.css" />
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css" />
+    <link rel="stylesheet" href="css/jquery.timepicker.css" />
+
+    <link rel="stylesheet" href="css/flaticon.css" />
+    <link rel="stylesheet" href="css/icomoon.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- 商城css -->
+    <link rel="stylesheet" href="shop/css/shop.css" />
+    <style>
+        .table th{
+    	padding:0;
+
+}
+    </style>
+
+  </head>
+
+  <body>
+ 	<!-- START nav -->
+	<nav
+		class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
+		id="ftco-navbar">
+		<div class="container">
+			<a class="navbar-brand" href="index.html"> <img
+				src="images/logo.png" alt="Logo" width="130" height="60"
+				class="d-inline-block align-text-top" />
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#ftco-nav" aria-controls="ftco-nav"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="oi oi-menu"></span> 選單
+			</button>
+			<div class="collapse navbar-collapse" id="ftco-nav">
+				<ul class="navbar-nav ml-auto d-flex justify-content-center">
+					<li class="nav-item active"><a href="index.html"
+						class="nav-link">咖啡論壇</a></li>
+					<li class="nav-item"><a href="classEventIndex.html"
+						class="nav-link">課程活動</a></li>
+					<li class="nav-item"><a href="map.html" class="nav-link">咖啡地圖</a></li>
+					<li class="nav-item"><a href="product_list.html"
+						class="nav-link">咖啡商城</a></li>
+					<!-- <li class="nav-item"><a href="member_personalpage.html" class="nav-link">個人頁面</a></li> -->
+
+					<li class="nav-item cart"><a href="cart.html" class="nav-link"><span
+							class="icon icon-shopping_cart"></span><span
+							class="bag d-flex justify-content-center align-items-center"><small
+								id="cartItemNumber">0</small></span></a></li>
+					<li class="nav-item cart last-item"><a id="userLink"
+						href="member_login.html" class="nav-link"> <span id="noneUser"
+							class="icon icon-user"></span> <img id="userIcon" src=""
+							style="max-width: 50px; border-radius: 50%; margin-top: -10px;" />
+					</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- END nav -->
+
+    <!-- Start Content -->
+
+    <section class="ftco-section ftco-white">
+      <!-- ftco-white套用自訂白色背景 -->
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col-6">
+            <h1>商品管理</h1>
+          </div>
+          <div class="col-4 d-flex align-items-center justify-content-center">
+            <input
+              type="button"
+              class="btn btn-primary"
+              onclick="javascript:location.href='product_new.html'"
+              value="新增商品"
+            />
+          </div>
+        </div>
+        <div class="tab_container">
+          <div class="tab_list_block">
+            <ul class="tab_list">
+              <li>
+                <a href="#" data-target="tab1" class="tab -on">全部商品</a>
+              </li>
+              <li><a href="#" data-target="tab2" class="tab">上架中</a></li>
+              <li><a href="#" data-target="tab3" class="tab">已下架</a></li>
+              <li><a href="#" data-target="tab4" class="tab">已售完</a></li>
+            </ul>
+          </div>
+
+          <div class="tab_contents">
+            <!-- 頁籤一 -->
+            <div class="tab tab1 -on">
+              <div class="table-responsive mt-4">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>商品圖片</th>
+                      <th>商品名稱</th>
+                      <th>商品編號</th>
+                      <th>規格</th>
+                      <th>價格</th>
+                      <th>庫存</th>
+                      <th>已售出</th>
+                      <th>操作</th>
+                    </tr>
+                  </thead>
+                  <tbody id="allProductList">
+                    <!-- 商品資料列 -->
+
+                    <!-- 其他商品資料列+= -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- 頁籤二 -->
+            <div class="tab tab2">
+              <div class="table-responsive mt-4">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>商品圖片</th>
+                      <th>商品名稱</th>
+                      <th>商品編號</th>
+                      <th>規格</th>
+                      <th>價格</th>
+                      <th>庫存</th>
+                      <th>已售出</th>
+                      <th>操作</th>
+                    </tr>
+                  </thead>
+                  <tbody id="availableProductList">
+                    <!-- 商品資料列 -->
+
+                    <!-- 其他商品資料列+= -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- 頁籤三 -->
+            <div class="tab tab3">
+              <div class="table-responsive mt-4">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>商品圖片</th>
+                      <th>商品名稱</th>
+                      <th>商品編號</th>
+                      <th>規格</th>
+                      <th>價格</th>
+                      <th>庫存</th>
+                      <th>已售出</th>
+                      <th>操作</th>
+                    </tr>
+                  </thead>
+                  <tbody id="unAvailableProductList">
+                    <!-- 商品資料列 -->
+
+                    <!-- 其他商品資料列+= -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+                        <!-- 頁籤四 -->
+            <div class="tab tab4">
+              <div class="table-responsive mt-4">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>商品圖片</th>
+                      <th>商品名稱</th>
+                      <th>商品編號</th>
+                      <th>規格</th>
+                      <th>價格</th>
+                      <th>庫存</th>
+                      <th>已售出</th>
+                      <th>操作</th>
+                    </tr>
+                  </thead>
+                  <tbody id="soldOut">
+                    <!-- 商品資料列 -->
+
+                    <!-- 其他商品資料列+= -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End 頁籤 -->
+      </div>
+    </section>
+    <!-- End Content -->
+
+    <!-- Start Footer -->
+    <footer class="bg-dark" id="tempaltemo_footer">
+      <div class="w-100 bg-black py-3">
+        <div class="container">
+          <div class="row pt-2">
+            <div class="col-12">
+              <p class="text-left text-light">
+                Copyright &copy; 2023 TibaMe THA101-Team7 萃．練
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- End Footer -->
+    <script src="js/main.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <!-- <script src="js/aos.js"></script> -->
+    <script src="js/jquery.animateNumber.min.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/jquery.timepicker.min.js"></script>
+    <script src="js/scrollax.min.js"></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> -->
+    <!-- <script src="js/google-map.js"></script> -->
+
+    <script src="js/product_manage.js"></script>
+    <script>
+      $(function () {
+        // 頁籤點擊事件處理
+        $("a.tab").on("click", function (e) {
+          e.preventDefault();
+
+          // 移除所有頁籤的選中狀態
+          $(this).closest("ul").find("a.tab").removeClass("-on");
+          $(this).addClass("-on");
+
+          // 找到對應的頁籤內容，加上 -on 來顯示
+          $("div.tab").removeClass("-on");
+          $("div.tab." + $(this).attr("data-target")).addClass("-on");
+
+          // 根據頁籤的目標值過濾商品列表
+          filterProductList($(this).attr("data-target"));
+        });
+
+        // 初始時顯示全部商品
+        filterProductList("tab1");
+
+        // 過濾商品列表
+        function filterProductList(target) {
+          // 隱藏所有商品
+          $("#allProductList > tr").hide();
+
+          // 根據目標值顯示符合條件的商品
+          if (target === "tab1") {
+            // 全部商品
+            $("#allProductList > tr").show();
+          } else if (target === "tab2") {
+            // 上架中商品
+            $("#allProductList > tr[data-status='available']").show();
+          } else if (target === "tab3") {
+            // 已下架商品
+            $("#allProductList > tr[data-status='unAvailable']").show();
+          } else if (target === "tab4") {
+            // 已售完商品
+            $("#allProductList > tr[data-status='soldOut']").show();
+          }
+        }
+      });
+    </script>
+    
+
+  </body>
+</html>

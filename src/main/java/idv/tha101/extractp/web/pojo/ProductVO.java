@@ -71,7 +71,7 @@ public class ProductVO {
 	private Integer product_stock;
 	
 	@Column(name = "product_sold_count")//, insertable = false
-	private Integer product_sold_count;
+	private Integer product_sold_count = 0;
 	
 	@Column(name = "product_status")//, insertable = false
 //	private String product_status;

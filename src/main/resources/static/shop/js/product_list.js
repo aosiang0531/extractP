@@ -2,8 +2,32 @@ var allProducts = [];
 var itemsPerPage = 8; // 每頁顯示的商品數量
 var currentPage = 1; // 當前頁碼
 var countCartItem;
-var memberId = 1;
 const cartItemNumber = document.querySelector('#cartItemNumber');
+var memberId;
+var memberImage;
+
+//JWT
+const token = localStorage.getItem("jwt");
+const url = `/auth?token=${encodeURIComponent(token)}`;
+fetch(url)
+	.then(response => response.json())
+	.then(data => {
+//		sender = data.name;
+		memberId = data.id;
+		memberImage = "data:image/png;base64," + data.image;
+		if (token === null) {
+				userLink.href = "member_login.html";
+				userIcon.style.display = "none"; // 隱藏圖片
+			} else {
+				userLink.href = "member_personalpage.html";
+				noneUser.style.display = "none";
+				userIcon.src = memberImage; // 指定圖片的路徑
+				userIcon.style.display = "inline-block"; // 顯示圖片
+			}
+	})
+	.catch(error => {
+		console.error(error);
+	});
 
 //商品加入購物車
 function addToCart(productId, price) {
@@ -77,7 +101,7 @@ function loadAllProducts() {
 	fetch(url)
 		.then((res) => res.json())
 		.then((productList) => {
-			console.log("AAA"+productList);
+			console.log("AAA" + productList);
 			allProducts = productList.content;
 			console.log(allProducts);
 			renderProductList(getCurrentPageProducts());
