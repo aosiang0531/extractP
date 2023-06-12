@@ -1,7 +1,7 @@
 var memberId;
 var memberImage;
 
-//JWT
+// JWT
 fetch(url)
 	.then(response => response.json())
 	.then(data => {
@@ -129,8 +129,6 @@ $(".quantity-left-minus").click(function (e) {
 });
 
 $("#addToCart").click(function () {
-
-    console.log("加入購物車");
     addToCart();
 
 });

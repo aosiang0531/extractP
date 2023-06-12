@@ -1,29 +1,29 @@
-var memberId;
-var memberImage;
-
-//JWT
-const token = localStorage.getItem("jwt");
-const url2 = `/auth?token=${encodeURIComponent(token)}`;
-//var sender;
-fetch(url2)
-	.then(response => response.json())
-	.then(data => {
-//		sender = data.name;
-		memberId = data.id;
-		memberImage = "data:image/png;base64," + data.image;
-		if (token === null) {
-				userLink.href = "member_login.html";
-				userIcon.style.display = "none"; // 隱藏圖片
-			} else {
-				userLink.href = "member_personalpage.html";
-				noneUser.style.display = "none";
-				userIcon.src = memberImage; // 指定圖片的路徑
-				userIcon.style.display = "inline-block"; // 顯示圖片
-			}
-	})
-	.catch(error => {
-		console.error(error);
-	});
+//var memberId;
+//var memberImage;
+//
+////JWT
+//const token = localStorage.getItem("jwt");
+//const url2 = `/auth?token=${encodeURIComponent(token)}`;
+////var sender;
+//fetch(url2)
+//	.then(response => response.json())
+//	.then(data => {
+////		sender = data.name;
+//		memberId = data.id;
+//		memberImage = "data:image/png;base64," + data.image;
+//		if (token === null) {
+//				userLink.href = "member_login.html";
+//				userIcon.style.display = "none"; // 隱藏圖片
+//			} else {
+//				userLink.href = "member_personalpage.html";
+//				noneUser.style.display = "none";
+//				userIcon.src = memberImage; // 指定圖片的路徑
+//				userIcon.style.display = "inline-block"; // 顯示圖片
+//			}
+//	})
+//	.catch(error => {
+//		console.error(error);
+//	});
 
 const urlParams = new URLSearchParams(window.location.search);
 const productImageElement = document.getElementById("productImage");
@@ -34,9 +34,8 @@ const productSpecElement = document.getElementById("productSpec");
 const productStockElement = document.getElementById("productStock");
 const productDescriptElement = document.getElementById("productDescript");
 const product_id = urlParams.get("id");
-const url = `product/${product_id}`;
+const singleUrl = `shop/product/${product_id}`;
 
-console.log("產品編號：" + product_id);
 let price = 0;
 let quantity = 0;
 
@@ -85,13 +84,14 @@ function countCartItem() {
 
 
 // 載入商品資訊;
-fetch(url)
+fetch(singleUrl)
     .then((res) => res.json())
     .then((product) => {
         //獲得單個產品資訊
-        const singleProduct = product;
-        console.log(singleProduct);
+        var singleProduct = product;
+        
         price = singleProduct.price;
+        console.log("XXX"+price);
         productNameElement.innerText = singleProduct.productName;
         productPriceElement.innerText = "$" + singleProduct.price;
         productSpecElement.innerText = singleProduct.spec;

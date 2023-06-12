@@ -27,11 +27,11 @@ function countCartItem() {
 }
 
 //JWT
-const token = localStorage.getItem("jwt");
-const userLink = document.getElementById("userLink");
-const url = `/auth?token=${encodeURIComponent(token)}`;
-const noneUser = document.getElementById("noneUser");
-const userIcon = document.getElementById("userIcon");
+token = localStorage.getItem("jwt");
+var userLink = document.getElementById("userLink");
+var url = `/auth?token=${encodeURIComponent(token)}`;
+var noneUser = document.getElementById("noneUser");
+var userIcon = document.getElementById("userIcon");
 
 var memberId;
 var memberImage;
