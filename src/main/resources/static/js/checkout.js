@@ -55,7 +55,7 @@ $(function() {
 							<span style="color:black;">總付款金額</span>
 							<span style="color:#c49b63;">$${payment.total + 60}</span>
 						</p>
-						<button type="submit" class="btn btn-primary py-3 px-4" id="checkout">前往付款</button>
+						<button type="submit" class="btn btn-primary py-3 px-4" id="checkout">確定結帳</button>
 					`;
 					pay.innerHTML = html;
 				});
