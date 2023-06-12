@@ -70,44 +70,83 @@ window.addEventListener("popstate", function() {
 	tab_active();
 });
 
-$(window).on("load", function(){
-// 搜尋文章
- $("#button-search").on("click", function(){
-	 let search_text = ($("input.form-control").val()).trim();
-	 if(search_text == ""){
-		 alert("請輸入關鍵字");
-		 return;
-	 }
-	 window.location.href = 'SearchResult.html?keyword=' + search_text;
- });
+$(function(){
+	// 搜尋文章
+	$("#button-search").on("click", function() {
+		let search_text = ($("input.form-control").val()).trim();
+		if (search_text == "") {
+			alert("請輸入關鍵字");
+			return;
+		}
+		window.location.href = 'SearchResult.html?keyword=' + search_text;
+	});
 
-// 整數1轉換成英文字串"One"
-function numberToWord(number) {
-	switch (number) {
-		case 1:
-			return "One";
-		case 2:
-			return "Two";
-		case 3:
-			return "Three";
-		case 4:
-			return "Four";
+	// 整數1轉換成英文字串"One"
+	function numberToWord(number) {
+		switch (number) {
+			case 1:
+				return "One";
+			case 2:
+				return "Two";
+			case 3:
+				return "Three";
+			case 4:
+				return "Four";
+		}
 	}
-}
 
-// 文章板塊
-const url = 'article_template';
-fetch(url)
-	.then(resp => resp.json())
-	.then(artTemList => {
-//		 console.log(artTemList);
-		for (var i = 0; i < artTemList.length; i++) {
-			var nameValue = artTemList[i].name;
-			var idValue = artTemList[i].id;
-			var word = numberToWord(i + 1);
-			var headingId = `flush-heading` + word;
-			var collapseId = `flush-collapse` + word;
-			let tem_html = ` 
+	const token = localStorage.getItem("jwt");
+	const url = `/auth?token=${encodeURIComponent(token)}`;
+	var sender;
+	var memberId;
+
+	fetch(url)
+		.then(response => response.json())
+		.then(data => {
+			sender = data.name;
+			memberId = data.id;
+	console.log("member:" + memberId);
+		})
+		.catch(error => {
+			console.error(error);
+		});
+
+	// 發表文章
+	$(".post-article").on("click", function() {
+
+		if (!memberId || memberId == undefined) {
+			alert("請登入會員");
+			window.location.href = 'member_login.html';
+		} else {
+			window.location.href = 'postArticle.html';
+		}
+
+
+	})
+	// 聊天室	
+	$(".public-chat").on("click", function() {
+		if (!memberId || memberId == undefined) {
+			alert("請登入會員");
+			window.location.href = 'member_login.html';
+		} else {
+			window.location.href = 'chat_public.html';
+		}
+
+	})
+
+	// 文章板塊
+	const artTempUrl = 'article_template';
+	fetch(artTempUrl)
+		.then(resp => resp.json())
+		.then(artTemList => {
+			//		 console.log(artTemList);
+			for (var i = 0; i < artTemList.length; i++) {
+				var nameValue = artTemList[i].name;
+				var idValue = artTemList[i].id;
+				var word = numberToWord(i + 1);
+				var headingId = `flush-heading` + word;
+				var collapseId = `flush-collapse` + word;
+				let tem_html = ` 
 			<div class="accordion-item">
                <h2 class="accordion-header" id="${headingId}">
                   <button
@@ -131,28 +170,28 @@ fetch(url)
                 >
                 </div>
              </div>`;
-			$("#accordionFlushExample").append(tem_html);
-			
-			// 添加按钮点击事件监听器
-            $(`#btn-tem-${i}`).on("click", function() {
-            $(this).toggleClass("collapsed");
-            });
-		}
-	})
-	
-// 文章分類
-const btnGrp = document.querySelector('#btn-grp');
-const url2 = 'article_group';
-fetch(url2)
-	.then(resp => resp.json())
-	.then(artGrpList => {
-//		 console.log(artGrpList);
-		for (var i = 0; i < artGrpList.length; i++) {
-			
-			var groupId = artGrpList[i].id
-			var nameValue2 = artGrpList[i].name;
-			var idValue = artGrpList[i].article_template_id;
-			let grp_html = `
+				$("#accordionFlushExample").append(tem_html);
+
+				// 添加按钮点击事件监听器
+				$(`#btn-tem-${i}`).on("click", function() {
+					$(this).toggleClass("collapsed");
+				});
+			}
+		})
+
+	// 文章分類
+	const btnGrp = document.querySelector('#btn-grp');
+	const url2 = 'article_group';
+	fetch(url2)
+		.then(resp => resp.json())
+		.then(artGrpList => {
+			//		 console.log(artGrpList);
+			for (var i = 0; i < artGrpList.length; i++) {
+
+				var groupId = artGrpList[i].id
+				var nameValue2 = artGrpList[i].name;
+				var idValue = artGrpList[i].article_template_id;
+				let grp_html = `
 				<button
 					id = "btn-grp"
                    class="accordion-body"
@@ -161,17 +200,15 @@ fetch(url2)
                  >
                    ${nameValue2}
                  </button>`;
-			if (i < 3) {
-				$('div[aria-labelledby="flush-headingOne"]').append(grp_html);
-			} else if (i > 2 && i < 6) {
-				$('div[aria-labelledby="flush-headingTwo"]').append(grp_html);
-			} else if (i > 5 && i < 10) {
-				$('div[aria-labelledby="flush-headingThree"]').append(grp_html);
-			} else {
-				$('div[aria-labelledby="flush-headingFour"]').append(grp_html);
+				if (i < 3) {
+					$('div[aria-labelledby="flush-headingOne"]').append(grp_html);
+				} else if (i > 2 && i < 6) {
+					$('div[aria-labelledby="flush-headingTwo"]').append(grp_html);
+				} else if (i > 5 && i < 10) {
+					$('div[aria-labelledby="flush-headingThree"]').append(grp_html);
+				} else {
+					$('div[aria-labelledby="flush-headingFour"]').append(grp_html);
+				}
 			}
-		}
-	})
-
-	
+		})
 });

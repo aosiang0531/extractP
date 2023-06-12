@@ -1,12 +1,12 @@
-$(window).on("load", function() {
+$(function(){
 
-	var itemsPerPage = 5; // 每頁顯示的商品數量
+	var itemsPerPage = 3; // 每頁顯示的商品數量
 	var currentPage = 1; // 當前頁碼
 	var artList = [];
 	var currentPage2 = 1; // 第二個頁籤的當前頁碼
-    var artList2 = []; // 第二個頁籤的商品列表
-    
-  
+	var artList2 = []; // 第二個頁籤的商品列表
+
+
 	// 生成分頁按鈕
 	function renderPagination() {
 		const totalPages = Math.ceil(artList.length / itemsPerPage);
@@ -42,7 +42,6 @@ $(window).on("load", function() {
 		return artList.slice(startIndex, endIndex);
 	}
 
-
 	// 熱門文章
 	const popurl = 'article/popPage';
 	fetch(popurl)
@@ -55,7 +54,7 @@ $(window).on("load", function() {
 
 	function articlePop(artList) {
 		$(".inner-main-body").empty(); // 清空文章列表
-//		"article_is_top": false,
+		//		"article_is_top": false,
 		for (var i = 0; i < artList.length; i++) {
 			var artId = artList[i].article_id;
 			var grpName = artList[i].article_group_name;
@@ -67,18 +66,8 @@ $(window).on("load", function() {
 			var comment = artList[i].article_comment_number;
 			var fav = artList[i].member_article_fav_number;
 			var top = artList[i].article_is_top;
-			var time = artList[i].article_created_date;
-			var options = {
-				timeZone: 'Asia/Taipei',
-				hour12: false,
-				year: 'numeric',
-				month: '2-digit',
-				day: '2-digit',
-				hour: '2-digit',
-				minute: '2-digit',
-				second: '2-digit'
-			};
-			var formattedTime = new Date(time).toLocaleString('zh-TW', options);
+			//			var time = artList[i].article_created_date;
+			const time = (new Date(artList[i].article_created_date)).toISOString().slice(0, 19).replace(/-/g, "/").replace("T", " ");
 			let popArticle = `
 				<div class="card mb-2" is_top="${top}" 
 					onclick="window.location.href = 'articleAppear2.html?article=' + ${artId};">
@@ -107,7 +96,7 @@ $(window).on("load", function() {
 										${fav}
 									</span> 
 									<span> ${author}</span> 
-									<span> ${formattedTime}</span>
+									<span> ${time}</span>
 								</div>
 							</div>
 						</div>
@@ -117,7 +106,7 @@ $(window).on("load", function() {
 		}
 	}
 
-// 生成分頁按鈕
+	// 生成分頁按鈕
 	function renderPagination2() {
 		const totalPages = Math.ceil(artList2.length / itemsPerPage);
 		$("#pagination-ul-2").empty(); // 清空分頁按鈕區域
@@ -141,6 +130,10 @@ $(window).on("load", function() {
 			currentPage2 = newPage;
 			articleLatest(getCurrentPageProducts2());
 			renderPagination2();
+
+//			$(".tab").removeClass("-on");
+//			$(".tab2").addClass("-on");
+//			$("a[data-target='tab2']").addClass("-on");
 		});
 	}
 
@@ -174,18 +167,9 @@ $(window).on("load", function() {
 			var thunmb = artList2[i].article_thunmb_number;
 			var comment = artList2[i].article_comment_number;
 			var fav = artList2[i].member_article_fav_number;
-			var time = artList2[i].article_created_date;
-			var options = {
-				timeZone: 'Asia/Taipei',
-				hour12: false,
-				year: 'numeric',
-				month: '2-digit',
-				day: '2-digit',
-				hour: '2-digit',
-				minute: '2-digit',
-				second: '2-digit'
-			};
-			var formattedTime = new Date(time).toLocaleString('zh-TW', options);
+			//			var time = artList2[i].article_created_date;
+			const time = (new Date(artList2[i].article_created_date)).toISOString().slice(0, 19).replace(/-/g, "/").replace("T", " ");
+
 			let latestArticle = `
 				<div class="card mb-2"
 					onclick="window.location.href = 'articleAppear2.html?article=' + ${artId};">
@@ -214,7 +198,7 @@ $(window).on("load", function() {
 										${fav}
 									</span> 
 									<span> ${author}</span> 
-									<span> ${formattedTime}</span>
+									<span> ${time}</span>
 								</div>
 							</div>
 						</div>

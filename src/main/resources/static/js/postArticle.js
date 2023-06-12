@@ -2,10 +2,27 @@ const tepURL = new URLSearchParams(window.location.search);
 const artId = tepURL.get("articleID");
 
 
+const token = localStorage.getItem("jwt");
+const url = `/auth?token=${encodeURIComponent(token)}`;
+var sender;
+var memberId;
 
+	fetch(url)
+	.then(response => response.json())
+	.then(data => {
+		sender = data.name;
+		memberId = data.id;
+		console.log("AAA:" + memberId);
+	})
+	.catch(error => {
+		console.error(error);
+	});
+	
 
 // summernote
 $(document).ready(function() {
+
+	
 	$("#summernote").summernote({
 		height: 600,
 		disableUpload: true,
@@ -171,7 +188,7 @@ $(document).ready(function() {
 				"group_id": grp_selected,
 				"articleContent": content_text,
 				"image": imageBase64,
-				"memberId": 1
+				"memberId": memberId
 			};
 			var jsonData = JSON.stringify(data);
 			const artUrl = 'article';
