@@ -50,12 +50,15 @@
 							href="admin_search.html">管理</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="admin_clazz_event.html">活動/課程審核</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="product_manage.html">商品管理</a></li>
 				</div>
 
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link"
 						href="admin_register.html">新增管理員</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">登出</a></li>
+					<li class="nav-item"><a class="nav-link" id="logoutLink"
+						href="#">登出</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -85,6 +88,12 @@
 						placeholder="請輸入管理員名稱..." /> <span id="nameError"
 						class="error-message"></span>
 				</div>
+				<div class="mb-3">
+					<label for="phone" class="form-label">管理員電話</label> <input
+						type="text" class="form-control" id="phone"
+						placeholder="請輸入管理員電話..." /> <span id="phoneError"
+						class="error-message"></span>
+				</div>
 				<div class="text-center">
 					<button class="btn btn-primary" id="registerButton">送出</button>
 				</div>
@@ -100,7 +109,7 @@
 		</div>
 	</footer>
 	<script src="js/manage_register.js"></script>
-
+	<script src="js/manage_logout.js"></script>
 
 </body>
 </html>

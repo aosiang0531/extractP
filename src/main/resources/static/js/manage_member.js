@@ -17,7 +17,6 @@ function handleMemberClick() {
 	        <th>會員信箱</th>
 	        <th>會員電話</th>
 	        <th>會員身分</th>
-	        <th>會員圖片</th>
 	        <th>停權狀態</th>
 	        <th>狀態更新</th>
 	      `;
@@ -44,9 +43,8 @@ function handleMemberClick() {
 	          <td>${member.email}</td>
 	          <td>${member.phone}</td>
 	          <td>${member.identity}</td>
-	          <td><img src="${member.image}" style="width: 200px; height: auto;"></td>
 	          <td>${status}</td>
-	          <td><button onclick="editMember(${member.id})"><i class="fas fa-edit"></i></button></td>
+	          <td><button onclick="editMember(${member.id})"><i class="fa-solid fa-pen-to-square fa-beat"></i></button></td>
 	        `;
 				tableBody.appendChild(row);
 			});
@@ -55,6 +53,7 @@ function handleMemberClick() {
 			console.error('發生錯誤:', error);
 		})
 
+//         <td><img src="${member.image}" style="width: 200px; height: auto;"></td>
 }
 
 function editMember(memberId) {

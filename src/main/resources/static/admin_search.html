@@ -52,14 +52,16 @@
 							href="admin_index.html">首頁</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="admin_search.html">管理</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="admin_clazz_event.html">活動/課程審核</a></li>
+<!-- 						<li class="nav-item"><a class="nav-link" -->
+<!-- 							href="admin_clazz_event.html">活動/課程審核</a></li> -->
+							<li class="nav-item"><a class="nav-link"
+							href="product_manage.html">商品管理</a></li>
 				</div>
 
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link"
 						href="admin_register.html">新增管理員</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">登出</a></li>
+					<li class="nav-item"><a class="nav-link" id="logoutLink" href="#">登出</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -82,8 +84,8 @@
 							<ul class="dropdown-menu" aria-labelledby="searchTypeDropdown">
 								<li><button id="memberButton" class="dropdown-item"
 										onclick="handleSearchTypeClick('member')">會員列表</button></li>
-								<li><button id="adminButton" class="dropdown-item"
-										onclick="handleSearchTypeClick('admin')">管理員列表</button></li>
+<!-- 								<li><button id="adminButton" class="dropdown-item" -->
+<!-- 										onclick="handleSearchTypeClick('admin')">管理員列表</button></li> -->
 								<li><button id="orderButton" class="dropdown-item"
 										onclick="handleSearchTypeClick('order')">訂單列表</button></li>
 								<li><button id="articleButton" class="dropdown-item"
@@ -321,9 +323,12 @@
 </script>
 <script src="https://kit.fontawesome.com/664595efd5.js"
 	crossorigin="anonymous"></script>
-
+	
+	
+	
+<script src="js/manage_logout.js"></script>
 <script src="js/manage_member.js"></script>
-<script src="js/manage_admin.js"></script>
+<!-- <script src="js/manage_admin.js"></script> -->
 <script src="js/manage_commentReport.js"></script>
 <script src="js/manage_orderInfo.js"></script>
 <script src="js/manage_articleReport.js"></script>

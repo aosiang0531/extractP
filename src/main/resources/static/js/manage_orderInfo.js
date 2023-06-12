@@ -38,7 +38,7 @@ function handleOrderClick() {
 	          <td>${order.status}</td>
 	          <td>${order.payment_status}</td>
 	          <td>${order.shipping_status}</td>
-	          <td><button onclick="editOrder(${order.id})" data-order-id="${order.id}"><i class="fa-solid fa-truck-fast"></i></button></td>
+	          <td><button onclick="editOrder(${order.id})" data-order-id="${order.id}"><i class="fa-solid fa-truck-fast fa-beat-fade"></i></button></td>
 	        `;
 				tableBody.appendChild(row);
 			});
@@ -60,8 +60,8 @@ function editOrder(orderId) {
 function confirmOrderShipment(orderId) {
 
 	const data = {
-		order_id: orderId,
-		shipping_status: "已出貨"
+		shipping_status: "已出貨",
+		status:"已成立"
 	};
 
 	fetch('orderInfo/' + orderId, {

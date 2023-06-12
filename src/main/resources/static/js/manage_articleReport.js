@@ -94,8 +94,8 @@ function handleArticleClick() {
 						.replace("T", " ")}</td>
 	          <td>${status}</td>
 	          <td><button onclick="editArticle(${article.id
-					})"><i class="fas fa-edit"></i></button></td>
-<td><button onclick="showArticleDetails(${article.article_id})"><i class="fa-solid fa-eye"></i></button></td>					
+					})"><i class="fa-solid fa-pen-to-square fa-beat"></i></button></td>
+<td><button onclick="showArticleDetails(${article.article_id})"><i class="fa-solid fa-eye fa-spin"></i></button></td>					
 					
 	        `;
 				tableBody.appendChild(row);
