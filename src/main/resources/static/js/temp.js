@@ -1,4 +1,4 @@
-$(window).on("load", function(){
+$(function(){
 	const URL = new URLSearchParams(window.location.search);
 	const groupId = URL.get("group");
 	const tempId = URL.get("temp");

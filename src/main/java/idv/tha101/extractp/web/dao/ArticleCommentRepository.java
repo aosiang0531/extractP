@@ -17,16 +17,15 @@ public interface ArticleCommentRepository extends BaseRepository<ArticleCommentV
 	// 顯示特定文章之留言
 	@Query(value = "select "
 			+ " m.member_name, \r\n"
+			+ " m.member_image, \r\n"
 			+ "	c.article_comment_id, \r\n"
 			+ "	c.article_comment_content, \r\n"
 			+ " c.article_comment_created_date, \r\n"
 			+ " c.article_comment_is_hidden\r\n"
-			+ " from article a \r\n"
-			+ " join article_comment c\r\n"
-			+ " on a.article_id = c.article_id\r\n"
+			+ " from article_comment c \r\n"
 			+ " join MEMBER m\r\n"
-			+ " on a.member_id = m.member_id\r\n"
-			+ " where a.article_id = ?;", nativeQuery = true)
+			+ " on c.member_id = m.member_id\r\n"
+			+ " where c.article_id = ?;", nativeQuery = true)
 	List<ArticleCommentDTO> findByArticleId(Integer id);
 	
 }
