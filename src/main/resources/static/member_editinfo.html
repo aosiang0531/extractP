@@ -39,41 +39,40 @@
 </head>
 
 <body>
+	<!-- START nav -->
 	<nav
 		class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
 		id="ftco-navbar">
 		<div class="container">
-			<img src="images/logo.png" alt="Logo" width="130" height="60"
-				class="d-inline-block align-text-top"> <a class="navbar-brand"
-				href="index.html"></small></a>
+			<a class="navbar-brand" href="index.html"> <img
+				src="images/logo.png" alt="Logo" width="130" height="60"
+				class="d-inline-block align-text-top" />
+			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#ftco-nav" aria-controls="ftco-nav"
 				aria-expanded="false" aria-label="Toggle navigation">
 				<span class="oi oi-menu"></span> 選單
 			</button>
 			<div class="collapse navbar-collapse" id="ftco-nav">
-				<ul class="navbar-nav ml-auto">
+				<ul class="navbar-nav ml-auto d-flex justify-content-center">
 					<li class="nav-item active"><a href="index.html"
 						class="nav-link">咖啡論壇</a></li>
-					<li class="nav-item"><a href="menu.html" class="nav-link">課程活動</a></li>
-					<li class="nav-item"><a href="services.html" class="nav-link">咖啡地圖</a></li>
-					<li class="nav-item"><a href="blog.html" class="nav-link">咖啡商城</a></li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="room.html" id="dropdown04"
-						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">個人頁面</a>
-						<div class="dropdown-menu" aria-labelledby="dropdown04">
-							<a class="dropdown-item" href="shop.html">Shop</a> <a
-								class="dropdown-item" href="product-single.html">Single
-								Product</a> <a class="dropdown-item" href="room.html">Cart</a> <a
-								class="dropdown-item" href="checkout.html">Checkout</a>
-						</div></li>
+					<li class="nav-item"><a href="classEventIndex.html"
+						class="nav-link">課程活動</a></li>
+					<li class="nav-item"><a href="map.html" class="nav-link">咖啡地圖</a></li>
+					<li class="nav-item"><a href="product_list.html"
+						class="nav-link">咖啡商城</a></li>
+					<!-- <li class="nav-item"><a href="member_personalpage.html" class="nav-link">個人頁面</a></li> -->
+
 					<li class="nav-item cart"><a href="cart.html" class="nav-link"><span
 							class="icon icon-shopping_cart"></span><span
-							class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a>
-					</li>
-					<li class="nav-item cart"><a href="member_login.html"
-						class="nav-link"><span class="icon icon-user"></span></a></li>
-
+							class="bag d-flex justify-content-center align-items-center"><small
+								id="cartItemNumber">0</small></span></a></li>
+					<li class="nav-item cart last-item"><a id="userLink"
+						href="member_login.html" class="nav-link"> <span id="noneUser"
+							class="icon icon-user"></span> <img id="userIcon" src=""
+							style="max-width: 50px; border-radius: 50%; margin-top: -10px;" />
+					</a></li>
 				</ul>
 			</div>
 		</div>
