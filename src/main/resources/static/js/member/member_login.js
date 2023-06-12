@@ -1,3 +1,19 @@
+/* 登入資訊 */
+	const token = localStorage.getItem("jwt");
+	const Url = `/auth?token=${encodeURIComponent(token)}`;
+	var memberId;
+	
+	fetch(Url)
+		.then(response => response.json())
+		.then(data => {
+			memberId = data.id
+			
+		})
+		.catch(error => {
+			console.error(error);
+		});
+
+
 /* 檢查格式+POST 查詢 */
 	function emailError(){
 		console.log('emailError');

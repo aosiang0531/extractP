@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,9 @@ public class MemberController extends BaseController<MemberVO> {
 	@Autowired
 	private MemberService memberservice;
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
 	@Override
 	@GetMapping
 	public List<MemberVO> findAll() {
@@ -40,13 +44,16 @@ public class MemberController extends BaseController<MemberVO> {
 	@Override
 	@PostMapping
 	public MemberVO save(@RequestBody MemberVO member) {
+
 		return memberservice.saveOrUpdate(member);
 	}
 
 	@Override
 	@PutMapping("/{id}")
 	public MemberVO update(@RequestBody MemberVO vo, @PathVariable(value = "id") int id) {
-		return memberservice.saveOrUpdate(vo.setId(id));
+		vo.setPassword(passwordEncoder.encode(vo.getPassword()));
+		vo.setId(id);
+		return memberservice.saveOrUpdate(vo);
 	}
 
 	@Override
@@ -57,6 +64,7 @@ public class MemberController extends BaseController<MemberVO> {
 
 	@PostMapping("/register")
 	public MemberVO register(@RequestBody MemberVO member) {
+		member.setPassword(passwordEncoder.encode(member.getPassword()));
 		return memberservice.register(member);
 	}
 
@@ -82,7 +90,6 @@ public class MemberController extends BaseController<MemberVO> {
 		session.setAttribute("memberEmail", memberVO.getEmail());
 		session.setAttribute("memberName", memberVO.getName());
 		session.setAttribute("memberImg", memberVO.getImage());
-		
 
 		System.out.println("memberId: " + session.getAttribute("memberId"));
 		System.out.println("memberEmail: " + session.getAttribute("memberEmail"));

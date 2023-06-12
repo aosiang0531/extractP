@@ -1,3 +1,22 @@
+/* 登入資訊 */
+	const token = localStorage.getItem("jwt");
+	const Url = `/auth?token=${encodeURIComponent(token)}`;
+	var memberId;
+	
+	
+	fetch(Url)
+		.then(response => response.json())
+		.then(data => {
+			memberId = data.id;
+			
+			
+			
+		})
+		.catch(error => {
+			console.error(error);
+		});
+
+
 /* 驗證+POST新增 */
 
 	function emailError(){
@@ -70,7 +89,8 @@
             phone: $("#phone").val(),
             email: $("#email").val(),
             password: $("#password").val(),
-            identity: $("input[name='memberidentity']:checked").val()
+            identity: $("input[name='memberidentity']:checked").val(),
+            role: "USER"
         };
         
 //        if (name === "" || phone === "" || email === "" || password === "") {
@@ -98,7 +118,7 @@
 		
         $.ajax({
             type: "POST",
-            url: "member/register", 
+            url: "auth/register", 
             data: JSON.stringify(formData),
             contentType: "application/json",
             success: function(response) {
