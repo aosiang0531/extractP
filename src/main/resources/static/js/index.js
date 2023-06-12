@@ -120,8 +120,6 @@ $(function(){
 		} else {
 			window.location.href = 'postArticle.html';
 		}
-
-
 	})
 	// 聊天室	
 	$(".public-chat").on("click", function() {

@@ -182,7 +182,7 @@ fetch(articleUrl)
 			.then(resp => resp.json())
 			.then(authorData => {
 				var image = "data:image/png; base64," + authorData.image
-				$(".img-circle").attr("src", image)
+				$(".author-img").attr("src", image)
 			})	
 	})
 
@@ -194,13 +194,14 @@ fetch(commentUrl)
 		for (var i = 0; i < commentList.length; i++) {
 			var commentId = commentList[i].article_comment_id
 			var creator = commentList[i].member_name;
-			var memberImg = "data:image/png; base64," + commentList[i].member_image;
+			var memIMG = "data:image/png; base64," + commentList[i].member_image;
+			console.log("AAA:" + memIMG);
 			var content = commentList[i].article_comment_content;
 			var time = (new Date(commentList[i].article_comment_created_date)).toISOString().slice(0, 19).replace(/-/g, "/").replace("T", " ");
 			let commHtml = `
 				      <li class="media" commid="${commentId}">
                         <a href="#" class="pull-left">
-                          <img src="${memberImg}"" class="img-circle" />
+                          <img src="${memIMG}"" class="img-circle" />
                         </a>
                         <div class="media-body">
                           <span class="text-muted pull-right">

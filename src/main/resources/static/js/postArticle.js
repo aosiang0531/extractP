@@ -1,3 +1,4 @@
+$(function(){
 const tepURL = new URLSearchParams(window.location.search);
 const artId = tepURL.get("articleID");
 
@@ -6,7 +7,6 @@ const token = localStorage.getItem("jwt");
 const url = `/auth?token=${encodeURIComponent(token)}`;
 var sender;
 var memberId;
-
 	fetch(url)
 	.then(response => response.json())
 	.then(data => {
@@ -18,20 +18,14 @@ var memberId;
 		console.error(error);
 	});
 	
-
 // summernote
-$(document).ready(function() {
-
-	
 	$("#summernote").summernote({
 		height: 600,
-		disableUpload: true,
-
 	});
 	$('.note-icon-picture').parent().hide();
 	$('.note-icon-video').parent().hide();
 
-});
+
 $('.edit').hide();
 
 // 編輯文章
@@ -96,7 +90,6 @@ if (artId) {
 }
 
 //   關聯的下拉選單
-$(document).ready(function() {
 	const tempUrl = 'article_template';
 	fetch(tempUrl)
 		.then(resp => resp.json())
@@ -154,12 +147,8 @@ $(document).ready(function() {
 			img.src = URL.createObjectURL(file);
 		}
 	});
-
-});
-
-$(document).ready(function() {
+// 送進文章資料庫
 	$(".post").on("click", function() {
-		// 送進文章資料庫
 		let title_text = ($("input.post-title").val()).trim();
 		let grp_selected = $("#sector-list").find(":selected").attr("grp-id");
 		let content_text = $("#summernote").val();
@@ -167,7 +156,6 @@ $(document).ready(function() {
 			alert("請輸入標題及內容");
 			return;
 		}
-
 		var file = image.files[0];
 		var imageBase64 = null;
 
@@ -199,7 +187,6 @@ $(document).ready(function() {
 			})
 				.then(resp => resp.json())
 				.then(data => {
-					//					console.log("data " + data);
 					// 轉跳頁面
 					var url = 'articleAppear2.html?article=' + data.id;
 					window.location.href = url;
@@ -209,4 +196,5 @@ $(document).ready(function() {
 	$(".article_cancel").on("click", function() {
 		window.location.href = 'index.html';
 	})
+
 });
