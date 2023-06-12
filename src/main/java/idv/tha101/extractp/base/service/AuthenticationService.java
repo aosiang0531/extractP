@@ -32,12 +32,16 @@ public class AuthenticationService {
 	private final AuthenticationManager authenticationManager;
 
 	public AuthenticationResponse register(MemberVO vo) {
-		vo.setPassword(passwordEncoder.encode(vo.getPassword()));
-		var savedUser = repository.save(vo);
-		var jwtToken = jwtService.generateToken(vo);
-		var refreshToken = jwtService.generateRefreshToken(vo);
-		saveUserToken(savedUser, jwtToken);
-		return AuthenticationResponse.builder().accessToken(jwtToken).refreshToken(refreshToken).memberId(savedUser.getId()).build();
+		if(repository.existsByEmail(vo.getEmail())) {
+			return null;
+		}else {
+			vo.setPassword(passwordEncoder.encode(vo.getPassword()));
+			var savedUser = repository.save(vo);
+			var jwtToken = jwtService.generateToken(vo);
+			var refreshToken = jwtService.generateRefreshToken(vo);
+			saveUserToken(savedUser, jwtToken);
+			return AuthenticationResponse.builder().accessToken(jwtToken).refreshToken(refreshToken).memberId(savedUser.getId()).build();			
+		}
 	}
 
 	public AuthenticationResponse authenticate(AuthenticationRequest request) {
