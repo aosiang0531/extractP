@@ -1,15 +1,15 @@
-//JWT
-const token = localStorage.getItem("jwt");
-const url = `/auth?token=${encodeURIComponent(token)}`;
-var sender;
-fetch(url)
-	.then(response => response.json())
-	.then(data => {
-		sender = data.name;
-	})
-	.catch(error => {
-		console.error(error);
-	});
+////JWT
+//const token = localStorage.getItem("jwt");
+//const url = `/auth?token=${encodeURIComponent(token)}`;
+//var sender;
+//fetch(url)
+//	.then(response => response.json())
+//	.then(data => {
+//		sender = data.name;
+//	})
+//	.catch(error => {
+//		console.error(error);
+//	});
 
 // 自動調整textArea高度
 var textarea = document.querySelector('#product_description');

@@ -2,10 +2,7 @@ var memberId;
 var memberImage;
 
 //JWT
-const token = localStorage.getItem("jwt");
-const url2 = `/auth?token=${encodeURIComponent(token)}`;
-//var sender;
-fetch(url2)
+fetch(url)
 	.then(response => response.json())
 	.then(data => {
 //		sender = data.name;
@@ -34,9 +31,10 @@ const productSpecElement = document.getElementById("productSpec");
 const productStockElement = document.getElementById("productStock");
 const productDescriptElement = document.getElementById("productDescript");
 const product_id = urlParams.get("id");
-const url = `product/${product_id}`;
+const singleProductUrl = `product/${product_id}`;
 
 console.log("產品編號：" + product_id);
+
 let price = 0;
 let quantity = 0;
 
@@ -64,28 +62,28 @@ function addToCart() {
 }
 
 // 顯示購物車明細數量
-function countCartItem() {
-	setTimeout(() => {
-		fetch(`/orderDetail/${memberId}/countItems`)
-			.then((resp) => {
-				if (resp.ok) {
-					return resp.text();
-				}
-			})
-			.then((count) => {
-				// 更新數字
-				cartItemNumber.innerHTML = count;
-			})
-			.catch(error => {
-				// 發生錯誤時的處理邏輯
-				console.log('發生錯誤:', error);
-			});
-	}, 100); // 延遲處理
-}
+//function countCartItem() {
+//	setTimeout(() => {
+//		fetch(`/orderDetail/${memberId}/countItems`)
+//			.then((resp) => {
+//				if (resp.ok) {
+//					return resp.text();
+//				}
+//			})
+//			.then((count) => {
+//				// 更新數字
+//				cartItemNumber.innerHTML = count;
+//			})
+//			.catch(error => {
+//				// 發生錯誤時的處理邏輯
+//				console.log('發生錯誤:', error);
+//			});
+//	}, 100); // 延遲處理
+//}
 
 
 // 載入商品資訊;
-fetch(url)
+fetch(singleProductUrl)
     .then((res) => res.json())
     .then((product) => {
         //獲得單個產品資訊

@@ -1,14 +1,12 @@
 var allProducts = [];
 var itemsPerPage = 8; // 每頁顯示的商品數量
 var currentPage = 1; // 當前頁碼
-var countCartItem;
+//var countCartItem;
 //const cartItemNumber = document.querySelector('#cartItemNumber');
 var memberId;
 var memberImage;
 
 //JWT
-//const token = localStorage.getItem("jwt");
-//const url = `/auth?token=${encodeURIComponent(token)}`;
 fetch(url)
 	.then(response => response.json())
 	.then(data => {
@@ -46,30 +44,30 @@ function addToCart(productId, price) {
 		.then((body) => {
 			//			console.log(body);
 			alert("成功加入購物車");
-			countCartItem();
+//			countCartItem();
 
 		});
 }
 
 //// 顯示購物車明細數量
-function countCartItem() {
-	setTimeout(() => {
-		fetch(`/orderDetail/${memberId}/countItems`)
-			.then((resp) => {
-				if (resp.ok) {
-					return resp.text();
-				}
-			})
-			.then((count) => {
-				// 更新數字
-				cartItemNumber.innerHTML = count;
-			})
-			.catch(error => {
-				// 發生錯誤時的處理邏輯
-				console.log('發生錯誤:', error);
-			});
-	}, 100); // 非同步延遲處理，使它可以在網頁上不刷新即顯示
-}
+//function countCartItem() {
+//	setTimeout(() => {
+//		fetch(`/orderDetail/${memberId}/countItems`)
+//			.then((resp) => {
+//				if (resp.ok) {
+//					return resp.text();
+//				}
+//			})
+//			.then((count) => {
+//				// 更新數字
+//				cartItemNumber.innerHTML = count;
+//			})
+//			.catch(error => {
+//				// 發生錯誤時的處理邏輯
+//				console.log('發生錯誤:', error);
+//			});
+//	}, 100); // 非同步延遲處理，使它可以在網頁上不刷新即顯示
+//}
 
 //以關鍵字搜尋商品
 function searchBykeyword(keyword) {
@@ -258,7 +256,7 @@ $(document).ready(function() {
 	loadAllProducts();
 
 	// 載入購物車清單數量
-	countCartItem();
+//	countCartItem();
 
 	// 重新載入所有商品列表
 	$("#allProductsBtn").click(function() {

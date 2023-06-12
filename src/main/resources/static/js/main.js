@@ -1,3 +1,72 @@
+// 顯示購物車明細數量
+const cartItemNumber = document.querySelector('#cartItemNumber');
+function countCartItem() {
+	setTimeout(() => {
+		fetch(`/orderDetail/${memberId}/countItems`)
+			.then((resp) => {
+				if (resp.ok) {
+					return resp.text();
+				}
+			})
+			.then((count) => {
+				// 更新數字
+				if (count != undefined || count != null) {
+					sessionStorage.setItem('cartItemNumber', count);
+					cartItemNumber.innerHTML = count;
+					console.log("更新購物車數字:" + count + "項商品")
+				} else {
+					cartItemNumber.innerHTML = 0;
+					console.log("未登入購物車商品數顯示0")
+				}
+			})
+			.catch(error => {
+				// 發生錯誤時的處理邏輯
+				console.log('發生錯誤:', error);
+			});
+	}, 200); // 非同步延遲處理，使它可以在網頁上不刷新即顯示
+}
+
+//JWT
+const token = localStorage.getItem("jwt");
+const userLink = document.getElementById("userLink");
+const url = `/auth?token=${encodeURIComponent(token)}`;
+const noneUser = document.getElementById("noneUser");
+const userIcon = document.getElementById("userIcon");
+
+var memberId;
+var memberImage;
+//	var sender;
+
+function initMember() {
+	console.log("HERE!!")
+	fetch(url)
+		.then(response => response.json())
+		.then(data => {
+			//			sender = data.name;
+			memberId = data.id;
+			if(data.image === null){
+				memberImage = "images/300.jpg";
+			}else{
+			memberImage = "data:image/png;base64," + data.image;
+			}
+
+			if (token === null) {
+				userLink.href = "member_login.html";
+				userIcon.style.display = "none"; // 隱藏圖片
+			} else {
+				userLink.href = "member_personalpage.html";
+				noneUser.style.display = "none";
+				userIcon.src = memberImage; // 顯示會員大頭照
+				userIcon.style.display = "inline-block";
+			}
+
+			countCartItem();
+		})
+		.catch(error => {
+			console.error(error);
+		});
+}
+
 
 AOS.init({
 	duration: 800,
@@ -291,72 +360,6 @@ AOS.init({
 	});
 
 	$('.appointment_time').timepicker();
-
-
-
-	// 顯示購物車明細數量
-	//	var memberId = 1; //假會員編號
-	const cartItemNumber = document.querySelector('#cartItemNumber');
-	function countCartItem() {
-		setTimeout(() => {
-			fetch(`/orderDetail/${memberId}/countItems`)
-				.then((resp) => {
-					if (resp.ok) {
-						return resp.text();
-					}
-				})
-				.then((count) => {
-					// 更新數字
-					if (count != undefined || count != null) {
-						sessionStorage.setItem('cartItemNumber', count);
-						cartItemNumber.innerHTML = count;
-						console.log("更新購物車數字:" + count + "項商品")
-					} else {
-						cartItemNumber.innerHTML = 0;
-						console.log("未登入購物車商品數顯示0")
-					}
-				})
-				.catch(error => {
-					// 發生錯誤時的處理邏輯
-					console.log('發生錯誤:', error);
-				});
-		}, 200); // 非同步延遲處理，使它可以在網頁上不刷新即顯示
-	}
-
-	//JWT
-	const token = localStorage.getItem("jwt");
-	const userLink = document.getElementById("userLink");
-	const url = `/auth?token=${encodeURIComponent(token)}`;
-	const noneUser = document.getElementById("noneUser");
-	const userIcon = document.getElementById("userIcon");
-	var memberId;
-	var memberImage;
-	//	var sender;
-
-	fetch(url)
-		.then(response => response.json())
-		.then(data => {
-			//			sender = data.name;
-			memberId = data.id;
-			memberImage = "data:image/png;base64," + data.image;
-
-			if (token === null) {
-				userLink.href = "member_login.html";
-				userIcon.style.display = "none"; // 隱藏圖片
-			} else {
-				userLink.href = "member_personalpage.html";
-				noneUser.style.display = "none";
-				userIcon.src = memberImage; // 顯示會員大頭照
-				userIcon.style.display = "inline-block";
-			}
-			
-			countCartItem();
-		})
-		.catch(error => {
-			console.error(error);
-		});
-
-
 
 })(jQuery);
 

@@ -1,42 +1,36 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-  <head>
-    <title>萃．練</title>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link
-      rel="shortcut icon"
-      type="image/x-icon"
-      href="../images/favicon.ico"
-    />
+<head>
+<title>萃．練</title>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
 
-    <link rel="stylesheet" href="../css/open-iconic-bootstrap.min.css" />
-    <link rel="stylesheet" href="../css/animate.css" />
+<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css" />
+<link rel="stylesheet" href="css/animate.css" />
 
-    <link rel="stylesheet" href="../css/owl.carousel.min.css" />
-    <link rel="stylesheet" href="../css/owl.theme.default.min.css" />
-    <link rel="stylesheet" href="../css/magnific-popup.css" />
+<link rel="stylesheet" href="css/owl.carousel.min.css" />
+<link rel="stylesheet" href="css/owl.theme.default.min.css" />
+<link rel="stylesheet" href="css/magnific-popup.css" />
 
-    <!-- <link rel="stylesheet" href="../css/aos.css" /> -->
+<!-- <link rel="stylesheet" href="css/aos.css" /> -->
 
-    <link rel="stylesheet" href="../css/ionicons.min.css" />
+<link rel="stylesheet" href="css/ionicons.min.css" />
 
-    <link rel="stylesheet" href="../css/bootstrap-datepicker.css" />
-    <link rel="stylesheet" href="../css/jquery.timepicker.css" />
+<link rel="stylesheet" href="css/bootstrap-datepicker.css" />
+<link rel="stylesheet" href="css/jquery.timepicker.css" />
 
-    <link rel="stylesheet" href="../css/flaticon.css" />
-    <link rel="stylesheet" href="../css/icomoon.css" />
-    <link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="css/flaticon.css" />
+<link rel="stylesheet" href="css/icomoon.css" />
+<link rel="stylesheet" href="css/style.css" />
 
-    <!-- 商城css -->
-    <link rel="stylesheet" href="shop/css/shop.css" />
-  </head>
+<!-- 商城css -->
+<link rel="stylesheet" href="shop/css/shop.css" />
+</head>
 
-  <body>
-  	<!-- START nav -->
+<body>
+	<!-- START nav -->
 	<nav
 		class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
 		id="ftco-navbar">
@@ -76,132 +70,129 @@
 	</nav>
 	<!-- END nav -->
 
-    <!-- Start Content -->
+	<!-- Start Content -->
 
-    <section class="ftco-section ftco-white">
-      <div class="container">
-        <h1 id="title">修改編號：<span id="idAtTitle"></span>號商品</h1>
+	<section class="ftco-section ftco-white">
+		<div class="container">
+			<h1 id="title">
+				修改編號：<span id="idAtTitle"></span>號商品
+			</h1>
 
-        <form id="the_form">
-          <!-- 選擇分類 -->
-          
-          <div class="row">
-            <div class="col-md-6 mb-4">
-              <div class="main-group">
-                <h5 for="category_id" class="form-label">選擇分類</h5>
-                <select class="form-select" id="category_id">
-                  <option selected disabled>請選擇分類</option>
-                  <option value="1">咖啡器具</option>
-                  <option value="2">咖啡豆</option>
-                  <option value="3">濾掛咖啡</option>
-                </select>
-              </div>
-            </div>
-          </div>
+			<form id="the_form">
+				<!-- 選擇分類 -->
 
-          <hr />
-
-          <!-- 上傳圖片 -->
-          <div>
-            <h5 class="form-label me-3">上傳圖片</h5>
-            <input type="file" name="image" id="image" />
-            <img id="img" />
-          </div>
-
-          <hr />
-
-          <!-- 商品詳情 -->
-          <h5 class="form-label me-3">商品詳情</h5>
-          <div class="row">
-            <div class="col-md-6 mb-4">
-              <label for="product_name" class="form-label">商品名稱</label>
-              <input type=" text" id="product_name" style="width: 100%" />
-            </div>
-            <div class="col-md-6 mb-4">
-              <label for="product_spec" class="form-label">商品規格</label>
-              <input type=" text" id="product_spec" style="width: 100%" />
-            </div>
-          </div>
-
-          <div class="row justify-content-between">
-            <div class="col-md-4 mb-4 col-sm-2">
-              <label for="product_price" class="form-label">商品價格</label>
-              <input type="number" id="product_price" />
-            </div>
-            <div class="col-md-4 mb-4 col-sm-2">
-              <label for="product_stock" class="">庫存數量</label>
-              <input type="number" id="product_stock" />
-            </div>
-            <div class="col-md-4 mb-4 col-sm-2" >
-              <label>商品狀態</label>
-              <div>
-              <label>
-  					<input type="radio" name="productStatus" value="上架中"> 上架中
-				</label>
-				<label>
-				 	<input type="radio" name="productStatus" value="已下架"> 已下架
-				</label>
+				<div class="row">
+					<div class="col-md-6 mb-4">
+						<div class="main-group">
+							<h5 for="category_id" class="form-label">選擇分類</h5>
+							<select class="form-select" id="category_id">
+								<option selected disabled>請選擇分類</option>
+								<option value="1">咖啡器具</option>
+								<option value="2">咖啡豆</option>
+								<option value="3">濾掛咖啡</option>
+							</select>
+						</div>
+					</div>
 				</div>
-            </div>
-          </div>
 
-          <div class="mb-4">
-            <label for="product_description" class="form-label">商品說明</label>
-            <textarea
-              id="product_description"
-              rows="5"
-              style="width: 100%"
-            ></textarea>
-          </div>
+				<hr />
 
-          <hr />
+				<!-- 上傳圖片 -->
+				<div>
+					<h5 class="form-label me-3">上傳圖片</h5>
+					<input type="file" name="image" id="image" /> <img id="img" />
+				</div>
 
-          <!-- 按鈕 -->
-          <div>
-	          <button type="button" class="btn btn-primary me-3" id="submit">
-	            確定修改
-	          </button>
-	          <button type="reset" class="btn btn-secondary">重新填寫</button>
-          	
-          </div>
-          <div id="msg" class="error"></div>
-        </form>
-      </div>
-    </section>
+				<hr />
 
-    <!-- End Content -->
+				<!-- 商品詳情 -->
+				<h5 class="form-label me-3">商品詳情</h5>
+				<div class="row">
+					<div class="col-md-6 mb-4">
+						<label for="product_name" class="form-label">商品名稱</label> <input
+							type=" text" id="product_name" style="width: 100%" />
+					</div>
+					<div class="col-md-6 mb-4">
+						<label for="product_spec" class="form-label">商品規格</label> <input
+							type=" text" id="product_spec" style="width: 100%" />
+					</div>
+				</div>
 
-    <!-- Start Footer -->
-    <footer class="bg-dark" id="tempaltemo_footer">
-      <div class="w-100 bg-black py-3">
-        <div class="container">
-          <div class="row pt-2">
-            <div class="col-12">
-              <p class="text-left text-light">
-                Copyright &copy; 2023 TibaMe THA101-Team7 萃．練
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-    <!-- End Footer -->
-    <script src="../js/main.js"></script>
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/jquery-migrate-3.0.1.min.js"></script>
-    <script src="../js/popper.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/jquery.easing.1.3.js"></script>
-    <script src="../js/jquery.waypoints.min.js"></script>
-    <script src="../js/jquery.stellar.min.js"></script>
-    <script src="../js/owl.carousel.min.js"></script>
-    <script src="../js/jquery.magnific-popup.min.js"></script>
-    <!-- <script src="js/aos.js"></script> -->
-    <script src="../js/jquery.animateNumber.min.js"></script>
-    <script src="../js/bootstrap-datepicker.js"></script>
-    <script src="../js/jquery.timepicker.min.js"></script>
-    <script src="../js/scrollax.min.js"></script>
+				<div class="row justify-content-between">
+					<div class="col-md-4 mb-4 col-sm-2">
+						<label for="product_price" class="form-label">商品價格</label> <input
+							type="number" id="product_price" />
+					</div>
+					<div class="col-md-4 mb-4 col-sm-2">
+						<label for="product_stock" class="">庫存數量</label> <input
+							type="number" id="product_stock" />
+					</div>
+					<div class="col-md-4 mb-4 col-sm-2">
+						<label>商品狀態</label>
+						<div>
+							<label> <input type="radio" name="productStatus"
+								value="上架中"> 上架中
+							</label> <label> <input type="radio" name="productStatus"
+								value="已下架"> 已下架
+							</label>
+						</div>
+					</div>
+				</div>
 
-    <script src="js/product_edit.js"></script>
-  </body>
+				<div class="mb-4">
+					<label for="product_description" class="form-label">商品說明</label>
+					<textarea id="product_description" rows="5" style="width: 100%"></textarea>
+				</div>
+
+				<hr />
+
+				<!-- 按鈕 -->
+				<div>
+					<button type="button" class="btn btn-primary me-3" id="submit">
+						確定修改</button>
+					<button type="reset" class="btn btn-secondary">重新填寫</button>
+
+				</div>
+				<div id="msg" class="error"></div>
+			</form>
+		</div>
+	</section>
+
+	<!-- End Content -->
+
+	<!-- Start Footer -->
+	<footer class="bg-dark" id="tempaltemo_footer">
+		<div class="w-100 bg-black py-3">
+			<div class="container">
+				<div class="row pt-2">
+					<div class="col-12">
+						<p class="text-left text-light">Copyright &copy; 2023 TibaMe
+							THA101-Team7 萃．練</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- End Footer -->
+	<script src="js/main.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="js/jquery.waypoints.min.js"></script>
+	<script src="js/jquery.stellar.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<!-- <script src="js/aos.js"></script> -->
+	<script src="js/jquery.animateNumber.min.js"></script>
+	<script src="js/bootstrap-datepicker.js"></script>
+	<script src="js/jquery.timepicker.min.js"></script>
+	<script src="js/scrollax.min.js"></script>
+
+	<script src="js/product_edit.js"></script>
+	<script>
+		initMember();
+	</script>
+</body>
 </html>

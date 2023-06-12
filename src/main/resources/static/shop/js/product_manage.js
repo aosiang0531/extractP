@@ -1,7 +1,7 @@
 //JWT
-const token = localStorage.getItem("jwt");
-const url = `/auth?token=${encodeURIComponent(token)}`;
-var sender;
+//const token = localStorage.getItem("jwt");
+//const url = `/auth?token=${encodeURIComponent(token)}`;
+//var sender;
 fetch(url)
 	.then(response => response.json())
 	.then(data => {
@@ -71,8 +71,8 @@ function changeStatus(productId, status) {
 	var allProducts = [];
 
 	// 從controller叫出所有商品的json
-	const url = "product";
-	fetch(url)
+	const productList = "product";
+	fetch(productList)
 		.then((res) => res.json())
 		.then((productList) => {
 			console.log(productList);
