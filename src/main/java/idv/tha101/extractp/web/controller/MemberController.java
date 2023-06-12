@@ -51,7 +51,9 @@ public class MemberController extends BaseController<MemberVO> {
 	@Override
 	@PutMapping("/{id}")
 	public MemberVO update(@RequestBody MemberVO vo, @PathVariable(value = "id") int id) {
-		vo.setPassword(passwordEncoder.encode(vo.getPassword()));
+		if(vo.getPassword()!=null) {
+			vo.setPassword(passwordEncoder.encode(vo.getPassword()));
+		}
 		vo.setId(id);
 		return memberservice.saveOrUpdate(vo);
 	}

@@ -191,7 +191,7 @@ function GET3() {
 				data: { id: articleId },  // 傳遞文章ID作為參數
 				success: function(response) {
 					// 跳轉到編輯文章畫面
-					window.location.href = 'postArticle.html?id=' + articleId;
+					window.location.href = 'postArticle.html?articleID=' + articleId;
 				},
 				error: function(error) {
 					console.log('獲取文章編輯畫面失敗');

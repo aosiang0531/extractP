@@ -113,6 +113,7 @@ $('#update').on('click', function(e) {
 		success: function(response) {
 			// 更新成功後的處理邏輯
 			console.log("更新成功");
+			alert("密碼更改成功");
 			window.location.href = 'member_personalpage.html';
 		},
 		error: function(error) {
