@@ -1,5 +1,5 @@
 /* 登入資訊 */
-const token = localStorage.getItem("jwt");
+let token = localStorage.getItem("jwt");
 const Url = `/auth?token=${encodeURIComponent(token)}`;
 var memberId;
 var memberName;
@@ -200,7 +200,7 @@ function DELETE() {
 		for (var k = 0; k < articleTotal; k++) {
 
 			var data = {
-				"member_id": member_id,
+				"member_id": memberId,
 				"article_id": articleId[k]
 			}
 

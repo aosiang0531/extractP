@@ -1,6 +1,6 @@
 /* 登入資訊 */
 
-const token = localStorage.getItem("jwt");
+let token = localStorage.getItem("jwt");
 const Url = `/auth?token=${encodeURIComponent(token)}`;
 var memberId;
 var memberName;

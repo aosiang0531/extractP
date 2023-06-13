@@ -94,39 +94,35 @@
 							</h2>
 						</div>
 						<div class="card-form">
-						
-							
-							
+
+
+
 
 							<div class="input">
 								<input type="email" id="email" name="memberEmail"
-									onblur="emailError()"
-									class="input-field" value="" required /> <label
-									class="input-label">Email</label>
+									onblur="emailError()" class="input-field" value="" required />
+								<label class="input-label">Email</label>
 								<div id="emailError" class="error"></div>
 							</div>
 
 							<div class="input">
-                                <input type="password" id="password" name="memberPassword" 
-                                onblur="passwordError()"
-                                class="input-field" required/>
-                                <label class="input-label">Password</label>
+								<input type="password" id="password" name="memberPassword"
+									onblur="passwordError()" class="input-field" required /> <label
+									class="input-label">Password</label>
 								<div id="passwordError" class="error"></div>
-                            </div>
+							</div>
 
 							<div class="input">
 								<input type="text" id="name" name="memberName"
-									onblur="nameError()"
-									class="input-field" value="" required /> <label
-									class="input-label">Full name</label>
-									<div id="nameError" class="error"></div>
+									onblur="nameError()" class="input-field" value="" required />
+								<label class="input-label">Full name</label>
+								<div id="nameError" class="error"></div>
 							</div>
 							<div class="input">
 								<input type="tel" id="phone" name="memberPhone"
-								onblur="phoneError()"
-									class="input-field" value="" required /> <label
-									class="input-label">Phone number</label>
-									<div id="phoneError" class="error"></div>
+									onblur="phoneError()" class="input-field" value="" required />
+								<label class="input-label">Phone number</label>
+								<div id="phoneError" class="error"></div>
 							</div>
 
 							<div class="input-radio" id="identity">
@@ -202,8 +198,11 @@
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 	<script src="js/google-map.js"></script>
-	<script src="js/main.js"></script>
 	<script src="js/member/member_register.js"></script>
+	<script>
+		initMember();
+	</script>
+	<script src="js/main.js"></script>
 
 
 

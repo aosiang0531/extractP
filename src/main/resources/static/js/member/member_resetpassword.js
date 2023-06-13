@@ -1,6 +1,6 @@
 /* 登入資訊 */
-const resetURL = new URLSearchParams(window.location.search);
-const memberId = resetURL.get("memberId");
+let resetURL = new URLSearchParams(window.location.search);
+const ID = resetURL.get("memberId");
 GET();
 PUT();
 
@@ -12,7 +12,7 @@ function GET() {
 
 		//	var memberId = 1; 
 		//		var url = "member/{id}".replace("{id}", memberId);
-		var url = "member/" + memberId;
+		var url = "member/" + ID;
 
 		console.log(memberId)
 
@@ -63,7 +63,7 @@ function PUT() {
 			return;
 		}
 		//	var memberId = 1;
-		var url = "member/{id}".replace("{id}", memberId);
+		var url = "member/" + ID;
 
 		// 要發送的數據
 		var data = {
