@@ -105,7 +105,7 @@ $(function(){
 		.then(data => {
 			sender = data.name;
 			memberId = data.id;
-	console.log("member:" + memberId);
+//	console.log("member:" + memberId);
 		})
 		.catch(error => {
 			console.error(error);
@@ -113,10 +113,11 @@ $(function(){
 
 	// 發表文章
 	$(".post-article").on("click", function() {
-
 		if (!memberId || memberId == undefined) {
-			alert("請登入會員");
-			window.location.href = 'member_login.html';
+        	var confirmResult = confirm("請登入會員");
+        	if (confirmResult) {
+            	window.location.href = 'member_login.html';
+        	}
 		} else {
 			window.location.href = 'postArticle.html';
 		}
@@ -124,8 +125,10 @@ $(function(){
 	// 聊天室	
 	$(".public-chat").on("click", function() {
 		if (!memberId || memberId == undefined) {
-			alert("請登入會員");
-			window.location.href = 'member_login.html';
+        	var confirmResult = confirm("請登入會員");
+        	if (confirmResult) {
+            	window.location.href = 'member_login.html';
+        	}
 		} else {
 			window.location.href = 'chat_public.html';
 		}

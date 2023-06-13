@@ -58,10 +58,10 @@ public class ArticleCommentController extends BaseController<ArticleCommentVO> {
 	@GetMapping("/findByArticleId/{article_comment_article_id}")
 	public List<ArticleCommentDTO> findByArticleId(@PathVariable(value = "article_comment_article_id") int id) {
 		List<ArticleCommentDTO> aDtos = articleCommentService.findByArticleId(id);
-//		List<ArticleCommentDTO> list = aDtos.stream()
-//											.filter(c -> c.getarticle_comment_is_hidden() != true)
-//											.toList();
-		return aDtos;
+		List<ArticleCommentDTO> list = aDtos.stream()
+											.filter(c -> c.getarticle_comment_is_hidden() != true)
+											.toList();
+		return list;
 	}
 
 }
